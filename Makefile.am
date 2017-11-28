@@ -26,6 +26,19 @@ else
 	@echo Run configure with --enable-code-coverage for coverage support.
 endif
 
+.PHONY: doc
+if BUILD_DOCS
+SUBDIRS += doc
+doc:
+	$(MAKE) -C doc html
+else
+doc:
+	@echo Run configure with --enable-docs to enable documentation building.
+endif
+
+# The current directory must be listed *after* the doc directory to make sure
+# 'make distclean' doesn't delete doc/Makefile before 'make distclean -C doc'
+# had a chance to run.
 SUBDIRS += .
 
 pkgconfigdir = $(datadir)/pkgconfig

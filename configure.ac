@@ -80,6 +80,19 @@ AS_IF([test "x$enable_debug" = "xyes"], [
     AC_DEFINE(DEBUG, [1], [Debug messages.])
 ])
 
+# documentation
+AC_ARG_ENABLE([docs],
+    AS_HELP_STRING([--enable-docs], [build documentation @<:@default=disabled@:>@]),
+    [],
+    [enable_docs=no])
+AS_IF([test "x$enable_docs" = "xyes"], [
+    AC_CHECK_PROG([DOXYGEN], [doxygen], [doxygen])
+    AS_IF([ test -z "$DOXYGEN" ], [
+        AC_MSG_ERROR([doxygen is required to build the documentation.])
+    ])
+])
+AM_CONDITIONAL([BUILD_DOCS], [test "x$enable_docs" = "xyes"])
+
 AM_CFLAGS="-Wall \
     -Wmissing-declarations -Wmissing-prototypes \
     -Wnested-externs -Wpointer-arith \
@@ -108,6 +121,7 @@ AC_CONFIG_FILES([
         src/libosd/Makefile
         tests/Makefile
         tests/unit/Makefile
+        doc/Makefile
 ])
 
 AC_OUTPUT
