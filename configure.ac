@@ -46,6 +46,20 @@ AC_PREFIX_DEFAULT([/usr])
 AC_PROG_SED
 AC_PROG_MKDIR_P
 
+# check unit testing framework
+PKG_CHECK_MODULES([CHECK], [check >= 0.9.10])
+
+# test memory checking with valgrind
+# All other Valgrind tools show too many false positives to be useful
+AX_VALGRIND_DFLT([memcheck], [on])
+AX_VALGRIND_DFLT([sgcheck], [off])
+AX_VALGRIND_DFLT([helgrind], [off])
+AX_VALGRIND_DFLT([drd], [off])
+AX_VALGRIND_CHECK
+
+# test coverage with gcov and reporting with lcov
+AX_CODE_COVERAGE
+
 # ZeroMQ and high-level C wrapper (CZMQ)
 PKG_CHECK_MODULES([libzmq], [libzmq >= 4.1])
 PKG_CHECK_MODULES([libczmq], [libczmq >= 3.0])
@@ -75,14 +89,16 @@ AM_CFLAGS="-Wall \
     -ffunction-sections \
     -fdata-sections \
     -pthread \
-    $libczmq_CFLAGS"
+    $libczmq_CFLAGS \
+    $CODE_COVERAGE_CFLAGS"
 AC_SUBST([AM_CFLAGS])
 
 AM_LDFLAGS="-Wl,--gc-sections \
     -Wl,--as-needed \
     -pthread \
     -lrt \
-    $libczmq_LIBS"
+    $libczmq_LIBS \
+    $CODE_COVERAGE_LIBS"
 AC_SUBST(AM_LDFLAGS)
 
 AC_CONFIG_HEADERS(config.h)
@@ -90,6 +106,8 @@ AC_CONFIG_FILES([
         Makefile
         src/Makefile
         src/libosd/Makefile
+        tests/Makefile
+        tests/unit/Makefile
 ])
 
 AC_OUTPUT

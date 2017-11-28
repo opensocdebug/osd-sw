@@ -3,7 +3,7 @@ CLEANFILES =
 ACLOCAL_AMFLAGS = -I m4 ${ACLOCAL_FLAGS}
 AM_MAKEFLAGS = --no-print-directory
 
-SUBDIRS = src
+SUBDIRS = src tests
 
 # prepare pkg-config file
 SED_PROCESS = \
@@ -17,6 +17,14 @@ SED_PROCESS = \
 
 %.pc: %.pc.in
 	$(SED_PROCESS)
+
+.PHONY: check-code-coverage
+if CODE_COVERAGE_ENABLED
+check-code-coverage:
+	$(MAKE) -C tests/unit check-code-coverage
+else
+	@echo Run configure with --enable-code-coverage for coverage support.
+endif
 
 SUBDIRS += .
 
