@@ -9,6 +9,7 @@ Each class is contained in one C header file.
    :caption: Contents
 
    libosd/hostmod.rst
+   libosd/hostctrl.rst
    libosd/log.rst
    libosd/packet.rst
    libosd/errorhandling.rst
