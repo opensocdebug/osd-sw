@@ -4,7 +4,8 @@ pkginclude_HEADERS =\
 	include/osd/packet.h \
 	include/osd/module.h \
 	include/osd/hostmod.h \
-	include/osd/hostctrl.h
+	include/osd/hostctrl.h \
+	include/osd/gateway.h
 
 lib_LTLIBRARIES = libosd.la
 
@@ -15,7 +16,8 @@ libosd_la_SOURCES =\
 	hostmod.c \
 	hostctrl.c \
 	worker.c \
-	util.c
+	util.c \
+	gateway.c
 
 libosd_la_LDFLAGS = \
 	$(AM_LDFLAGS) \
