@@ -123,6 +123,7 @@ AC_CONFIG_FILES([
         src/Makefile
         src/libosd/Makefile
         src/tools/Makefile
+        src/tools/osd-host-controller/Makefile
         src/tools/osd-device-gateway/Makefile
         tests/Makefile
         tests/unit/Makefile
