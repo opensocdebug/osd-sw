@@ -64,6 +64,9 @@ AX_CODE_COVERAGE
 PKG_CHECK_MODULES([libzmq], [libzmq >= 4.1])
 PKG_CHECK_MODULES([libczmq], [libczmq >= 3.0])
 
+# glip (device connectivity)
+PKG_CHECK_MODULES([libglip], [libglip])
+
 AC_ARG_ENABLE([logging],
     AS_HELP_STRING([--disable-logging], [disable system logging @<:@default=enabled@:>@]),
     [],
@@ -120,6 +123,7 @@ AC_CONFIG_FILES([
         src/Makefile
         src/libosd/Makefile
         src/tools/Makefile
+        src/tools/osd-device-gateway/Makefile
         tests/Makefile
         tests/unit/Makefile
         doc/Makefile
