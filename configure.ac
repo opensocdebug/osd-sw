@@ -119,6 +119,7 @@ AC_CONFIG_FILES([
         Makefile
         src/Makefile
         src/libosd/Makefile
+        src/tools/Makefile
         tests/Makefile
         tests/unit/Makefile
         doc/Makefile
