@@ -1,3 +1,6 @@
+[![Run Status](https://api.shippable.com/projects/5a212a1b7cc9a8070082fa14/badge?branch=master)](https://app.shippable.com/github/opensocdebug/osd-sw) 
+[![codecov](https://codecov.io/gh/opensocdebug/osd-sw/branch/master/graph/badge.svg)](https://codecov.io/gh/opensocdebug/osd-sw)
+
 # Open SoC Debug Software
 
 This is the reference implementation of the Open SoC Debug host software.

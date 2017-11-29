@@ -1,0 +1,36 @@
+language: c
+
+compiler:
+  - gcc
+
+env:
+  # Codecov upload token: CODECOV_TOKEN=xxx
+  # To decrypt/replace go to the Shippable UI into the project settings
+  - secure: vw5Dlj5ZjrVFbHjq76qzJyoj/C8p1QiS8qYQcVUA6iOgYR05CRVaGogtdIMMwkAlvN01AH7h5cGgnoXnFTRKkd5CaPuasqJWORi0lTfQooP+nX6loOomtZmia+DrxddcLi8tzAjjm5PhsL501vWRNsUaTadlzeg63Xfa8HCG7YWjJgO3kOXcZmkRy7eK590eQDo6AyXQXrfUNCmsJfDxPB1Vjg8lM+cc2z6AKZM3X4sUtKKXAaxngDmnWKxyPKOlYJPkIE1SLj8GYYBq+05fi1rA2mztaDZ/pJrcp2cEDRIPcqNjb57DZ2HfXr36vibx4C5NMmmMTbwyCekai76hVA==
+
+build:
+  ci:
+    # Build and install GLIP as build dependency
+    - git clone --depth 1 https://github.com/TUM-LIS/glip.git
+    - cd glip && ./autogen.sh && ./configure --prefix=$PWD/../glip-install && make && make install && cd ..
+    - export PKG_CONFIG_PATH=$PWD/glip-install/lib/pkgconfig
+
+    # Now build the actual OSD software
+    - sudo apt-get update
+    - ./install-build-deps.sh
+    - ./autogen.sh
+    - ./configure --enable-debug --enable-code-coverage --enable-valgrind
+    - make
+    - make check-code-coverage
+    - make check-valgrind
+
+    # Copy test results where shippable.io finds them
+    - make -C tests/unit check-junit-xml
+    - cp tests/unit/*.junit.xml shippable/testresults
+
+    # Copy code coverage information where shippable.io finds it
+    - make -C tests/unit coverage-cobertura-xml
+    - cp tests/unit/coverage-cobertura.xml shippable/codecoverage
+
+  on_success:
+    - bash <(curl -s https://codecov.io/bash)
