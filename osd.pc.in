@@ -8,5 +8,5 @@ Description: Open SoC Debug library
 Version: @VERSION@
 Libs: -L${libdir} -losd
 Libs.private:
-Cflags: -I${includedir}/osd
+Cflags: -I${includedir}
 
