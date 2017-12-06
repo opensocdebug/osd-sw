@@ -540,8 +540,8 @@ static osd_result osd_hostmod_regaccess(
     if (osd_packet_get_type_sub(pkg_resp) == RESP_READ_REG_ERROR ||
         osd_packet_get_type_sub(pkg_resp) == RESP_WRITE_REG_ERROR) {
         err(ctx->log_ctx,
-            "Device returned error packet %u when accessing the register.",
-            osd_packet_get_type_sub(pkg_resp));
+            "Got RESP_WRITE_REG_ERROR when accessing register %u of module %d",
+            reg_addr, module_addr);
         retval = OSD_ERROR_DEVICE_ERROR;
         goto err_free_resp;
     }
