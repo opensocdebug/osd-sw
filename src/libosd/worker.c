@@ -73,8 +73,16 @@ static void *thread_main(void *thread_ctx_void)
     osd_result osd_rv;
 
     // create new PAIR socket for the communication of the main thread
-    thread_ctx->inproc_socket = zsock_new_pair(">inproc://threadcom");
+    thread_ctx->inproc_socket = zsock_new(ZMQ_PAIR);
     assert(thread_ctx->inproc_socket);
+    zmq_rv = zsock_connect(thread_ctx->inproc_socket, "inproc://%s",
+                           thread_ctx->inproc_socket_name);
+    if (zmq_rv == -1) {
+        err(thread_ctx->log_ctx,
+            "Unable to connect to ZeroMQ socket inproc://%s",
+            thread_ctx->inproc_socket_name);
+        goto free_return;
+    }
 
     // prepare processing loop
     thread_ctx->zloop = zloop_new();
@@ -96,8 +104,7 @@ static void *thread_main(void *thread_ctx_void)
             worker_send_status(thread_ctx->inproc_socket, "I-THREADINIT-DONE",
                                osd_rv);
 
-            zsock_destroy(&thread_ctx->inproc_socket);
-            return NULL;
+            goto free_return;
         }
     }
     // connection successful: inform main thread
@@ -128,6 +135,7 @@ static void *thread_main(void *thread_ctx_void)
            "You need to free() and NULL the user context in a thread function "
            "to prevent memory leaks.");
 
+free_return:
     zsock_destroy(&thread_ctx->inproc_socket);
 
     zloop_destroy(&thread_ctx->zloop);
@@ -138,6 +146,23 @@ static void *thread_main(void *thread_ctx_void)
     return NULL;
 }
 
+/**
+ * Generate a 32-character unique identifier
+ *
+ * The resulting string is null-terminated.
+ *
+ * @param[out] socket_name a pre-allocated buffer for 33 bytes
+ */
+static void generate_unique_inproc_name(char* socket_name)
+{
+    zuuid_t *uuid = zuuid_new();
+    assert(uuid);
+    assert(strlen(zuuid_str(uuid)) == 32);
+    strncpy(socket_name, zuuid_str(uuid), 32);
+    socket_name[32] = '\0';
+    zuuid_destroy(&uuid);
+}
+
 osd_result worker_new(struct worker_ctx **ctx, struct osd_log_ctx *log_ctx,
                       worker_thread_init_fn thread_init_fn,
                       worker_thread_destroy_fn thread_destroy_fn,
@@ -145,12 +170,22 @@ osd_result worker_new(struct worker_ctx **ctx, struct osd_log_ctx *log_ctx,
                       void *thread_ctx_usr)
 {
     int rv;
+    char inproc_socket_name[33];
 
     struct worker_ctx *c = calloc(1, sizeof(struct worker_ctx));
     assert(c);
 
-    c->inproc_socket = zsock_new_pair("@inproc://threadcom");
+    generate_unique_inproc_name(inproc_socket_name);
+
+    c->inproc_socket = zsock_new(ZMQ_PAIR);
     assert(c->inproc_socket);
+    rv = zsock_bind(c->inproc_socket, "inproc://%s", inproc_socket_name);
+    if (rv == -1) {
+        err(log_ctx, "Unable to bind to ZeroMQ socket inproc://%s",
+            inproc_socket_name);
+        free(c);
+        return OSD_ERROR_FAILURE;
+    }
 
     // To support I/O with timeouts (e.g. reading a register with a timeout)
     // we need the ZeroMQ receive functions to time out as well.
@@ -166,6 +201,7 @@ osd_result worker_new(struct worker_ctx **ctx, struct osd_log_ctx *log_ctx,
     struct worker_thread_ctx *thread_ctx =
         calloc(1, sizeof(struct worker_thread_ctx));
     assert(thread_ctx);
+    strncpy(thread_ctx->inproc_socket_name, inproc_socket_name, 33);
     thread_ctx->usr = thread_ctx_usr;
     thread_ctx->log_ctx = log_ctx;
     thread_ctx->init_fn = thread_init_fn;

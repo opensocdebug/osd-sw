@@ -63,6 +63,12 @@ typedef osd_result (*worker_cmd_handler_fn)(
  * Worker context object (to be used in the worker thread)
  */
 struct worker_thread_ctx {
+    /**
+     * Name of the inproc socket for main-thread communication.
+     * 32 characters + null termination
+     */
+    char inproc_socket_name[33];
+
     /** Event processing zloop */
     zloop_t* zloop;
 
