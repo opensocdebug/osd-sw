@@ -35,8 +35,12 @@ void setup(void)
     assert(OSD_SUCCEEDED(rv));
     assert(hostctrl_ctx);
 
+    assert(!osd_hostctrl_is_running(hostctrl_ctx));
+
     rv = osd_hostctrl_start(hostctrl_ctx);
     assert(OSD_SUCCEEDED(rv));
+
+    assert(osd_hostctrl_is_running(hostctrl_ctx));
 }
 
 /**
@@ -45,8 +49,12 @@ void setup(void)
 void teardown(void)
 {
     osd_result rv;
+    assert(osd_hostctrl_is_running(hostctrl_ctx));
+
     rv = osd_hostctrl_stop(hostctrl_ctx);
     assert(OSD_SUCCEEDED(rv));
+
+    assert(!osd_hostctrl_is_running(hostctrl_ctx));
 
     osd_hostctrl_free(&hostctrl_ctx);
 }

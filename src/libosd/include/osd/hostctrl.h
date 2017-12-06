@@ -20,6 +20,7 @@
 
 #include <czmq.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -68,6 +69,14 @@ osd_result osd_hostctrl_stop(struct osd_hostctrl_ctx *ctx);
  * @param ctx_p the host controller context object
  */
 void osd_hostctrl_free(struct osd_hostctrl_ctx **ctx_p);
+
+/**
+ * Is the host controller running?
+ *
+ * @param ctx the context object
+ * @return true if the host controller is running, false otherwise
+ */
+bool osd_hostctrl_is_running(struct osd_hostctrl_ctx *ctx);
 
 /**@}*/ /* end of doxygen group libosd-hostctrl */
 

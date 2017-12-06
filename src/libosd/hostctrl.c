@@ -633,3 +633,9 @@ osd_result osd_hostctrl_stop(struct osd_hostctrl_ctx *ctx)
 
     return OSD_OK;
 }
+
+API_EXPORT
+bool osd_hostctrl_is_running(struct osd_hostctrl_ctx *ctx)
+{
+    return ctx->is_running;
+}
