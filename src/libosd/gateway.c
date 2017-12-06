@@ -139,6 +139,7 @@ static int hostiothread_rcv_from_hostctrl(zloop_t *loop, zsock_t *reader,
     assert(usrctx);
 
     int retval;
+    osd_result rv;
 
     zmsg_t *msg = zmsg_recv(reader);
     if (!msg) {
@@ -151,8 +152,11 @@ static int hostiothread_rcv_from_hostctrl(zloop_t *loop, zsock_t *reader,
         zframe_t *data_frame = zmsg_next(msg);
         assert(data_frame);
 
-        struct osd_packet *pkg = (struct osd_packet *)zframe_data(data_frame);
-        osd_result device_write_rv = usrctx->packet_write(pkg);
+        struct osd_packet *pkg;
+        rv = osd_packet_new_from_zframe(&pkg, data_frame);
+        assert(OSD_SUCCEEDED(rv));
+        osd_result device_write_rv = usrctx->packet_write(pkg, usrctx->cb_arg);
+        free(pkg);
         if (OSD_FAILED(device_write_rv)) {
             if (device_write_rv == OSD_ERROR_NOT_CONNECTED) {
                 err(thread_ctx->log_ctx,
@@ -177,7 +181,6 @@ static int hostiothread_rcv_from_hostctrl(zloop_t *loop, zsock_t *reader,
 
     retval = 0;
 free_return:
-    zframe_destroy(&type_frame);
     zmsg_destroy(&msg);
 
     return retval;
