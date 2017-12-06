@@ -31,16 +31,17 @@ struct osd_log_ctx* log_ctx;
 void setup(void)
 {
     osd_result rv;
+    hostctrl_ctx = NULL;
     rv = osd_hostctrl_new(&hostctrl_ctx, log_ctx, "inproc://testing");
-    assert(OSD_SUCCEEDED(rv));
-    assert(hostctrl_ctx);
+    ck_assert_int_eq(rv, OSD_OK);
+    ck_assert_ptr_ne(hostctrl_ctx, NULL);
 
-    assert(!osd_hostctrl_is_running(hostctrl_ctx));
+    ck_assert_int_eq(osd_hostctrl_is_running(hostctrl_ctx), 0);
 
     rv = osd_hostctrl_start(hostctrl_ctx);
-    assert(OSD_SUCCEEDED(rv));
+    ck_assert_int_eq(rv, OSD_OK);
 
-    assert(osd_hostctrl_is_running(hostctrl_ctx));
+    ck_assert_int_eq(osd_hostctrl_is_running(hostctrl_ctx), 1);
 }
 
 /**
@@ -49,14 +50,15 @@ void setup(void)
 void teardown(void)
 {
     osd_result rv;
-    assert(osd_hostctrl_is_running(hostctrl_ctx));
+    ck_assert_int_eq(osd_hostctrl_is_running(hostctrl_ctx), 1);
 
     rv = osd_hostctrl_stop(hostctrl_ctx);
-    assert(OSD_SUCCEEDED(rv));
+    ck_assert_int_eq(rv, OSD_OK);
 
-    assert(!osd_hostctrl_is_running(hostctrl_ctx));
+    ck_assert_int_eq(osd_hostctrl_is_running(hostctrl_ctx), 0);
 
     osd_hostctrl_free(&hostctrl_ctx);
+    ck_assert_ptr_eq(hostctrl_ctx, NULL);
 }
 
 START_TEST(test_init_base)
