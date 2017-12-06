@@ -40,16 +40,12 @@ struct osd_log_ctx {
     pthread_mutex_t lock;
 };
 
-void osd_log(struct osd_log_ctx *ctx, int priority, const char *file, int line,
-             const char *fn, const char *format, ...)
+void osd_vlog(struct osd_log_ctx *ctx, int priority, const char *file, int line,
+              const char *fn, const char *format, va_list args)
 {
-    va_list args;
-
     if (!ctx->log_fn) {
         return;
     }
-
-    va_start(args, format);
 
     // make thread doing the logging uncancellable while holding the lock to
     // avoid deadlocks if a thread is cancelled while creating a log entry
@@ -61,7 +57,14 @@ void osd_log(struct osd_log_ctx *ctx, int priority, const char *file, int line,
     pthread_mutex_unlock(&ctx->lock);
 
     pthread_setcancelstate(old_cancelstate, &old_cancelstate);
+}
 
+void osd_log(struct osd_log_ctx *ctx, int priority, const char *file, int line,
+             const char *fn, const char *format, ...)
+{
+    va_list args;
+    va_start(args, format);
+    osd_vlog(ctx, priority, file, line, fn, format, args);
     va_end(args);
 }
 

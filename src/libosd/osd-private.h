@@ -61,6 +61,13 @@ osd_log_null(struct osd_log_ctx *ctx, const char *format, ...) {}
 #  define err(ctx, arg...) osd_log_null(ctx, ## arg)
 #endif
 
+/**
+ * Log a message (taking a va_list argument)
+ *
+ * @see osd_log()
+ */
+void osd_vlog(struct osd_log_ctx *ctx, int priority, const char *file, int line,
+              const char *fn, const char *format, va_list args);
 
 /**
  * Log a message
