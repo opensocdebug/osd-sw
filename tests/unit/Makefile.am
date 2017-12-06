@@ -2,7 +2,8 @@ check_PROGRAMS = \
 	check_log \
 	check_util \
 	check_packet \
-	check_hostmod
+	check_hostmod \
+	check_hostctrl
 
 check_hostmod_SOURCES = \
 	check_hostmod.c \
