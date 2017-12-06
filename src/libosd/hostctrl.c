@@ -370,16 +370,21 @@ static void process_data_msg(struct worker_thread_ctx *thread_ctx,
     free(dest_hostaddr_str);
 #endif
 
+    int zmq_rv;
     zmsg_t *msg = zmsg_new();
     assert(msg);
-    zmsg_add(msg, zframe_dup_c(dest_hostaddr));
-    zmsg_addstr(msg, "D");
-    zmsg_add(msg, payload_frame);
-    zmsg_send(&msg, usrctx->router_socket);
+    zframe_t *dest_hostaddr_dup = zframe_dup_c(dest_hostaddr);
+    zmq_rv = zmsg_append(msg, &dest_hostaddr_dup);
+    assert(zmq_rv == 0);
+    zmq_rv = zmsg_addstr(msg, "D");
+    assert(zmq_rv == 0);
+    zmsg_append(msg, &payload_frame);
+    assert(zmq_rv == 0);
+    zmq_rv = zmsg_send(&msg, usrctx->router_socket);
+    assert(zmq_rv == 0);
 
 free_return:
     osd_packet_free(&pkg);
-    zframe_destroy(&payload_frame);
 }
 
 /**
