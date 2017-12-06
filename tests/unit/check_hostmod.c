@@ -16,14 +16,13 @@
 #define TEST_SUITE_NAME "check_hostmod"
 
 #include "testutil.h"
+#include "mock_host_controller.h"
 
 #include <osd/osd.h>
 #include <osd/hostmod.h>
 #include <osd/packet.h>
 #include <czmq.h>
 
-#include "testutil.h"
-#include "mock_host_controller.h"
 
 struct osd_hostmod_ctx *hostmod_ctx;
 struct osd_log_ctx* log_ctx;
@@ -179,15 +178,15 @@ Suite * suite(void)
     // As the setup and teardown functions are pretty heavy, we check them
     // here independently and use them as test fixtures after this test
     // succeeds.
-    /*tc_init = tcase_create("Init");
+    tc_init = tcase_create("Init");
     tcase_add_test(tc_init, test_init_base);
     tcase_add_test(tc_init, test_init_hostctrl_unreachable);
-    suite_add_tcase(s, tc_init);*/
+    suite_add_tcase(s, tc_init);
 
     // Core functionality
     tc_core = tcase_create("Core");
     tcase_add_checked_fixture(tc_core, setup, teardown);
-    //tcase_add_test(tc_core, test_core_read_register);
+    tcase_add_test(tc_core, test_core_read_register);
     tcase_add_test(tc_core, test_core_read_register_timeout);
     suite_add_tcase(s, tc_core);
 
