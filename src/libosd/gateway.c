@@ -53,6 +53,9 @@ struct osd_gateway_ctx {
      * Read a single packet from the device (blocking)
      */
     packet_read_fn packet_read;
+
+    /** Callback argument pointer (passed to the callbacks, internally unused)*/
+    void *cb_arg;
 };
 
 struct hostiothread_usr_ctx {
@@ -64,6 +67,9 @@ struct hostiothread_usr_ctx {
 
     /** Write a packet to the device */
     packet_write_fn packet_write;
+
+    /** Callback argument pointer (passed to the callbacks, internally unused)*/
+    void *cb_arg;
 
     /**
      * ZeroMQ PAIR socket, receiving data from the device RX thread, to be
@@ -87,7 +93,7 @@ static void *devicerxthread_main(void *gateway_ctx_void)
 
     while (1) {
         struct osd_packet *rcv_packet = NULL;
-        rv = gateway_ctx->packet_read(&rcv_packet);
+        rv = gateway_ctx->packet_read(&rcv_packet, gateway_ctx->cb_arg);
         if (OSD_FAILED(rv)) {
             if (rv == OSD_ERROR_NOT_CONNECTED) {
                 dbg(gateway_ctx->log_ctx,
@@ -475,7 +481,8 @@ osd_result osd_gateway_new(struct osd_gateway_ctx **ctx,
                            const char *host_controller_address,
                            uint16_t device_subnet_addr,
                            packet_read_fn packet_read,
-                           packet_write_fn packet_write)
+                           packet_write_fn packet_write,
+                           void *cb_arg)
 {
     osd_result rv;
 
@@ -486,6 +493,7 @@ osd_result osd_gateway_new(struct osd_gateway_ctx **ctx,
     c->is_connected_to_hostctrl = false;
     c->is_connected_to_device = false;
     c->packet_read = packet_read;
+    c->cb_arg = cb_arg;
 
     // prepare custom data passed to I/O thread for host communication
     struct hostiothread_usr_ctx *hostiothread_usr_data =
@@ -494,6 +502,7 @@ osd_result osd_gateway_new(struct osd_gateway_ctx **ctx,
     hostiothread_usr_data->host_controller_address =
         strdup(host_controller_address);
     hostiothread_usr_data->packet_write = packet_write;
+    hostiothread_usr_data->cb_arg = cb_arg;
     hostiothread_usr_data->device_subnet_addr = device_subnet_addr;
 
     rv = worker_new(&c->ioworker_ctx, log_ctx, hostiothread_init,

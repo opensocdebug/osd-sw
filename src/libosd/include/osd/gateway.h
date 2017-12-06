@@ -45,20 +45,23 @@ struct osd_gateway_ctx;
 /**
  * Read a osd_packet from the device
  *
- * @param the packet to read to (allocated by the called function)
+ * @param pkg the packet to read to (allocated by the called function)
+ * @param cb_arg an user-defined callback argument
  * @return OSD_ERROR_NOT_CONNECTED if the not connected to the device
  * @return OSD_OK if successful
  */
-typedef osd_result (*packet_read_fn)(struct osd_packet **pkg);
+typedef osd_result (*packet_read_fn)(struct osd_packet **pkg, void *cb_arg);
 
 /**
  * Write a osd_packet to the device
  *
- * @param the packet to write
+ * @param pkg the packet to write
+ * @param cb_arg an user-defined callback argument
  * @return OSD_ERROR_NOT_CONNECTED if the not connected to the device
  * @return OSD_OK if successful
  */
-typedef osd_result (*packet_write_fn)(const struct osd_packet *pkg);
+typedef osd_result (*packet_write_fn)(const struct osd_packet *pkg,
+        void *cb_arg);
 
 /**
  * Create new osd_gateway instance
@@ -69,6 +72,12 @@ typedef osd_result (*packet_write_fn)(const struct osd_packet *pkg);
  * @param[in] device_subnet_addr Subnet address of the device
  * @param[in] packet_read callback function to perform a read from the device
  * @param[in] packet_write callback function to perform a write to the device
+ * @param[in] cb_arg an user-defined pointer passed to all callback functions,
+ *                   such as packet_read and packet_write. Can be used to pass
+ *                   context objects to the callbacks. Set to NULL if unused.
+ *                   Note: the callbacks are called from different threads, make
+ *                   sure all uses of cb_arg inside the callbacks are thread
+ *                   safe.
  * @return OSD_OK on success, any other value indicates an error
  *
  * @see osd_gateway_free()
@@ -78,7 +87,8 @@ osd_result osd_gateway_new(struct osd_gateway_ctx **ctx,
                            const char *host_controller_address,
                            uint16_t device_subnet_addr,
                            packet_read_fn packet_read,
-                           packet_write_fn packet_write);
+                           packet_write_fn packet_write,
+                           void *cb_arg);
 
 /**
  * Free and NULL a communication API context object
@@ -90,7 +100,7 @@ osd_result osd_gateway_new(struct osd_gateway_ctx **ctx,
 void osd_gateway_free(struct osd_gateway_ctx **ctx);
 
 /**
- * Connect to the host controller
+ * Connect to the device and to the host controller
  *
  * @param ctx the osd_gateway_ctx context object
  * @return OSD_OK on success, any other value indicates an error
@@ -100,7 +110,7 @@ void osd_gateway_free(struct osd_gateway_ctx **ctx);
 osd_result osd_gateway_connect(struct osd_gateway_ctx *ctx);
 
 /**
- * Shut down all communication with the device
+ * Shut down all communication with the device and the host controller
  *
  * @param ctx the osd_hostmod context object
  * @return OSD_OK on success, any other value indicates an error
@@ -110,9 +120,9 @@ osd_result osd_gateway_connect(struct osd_gateway_ctx *ctx);
 osd_result osd_gateway_disconnect(struct osd_gateway_ctx *ctx);
 
 /**
- * Is the connection to the device active?
+ * Is the connection to the device and to the host controller active?
  *
- * @param ctx the osd_hostmod context object
+ * @param ctx the context object
  * @return 1 if connected, 0 if not connected
  *
  * @see osd_gateway_connect()
