@@ -65,7 +65,20 @@ PKG_CHECK_MODULES([libzmq], [libzmq >= 4.1])
 PKG_CHECK_MODULES([libczmq], [libczmq >= 3.0])
 
 # glip (device connectivity)
-PKG_CHECK_MODULES([libglip], [libglip])
+AC_ARG_WITH([glip],
+    AS_HELP_STRING([--without-glip], [Ignore presence of glip and disable it]))
+
+AS_IF([test "x$with_glip" != "xno"],
+      [PKG_CHECK_MODULES([libglip], [libglip], [have_glip=yes], [have_glip=no])],
+      [have_glip=no])
+
+AS_IF([test "x$have_glip" = "xyes"],
+      [AC_DEFINE(USE_GLIP, [1], [Make use of GLIP.])],
+      [AS_IF([test "x$with_glip" = "xyes"],
+             [AC_MSG_ERROR([glip requested but not found])
+      ])
+])
+AM_CONDITIONAL([USE_GLIP], [test "x$have_glip" = "xyes"])],
 
 AC_ARG_ENABLE([logging],
     AS_HELP_STRING([--disable-logging], [disable system logging @<:@default=enabled@:>@]),

@@ -19,6 +19,8 @@ libosd_la_SOURCES =\
 	util.c \
 	gateway.c
 
+libosd_la_CFLAGS = $(AM_CFLAGS)
+
 libosd_la_LDFLAGS = \
 	$(AM_LDFLAGS) \
 	$(LTLDFLAGS) \
@@ -28,3 +30,10 @@ libosd_la_CPPFLAGS = \
 	$(AM_CPPFLAGS) \
 	-I$(srcdir)/include \
 	-include $(top_builddir)/config.h
+
+if USE_GLIP
+   pkginclude_HEADERS += include/osd/gateway_glip.h
+   libosd_la_SOURCES += gateway_glip.c
+   libosd_la_LDFLAGS += ${libglip_LIBS}
+   libosd_la_CFLAGS += ${libglip_CFLAGS}
+endif
