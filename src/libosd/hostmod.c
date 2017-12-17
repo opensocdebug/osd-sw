@@ -303,6 +303,10 @@ static osd_result iothread_destroy(struct worker_thread_ctx *thread_ctx)
 static osd_result osd_hostmod_send_packet(struct osd_hostmod_ctx *ctx,
                                           struct osd_packet *packet)
 {
+    assert(ctx);
+    assert(ctx->ioworker_ctx);
+    assert(ctx->ioworker_ctx->inproc_socket);
+
     int rv;
     zmsg_t *msg = zmsg_new();
     assert(msg);
@@ -586,7 +590,7 @@ static enum osd_packet_type_reg_subtype get_subtype_reg_write_req(
 }
 
 API_EXPORT
-osd_result osd_hostmod_reg_read(struct osd_hostmod_ctx *ctx, void *result,
+osd_result osd_hostmod_reg_read(struct osd_hostmod_ctx *ctx, void *reg_val,
                                 uint16_t diaddr, uint16_t reg_addr,
                                 int reg_size_bit, int flags)
 {
@@ -620,7 +624,7 @@ osd_result osd_hostmod_reg_read(struct osd_hostmod_ctx *ctx, void *result,
     }
 
     // make result available to caller
-    memcpy(result, response_pkg->data.payload, reg_size_bit / 8);
+    memcpy(reg_val, response_pkg->data.payload, reg_size_bit / 8);
 
     retval = OSD_OK;
 
@@ -631,9 +635,9 @@ err_free_resp:
 }
 
 API_EXPORT
-osd_result osd_hostmod_reg_write(struct osd_hostmod_ctx *ctx, const void *data,
-                                 uint16_t diaddr, uint16_t reg_addr,
-                                 int reg_size_bit, int flags)
+osd_result osd_hostmod_reg_write(struct osd_hostmod_ctx *ctx,
+                                 const void *reg_val, uint16_t diaddr,
+                                 uint16_t reg_addr, int reg_size_bit, int flags)
 {
     assert(reg_size_bit % 16 == 0 && reg_size_bit <= 128);
 
@@ -647,7 +651,7 @@ osd_result osd_hostmod_reg_write(struct osd_hostmod_ctx *ctx, const void *data,
     struct osd_packet *response_pkg;
     rv = osd_hostmod_regaccess(
         ctx, diaddr, reg_addr, get_subtype_reg_write_req(reg_size_bit),
-        RESP_WRITE_REG_SUCCESS, data, reg_size_bit / 16, &response_pkg, flags);
+        RESP_WRITE_REG_SUCCESS, reg_val, reg_size_bit / 16, &response_pkg, flags);
     if (OSD_FAILED(rv)) {
         return rv;
     }

@@ -122,8 +122,8 @@ bool osd_hostmod_is_connected(struct osd_hostmod_ctx *ctx);
  * if the module does not reply within a ZMQ_RCV_TIMEOUT milliseconds.
  *
  * @param ctx the osd_hostmod_ctx context object
- * @param[out] result the result of the register read. Preallocate a variable
- *                    large enough to hold @p reg_size_bit bits.
+ * @param[out] reg_val the result of the register read. Preallocate a variable
+ *                     large enough to hold @p reg_size_bit bits.
  * @param diaddr the DI address of the module to read the register from
  * @param reg_addr the address of the register to read
  * @param reg_size_bit size of the register in bit.
@@ -136,7 +136,7 @@ bool osd_hostmod_is_connected(struct osd_hostmod_ctx *ctx);
  *
  * @see osd_hostmod_write()
  */
-osd_result osd_hostmod_reg_read(struct osd_hostmod_ctx *ctx, void *result,
+osd_result osd_hostmod_reg_read(struct osd_hostmod_ctx *ctx, void *reg_val,
                                 uint16_t diaddr, uint16_t reg_addr,
                                 int reg_size_bit, int flags);
 
@@ -144,8 +144,8 @@ osd_result osd_hostmod_reg_read(struct osd_hostmod_ctx *ctx, void *result,
  * Write a register of a module in the debug system
  *
  * @param ctx the osd_hostmod_ctx context object
- * @param data the data to be written. Provide enough data according to
- *             @p reg_size_bit
+ * @param reg_val the data to be written. Provide enough data according to
+ *                @p reg_size_bit
  * @param diaddr the DI address of the accessed module
  * @param reg_addr the address of the register to read
  * @param reg_size_bit size of the register in bit.
@@ -156,9 +156,10 @@ osd_result osd_hostmod_reg_read(struct osd_hostmod_ctx *ctx, void *result,
  * @return OSD_ERROR_TIMEDOUT if the register read timed out (only if
  *         OSD_HOSTMOD_BLOCKING is not set)
  */
-osd_result osd_hostmod_reg_write(struct osd_hostmod_ctx *ctx, const void *data,
-                                 uint16_t diaddr, uint16_t reg_addr,
-                                 int reg_size_bit, int flags);
+osd_result osd_hostmod_reg_write(struct osd_hostmod_ctx *ctx,
+                                 const void *reg_val, uint16_t diaddr,
+                                 uint16_t reg_addr, int reg_size_bit,
+                                 int flags);
 
 /**
  * Get the DI address assigned to this host debug module
