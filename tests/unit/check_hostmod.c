@@ -15,17 +15,16 @@
 
 #define TEST_SUITE_NAME "check_hostmod"
 
-#include "testutil.h"
 #include "mock_host_controller.h"
+#include "testutil.h"
 
-#include <osd/osd.h>
-#include <osd/hostmod.h>
-#include <osd/packet.h>
 #include <czmq.h>
-
+#include <osd/hostmod.h>
+#include <osd/osd.h>
+#include <osd/packet.h>
 
 struct osd_hostmod_ctx *hostmod_ctx;
-struct osd_log_ctx* log_ctx;
+struct osd_log_ctx *log_ctx;
 
 const unsigned int mock_hostmod_diaddr = 7;
 
@@ -130,7 +129,8 @@ START_TEST(test_core_read_register)
 
     uint16_t reg_read_result;
 
-    mock_host_controller_expect_reg_read(mock_hostmod_diaddr, 1, 0x0000, 0x0001);
+    mock_host_controller_expect_reg_read(mock_hostmod_diaddr, 1, 0x0000,
+                                         0x0001);
 
     rv = osd_hostmod_reg_read(hostmod_ctx, &reg_read_result, 1, 0x0000, 16, 0);
     ck_assert_int_eq(rv, OSD_OK);
@@ -167,7 +167,7 @@ START_TEST(test_core_read_register_timeout)
 }
 END_TEST
 
-Suite * suite(void)
+Suite *suite(void)
 {
     Suite *s;
     TCase *tc_init, *tc_core;

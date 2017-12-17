@@ -22,9 +22,9 @@
 
 int log_handler_called = 0;
 
-static void log_handler(struct osd_log_ctx *ctx, int priority,
-                        const char *file, int line, const char *fn,
-                        const char *format, va_list args)
+static void log_handler(struct osd_log_ctx *ctx, int priority, const char *file,
+                        int line, const char *fn, const char *format,
+                        va_list args)
 {
     ck_assert_int_eq(priority, LOG_ERR);
     ck_assert_str_eq(format, "testmsg");
@@ -46,23 +46,21 @@ START_TEST(test_log_basic)
     ck_assert_int_eq(osd_log_get_priority(log_ctx), LOG_DEBUG);
 
     // caller context
-    osd_log_set_caller_ctx(log_ctx, (void*)1337);
-    ck_assert_ptr_eq(osd_log_get_caller_ctx(log_ctx), (void*)1337);
+    osd_log_set_caller_ctx(log_ctx, (void *)1337);
+    ck_assert_ptr_eq(osd_log_get_caller_ctx(log_ctx), (void *)1337);
 
     // log function
     osd_log_set_fn(log_ctx, &log_handler);
 
     // logging a message
     log_handler_called = 0;
-    osd_log(log_ctx, LOG_ERR, __FILE__, __LINE__, __FUNCTION__,
-            "testmsg");
+    osd_log(log_ctx, LOG_ERR, __FILE__, __LINE__, __FUNCTION__, "testmsg");
     ck_assert_int_eq(log_handler_called, 1);
 
     // logging without log handler set
     osd_log_set_fn(log_ctx, NULL);
     log_handler_called = 0;
-    osd_log(log_ctx, LOG_ERR, __FILE__, __LINE__, __FUNCTION__,
-            "testmsg");
+    osd_log(log_ctx, LOG_ERR, __FILE__, __LINE__, __FUNCTION__, "testmsg");
     ck_assert_int_eq(log_handler_called, 0);
 
     osd_log_free(&log_ctx);
@@ -81,15 +79,14 @@ START_TEST(test_log_constructorparams)
 
     // logging a message (tests if log handler is set correctly)
     log_handler_called = 0;
-    osd_log(log_ctx, LOG_ERR, __FILE__, __LINE__, __FUNCTION__,
-            "testmsg");
+    osd_log(log_ctx, LOG_ERR, __FILE__, __LINE__, __FUNCTION__, "testmsg");
     ck_assert_int_eq(log_handler_called, 1);
 
     osd_log_free(&log_ctx);
 }
 END_TEST
 
-Suite * suite(void)
+Suite *suite(void)
 {
     Suite *s;
     TCase *tc_core;

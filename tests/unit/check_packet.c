@@ -58,7 +58,7 @@ START_TEST(test_packet_header_set)
 }
 END_TEST
 
-Suite * suite(void)
+Suite *suite(void)
 {
     Suite *s;
     TCase *tc_core;

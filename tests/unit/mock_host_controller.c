@@ -15,13 +15,11 @@
 
 #include <check.h>
 
-#include <osd/osd.h>
-#include <osd/hostmod.h>
-#include <osd/packet.h>
 #include <czmq.h>
+#include <osd/hostmod.h>
+#include <osd/osd.h>
+#include <osd/packet.h>
 #include <pthread.h>
-
-
 
 pthread_t mock_host_controller_thread;
 volatile int mock_host_controller_ready;
@@ -40,7 +38,8 @@ void mock_host_controller_wait_for_event_tx()
     }
 }
 
-static int mock_host_controller_shutdown_reactor(zloop_t *loop, int timer_id, void *arg)
+static int mock_host_controller_shutdown_reactor(zloop_t *loop, int timer_id,
+                                                 void *arg)
 {
     if (mock_host_controller_thread_cancel) {
         // wait until all event packets have been sent before shutting down
@@ -55,16 +54,18 @@ static int mock_host_controller_shutdown_reactor(zloop_t *loop, int timer_id, vo
     return 0;
 }
 
-static int mock_host_controller_msg_reactor(zloop_t *loop, zsock_t *reader, void *arg)
+static int mock_host_controller_msg_reactor(zloop_t *loop, zsock_t *reader,
+                                            void *arg)
 {
-    zmsg_t * msg_req = zmsg_recv(reader);
+    zmsg_t *msg_req = zmsg_recv(reader);
     assert(msg_req);
 
     printf("Received message: \n");
     zmsg_print(msg_req);
 
-    zmsg_t* msg_req_exp = zlist_pop(mock_exp_req_list);
-    ck_assert_msg(msg_req_exp, "Received message, but no message was expected.\n");
+    zmsg_t *msg_req_exp = zlist_pop(mock_exp_req_list);
+    ck_assert_msg(msg_req_exp,
+                  "Received message, but no message was expected.\n");
     printf("Expecting message: \n");
     zmsg_print(msg_req_exp);
 
@@ -114,7 +115,6 @@ static int mock_host_controller_msg_reactor(zloop_t *loop, zsock_t *reader, void
         ck_assert_msg(frame_is_expected,
                       "Received unexpected data in frame %u.", frame_idx);
 
-
         f_rcv = zmsg_next(msg_req);
         f_exp = zmsg_next(msg_req_exp);
 
@@ -145,7 +145,8 @@ static int mock_host_controller_msg_reactor(zloop_t *loop, zsock_t *reader, void
  * mock_host_controller_queue_event_packet() to queue DI event packets for
  * sending.
  */
-static int mock_host_controller_event_tx_reactor(zloop_t *loop, int timer_id, void *sock_void)
+static int mock_host_controller_event_tx_reactor(zloop_t *loop, int timer_id,
+                                                 void *sock_void)
 {
     zsock_t *sock = sock_void;
 
@@ -161,9 +162,7 @@ static int mock_host_controller_event_tx_reactor(zloop_t *loop, int timer_id, vo
     return 0;
 }
 
-
-
-static void* mock_host_controller(void* arg)
+static void *mock_host_controller(void *arg)
 {
     int rv;
 
@@ -225,7 +224,7 @@ osd_result mock_host_controller_queue_event_packet(const struct osd_packet *pkg)
 /**
  * Expect a management message with a given command and a given response
  */
-void mock_host_controller_expect_mgmt_req(const char* cmd, const char* resp)
+void mock_host_controller_expect_mgmt_req(const char *cmd, const char *resp)
 {
     int rv;
 
@@ -275,8 +274,7 @@ void mock_host_controller_expect_diaddr_req(unsigned int diaddr)
  * Note that the @p ret_value is not checked by the mock, you need to check
  * in the test if the returned value arrived where it should.
  */
-void mock_host_controller_expect_reg_read(unsigned int src,
-                                          unsigned int dest,
+void mock_host_controller_expect_reg_read(unsigned int src, unsigned int dest,
                                           unsigned int reg_addr,
                                           uint16_t ret_value)
 {
@@ -289,8 +287,8 @@ void mock_host_controller_expect_reg_read(unsigned int src,
     ck_assert_int_eq(rv, OSD_OK);
     ck_assert_ptr_ne(pkg_req, NULL);
 
-    osd_packet_set_header(pkg_req, dest, src,
-                          OSD_PACKET_TYPE_REG, REQ_READ_REG_16);
+    osd_packet_set_header(pkg_req, dest, src, OSD_PACKET_TYPE_REG,
+                          REQ_READ_REG_16);
     pkg_req->data.payload[0] = reg_addr;
 
     // response
@@ -299,8 +297,8 @@ void mock_host_controller_expect_reg_read(unsigned int src,
                         osd_packet_get_data_size_words_from_payload(1));
     ck_assert_int_eq(rv, OSD_OK);
 
-    osd_packet_set_header(pkg_resp, src, dest,
-                          OSD_PACKET_TYPE_REG, RESP_READ_REG_SUCCESS_16);
+    osd_packet_set_header(pkg_resp, src, dest, OSD_PACKET_TYPE_REG,
+                          RESP_READ_REG_SUCCESS_16);
     pkg_resp->data.payload[0] = ret_value;
 
     mock_host_controller_expect_data_req(pkg_req, pkg_resp);
@@ -314,8 +312,7 @@ void mock_host_controller_expect_reg_read(unsigned int src,
  * Note that the @p ret_value is not checked by the mock, you need to check
  * in the test if the returned value arrived where it should.
  */
-void mock_host_controller_expect_reg_write(unsigned int src,
-                                           unsigned int dest,
+void mock_host_controller_expect_reg_write(unsigned int src, unsigned int dest,
                                            unsigned int reg_addr,
                                            uint16_t exp_write_value)
 {
@@ -328,8 +325,8 @@ void mock_host_controller_expect_reg_write(unsigned int src,
     ck_assert_int_eq(rv, OSD_OK);
     ck_assert_ptr_ne(pkg_req, NULL);
 
-    osd_packet_set_header(pkg_req, dest, src,
-                          OSD_PACKET_TYPE_REG, REQ_WRITE_REG_16);
+    osd_packet_set_header(pkg_req, dest, src, OSD_PACKET_TYPE_REG,
+                          REQ_WRITE_REG_16);
     pkg_req->data.payload[0] = reg_addr;
     pkg_req->data.payload[1] = exp_write_value;
 
@@ -339,8 +336,8 @@ void mock_host_controller_expect_reg_write(unsigned int src,
                         osd_packet_get_data_size_words_from_payload(0));
     ck_assert_int_eq(rv, OSD_OK);
 
-    osd_packet_set_header(pkg_resp, src, dest,
-                          OSD_PACKET_TYPE_REG, RESP_WRITE_REG_SUCCESS);
+    osd_packet_set_header(pkg_resp, src, dest, OSD_PACKET_TYPE_REG,
+                          RESP_WRITE_REG_SUCCESS);
 
     mock_host_controller_expect_data_req(pkg_req, pkg_resp);
     osd_packet_free(&pkg_req);

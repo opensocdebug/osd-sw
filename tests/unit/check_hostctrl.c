@@ -17,13 +17,13 @@
 
 #include "testutil.h"
 
-#include <osd/osd.h>
-#include <osd/hostctrl.h>
-#include <osd/packet.h>
 #include <czmq.h>
+#include <osd/hostctrl.h>
+#include <osd/osd.h>
+#include <osd/packet.h>
 
 struct osd_hostctrl_ctx *hostctrl_ctx;
-struct osd_log_ctx* log_ctx;
+struct osd_log_ctx *log_ctx;
 
 /**
  * Test fixture: setup (called before each tests)
@@ -68,7 +68,7 @@ START_TEST(test_init_base)
 }
 END_TEST
 
-Suite * suite(void)
+Suite *suite(void)
 {
     Suite *s;
     TCase *tc_init, *tc_core;

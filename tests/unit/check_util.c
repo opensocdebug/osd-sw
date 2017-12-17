@@ -30,7 +30,7 @@ START_TEST(test_util)
 }
 END_TEST
 
-Suite * suite(void)
+Suite *suite(void)
 {
     Suite *s;
     TCase *tc_core;
