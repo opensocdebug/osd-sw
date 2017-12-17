@@ -1,6 +1,8 @@
 bin_PROGRAMS = osd-host-controller
 
-osd_host_controller_LDADD = ../../libosd/libosd.la
+osd_host_controller_LDADD = \
+	../libcliutil.la \
+	../../libosd/libosd.la
 
 AM_LDFLAGS += \
 	${libczmq_LIBS}
@@ -12,7 +14,4 @@ AM_CFLAGS += \
 	${libczmq_CFLAGS}
 
 osd_host_controller_SOURCES = \
-	../argtable3.c \
-	../iniparser.c \
-	../dictionary.c \
 	osd-host-controller.c
