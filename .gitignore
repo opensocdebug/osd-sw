@@ -25,6 +25,7 @@ stamp-h1
 *.la
 .libs/
 /osd.pc
+*.gcno
 
 # editor/ide project files
 .cproject
