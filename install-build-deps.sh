@@ -22,7 +22,7 @@ case $(lsb_release -is) in
 
   *SUSE*)
     sudo zypper install \
-      libcheck0 check-devel \
+      libcheck0 check-devel libcheck0-debuginfo \
       doxygen \
       python3 python3-pip \
       lcov valgrind \
