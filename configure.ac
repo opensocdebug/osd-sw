@@ -78,7 +78,7 @@ AS_IF([test "x$have_glip" = "xyes"],
              [AC_MSG_ERROR([glip requested but not found])
       ])
 ])
-AM_CONDITIONAL([USE_GLIP], [test "x$have_glip" = "xyes"])],
+AM_CONDITIONAL([USE_GLIP], [test "x$have_glip" = "xyes"])
 
 AC_ARG_ENABLE([logging],
     AS_HELP_STRING([--disable-logging], [disable system logging @<:@default=enabled@:>@]),
