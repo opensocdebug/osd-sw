@@ -13,6 +13,10 @@ Check writes two types of log files: one log summary ``tests/unit/test-suite.log
 ``printf()`` output from the individual tests is only written to the individual log files if the tests pass.
 To get pass/fail remarks per test function set the ``CK_VERBOSITY`` environment variable to ``verbose`` when running a test.
 
+..note::
+
+   If you don't find expected ``printf()`` output in the test log file try adding a ``fflush(stdout)`` statement after the ``printf()``.
+
 .. code-block:: sh
 
    # view test summary
