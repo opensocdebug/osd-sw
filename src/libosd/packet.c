@@ -23,13 +23,22 @@
 
 #define MACROSTR(k) #k
 
+// the number of header words in a DI packet (SRC, DEST and FLAGS)
+#define PACKET_HEADER_WORD_CNT 3
+
 API_EXPORT
-const uint16_t osd_packet_get_data_size_words_from_payload(
-    const unsigned int size_payload)
+unsigned int osd_packet_sizeconv_payload2data(unsigned int payload_words)
 {
-    unsigned int s = size_payload + 3 /* dest, src, flags */;
+    unsigned int s = payload_words + PACKET_HEADER_WORD_CNT;
     assert(s <= UINT16_MAX);
     return s;
+}
+
+API_EXPORT
+unsigned int osd_packet_sizeconv_data2payload(unsigned int data_words)
+{
+    assert(data_words >= PACKET_HEADER_WORD_CNT);
+    return data_words - PACKET_HEADER_WORD_CNT;
 }
 
 API_EXPORT
@@ -56,7 +65,7 @@ osd_result osd_packet_new_from_zframe(struct osd_packet **packet,
     size_t data_size_bytes = zframe_size((zframe_t *)frame);
     size_t data_size_words = data_size_bytes / sizeof(uint16_t);
     assert(data);
-    assert(data_size_words >= 3);  // 3 header words
+    assert(data_size_words >= PACKET_HEADER_WORD_CNT);
 
     osd_result rv = osd_packet_new(packet, data_size_words);
     assert(OSD_SUCCEEDED(rv));
@@ -78,8 +87,8 @@ void osd_packet_free(struct osd_packet **packet_p)
 API_EXPORT
 unsigned int osd_packet_get_dest(const struct osd_packet *packet)
 {
-    assert((packet->data_size_words >= 3) &&
-           "The packet must be large enough for 3 header words.");
+    assert((packet->data_size_words >= PACKET_HEADER_WORD_CNT) &&
+           "The packet must be large enough for the header words.");
 
     return (packet->data.dest >> DP_HEADER_DEST_SHIFT) & DP_HEADER_DEST_MASK;
 }
@@ -87,8 +96,8 @@ unsigned int osd_packet_get_dest(const struct osd_packet *packet)
 API_EXPORT
 unsigned int osd_packet_get_src(const struct osd_packet *packet)
 {
-    assert((packet->data_size_words >= 3) &&
-           "The packet must be large enough for 3 header words.");
+    assert((packet->data_size_words >= PACKET_HEADER_WORD_CNT) &&
+           "The packet must be large enough for the header words.");
 
     return (packet->data.src >> DP_HEADER_SRC_SHIFT) & DP_HEADER_SRC_MASK;
 }
@@ -96,8 +105,8 @@ unsigned int osd_packet_get_src(const struct osd_packet *packet)
 API_EXPORT
 unsigned int osd_packet_get_type(const struct osd_packet *packet)
 {
-    assert((packet->data_size_words >= 3) &&
-           "The packet must be large enough for 3 header words.");
+    assert((packet->data_size_words >= PACKET_HEADER_WORD_CNT) &&
+           "The packet must be large enough for the header words.");
 
     return (packet->data.flags >> DP_HEADER_TYPE_SHIFT) & DP_HEADER_TYPE_MASK;
 }
@@ -105,8 +114,8 @@ unsigned int osd_packet_get_type(const struct osd_packet *packet)
 API_EXPORT
 unsigned int osd_packet_get_type_sub(const struct osd_packet *packet)
 {
-    assert((packet->data_size_words >= 3) &&
-           "The packet must be large enough for 3 header words.");
+    assert((packet->data_size_words >= PACKET_HEADER_WORD_CNT) &&
+           "The packet must be large enough for the header words.");
 
     return (packet->data.flags >> DP_HEADER_TYPE_SUB_SHIFT) &
            DP_HEADER_TYPE_SUB_MASK;
@@ -119,8 +128,8 @@ osd_result osd_packet_set_header(struct osd_packet *packet,
                                  const enum osd_packet_type type,
                                  const unsigned int type_sub)
 {
-    assert((packet->data_size_words >= 3) &&
-           "The packet must be large enough for 3 header words.");
+    assert((packet->data_size_words >= PACKET_HEADER_WORD_CNT) &&
+           "The packet must be large enough for the header words.");
 
     packet->data.dest = 0x0000;
     packet->data.src = 0x0000;
@@ -181,7 +190,7 @@ void osd_packet_to_string(const struct osd_packet *packet, char **str)
     };
 
     sprintf_append(str, "Packet of %u data words:\n", packet->data_size_words);
-    if (packet->data_size_words >= 3) {
+    if (packet->data_size_words >= PACKET_HEADER_WORD_CNT) {
         sprintf_append(str,
                        "DEST = %u, SRC = %u, TYPE = %u (%s), TYPE_SUB = %u\n",
                        osd_packet_get_dest(packet), osd_packet_get_src(packet),

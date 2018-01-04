@@ -282,8 +282,7 @@ void mock_host_controller_expect_reg_read(unsigned int src, unsigned int dest,
 
     // request
     struct osd_packet *pkg_req;
-    rv = osd_packet_new(&pkg_req,
-                        osd_packet_get_data_size_words_from_payload(1));
+    rv = osd_packet_new(&pkg_req, osd_packet_sizeconv_payload2data(1));
     ck_assert_int_eq(rv, OSD_OK);
     ck_assert_ptr_ne(pkg_req, NULL);
 
@@ -293,8 +292,7 @@ void mock_host_controller_expect_reg_read(unsigned int src, unsigned int dest,
 
     // response
     struct osd_packet *pkg_resp;
-    rv = osd_packet_new(&pkg_resp,
-                        osd_packet_get_data_size_words_from_payload(1));
+    rv = osd_packet_new(&pkg_resp, osd_packet_sizeconv_payload2data(1));
     ck_assert_int_eq(rv, OSD_OK);
 
     osd_packet_set_header(pkg_resp, src, dest, OSD_PACKET_TYPE_REG,
@@ -320,8 +318,7 @@ void mock_host_controller_expect_reg_write(unsigned int src, unsigned int dest,
 
     // request
     struct osd_packet *pkg_req;
-    rv = osd_packet_new(&pkg_req,
-                        osd_packet_get_data_size_words_from_payload(2));
+    rv = osd_packet_new(&pkg_req, osd_packet_sizeconv_payload2data(2));
     ck_assert_int_eq(rv, OSD_OK);
     ck_assert_ptr_ne(pkg_req, NULL);
 
@@ -332,8 +329,7 @@ void mock_host_controller_expect_reg_write(unsigned int src, unsigned int dest,
 
     // response
     struct osd_packet *pkg_resp;
-    rv = osd_packet_new(&pkg_resp,
-                        osd_packet_get_data_size_words_from_payload(0));
+    rv = osd_packet_new(&pkg_resp, osd_packet_sizeconv_payload2data(0));
     ck_assert_int_eq(rv, OSD_OK);
 
     osd_packet_set_header(pkg_resp, src, dest, OSD_PACKET_TYPE_REG,

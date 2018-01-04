@@ -162,10 +162,22 @@ osd_result osd_packet_set_header(struct osd_packet *packet,
 size_t osd_packet_sizeof(const struct osd_packet *packet);
 
 /**
- * Get the data size including all headers for a given payload size
+ * Get the number of data words required for the given payload words
+ *
+ * Data words are the number of 16 bit words in a DI packet, including the
+ * DI header. Payload words are the number of 16 bit words in a DI packet
+ * excluding the header.
  */
-const uint16_t osd_packet_get_data_size_words_from_payload(
-    const unsigned int size_payload);
+unsigned int osd_packet_sizeconv_payload2data(unsigned int payload_words);
+
+/**
+ * Get the number of paylaod words required for the given data words
+ *
+ * Data words are the number of 16 bit words in a DI packet, including the
+ * DI header. Payload words are the number of 16 bit words in a DI packet
+ * excluding the header.
+ */
+unsigned int osd_packet_sizeconv_data2payload(unsigned int data_words);
 
 /**
  * Write a debug message to the log with the contents of a packet

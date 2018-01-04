@@ -505,9 +505,9 @@ static osd_result osd_hostmod_regaccess(
 
     // assemble request packet
     struct osd_packet *pkg_req;
-    unsigned int payload_size =
-        osd_packet_get_data_size_words_from_payload(1 + wr_data_len_words);
-    rv = osd_packet_new(&pkg_req, payload_size);
+    unsigned int pkg_size_words =
+        osd_packet_sizeconv_payload2data(1 + wr_data_len_words);
+    rv = osd_packet_new(&pkg_req, pkg_size_words);
     if (OSD_FAILED(rv)) {
         retval = rv;
         goto err_free_req;
@@ -614,7 +614,7 @@ osd_result osd_hostmod_reg_read(struct osd_hostmod_ctx *ctx, void *reg_val,
 
     // validate response size
     unsigned int exp_data_size_words =
-        osd_packet_get_data_size_words_from_payload(reg_size_bit / 16);
+        osd_packet_sizeconv_payload2data(reg_size_bit / 16);
     if (response_pkg->data_size_words != exp_data_size_words) {
         err(ctx->log_ctx,
             "Expected %d 16 bit data words in register read response, got %d.",
@@ -657,8 +657,7 @@ osd_result osd_hostmod_reg_write(struct osd_hostmod_ctx *ctx,
     }
 
     // validate response size
-    unsigned int data_size_words_exp =
-        osd_packet_get_data_size_words_from_payload(0);
+    unsigned int data_size_words_exp = osd_packet_sizeconv_payload2data(0);
     if (response_pkg->data_size_words != data_size_words_exp) {
         err(ctx->log_ctx,
             "Invalid write response received. Expected packet with %u data "

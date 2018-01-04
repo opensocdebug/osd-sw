@@ -150,8 +150,7 @@ START_TEST(test_core_read_register_timeout)
 
     // add only request to mock, create no response
     struct osd_packet *pkg_read_req;
-    rv = osd_packet_new(&pkg_read_req,
-                        osd_packet_get_data_size_words_from_payload(1));
+    rv = osd_packet_new(&pkg_read_req, osd_packet_sizeconv_payload2data(1));
     ck_assert_int_eq(rv, OSD_OK);
     ck_assert_ptr_ne(pkg_read_req, NULL);
 
