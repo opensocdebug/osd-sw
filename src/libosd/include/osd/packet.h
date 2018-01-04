@@ -205,6 +205,11 @@ void osd_packet_dump(const struct osd_packet *packet, FILE *fd);
  */
 void osd_packet_to_string(const struct osd_packet *packet, char **str);
 
+/**
+ * Check if two packets are equal
+ */
+bool osd_packet_equal(const struct osd_packet *p1, const struct osd_packet *p2);
+
 /**@}*/ /* end of doxygen group libosd-packet */
 
 #ifdef __cplusplus

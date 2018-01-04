@@ -228,3 +228,21 @@ void osd_packet_log(const struct osd_packet *packet,
     dbg(log_ctx, "%s", str);
     free(str);
 }
+
+API_EXPORT
+bool osd_packet_equal(const struct osd_packet *p1, const struct osd_packet *p2)
+{
+    if (!p1 || !p2) {
+        return false;
+    }
+
+    if (p1 == p2) {
+        return true;
+    }
+
+    if (osd_packet_sizeof(p1) != osd_packet_sizeof(p2)) {
+        return false;
+    }
+
+    return memcmp(p1, p2, osd_packet_sizeof(p1)) == 0;
+}
