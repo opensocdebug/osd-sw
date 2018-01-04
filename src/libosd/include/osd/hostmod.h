@@ -179,6 +179,30 @@ osd_result osd_hostmod_describe_module(struct osd_hostmod_ctx *ctx,
                                        uint16_t di_addr,
                                        struct osd_module_desc *desc);
 
+/**
+ * Get the maximum number paylaod of words in an event packet
+ *
+ * @param ctx the osd_hostmod_ctx context object
+ * @return the number of payload words in an event packet sent to
+ *         @p di_addr_target
+ */
+unsigned int osd_hostmod_get_max_event_words(struct osd_hostmod_ctx *ctx,
+                                             unsigned int di_addr_target);
+
+/**
+ * Send an event packet to its destination
+ */
+osd_result osd_hostmod_event_send(struct osd_hostmod_ctx *ctx,
+                                  const struct osd_packet* event_pkg);
+
+/**
+ * Receive an event packet (blocking)
+ *
+ * Block until a new event packet is available, and return it.
+ */
+osd_result osd_hostmod_event_receive(struct osd_hostmod_ctx *ctx,
+                                     struct osd_packet **event_pkg);
+
 /**@}*/ /* end of doxygen group libosd-hostmod */
 
 #ifdef __cplusplus

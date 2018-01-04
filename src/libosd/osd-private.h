@@ -128,8 +128,6 @@ static inline void timespec_add_ns(struct timespec *a, uint64_t ns)
     a->tv_nsec = ns;
 }
 
-//#define BIT_MASK(x)           (1UL << ((x) % BITS_PER_LONG))
-
 /**
  * Timeout (in ms) when receiving data from a ZeroMQ socket. This can be either
  * data from the host controller, or data from the I/O thread.
@@ -151,5 +149,13 @@ inline bool zframe_eq_c(const zframe_t *self, const zframe_t *other)
 {
     return zframe_eq((zframe_t*)self, (zframe_t*)other);
 }
+
+/**
+ * Maximum length of DI packets in words
+ *
+ * XXX: This should not be a constant but read from the SCM in the target
+ * subnet.
+ */
+#define OSD_MAX_PKG_LEN_WORDS 8
 
 #endif // OSD_OSD_PRIVATE_H

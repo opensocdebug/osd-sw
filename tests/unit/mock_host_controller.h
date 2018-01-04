@@ -25,7 +25,7 @@
 void mock_host_controller_setup(void);
 void mock_host_controller_teardown(void);
 
-osd_result mock_host_controller_queue_event_packet(const struct osd_packet *pkg);
+osd_result mock_host_controller_queue_data_packet(const struct osd_packet *pkg);
 void mock_host_controller_expect_reg_write(unsigned int src,
                                            unsigned int dest,
                                            unsigned int reg_addr,

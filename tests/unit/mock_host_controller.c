@@ -215,7 +215,16 @@ static void queue_data_packet(zlist_t *list, const struct osd_packet *packet)
     ck_assert_int_eq(rv, 0);
 }
 
-osd_result mock_host_controller_queue_event_packet(const struct osd_packet *pkg)
+/**
+ * Queue a data packet to be sent by the host controller
+ *
+ * The queued packets are sent in regular time intervals in the order they were
+ * queued (FIFO). Use mock_host_controller_expect_data_req() to send a packet
+ * as response to a received packet.
+ *
+ * @see mock_host_controller_expect_data_req()
+ */
+osd_result mock_host_controller_queue_data_packet(const struct osd_packet *pkg)
 {
     queue_data_packet(mock_event_tx_list, pkg);
     return OSD_OK;
@@ -249,6 +258,15 @@ void mock_host_controller_expect_mgmt_req(const char *cmd, const char *resp)
     ck_assert_int_eq(rv, 0);
 }
 
+/**
+ * Expect a DI packet to be received by the host controller
+ *
+ * Optionally, a response can be triggered upon reception of the packet.
+ * Use mock_host_controller_queue_data_packet() to send a data packet from the
+ * host controller without a previously received request.
+ *
+ * @see mock_host_controller_queue_data_packet
+ */
 void mock_host_controller_expect_data_req(const struct osd_packet *req,
                                           const struct osd_packet *resp)
 {

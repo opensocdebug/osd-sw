@@ -85,26 +85,30 @@ static int iothread_rcv_from_hostctrl(zloop_t *loop, zsock_t *reader,
     zframe_t *type_frame = zmsg_first(msg);
     assert(type_frame);
     if (zframe_streq(type_frame, "D")) {
-        zframe_t *data_frame = zmsg_next(msg);
-        assert(data_frame);
 
-        struct osd_packet *pkg;
-        osd_rv = osd_packet_new_from_zframe(&pkg, data_frame);
-        assert(OSD_SUCCEEDED(osd_rv));
+        if (usrctx->event_handler) {
+            zframe_t *data_frame = zmsg_next(msg);
+            assert(data_frame);
 
-        // Forward EVENT packets to handler function.
-        // Ownership of |pkg| is transferred to the event handler.
-        if (osd_packet_get_type(pkg) == OSD_PACKET_TYPE_EVENT) {
-            zmsg_destroy(&msg);
-            osd_rv = usrctx->event_handler(usrctx->event_handler_arg, pkg);
-            if (OSD_FAILED(osd_rv)) {
-                err(thread_ctx->log_ctx, "Handling EVENT packet failed: %d",
-                    osd_rv);
+            struct osd_packet *pkg;
+            osd_rv = osd_packet_new_from_zframe(&pkg, data_frame);
+            assert(OSD_SUCCEEDED(osd_rv));
+
+            // Forward EVENT packets to handler function.
+            // Ownership of |pkg| is transferred to the event handler.
+            if (osd_packet_get_type(pkg) == OSD_PACKET_TYPE_EVENT) {
+
+                zmsg_destroy(&msg);
+                osd_rv = usrctx->event_handler(usrctx->event_handler_arg, pkg);
+                if (OSD_FAILED(osd_rv)) {
+                    err(thread_ctx->log_ctx, "Handling EVENT packet failed: %d",
+                        osd_rv);
+                }
+                return 0;
             }
-            return 0;
-        }
 
-        osd_packet_free(&pkg);
+            osd_packet_free(&pkg);
+        }
 
         // Forward all other data messages to the main thread
         rv = zmsg_send(&msg, thread_ctx->inproc_socket);
@@ -301,7 +305,7 @@ static osd_result iothread_destroy(struct worker_thread_ctx *thread_ctx)
  * The actual sending is done through the I/O worker.
  */
 static osd_result osd_hostmod_send_packet(struct osd_hostmod_ctx *ctx,
-                                          struct osd_packet *packet)
+                                          const struct osd_packet *packet)
 {
     assert(ctx);
     assert(ctx->ioworker_ctx);
@@ -624,6 +628,8 @@ osd_result osd_hostmod_reg_read(struct osd_hostmod_ctx *ctx, void *reg_val,
     }
 
     // make result available to caller
+    // XXX: this is broken for anything else than 16 bit registers due to
+    // endianness issues.
     memcpy(reg_val, response_pkg->data.payload, reg_size_bit / 8);
 
     retval = OSD_OK;
@@ -717,6 +723,8 @@ osd_result osd_hostmod_describe_module(struct osd_hostmod_ctx *ctx,
 {
     osd_result rv;
 
+    desc->addr = di_addr;
+
     rv = osd_hostmod_reg_read(ctx, &desc->vendor, di_addr,
                               OSD_REG_BASE_MOD_VENDOR, 16, 0);
     if (OSD_FAILED(rv)) {
@@ -778,3 +786,52 @@ static osd_result enumerate_debug_modules(struct osd_hostmod_ctx *ctx)
     return ret;
 }
 #endif
+
+unsigned int osd_hostmod_get_max_event_words(struct osd_hostmod_ctx *ctx,
+                                             unsigned int di_addr_target)
+{
+    // XXX: This should be not a constant but read from the SCM in the target
+    // subnet of di_addr_target.
+    return osd_packet_sizeconv_data2payload(OSD_MAX_PKG_LEN_WORDS);
+}
+
+
+osd_result osd_hostmod_event_send(struct osd_hostmod_ctx *ctx,
+                                  const struct osd_packet* event_pkg)
+{
+    assert(ctx);
+    assert(event_pkg);
+    assert(osd_packet_get_type(event_pkg) == OSD_PACKET_TYPE_EVENT);
+
+    if (!osd_hostmod_is_connected(ctx)) {
+        return OSD_ERROR_NOT_CONNECTED;
+    }
+
+    return osd_hostmod_send_packet(ctx, event_pkg);
+}
+
+osd_result osd_hostmod_event_receive(struct osd_hostmod_ctx *ctx,
+                                     struct osd_packet **event_pkg)
+{
+    /*
+     * This implementation is currently rather naive, as the exact requirements
+     * are not yet fixed.
+     *
+     * - It doesn't guarantee to return only event packets, but any packet
+     *   which happens to be received when calling.
+     * - Event packets are not treated differently from register access packets,
+     *   requiring the source(s) to send them exactly in the expected order.
+     * - It doesn't warn the user if he/she set a eventhandler in the
+     *   constructor, which takes precedence over this function (no data will be
+     *   returned ever).
+     *
+     * Once the exact requirements are fixed, this could be extended in a couple
+     * ways:
+     *
+     * - Queue event packets when they are received in the iothread, and pop
+     *   from this queue when this function is called; or
+     * - Use a separate socket for pushing event packets between the iothread
+     *   and the main thread, and receive from this socket here.
+     */
+    return osd_hostmod_receive_packet(ctx, event_pkg);
+}

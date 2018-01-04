@@ -22,6 +22,7 @@
 #include <osd/hostmod.h>
 #include <osd/osd.h>
 #include <osd/packet.h>
+#include <osd/reg.h>
 
 struct osd_hostmod_ctx *hostmod_ctx;
 struct osd_log_ctx *log_ctx;
@@ -138,6 +139,20 @@ START_TEST(test_core_read_register)
 }
 END_TEST
 
+START_TEST(test_core_write_register)
+{
+    osd_result rv;
+
+    uint16_t reg_val = 0xdead;
+
+    mock_host_controller_expect_reg_write(mock_hostmod_diaddr, 1, 0x0000,
+                                          reg_val);
+
+    rv = osd_hostmod_reg_write(hostmod_ctx, &reg_val, 1, 0x0000, 16, 0);
+    ck_assert_int_eq(rv, OSD_OK);
+}
+END_TEST
+
 /**
  * Test timeout handling if a debug module doesn't respond to a register read
  * request.
@@ -166,10 +181,79 @@ START_TEST(test_core_read_register_timeout)
 }
 END_TEST
 
+START_TEST(test_core_event_send)
+{
+    osd_result rv;
+
+    struct osd_packet *event_pkg;
+    osd_packet_new(&event_pkg, osd_packet_sizeconv_payload2data(1));
+    osd_packet_set_header(event_pkg, mock_hostmod_diaddr, 1,
+                          OSD_PACKET_TYPE_EVENT, 0);
+    event_pkg->data.payload[0] = 0x0000;
+
+    mock_host_controller_expect_data_req(event_pkg, NULL);
+
+    osd_hostmod_event_send(hostmod_ctx, event_pkg);
+    ck_assert_int_eq(rv, OSD_OK);
+
+    osd_packet_free(&event_pkg);
+}
+END_TEST
+
+START_TEST(test_core_event_receive)
+{
+    osd_result rv;
+
+    struct osd_packet *event_pkg;
+    osd_packet_new(&event_pkg, osd_packet_sizeconv_payload2data(1));
+    osd_packet_set_header(event_pkg, 1, mock_hostmod_diaddr,
+                          OSD_PACKET_TYPE_EVENT, 0);
+    event_pkg->data.payload[0] = 0x0000;
+
+    mock_host_controller_queue_data_packet(event_pkg);
+
+    struct osd_packet *rcv_event_pkg;
+    osd_hostmod_event_receive(hostmod_ctx, &rcv_event_pkg);
+    ck_assert_int_eq(rv, OSD_OK);
+
+    ck_assert(osd_packet_equal(event_pkg, rcv_event_pkg));
+
+    osd_packet_free(&event_pkg);
+    osd_packet_free(&rcv_event_pkg);
+}
+END_TEST
+
+START_TEST(test_layer2_describe_module)
+{
+    osd_result rv;
+
+    uint16_t mod_vendor, mod_type, mod_version;
+    mod_vendor = 0xbeef;
+    mod_type = 0xdead;
+    mod_version = 0xaddf;
+
+    mock_host_controller_expect_reg_read(mock_hostmod_diaddr, 1,
+                                         OSD_REG_BASE_MOD_VENDOR, mod_vendor);
+    mock_host_controller_expect_reg_read(mock_hostmod_diaddr, 1,
+                                         OSD_REG_BASE_MOD_TYPE, mod_type);
+    mock_host_controller_expect_reg_read(mock_hostmod_diaddr, 1,
+                                         OSD_REG_BASE_MOD_VERSION, mod_version);
+
+    struct osd_module_desc desc;
+    rv = osd_hostmod_describe_module(hostmod_ctx, 1, &desc);
+    ck_assert_int_eq(rv, OSD_OK);
+
+    ck_assert_uint_eq(desc.addr, 1);
+    ck_assert_uint_eq(desc.vendor, mod_vendor);
+    ck_assert_uint_eq(desc.type, mod_type);
+    ck_assert_uint_eq(desc.version, mod_version);
+}
+END_TEST
+
 Suite *suite(void)
 {
     Suite *s;
-    TCase *tc_init, *tc_core;
+    TCase *tc_init, *tc_core, *tc_layer2;
 
     s = suite_create(TEST_SUITE_NAME);
 
@@ -187,7 +271,17 @@ Suite *suite(void)
     tcase_add_checked_fixture(tc_core, setup, teardown);
     tcase_add_test(tc_core, test_core_read_register);
     tcase_add_test(tc_core, test_core_read_register_timeout);
+    tcase_add_test(tc_core, test_core_write_register);
+
+    tcase_add_test(tc_core, test_core_event_send);
+    tcase_add_test(tc_core, test_core_event_receive);
     suite_add_tcase(s, tc_core);
+
+    // Higher-layer functionality
+    tc_layer2 = tcase_create("Layer2");
+    tcase_add_checked_fixture(tc_layer2, setup, teardown);
+    tcase_add_test(tc_layer2, test_layer2_describe_module);
+    suite_add_tcase(s, tc_layer2);
 
     return s;
 }
