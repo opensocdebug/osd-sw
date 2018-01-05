@@ -182,11 +182,16 @@ unsigned int osd_packet_sizeconv_data2payload(unsigned int data_words);
 /**
  * Log a debug message with the packet in human-readable form
  *
+ * Use the @p msg parameter to prefix the dumped packet in the log entry with,
+ * for example, the type of packet being logged. This is preferrable over
+ * writing two log entries to keep the information together.
+ *
  * @param packet packet to log
  * @param log_ctx the log context to write to
+ * @param msg message to be prepended to the dumped packet
  */
 void osd_packet_log(const struct osd_packet *packet,
-                    struct osd_log_ctx *log_ctx);
+                    struct osd_log_ctx *log_ctx, const char* msg);
 
 /**
  * Dump a packet in human-readable (debugging) form to a file stream

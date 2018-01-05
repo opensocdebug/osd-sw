@@ -206,11 +206,16 @@ void osd_packet_to_string(const struct osd_packet *packet, char **str)
 
 API_EXPORT
 void osd_packet_log(const struct osd_packet *packet,
-                    struct osd_log_ctx *log_ctx)
+                    struct osd_log_ctx *log_ctx,
+                    const char* msg)
 {
     char *str = NULL;
     osd_packet_to_string(packet, &str);
-    dbg(log_ctx, "%s", str);
+    if (msg) {
+        dbg(log_ctx, "%s %s", msg, str);
+    } else {
+        dbg(log_ctx, "%s", str);
+    }
     free(str);
 }
 

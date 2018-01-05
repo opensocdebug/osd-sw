@@ -229,6 +229,11 @@ static osd_result packet_read_from_device(struct osd_packet **pkg, void *cb_arg)
         return OSD_ERROR_FAILURE;
     }
 
+#ifdef DEBUG
+    osd_packet_log(*pkg, gw_ctx->log_ctx,
+                   "GLIP gateway: Read packet from device.");
+#endif
+
     return OSD_OK;
 }
 
@@ -241,8 +246,8 @@ static osd_result packet_write_to_device(const struct osd_packet *pkg,
     assert(gw_ctx);
 
 #ifdef DEBUG
-    dbg(gw_ctx->log_ctx, "Gateway: Writing packet to device.");
-    osd_packet_log(pkg, gw_ctx->log_ctx);
+    osd_packet_log(pkg, gw_ctx->log_ctx,
+                   "GLIP gateway: Writing packet to device.");
 #endif
 
     uint16_t *pkg_dtd = (uint16_t *)pkg;
