@@ -343,8 +343,7 @@ static void process_data_msg(struct worker_thread_ctx *thread_ctx,
         dest_hostaddr = usrctx->mods_in_subnet[dest_diaddr_local];
         if (dest_hostaddr == NULL) {
             err(thread_ctx->log_ctx,
-                "No destination module registered for "
-                "DI address %u.%u",
+                "No destination module registered for DI address %u.%u",
                 dest_diaddr_subnet, dest_diaddr_local);
             goto free_return;
         }
@@ -355,13 +354,13 @@ static void process_data_msg(struct worker_thread_ctx *thread_ctx,
         dest_hostaddr = usrctx->gateways[dest_diaddr_subnet];
         if (dest_hostaddr == NULL) {
             err(thread_ctx->log_ctx,
-                "No gateway for subnet %u registered to route di address %u.%u",
+                "No gateway for subnet %u registered to route DI address %u.%u",
                 dest_diaddr_subnet, dest_diaddr_subnet, dest_diaddr_local);
             goto free_return;
         }
         dbg(thread_ctx->log_ctx,
-            "Destination address is in a different "
-            "subnet, routing through gateway.");
+            "Destination address is in a different subnet, routing through "
+            "gateway.");
     }
 
 #ifdef DEBUG

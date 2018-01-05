@@ -218,8 +218,7 @@ static osd_result hostiothread_send_cmd(struct worker_thread_ctx *thread_ctx,
     zmsg_t *msg_resp = zmsg_recv(sock);
     if (!msg_resp) {
         err(thread_ctx->log_ctx,
-            "No response received from host controller "
-            "at %s: %s (%d)",
+            "No response received from host controller at %s: %s (%d)",
             usrctx->host_controller_address, strerror(errno), errno);
         return OSD_ERROR_FAILURE;
     }
@@ -234,8 +233,7 @@ static osd_result hostiothread_send_cmd(struct worker_thread_ctx *thread_ctx,
     if (!zframe_streq(status_frame, "ACK")) {
         char *status_str = zframe_strdup(status_frame);
         err(thread_ctx->log_ctx,
-            "Received status %s as response to "
-            "%s when expecting 'ACK'.",
+            "Received status %s as response to %s when expecting 'ACK'.",
             status_str, command);
         free(status_str);
 
@@ -271,8 +269,7 @@ static osd_result hostiothread_register_gw(struct worker_thread_ctx *thread_ctx)
     }
 
     dbg(thread_ctx->log_ctx,
-        "Registered as gateway for subnet %u with "
-        "host controller.",
+        "Registered as gateway for subnet %u with host controller.",
         usrctx->device_subnet_addr);
 
     return OSD_OK;
