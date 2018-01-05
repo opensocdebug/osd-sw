@@ -45,7 +45,7 @@ struct osd_packet {
             uint16_t payload[0];  //!< (size_data_words - 3) words of payload
         } data;
 
-        uint16_t data_raw[0];  //!< size_data words of data
+        uint16_t data_raw[0];  //!< data_size_words 16 bit words of data
     };
 };
 
@@ -180,7 +180,10 @@ unsigned int osd_packet_sizeconv_payload2data(unsigned int payload_words);
 unsigned int osd_packet_sizeconv_data2payload(unsigned int data_words);
 
 /**
- * Write a debug message to the log with the contents of a packet
+ * Log a debug message with the packet in human-readable form
+ *
+ * @param packet packet to log
+ * @param log_ctx the log context to write to
  */
 void osd_packet_log(const struct osd_packet *packet,
                     struct osd_log_ctx *log_ctx);
@@ -204,6 +207,38 @@ void osd_packet_dump(const struct osd_packet *packet, FILE *fd);
  * @see osd_packet_dump()
  */
 void osd_packet_to_string(const struct osd_packet *packet, char **str);
+
+/**
+ * Write a packet from a file descriptor
+ *
+ * In its current implementation this function memory-dumps osd_packet structs
+ * to a file, without any encoding. This has some consequences:
+ *
+ * - The resulting file is in native endianness, i.e. not portable between
+ *   little and big endian machines.
+ * - No file header is present, or any for of file magic number to identify
+ *   the file type.
+ * - No file integrity checks, such as checksums.
+ *
+ * @param packet the packet to write
+ * @param fd the open file descriptor to write to
+ * @return bool operation successful?
+ *
+ * @see osd_packet_fread()
+ */
+bool osd_packet_fwrite(const struct osd_packet *packet, FILE *fd);
+
+/**
+ * Read a packet from an open file descriptor
+ *
+ * See the discussion in osd_packet_fwrite() for known limitations.
+ *
+ * @param fd an open file descriptor to read from
+ * @return the read packet, or NULL if reading failed
+ *
+ * @see osd_packet_fwrite()
+ */
+struct osd_packet* osd_packet_fread(FILE *fd);
 
 /**
  * Check if two packets are equal

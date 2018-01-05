@@ -205,6 +205,16 @@ void osd_packet_to_string(const struct osd_packet *packet, char **str)
 }
 
 API_EXPORT
+void osd_packet_log(const struct osd_packet *packet,
+                    struct osd_log_ctx *log_ctx)
+{
+    char *str = NULL;
+    osd_packet_to_string(packet, &str);
+    dbg(log_ctx, "%s", str);
+    free(str);
+}
+
+API_EXPORT
 void osd_packet_dump(const struct osd_packet *packet, FILE *fd)
 {
     char *str = NULL;
@@ -213,20 +223,44 @@ void osd_packet_dump(const struct osd_packet *packet, FILE *fd)
     free(str);
 }
 
-/**
- * Log a debug message with the packet in human-readable form
- *
- * @param packet packet to log
- * @param log_ctx the log context to write to
- */
 API_EXPORT
-void osd_packet_log(const struct osd_packet *packet,
-                    struct osd_log_ctx *log_ctx)
+bool osd_packet_fwrite(const struct osd_packet *packet, FILE *fd)
 {
-    char *str = NULL;
-    osd_packet_to_string(packet, &str);
-    dbg(log_ctx, "%s", str);
-    free(str);
+    size_t pkg_struct_size_bytes = osd_packet_sizeof(packet)
+            + sizeof(uint16_t) /* data_size_bytes */;
+    size_t items_written = fwrite(packet, pkg_struct_size_bytes, 1, fd);
+    return (items_written == 1);
+}
+
+API_EXPORT
+struct osd_packet* osd_packet_fread(FILE *fd)
+{
+    osd_result rv;
+    size_t items_read;
+
+    // read size
+    uint16_t data_size_words;
+    items_read = fread(&data_size_words, sizeof(uint16_t), 1, fd);
+    if (items_read != 1) {
+        return NULL;
+    }
+
+    // create packet
+    struct osd_packet *pkg;
+    rv = osd_packet_new(&pkg, data_size_words);
+    if (OSD_FAILED(rv)) {
+        return NULL;
+    }
+
+    // read packet data
+    size_t data_size_bytes = data_size_words * sizeof(uint16_t);
+    items_read = fread(pkg->data_raw, data_size_bytes, 1, fd);
+    if (items_read != 1) {
+        osd_packet_free(&pkg);
+        return NULL;
+    }
+
+    return pkg;
 }
 
 API_EXPORT
