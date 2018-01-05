@@ -213,7 +213,7 @@ START_TEST(test_core_event_receive)
     mock_host_controller_queue_data_packet(event_pkg);
 
     struct osd_packet *rcv_event_pkg;
-    osd_hostmod_event_receive(hostmod_ctx, &rcv_event_pkg);
+    osd_hostmod_event_receive(hostmod_ctx, &rcv_event_pkg, 0);
     ck_assert_int_eq(rv, OSD_OK);
 
     ck_assert(osd_packet_equal(event_pkg, rcv_event_pkg));

@@ -201,7 +201,8 @@ osd_result osd_hostmod_event_send(struct osd_hostmod_ctx *ctx,
  * Block until a new event packet is available, and return it.
  */
 osd_result osd_hostmod_event_receive(struct osd_hostmod_ctx *ctx,
-                                     struct osd_packet **event_pkg);
+                                     struct osd_packet **event_pkg,
+                                     int flags);
 
 /**@}*/ /* end of doxygen group libosd-hostmod */
 

@@ -333,19 +333,29 @@ static osd_result osd_hostmod_send_packet(struct osd_hostmod_ctx *ctx,
  *
  * @return OSD_OK if the operation was successful,
  *         OSD_ERROR_TIMEDOUT if the operation timed out.
+ *         OSD_ERROR_FAILURE if the read operation was aborted
  *         Any other value indicates an error
  */
 static osd_result osd_hostmod_receive_packet(struct osd_hostmod_ctx *ctx,
-                                             struct osd_packet **packet)
+                                             struct osd_packet **packet,
+                                             int flags)
 {
     osd_result osd_rv;
 
+    // block register read indefinitely until response has been received
+    bool do_block = (flags & OSD_HOSTMOD_BLOCKING);
+
     errno = 0;
-    zmsg_t *msg = zmsg_recv(ctx->ioworker_ctx->inproc_socket);
+    zmsg_t *msg;
+    do {
+        msg = zmsg_recv(ctx->ioworker_ctx->inproc_socket);
+    } while (!msg && errno == EAGAIN && do_block);
     if (!msg && errno == EAGAIN) {
         return OSD_ERROR_TIMEDOUT;
     }
-    assert(msg);
+    if (!msg) {
+        return OSD_ERROR_FAILURE;
+    }
 
     // ensure that the message we got from the I/O thread is packet data
     // XXX: possibly extend to hand off non-packet messages to their appropriate
@@ -504,9 +514,6 @@ static osd_result osd_hostmod_regaccess(
     osd_result retval = OSD_ERROR_FAILURE;
     osd_result rv;
 
-    // block register read indefinitely until response has been received
-    bool do_block = (flags & OSD_HOSTMOD_BLOCKING);
-
     // assemble request packet
     struct osd_packet *pkg_req;
     unsigned int pkg_size_words =
@@ -533,9 +540,7 @@ static osd_result osd_hostmod_regaccess(
 
     // wait for response
     struct osd_packet *pkg_resp;
-    do {
-        rv = osd_hostmod_receive_packet(ctx, &pkg_resp);
-    } while (rv == OSD_ERROR_TIMEDOUT && do_block);
+    rv = osd_hostmod_receive_packet(ctx, &pkg_resp, flags);
     if (OSD_FAILED(rv)) {
         retval = rv;
         goto err_free_req;
@@ -811,7 +816,8 @@ osd_result osd_hostmod_event_send(struct osd_hostmod_ctx *ctx,
 }
 
 osd_result osd_hostmod_event_receive(struct osd_hostmod_ctx *ctx,
-                                     struct osd_packet **event_pkg)
+                                     struct osd_packet **event_pkg,
+                                     int flags)
 {
     /*
      * This implementation is currently rather naive, as the exact requirements
@@ -833,5 +839,5 @@ osd_result osd_hostmod_event_receive(struct osd_hostmod_ctx *ctx,
      * - Use a separate socket for pushing event packets between the iothread
      *   and the main thread, and receive from this socket here.
      */
-    return osd_hostmod_receive_packet(ctx, event_pkg);
+    return osd_hostmod_receive_packet(ctx, event_pkg, flags);
 }
