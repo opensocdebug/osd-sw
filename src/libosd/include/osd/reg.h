@@ -16,14 +16,14 @@
 #ifndef OSD_REG_H
 #define OSD_REG_H
 
+#include <osd/osd.h>
+
 /**
  * @defgroup libosd-reg Register definitions
  * @ingroup libosd
  *
  * @{
  */
-
-#define BIT(x) (1UL << (x))
 
 // register maps
 // base register map (common across all debug modules)
@@ -47,6 +47,13 @@
 #define OSD_REG_SCM_SYSRST 0x0204
 #define OSD_REG_SCM_SYSRST_SYS_RST BIT(0)
 #define OSD_REG_SCM_SYSRST_CPU_RST BIT(1)
+
+// MAM register map
+#define OSD_REG_MAM_AW 0x0200
+#define OSD_REG_MAM_DW 0x0201
+#define OSD_REG_MAM_REGIONS 0x0202
+#define OSD_REG_MAM_REGION_BASEADDR(region, word) (0x0280 + (0x10 * region) + (word))
+#define OSD_REG_MAM_REGION_MEMSIZE(region, word) (0x0284 + (0x10 * region) + (word))
 
 /**@}*/ /* end of doxygen group libosd-reg */
 

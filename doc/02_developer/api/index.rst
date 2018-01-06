@@ -11,6 +11,7 @@ Each class is contained in one C header file.
    libosd/hostmod.rst
    libosd/hostctrl.rst
    libosd/gateway.rst
+   libosd/cl_mam.rst
    libosd/log.rst
    libosd/packet.rst
    libosd/errorhandling.rst

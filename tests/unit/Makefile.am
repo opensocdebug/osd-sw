@@ -3,11 +3,16 @@ check_PROGRAMS = \
 	check_util \
 	check_packet \
 	check_hostmod \
-	check_hostctrl
+	check_hostctrl \
+	check_cl_mam
 
 check_hostmod_SOURCES = \
 	check_hostmod.c \
 	mock_host_controller.c
+
+check_cl_mam_SOURCES = \
+	check_cl_mam.c \
+	mock_hostmod.c
 
 TESTS = $(check_PROGRAMS)
 

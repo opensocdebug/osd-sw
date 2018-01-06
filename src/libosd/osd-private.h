@@ -158,4 +158,9 @@ inline bool zframe_eq_c(const zframe_t *self, const zframe_t *other)
  */
 #define OSD_MAX_PKG_LEN_WORDS 8
 
+/**
+ * Ceiling integer devision
+ */
+#define INT_DIV_CEIL(x, y) 1 + (((x) - 1) / (y))
+
 #endif // OSD_OSD_PRIVATE_H

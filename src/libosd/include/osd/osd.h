@@ -75,6 +75,7 @@ typedef int osd_result;
 
 /**@}*/ /* end of doxygen group libosd-errorhandling */
 
+
 /**
  * @defgroup libosd-log Log
  * @ingroup libosd
@@ -259,6 +260,12 @@ const struct osd_version *osd_version_get(void);
 unsigned int osd_diaddr_subnet(unsigned int diaddr);
 unsigned int osd_diaddr_localaddr(unsigned int diaddr);
 unsigned int osd_diaddr_build(unsigned int subnet, unsigned int local_diaddr);
+
+
+// bit handling macros
+#define BITS_PER_LONG  (sizeof(long) * 8)
+#define BIT(nr)        (1UL << (nr))
+#define BIT_MASK(nr)   (1UL << ((nr) % BITS_PER_LONG))
 
 #ifdef __cplusplus
 }
