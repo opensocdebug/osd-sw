@@ -137,7 +137,7 @@ static inline void timespec_add_ns(struct timespec *a, uint64_t ns)
 /**
  * zframe_dup() taking a const argument
  */
-inline zframe_t* zframe_dup_c(const zframe_t *self)
+static inline zframe_t* zframe_dup_c(const zframe_t *self)
 {
     return zframe_dup((zframe_t*)self);
 }
@@ -145,7 +145,7 @@ inline zframe_t* zframe_dup_c(const zframe_t *self)
 /**
  * zframe_eq() taking a const arguments
  */
-inline bool zframe_eq_c(const zframe_t *self, const zframe_t *other)
+static inline bool zframe_eq_c(const zframe_t *self, const zframe_t *other)
 {
     return zframe_eq((zframe_t*)self, (zframe_t*)other);
 }
