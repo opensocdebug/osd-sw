@@ -19,7 +19,7 @@ build:
     - sudo apt-get update
     - ./install-build-deps.sh
     - ./autogen.sh
-    - ./configure --enable-debug --enable-code-coverage --enable-valgrind --with-glip
+    - ./configure --enable-debug --enable-code-coverage --enable-valgrind --with-glip --enable-asan
     - make
     - make check-code-coverage
     - make check-valgrind
@@ -39,7 +39,8 @@ build:
 
   on_failure:
     # Dump test logs to stdout for debugging test failures
-    - for f in tests/unit/*.log; do echo "======= TEST LOG $f ======="; cat $f; done
+    - cat tests/unit/test-suite.log
+    - cat tests/unit/test-suite-memcheck.log
 
     # Copy test results where shippable.io finds them
     - make -C tests/unit check-junit-xml
