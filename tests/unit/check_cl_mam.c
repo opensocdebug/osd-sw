@@ -235,7 +235,8 @@ START_TEST(test_read_single)
     osd_result rv;
     struct osd_mem_desc mem_desc = get_simple_mem_desc();
 
-    uint8_t testdata[3] = { 0xde, 0xad, 0xbe };
+    uint8_t exp_testdata[3] = { 0xde, 0xad, 0xbe };
+    uint8_t rcv_testdata[3] = { 0x00 };
     uint64_t addr = 0x1224;
 
     // request packet
@@ -258,9 +259,13 @@ START_TEST(test_read_single)
     mock_hostmod_expect_event_send(req_pkg, OSD_OK);
     mock_hostmod_expect_event_receive(resp_pkg, OSD_OK);
 
-    rv = osd_cl_mam_read(&mem_desc, mock_hostmod_get_ctx(), testdata,
-                         sizeof(testdata), addr);
+    rv = osd_cl_mam_read(&mem_desc, mock_hostmod_get_ctx(), rcv_testdata,
+                         sizeof(rcv_testdata), addr);
     ck_assert_int_eq(rv, OSD_OK);
+
+    for (size_t i = 0; i < sizeof(rcv_testdata); i++) {
+        ck_assert_uint_eq(exp_testdata[i],  rcv_testdata[i]);
+    }
 }
 END_TEST
 
@@ -272,7 +277,8 @@ START_TEST(test_read_single_unaligned)
     osd_result rv;
     struct osd_mem_desc mem_desc = get_simple_mem_desc();
 
-    uint8_t testdata[3] = { 0xde, 0xad, 0xbe };
+    uint8_t exp_testdata[3] = { 0xde, 0xad, 0xbe };
+    uint8_t rcv_testdata[3] = { 0x00 };
     uint64_t addr = 0x1225;
 
     // request packet
@@ -295,9 +301,13 @@ START_TEST(test_read_single_unaligned)
     mock_hostmod_expect_event_send(req_pkg, OSD_OK);
     mock_hostmod_expect_event_receive(resp_pkg, OSD_OK);
 
-    rv = osd_cl_mam_read(&mem_desc, mock_hostmod_get_ctx(), testdata,
-                         sizeof(testdata), addr);
+    rv = osd_cl_mam_read(&mem_desc, mock_hostmod_get_ctx(), rcv_testdata,
+                         sizeof(rcv_testdata), addr);
     ck_assert_int_eq(rv, OSD_OK);
+
+    for (size_t i = 0; i < sizeof(rcv_testdata); i++) {
+        ck_assert_uint_eq(exp_testdata[i],  rcv_testdata[i]);
+    }
 }
 END_TEST
 

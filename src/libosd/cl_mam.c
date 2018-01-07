@@ -377,7 +377,7 @@ static osd_result write_burst(const struct osd_mem_desc *mem_desc,
 
 static osd_result mam_read(const struct osd_mem_desc *mem_desc,
                            struct osd_hostmod_ctx *hostmod_ctx,
-                           const void *data, size_t nbyte,
+                           void *data, size_t nbyte,
                            uint64_t start_addr, bool burst, uint8_t selsize)
 {
     osd_result rv;
@@ -430,7 +430,7 @@ static osd_result mam_read(const struct osd_mem_desc *mem_desc,
 
 static osd_result read_single(const struct osd_mem_desc *mem_desc,
                               struct osd_hostmod_ctx *hostmod_ctx,
-                              const void *data, size_t nbyte,
+                              void *data, size_t nbyte,
                               uint64_t start_addr)
 {
     osd_result rv;
@@ -442,8 +442,10 @@ static osd_result read_single(const struct osd_mem_desc *mem_desc,
 
     align_data_to_word(baddr, data, nbyte, dw_b, &data_word, &byte_select);
 
-    rv = mam_read(mem_desc, hostmod_ctx, data, dw_b, start_addr - baddr,
+    rv = mam_read(mem_desc, hostmod_ctx, data_word, dw_b, start_addr - baddr,
                   false, byte_select);
+
+    memcpy(data, data_word + baddr, nbyte);
 
     free(data_word);
 
@@ -452,7 +454,7 @@ static osd_result read_single(const struct osd_mem_desc *mem_desc,
 
 static osd_result read_burst(const struct osd_mem_desc *mem_desc,
                              struct osd_hostmod_ctx *hostmod_ctx,
-                             const void *data, size_t nbyte,
+                             void *data, size_t nbyte,
                              uint64_t start_addr)
 {
     osd_result rv;
