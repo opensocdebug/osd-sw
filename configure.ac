@@ -66,6 +66,11 @@ AC_ARG_ENABLE([asan],
     [AS_HELP_STRING([--enable-asan], [Build with GCC Address Sanitizer instrumentation])],
     [],
     [enable_asan=no])
+# Valgrind and ASan are mutually exclusive, as they use the same preload
+# mechanism. Require the user to choose one.
+AS_IF([test "x$enable_asan" = "xyes" -a "$VALGRIND_ENABLED" = "yes"],
+   [AC_MSG_ERROR([--enable-asan requires --disable-valgrind.])]
+)
 AM_CONDITIONAL([ENABLE_ASAN], [test "x$enable_asan" = "xyes"])
 AC_SUBST([ENABLE_ASAN])
 AM_COND_IF([ENABLE_ASAN], [
