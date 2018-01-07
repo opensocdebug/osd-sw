@@ -19,18 +19,28 @@ build:
     - sudo apt-get update
     - ./install-build-deps.sh
     - ./autogen.sh
-    - ./configure --enable-debug --enable-code-coverage --enable-valgrind
+    - ./configure --enable-debug --enable-code-coverage --enable-valgrind --with-glip
     - make
     - make check-code-coverage
     - make check-valgrind
 
-    # Copy test results where shippable.io finds them
-    - make -C tests/unit check-junit-xml
-    - cp tests/unit/*.junit.xml shippable/testresults
-
+  post_ci:
     # Copy code coverage information where shippable.io finds it
     - make -C tests/unit coverage-cobertura-xml
     - cp tests/unit/coverage-cobertura.xml shippable/codecoverage
 
   on_success:
+    # Copy test results where shippable.io finds them
+    - make -C tests/unit check-junit-xml
+    - cp tests/unit/*.junit.xml shippable/testresults
+
+    # Report coverage results to codecov
     - bash <(curl -s https://codecov.io/bash)
+
+  on_failure:
+    # Dump test logs to stdout for debugging test failures
+    - for f in tests/unit/*.log; do echo "======= TEST LOG $f ======="; cat $f; done
+
+    # Copy test results where shippable.io finds them
+    - make -C tests/unit check-junit-xml
+    - cp tests/unit/*.junit.xml shippable/testresults
