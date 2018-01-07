@@ -60,6 +60,21 @@ AX_VALGRIND_CHECK
 # test coverage with gcov and reporting with lcov
 AX_CODE_COVERAGE
 
+# Address Sanitizer
+AC_MSG_CHECKING([whether to enable ASan])
+AC_ARG_ENABLE([asan],
+    [AS_HELP_STRING([--enable-asan], [Build with GCC Address Sanitizer instrumentation])],
+    [],
+    [enable_asan=no])
+AM_CONDITIONAL([ENABLE_ASAN], [test "x$enable_asan" = "xyes"])
+AC_SUBST([ENABLE_ASAN])
+AM_COND_IF([ENABLE_ASAN], [
+   AC_MSG_RESULT([yes])
+   CFLAGS="${CFLAGS} -fsanitize=address"
+], [
+   AC_MSG_RESULT([no])
+])
+
 # ZeroMQ and high-level C wrapper (CZMQ)
 PKG_CHECK_MODULES([libzmq], [libzmq >= 4.1])
 PKG_CHECK_MODULES([libczmq], [libczmq >= 3.0])
@@ -93,8 +108,9 @@ AC_ARG_ENABLE([debug],
     [],
     [enable_debug=no])
 AS_IF([test "x$enable_debug" = "xyes"], [
-    AC_DEFINE(DEBUG, [1], [Debug messages.])
+    AC_DEFINE(DEBUG, [1], [Produce a debug build])
 ])
+AM_CONDITIONAL([DEBUG_BUILD], [test "x$enable_debug" = "xyes"])
 
 # documentation
 AC_ARG_ENABLE([docs],
@@ -115,6 +131,7 @@ AM_CFLAGS="-Wall \
     -Wsign-compare -Wchar-subscripts \
     -Wstrict-prototypes -Wshadow \
     -Wformat-security -Wtype-limits \
+    -fstack-protector \
     -ffunction-sections \
     -fdata-sections \
     -pthread \
