@@ -5,6 +5,10 @@
 
 This is the reference implementation of the Open SoC Debug host software.
 
+## Documentation
+- [Implementation Documentation](https://opensocdebug.readthedocs.io/projects/osd-sw)
+- [OSD Specification and overview](https://opensocdebug.readthedocs.io/) (good first read if you're new to OSD)
+
 ## Build Dependencies
 ```sh
 ./install-build-deps.sh
