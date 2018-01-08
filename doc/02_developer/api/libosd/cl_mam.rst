@@ -1,5 +1,5 @@
-cl_mam class
-------------
+osd_cl_mam class
+----------------
 
 A client for the Memory Access Module (MAM).
 
