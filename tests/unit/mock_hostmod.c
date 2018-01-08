@@ -96,7 +96,13 @@ void mock_hostmod_expect_reg_read_raw(struct mock_hostmod_regaccess *exp)
     ck_assert_int_eq(rv, 0);
 }
 
-void mock_hostmod_expect_reg_read16(uint64_t reg_val, uint16_t diaddr,
+void mock_hostmod_expect_reg_write_raw(struct mock_hostmod_regaccess *exp)
+{
+    int rv = zlist_append(mock_exp_write_list, exp);
+    ck_assert_int_eq(rv, 0);
+}
+
+void mock_hostmod_expect_reg_read16(uint16_t reg_val, uint16_t diaddr,
                                     uint16_t reg_addr, osd_result retval)
 {
     struct mock_hostmod_regaccess *exp;
@@ -109,9 +115,27 @@ void mock_hostmod_expect_reg_read16(uint64_t reg_val, uint16_t diaddr,
 
     exp->diaddr = diaddr;
     exp->reg_addr = reg_addr;
-    exp->reg_val = reg_val;
+    exp->reg_val = (uint64_t)reg_val;
     exp->retval = retval;
     mock_hostmod_expect_reg_read_raw(exp);
+}
+
+void mock_hostmod_expect_reg_write16(uint16_t reg_val, uint16_t diaddr,
+                                     uint16_t reg_addr, osd_result retval)
+{
+    struct mock_hostmod_regaccess *exp;
+
+    exp = calloc(1, sizeof(struct mock_hostmod_regaccess));
+    ck_assert(exp);
+
+    exp->flags = 0;
+    exp->reg_size_bit = 16;
+
+    exp->diaddr = diaddr;
+    exp->reg_addr = reg_addr;
+    exp->reg_val = (uint64_t)reg_val;
+    exp->retval = retval;
+    mock_hostmod_expect_reg_write_raw(exp);
 }
 
 void mock_hostmod_expect_event_send(struct osd_packet *event_pkg,
@@ -170,6 +194,30 @@ osd_result osd_hostmod_reg_read(struct osd_hostmod_ctx *ctx, void *reg_val,
 
     // prepare return data
     memcpy(reg_val, &exp->reg_val, reg_size_bit / 8);
+    osd_result retval = exp->retval;
+    free(exp);
+
+    return retval;
+}
+
+osd_result osd_hostmod_reg_write(struct osd_hostmod_ctx *ctx,
+                                 const void *reg_val, uint16_t diaddr,
+                                 uint16_t reg_addr, int reg_size_bit,
+                                 int flags)
+{
+    struct mock_hostmod_regaccess *exp;
+    exp = zlist_pop(mock_exp_write_list);
+    ck_assert(exp);
+
+    // check parameters
+    ck_assert_int_eq(exp->diaddr, diaddr);
+    ck_assert_int_eq(exp->reg_addr, reg_addr);
+    ck_assert_int_eq(exp->reg_size_bit, reg_size_bit);
+    ck_assert_int_eq(exp->flags, flags);
+
+    assert(reg_size_bit == 16); // XXX: Extend for other register sizes
+    uint64_t written_reg_val = *(uint16_t*)reg_val;
+    ck_assert_uint_eq(written_reg_val, exp->reg_val);
     osd_result retval = exp->retval;
     free(exp);
 

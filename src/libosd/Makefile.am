@@ -6,7 +6,8 @@ pkginclude_HEADERS =\
 	include/osd/hostmod.h \
 	include/osd/hostctrl.h \
 	include/osd/gateway.h \
-	include/osd/cl_mam.h
+	include/osd/cl_mam.h \
+	include/osd/cl_scm.h
 
 lib_LTLIBRARIES = libosd.la
 
@@ -19,7 +20,8 @@ libosd_la_SOURCES =\
 	worker.c \
 	util.c \
 	gateway.c \
-	cl_mam.c
+	cl_mam.c \
+	cl_scm.c
 
 libosd_la_CFLAGS = $(AM_CFLAGS)
 

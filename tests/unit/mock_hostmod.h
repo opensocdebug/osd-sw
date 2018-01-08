@@ -41,8 +41,11 @@ void mock_hostmod_setup(void);
 void mock_hostmod_teardown(void);
 
 void mock_hostmod_expect_reg_read_raw(struct mock_hostmod_regaccess *exp);
-void mock_hostmod_expect_reg_read16(uint64_t reg_val, uint16_t diaddr,
+void mock_hostmod_expect_reg_write_raw(struct mock_hostmod_regaccess *exp);
+void mock_hostmod_expect_reg_read16(uint16_t reg_val, uint16_t diaddr,
                                     uint16_t reg_addr, osd_result retval);
+void mock_hostmod_expect_reg_write16(uint16_t reg_val, uint16_t diaddr,
+                                     uint16_t reg_addr, osd_result retval);
 void mock_hostmod_expect_event_send(struct osd_packet *event_pkg,
                                     osd_result retval);
 void mock_hostmod_expect_event_send_fromfile(const char* path);
