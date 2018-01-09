@@ -18,8 +18,7 @@ build:
   ci:
     # Build and install GLIP as build dependency
     - git clone --depth 1 https://github.com/TUM-LIS/glip.git
-    - cd glip && ./autogen.sh && ./configure --prefix=$PWD/../glip-install && make && make install && cd ..
-    - export PKG_CONFIG_PATH=$PWD/glip-install/lib/pkgconfig
+    - cd glip && ./autogen.sh && ./configure && make && sudo make install && cd ..
 
     # Now build the actual OSD software
     - sudo apt-get update
@@ -30,6 +29,12 @@ build:
     - make
     - make check-code-coverage
     - make check-valgrind
+    - sudo make install
+
+    # Build and test Python bindings
+    - cd src/python
+    - tox
+    - cd ../..
 
   post_ci:
     # Copy code coverage information where shippable.io finds it
