@@ -17,7 +17,8 @@ case $(lsb_release -is) in
       libzmq5-dbg \
       libczmq-dev \
       libczmq-dbg \
-      xsltproc
+      xsltproc \
+      libelf1 libelf-dev
     ;;
 
   *SUSE*)
@@ -28,7 +29,8 @@ case $(lsb_release -is) in
       lcov valgrind \
       zeromq-devel zeromq \
       czmq-devel czmq-debuginfo \
-      xsltproc
+      xsltproc \
+      libelf1 libelf-devel
     ;;
 
   *)

@@ -16,3 +16,4 @@ Each class is contained in one C header file.
    libosd/log.rst
    libosd/packet.rst
    libosd/errorhandling.rst
+   libosd/memaccess.rst

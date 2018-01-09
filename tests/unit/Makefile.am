@@ -5,7 +5,8 @@ check_PROGRAMS = \
 	check_hostmod \
 	check_hostctrl \
 	check_cl_mam \
-	check_cl_scm
+	check_cl_scm \
+	check_memaccess
 
 check_hostmod_SOURCES = \
 	check_hostmod.c \
@@ -18,6 +19,10 @@ check_cl_mam_SOURCES = \
 check_cl_scm_SOURCES = \
 	check_cl_scm.c \
 	mock_hostmod.c
+
+check_memaccess_SOURCES = \
+	check_memaccess.c \
+	mock_host_controller.c
 
 TESTS = $(check_PROGRAMS)
 

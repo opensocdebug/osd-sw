@@ -84,6 +84,9 @@ AM_COND_IF([ENABLE_ASAN], [
 PKG_CHECK_MODULES([libzmq], [libzmq >= 4.1])
 PKG_CHECK_MODULES([libczmq], [libczmq >= 3.0])
 
+# libelf
+PKG_CHECK_MODULES([libelf], [libelf])
+
 # glip (device connectivity)
 AC_ARG_WITH([glip],
     AS_HELP_STRING([--without-glip], [Ignore presence of glip and disable it]))
@@ -141,6 +144,7 @@ AM_CFLAGS="-Wall \
     -fdata-sections \
     -pthread \
     $libczmq_CFLAGS \
+    $libelf_CFLAGS \
     $CODE_COVERAGE_CFLAGS"
 AC_SUBST([AM_CFLAGS])
 
@@ -149,6 +153,7 @@ AM_LDFLAGS="-Wl,--gc-sections \
     -pthread \
     -lrt \
     $libczmq_LIBS \
+    $libelf_LIBS \
     $CODE_COVERAGE_LIBS"
 AC_SUBST(AM_LDFLAGS)
 

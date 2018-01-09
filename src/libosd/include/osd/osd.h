@@ -63,6 +63,10 @@ typedef int osd_result;
 #define OSD_ERROR_CONNECTION_FAILED -9
 /** Return code: Out of memory */
 #define OSD_ERROR_OOM -11
+/** Return code: file operation failed */
+#define OSD_ERROR_FILE -12
+/** Return code: memory verification failed */
+#define OSD_ERROR_MEM_VERIFY_FAILED -13
 
 /**
  * Return true if |rv| is an error code
