@@ -586,6 +586,7 @@ osd_result osd_cl_mam_get_mem_desc(struct osd_hostmod_ctx *hostmod_ctx,
                                    struct osd_mem_desc *mem_desc)
 {
     assert(hostmod_ctx);
+    assert(mem_desc);
 
     osd_result rv;
 

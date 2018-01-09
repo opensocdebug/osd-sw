@@ -55,6 +55,11 @@ struct osd_mem_desc {
 
 /**
  * Obtain information about the memory connected to a MAM module
+ *
+ * @param hostmod_ctx the host module handling the communication
+ * @param mam_di_addr DI address of the MAM module to get describe
+ * @param[out] mem_desc pre-allocated memory descriptor for the result
+ * @return OSD_OK on success, any other value indicates an error
  */
 osd_result osd_cl_mam_get_mem_desc(struct osd_hostmod_ctx *hostmod_ctx,
                                    unsigned int mam_di_addr,
