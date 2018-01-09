@@ -55,8 +55,8 @@ typedef int osd_result;
 #define OSD_ERROR_TIMEDOUT -5
 /** Return code: not connected to the device */
 #define OSD_ERROR_NOT_CONNECTED -6
-/** Return code: not all debug modules have been properly enumerated */
-#define OSD_ERROR_ENUMERATION_INCOMPLETE -7
+/** Return code: this is a partial result, not all requested data was obtained */
+#define OSD_ERROR_PARTIAL_RESULT -7
 /** Return code: operation aborted */
 #define OSD_ERROR_ABORTED -8
 /** Return code: connection failed */

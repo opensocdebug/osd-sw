@@ -1,4 +1,4 @@
-/* Copyright 2017 The Open SoC Debug Project
+/* Copyright 2017-2018 The Open SoC Debug Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -79,10 +79,6 @@ osd_result osd_hostmod_new(struct osd_hostmod_ctx **ctx,
  * @param ctx the osd_com context object
  */
 void osd_hostmod_free(struct osd_hostmod_ctx **ctx);
-
-osd_result osd_hostmod_get_modules(struct osd_hostmod_ctx *ctx,
-                                   struct osd_module_desc **modules,
-                                   size_t *modules_len);
 
 /**
  * Connect to the host controller
@@ -173,13 +169,6 @@ osd_result osd_hostmod_reg_write(struct osd_hostmod_ctx *ctx,
 uint16_t osd_hostmod_get_diaddr(struct osd_hostmod_ctx *ctx);
 
 /**
- * Get the description fields of a debug module (type, vendor, version)
- */
-osd_result osd_hostmod_describe_module(struct osd_hostmod_ctx *ctx,
-                                       uint16_t di_addr,
-                                       struct osd_module_desc *desc);
-
-/**
  * Get the maximum number paylaod of words in an event packet
  *
  * @param ctx the osd_hostmod_ctx context object
@@ -191,18 +180,67 @@ unsigned int osd_hostmod_get_max_event_words(struct osd_hostmod_ctx *ctx,
 
 /**
  * Send an event packet to its destination
+ *
+ * @param ctx the osd_hostmod_ctx context object
+ * @param event_pkg the event packet to be sent
+ * @return OSD_OK on success, any other value indicates an error
  */
 osd_result osd_hostmod_event_send(struct osd_hostmod_ctx *ctx,
                                   const struct osd_packet* event_pkg);
 
 /**
- * Receive an event packet (blocking)
+ * Receive an event packet
  *
- * Block until a new event packet is available, and return it.
+ * By default, this function times out with OSD_ERROR_TIMEOUT if no packet
+ * was received. Pass OSD_HOSTMOD_BLOCKING to @p flags to make the function
+ * block until a packet is received.
+ *
+ * @param ctx the osd_hostmod_ctx context object
+ * @param[out] event_pkg the received event packet. Allocated by this function,
+ *             must be free'd by caller after use.
+ * @param flags a ORed list of flags (see description)
+ * @return OSD_OK on success, any other value indicates an error
  */
 osd_result osd_hostmod_event_receive(struct osd_hostmod_ctx *ctx,
                                      struct osd_packet **event_pkg,
                                      int flags);
+
+/**
+ * Get a list of all debug modules in a given subnet
+ *
+ * @param ctx the osd_hostmod_ctx context object
+ * @param subnet_addr the address of the subnet to query for modules
+ * @param[out] modules the modules found in the given subnet. The array
+ *             is allocated by this function and ownership passed to the caller,
+ *             who must free it after use.
+ * @param[out] module_len the number of entries in @p modules
+ * @return OSD_OK on success
+ *         OSD_ERROR_RESULT_PARTIAL if at least one module failed to enumerate
+ *         any other value indicates an error
+ */
+osd_result osd_hostmod_get_modules(struct osd_hostmod_ctx *ctx,
+                                   unsigned int subnet_addr,
+                                   struct osd_module_desc **modules,
+                                   size_t *modules_len);
+
+/**
+ * Get the description fields of a debug module (type, vendor, version)
+ *
+ * @param ctx the osd_hostmod_ctx context object
+ * @param di_addr the DI address of the module to describe
+ * @param[out] desc a struct describing the module
+ * @return OSD_OK on success, any other value indicates an error
+ */
+osd_result osd_hostmod_describe_module(struct osd_hostmod_ctx *ctx,
+                                       uint16_t di_addr,
+                                       struct osd_module_desc *desc);
+
+/**
+ * Get the logging context for this host module (internal use only)
+ *
+ * @private
+ */
+struct osd_log_ctx* osd_hostmod_log_ctx(struct osd_hostmod_ctx *ctx);
 
 /**@}*/ /* end of doxygen group libosd-hostmod */
 

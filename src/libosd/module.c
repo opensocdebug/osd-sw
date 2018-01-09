@@ -17,24 +17,37 @@
 #include <osd/osd.h>
 #include "osd-private.h"
 
-static const char* OSD_MODULE_TYPE_STD_shortnames[] = {
 #define LIST_ENTRY(type_id, shortname, longname) [type_id] = #shortname,
-    OSD_MODULE_TYPE_STD_LIST
+static const char* OSD_MODULE_TYPE_STD_shortnames[] = {OSD_MODULE_TYPE_STD_LIST};
 #undef LIST_ENTRY
-};
 
 #define LIST_ENTRY(type_id, shortname, longname) [type_id] = longname,
 static const char* OSD_MODULE_TYPE_STD_longnames[] = {OSD_MODULE_TYPE_STD_LIST};
 #undef LIST_ENTRY
 
 API_EXPORT
-const char* osd_module_get_type_std_short_name(unsigned int type_id)
+const char* osd_module_get_type_short_name(unsigned int vendor_id,
+                                           unsigned int type_id)
 {
+    if (vendor_id != OSD_MODULE_VENDOR_OSD) {
+        return "UNKNOWN";
+    }
+
+    if (type_id >= sizeof(OSD_MODULE_TYPE_STD_shortnames)) {
+        return "UNKNOWN";
+    }
     return OSD_MODULE_TYPE_STD_shortnames[type_id];
 }
 
 API_EXPORT
-const char* osd_module_get_type_std_long_name(unsigned int type_id)
+const char* osd_module_get_type_long_name(unsigned int vendor_id,
+                                          unsigned int type_id)
 {
+    if (vendor_id != OSD_MODULE_VENDOR_OSD) {
+        return "UNKNOWN";
+    }
+    if (type_id >= sizeof(OSD_MODULE_TYPE_STD_longnames)) {
+        return "UNKNOWN";
+    }
     return OSD_MODULE_TYPE_STD_longnames[type_id];
 }

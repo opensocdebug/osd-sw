@@ -32,6 +32,7 @@
  * http://opensocdebug.readthedocs.io/en/latest/05_idregistry/index.html
  */
 #define OSD_MODULE_VENDOR_LIST                            \
+    LIST_ENTRY(0x0000, UNKNOWN, "UNKNOWN")                \
     LIST_ENTRY(0x0001, OSD, "The Open SoC Debug Project") \
     LIST_ENTRY(0x0002, OPTIMSOC, "The OpTiMSoC Project")  \
     LIST_ENTRY(0x0003, LOWRISC, "LowRISC")
@@ -42,6 +43,7 @@
  * All modules in this list have a vendor id 0x0001
  */
 #define OSD_MODULE_TYPE_STD_LIST                                 \
+    LIST_ENTRY(0x0000, UNKNOWN, "UNKNOWN")                       \
     LIST_ENTRY(0x0001, SCM, "Subnet Control Module")             \
     LIST_ENTRY(0x0002, DEM_UART, "Device Emulation Module UART") \
     LIST_ENTRY(0x0003, MAM, "Memory Access Module")              \
@@ -79,26 +81,30 @@ struct osd_module_desc {
 };
 
 /**
- * Get the short name for a standard debug module by its type
+ * Get the short name for a debug module
  *
- * Standard debug modules are the debug modules which are part of the
- * OSD specification.
+ * This returns the short type name for all well-known debug modules, and
+ * "UNKNOWN" otherwise.
  *
- * @param type_id one of the osd_module_type_std members
- * @return the module name acronym (e.g. "CTM")
+ * @param vendor_id the vendor ID of the debug module
+ * @param type_id the type ID of the debug module
+ * @return the module name acronym (e.g. "CTM") or "UNKNOWN"
  */
-const char* osd_module_get_type_std_short_name(unsigned int type_id);
+const char* osd_module_get_type_short_name(unsigned int vendor_id,
+                                           unsigned int type_id);
 
 /**
- * Get the long name for a standard debug module by its type
+ * Get the long name for a debug module
  *
- * Standard debug modules are the debug modules which are part of the
- * OSD specification.
+ * This returns the long type name for all well-known debug modules, and
+ * "UNKNOWN" otherwise.
  *
- * @param type_id one of the osd_module_type_std members
+ * @param vendor_id the vendor ID of the debug module
+ * @param type_id the type ID of the debug module
  * @return the full module name (e.g. "Core Trace Module")
  */
-const char* osd_module_get_type_std_long_name(unsigned int type_id);
+const char* osd_module_get_type_long_name(unsigned int vendor_id,
+                                          unsigned int type_id);
 
 /**@}*/ /* end of doxygen group libosd-module */
 

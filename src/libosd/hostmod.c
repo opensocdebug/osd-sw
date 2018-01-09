@@ -17,6 +17,7 @@
 #include <osd/osd.h>
 #include <osd/packet.h>
 #include <osd/reg.h>
+#include <osd/module.h>
 
 #include "osd-private.h"
 #include "worker.h"
@@ -686,112 +687,6 @@ err_free_resp:
     return retval;
 }
 
-/**
- * Read the system information from the device, as stored in the SCM
- */
-#if 0
-static osd_result read_system_info_from_device(struct osd_hostmod_ctx *ctx)
-{
-    osd_result rv;
-
-    rv = osd_hostmod_reg_read(ctx, osd_diaddr_build(0, 0), REG_SCM_SYSTEM_VENDOR_ID, 16,
-                          &ctx->system_info.vendor_id, 0);
-    if (OSD_FAILED(rv)) {
-        err(ctx->log_ctx, "Unable to read VENDOR_ID from SCM (rv=%d)\n", rv);
-        return rv;
-    }
-    rv = osd_hostmod_reg_read(ctx, osd_diaddr_build(0, 0), REG_SCM_SYSTEM_DEVICE_ID, 16,
-                          &ctx->system_info.device_id, 0);
-    if (OSD_FAILED(rv)) {
-        err(ctx->log_ctx, "Unable to read DEVICE_ID from SCM (rv=%d)\n", rv);
-        return rv;
-    }
-    rv = osd_hostmod_reg_read(ctx, osd_diaddr_build(0, 0), REG_SCM_MAX_PKT_LEN, 16,
-                          &ctx->system_info.max_pkt_len, 0);
-    if (OSD_FAILED(rv)) {
-        err(ctx->log_ctx, "Unable to read MAX_PKT_LEN from SCM (rv=%d)\n", rv);
-        return rv;
-    }
-
-    dbg(ctx->log_ctx, "Got system information: VENDOR_ID = %u, DEVICE_ID = %u, "
-        "MAX_PKT_LEN = %u\n\n", ctx->system_info.vendor_id,
-        ctx->system_info.device_id, ctx->system_info.max_pkt_len);
-
-    return OSD_OK;
-}
-#endif
-
-API_EXPORT
-osd_result osd_hostmod_describe_module(struct osd_hostmod_ctx *ctx,
-                                       uint16_t di_addr,
-                                       struct osd_module_desc *desc)
-{
-    osd_result rv;
-
-    desc->addr = di_addr;
-
-    rv = osd_hostmod_reg_read(ctx, &desc->vendor, di_addr,
-                              OSD_REG_BASE_MOD_VENDOR, 16, 0);
-    if (OSD_FAILED(rv)) {
-        return rv;
-    }
-
-    rv = osd_hostmod_reg_read(ctx, &desc->type, di_addr, OSD_REG_BASE_MOD_TYPE,
-                              16, 0);
-    if (OSD_FAILED(rv)) {
-        return rv;
-    }
-
-    rv = osd_hostmod_reg_read(ctx, &desc->version, di_addr,
-                              OSD_REG_BASE_MOD_VERSION, 16, 0);
-    if (OSD_FAILED(rv)) {
-        return rv;
-    }
-
-    return OSD_OK;
-}
-
-#if 0
-/**
- * Enumerate all modules in the debug system
- *
- * @return OSD_ENUMERATION_INCOMPLETE if at least one module failed to enumerate
- */
-static osd_result enumerate_debug_modules(struct osd_hostmod_ctx *ctx)
-{
-    osd_result ret = OSD_OK;
-    osd_result rv;
-    uint16_t num_modules;
-    rv = osd_hostmod_reg_read(ctx, osd_diaddr_build(0, 0), REG_SCM_NUM_MOD, 16,
-                          &num_modules, 0);
-    if (OSD_FAILED(rv)) {
-        err(ctx->log_ctx, "Unable to read NUM_MOD from SCM\n");
-        return rv;
-    }
-    dbg(ctx->log_ctx, "Debug system with %u modules found.\n", num_modules);
-
-    ctx->modules = calloc(num_modules, sizeof(struct osd_module_desc));
-    ctx->modules_len = num_modules;
-
-    for (uint16_t module_addr = 2; module_addr < num_modules; module_addr++) {
-        rv = discover_debug_module(ctx, module_addr);
-        if (OSD_FAILED(rv)) {
-            err(ctx->log_ctx, "Failed to obtain information about debug "
-                "module at address %u (rv=%d)\n", module_addr, rv);
-            ret = OSD_ERROR_ENUMERATION_INCOMPLETE;
-            // continue with the next module anyways
-        } else {
-            dbg(ctx->log_ctx,
-                "Found debug module at address %u of type %u.%u (v%u)\n",
-                module_addr, ctx->modules->vendor, ctx->modules->type,
-                ctx->modules->version);
-        }
-    }
-    dbg(ctx->log_ctx, "Enumerated completed.\n");
-    return ret;
-}
-#endif
-
 unsigned int osd_hostmod_get_max_event_words(struct osd_hostmod_ctx *ctx,
                                              unsigned int di_addr_target)
 {
@@ -840,4 +735,94 @@ osd_result osd_hostmod_event_receive(struct osd_hostmod_ctx *ctx,
      *   and the main thread, and receive from this socket here.
      */
     return osd_hostmod_receive_packet(ctx, event_pkg, flags);
+}
+
+osd_result osd_hostmod_get_modules(struct osd_hostmod_ctx *ctx,
+                                   unsigned int subnet_addr,
+                                   struct osd_module_desc **modules,
+                                   size_t *modules_len)
+{
+    osd_result retval = OSD_OK;
+    osd_result rv;
+
+    uint16_t scm_diaddr = osd_diaddr_build(subnet_addr, 0);
+
+    uint16_t num_modules;
+    rv = osd_hostmod_reg_read(ctx, &num_modules, scm_diaddr,
+                              OSD_REG_SCM_NUM_MOD, 16, 0);
+    if (OSD_FAILED(rv)) {
+        err(ctx->log_ctx, "Unable to read NUM_MOD from SCM in subnet %u",
+            subnet_addr);
+        return rv;
+    }
+    dbg(ctx->log_ctx, "Debug system with %u modules found.", num_modules);
+
+    struct osd_module_desc *mods;
+    mods = calloc(num_modules, sizeof(struct osd_module_desc));
+
+    for (uint16_t localaddr = scm_diaddr; localaddr < num_modules;
+         localaddr++) {
+        uint16_t module_addr = osd_diaddr_build(subnet_addr, localaddr);
+
+        rv = osd_hostmod_describe_module(ctx, module_addr, &mods[module_addr]);
+        if (OSD_FAILED(rv)) {
+            err(ctx->log_ctx, "Failed to obtain information about debug "
+                "module at address %u (rv=%d)", module_addr, rv);
+            mods[module_addr].addr = module_addr;
+            mods[module_addr].vendor = OSD_MODULE_VENDOR_UNKNOWN;
+            mods[module_addr].type = OSD_MODULE_TYPE_STD_UNKNOWN;
+            mods[module_addr].version = 0;
+            retval = OSD_ERROR_PARTIAL_RESULT;
+            // continue with the next module anyways
+        } else {
+            const char* type_name =
+                osd_module_get_type_short_name(mods[module_addr].vendor,
+                                               mods[module_addr].type);
+            dbg(ctx->log_ctx,
+                "Found debug module at address %u of type %s (%u.%u, v%u)",
+                mods[module_addr].addr, type_name, mods[module_addr].vendor,
+                mods[module_addr].type, mods[module_addr].version);
+        }
+    }
+    dbg(ctx->log_ctx, "Enumerated of subnet %u completed.", subnet_addr);
+
+    *modules = mods;
+    *modules_len = num_modules;
+    return retval;
+}
+
+API_EXPORT
+osd_result osd_hostmod_describe_module(struct osd_hostmod_ctx *ctx,
+                                       uint16_t di_addr,
+                                       struct osd_module_desc *desc)
+{
+    osd_result rv;
+
+    desc->addr = di_addr;
+
+    rv = osd_hostmod_reg_read(ctx, &desc->vendor, di_addr,
+                              OSD_REG_BASE_MOD_VENDOR, 16, 0);
+    if (OSD_FAILED(rv)) {
+        return rv;
+    }
+
+    rv = osd_hostmod_reg_read(ctx, &desc->type, di_addr, OSD_REG_BASE_MOD_TYPE,
+                              16, 0);
+    if (OSD_FAILED(rv)) {
+        return rv;
+    }
+
+    rv = osd_hostmod_reg_read(ctx, &desc->version, di_addr,
+                              OSD_REG_BASE_MOD_VERSION, 16, 0);
+    if (OSD_FAILED(rv)) {
+        return rv;
+    }
+
+    return OSD_OK;
+}
+
+API_EXPORT
+struct osd_log_ctx* osd_hostmod_log_ctx(struct osd_hostmod_ctx *ctx)
+{
+    return ctx->log_ctx;
 }

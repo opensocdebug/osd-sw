@@ -128,7 +128,15 @@ static int mock_host_controller_msg_reactor(zloop_t *loop, zsock_t *reader,
 
     // send response message
     zmsg_t *msg_resp = zlist_pop(mock_exp_resp_list);
-    if (msg_resp) {
+
+    zframe_t *f_type = zmsg_first(msg_resp);
+    bool is_null_msg = zframe_streq(f_type, "N");
+    if (is_null_msg) {
+        zmsg_destroy(&msg_resp);
+        printf("Not sending response as requested by queued null message.\n");
+    }
+
+    if (msg_resp && !is_null_msg) {
         zmsg_prepend(msg_resp, &src_frame);
         zmsg_send(&msg_resp, reader);
     }
@@ -216,6 +224,28 @@ static void queue_data_packet(zlist_t *list, const struct osd_packet *packet)
 }
 
 /**
+ * Queue a "null packet"
+ *
+ * If the response queue contains a null packet, the host controller does not
+ * send this packet as response, but instead doesn't respond at all. Use this
+ * feature to test the error path in the packet processing (i.e. if the calling
+ * function recognizes a timeout).
+ */
+static void queue_null_packet(zlist_t *list)
+{
+    int rv;
+
+    zmsg_t *msg = zmsg_new();
+    ck_assert_ptr_ne(msg, NULL);
+
+    rv = zmsg_addstr(msg, "N");
+    ck_assert_int_eq(rv, 0);
+
+    rv = zlist_append(list, msg);
+    ck_assert_int_eq(rv, 0);
+}
+
+/**
  * Queue a data packet to be sent by the host controller
  *
  * The queued packets are sent in regular time intervals in the order they were
@@ -271,7 +301,9 @@ void mock_host_controller_expect_data_req(const struct osd_packet *req,
                                           const struct osd_packet *resp)
 {
     queue_data_packet(mock_exp_req_list, req);
-    if (resp) {
+    if (!resp) {
+        queue_null_packet(mock_exp_resp_list);
+    } else {
         queue_data_packet(mock_exp_resp_list, resp);
     }
 }
@@ -287,7 +319,7 @@ void mock_host_controller_expect_diaddr_req(unsigned int diaddr)
 }
 
 /**
- * Add a 16 bit register access to the read/write mock
+ * Add a 16 bit register read access to the mock
  *
  * Note that the @p ret_value is not checked by the mock, you need to check
  * in the test if the returned value arrived where it should.
@@ -323,7 +355,33 @@ void mock_host_controller_expect_reg_read(unsigned int src, unsigned int dest,
 }
 
 /**
- * Add a 16 bit register access to the read/write mock
+ * Add a 16 bit register read access to the mock, but generate no response
+ *
+ * This function will cause the register read to time out (or block forever).
+ * Use this function to test the handling of register read errors.
+ */
+void mock_host_controller_expect_reg_read_noresp(unsigned int src,
+                                                 unsigned int dest,
+                                                 unsigned int reg_addr)
+{
+    osd_result rv;
+
+    // request
+    struct osd_packet *pkg_req;
+    rv = osd_packet_new(&pkg_req, osd_packet_sizeconv_payload2data(1));
+    ck_assert_int_eq(rv, OSD_OK);
+    ck_assert_ptr_ne(pkg_req, NULL);
+
+    osd_packet_set_header(pkg_req, dest, src, OSD_PACKET_TYPE_REG,
+                          REQ_READ_REG_16);
+    pkg_req->data.payload[0] = reg_addr;
+
+    mock_host_controller_expect_data_req(pkg_req, NULL);
+    osd_packet_free(&pkg_req);
+}
+
+/**
+ * Add a 16 bit register write access to the mock
  *
  * Note that the @p ret_value is not checked by the mock, you need to check
  * in the test if the returned value arrived where it should.
