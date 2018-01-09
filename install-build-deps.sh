@@ -11,6 +11,7 @@ case $(lsb_release -is) in
       check \
       doxygen \
       python3 python3-venv python3-pip \
+      tox \
       lcov valgrind \
       libzmq5 \
       libzmq3-dev \
@@ -19,6 +20,7 @@ case $(lsb_release -is) in
       libczmq-dbg \
       xsltproc \
       libelf1 libelf-dev
+    sudo pip3 install pytest
     ;;
 
   *SUSE*)
@@ -26,11 +28,13 @@ case $(lsb_release -is) in
       libcheck0 check-devel libcheck0-debuginfo \
       doxygen \
       python3 python3-pip \
+      python-tox \
       lcov valgrind \
       zeromq-devel zeromq \
       czmq-devel czmq-debuginfo \
       xsltproc \
       libelf1 libelf-devel
+    sudo pip3 install pytest
     ;;
 
   *)
