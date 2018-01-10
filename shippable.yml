@@ -10,9 +10,9 @@ env:
     - secure: vw5Dlj5ZjrVFbHjq76qzJyoj/C8p1QiS8qYQcVUA6iOgYR05CRVaGogtdIMMwkAlvN01AH7h5cGgnoXnFTRKkd5CaPuasqJWORi0lTfQooP+nX6loOomtZmia+DrxddcLi8tzAjjm5PhsL501vWRNsUaTadlzeg63Xfa8HCG7YWjJgO3kOXcZmkRy7eK590eQDo6AyXQXrfUNCmsJfDxPB1Vjg8lM+cc2z6AKZM3X4sUtKKXAaxngDmnWKxyPKOlYJPkIE1SLj8GYYBq+05fi1rA2mztaDZ/pJrcp2cEDRIPcqNjb57DZ2HfXr36vibx4C5NMmmMTbwyCekai76hVA==
   matrix:
     # Configure options (resulting in one build job each)
-    - CONFIGURE_OPTS="--with-glip --enable-debug --enable-code-coverage --enable-valgrind --disable-asan" UPLOAD_COVERAGE=false
-    - CONFIGURE_OPTS="--with-glip --enable-debug --enable-code-coverage --disable-valgrind --enable-asan" UPLOAD_COVERAGE=true
-    - CONFIGURE_OPTS="--with-glip" UPLOAD_COVERAGE=false
+    - BUILD_TYPE=valgrind CONFIGURE_OPTS="--with-glip --enable-debug --enable-code-coverage --enable-valgrind --disable-asan" UPLOAD_COVERAGE=false
+    - BUILD_TYPE=asan     CONFIGURE_OPTS="--with-glip --enable-debug --enable-code-coverage --disable-valgrind --enable-asan" UPLOAD_COVERAGE=true
+    - BUILD_TYPE=release  CONFIGURE_OPTS="--with-glip" UPLOAD_COVERAGE=false
 
 build:
   ci:
@@ -31,10 +31,8 @@ build:
     - make check-valgrind
     - sudo make install
 
-    # Build and test Python bindings
-    - cd src/python
-    - tox
-    - cd ../..
+    # Build and test Python bindings (using the release version of libosd)
+    - if [ "$BUILD_TYPE" == "release" ]; then cd src/python; tox; cd ../..; fi
 
   post_ci:
     # Copy code coverage information where shippable.io finds it
