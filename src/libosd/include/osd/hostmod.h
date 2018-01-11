@@ -158,6 +158,30 @@ osd_result osd_hostmod_reg_write(struct osd_hostmod_ctx *ctx,
                                  int flags);
 
 /**
+ * Set (or unset) a bit in a debug module configuration register
+ *
+ * The setting of a single bit requires a read-modify-write cycle of the
+ * register, which is not atomic and not locked.
+ *
+ * @param ctx the osd_hostmod_ctx context object
+ * @param bitnum bit to modify (bit 0 = LSB)
+ * @param bitval value to set the bit to
+ * @param diaddr the DI address of the accessed module
+ * @param reg_addr the address of the register to read
+ * @param reg_size_bit size of the register in bit.
+ *                     Supported values: 16, 32, 64 and 128.
+ * @param flags flags. Set OSD_HOSTMOD_BLOCKING to block indefinitely until the
+ *              access succeeds.
+ * @return OSD_OK on success, any other value indicates an error
+ * @return OSD_ERROR_TIMEDOUT if the register read timed out (only if
+ *         OSD_HOSTMOD_BLOCKING is not set)
+ */
+osd_result osd_hostmod_reg_setbit(struct osd_hostmod_ctx *hostmod_ctx,
+                                  unsigned int bitnum, bool bitval,
+                                  uint16_t diaddr, uint16_t reg_addr,
+                                  int reg_size_bit, int flags);
+
+/**
  * Get the DI address assigned to this host debug module
  *
  * The address is assigned during the connection, i.e. you need to call
@@ -231,9 +255,48 @@ osd_result osd_hostmod_get_modules(struct osd_hostmod_ctx *ctx,
  * @param[out] desc a struct describing the module
  * @return OSD_OK on success, any other value indicates an error
  */
-osd_result osd_hostmod_describe_module(struct osd_hostmod_ctx *ctx,
-                                       uint16_t di_addr,
-                                       struct osd_module_desc *desc);
+osd_result osd_hostmod_mod_describe(struct osd_hostmod_ctx *ctx,
+                                    uint16_t di_addr,
+                                    struct osd_module_desc *desc);
+
+/**
+ * Set this host module as event destination for the module at @p di_addr
+ *
+ * By default, this function times out with OSD_ERROR_TIMEOUT if no packet
+ * was received. Pass OSD_HOSTMOD_BLOCKING to @p flags to make the function
+ * block until a packet is received.
+ *
+ * @param ctx the osd_hostmod_ctx context object
+ * @param di_addr the address of the DI module
+ * @param flags a ORed list of flags (see description)
+ * @return OSD_OK on success, any other value indicates an error
+ *
+ * @see osd_hostmod_mod_set_event_active()
+ */
+osd_result osd_hostmod_mod_set_event_dest(struct osd_hostmod_ctx *ctx,
+                                          uint16_t di_addr, int flags);
+
+/**
+ * Enable/disable sending of events by the module at DI address @p di_addr
+ *
+ * Events are sent to the DI address configured in the module. Use
+ * osd_hostmod_mod_set_evdest() to make this host module receive the events.
+ *
+ * By default, this function times out with OSD_ERROR_TIMEOUT if no packet
+ * was received. Pass OSD_HOSTMOD_BLOCKING to @p flags to make the function
+ * block until a packet is received.
+ *
+ * @param ctx the osd_hostmod_ctx context object
+ * @param di_addr the address of the DI module to enable/disable
+ * @param enabled 1 to enable event sending, 0 to disable it
+ * @param flags a ORed list of flags (see description)
+ * @return OSD_OK on success, any other value indicates an error
+ *
+ * @see osd_hostmod_mod_set_evdest()
+ */
+osd_result osd_hostmod_mod_set_event_active(struct osd_hostmod_ctx *ctx,
+                                            uint16_t di_addr, bool enabled,
+                                            int flags);
 
 /**
  * Get the logging context for this host module (internal use only)

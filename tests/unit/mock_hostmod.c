@@ -19,6 +19,8 @@
 #include <czmq.h>
 #include <osd/osd.h>
 
+#define MOCK_HOSTMOD_FLAGS_NOCHECK -1
+
 // Development aid: dump all packet passed to the osd_hostmod_event_send()
 // function into a file to be used as reference file later on.
 // Copy the resulting file DUMP_EVENT_SEND_FILE into the test directory as
@@ -110,7 +112,7 @@ void mock_hostmod_expect_reg_read16(uint16_t reg_val, uint16_t diaddr,
     exp = calloc(1, sizeof(struct mock_hostmod_regaccess));
     ck_assert(exp);
 
-    exp->flags = 0;
+    exp->flags = MOCK_HOSTMOD_FLAGS_NOCHECK;
     exp->reg_size_bit = 16;
 
     exp->diaddr = diaddr;
@@ -128,7 +130,7 @@ void mock_hostmod_expect_reg_write16(uint16_t reg_val, uint16_t diaddr,
     exp = calloc(1, sizeof(struct mock_hostmod_regaccess));
     ck_assert(exp);
 
-    exp->flags = 0;
+    exp->flags = MOCK_HOSTMOD_FLAGS_NOCHECK;
     exp->reg_size_bit = 16;
 
     exp->diaddr = diaddr;
@@ -190,7 +192,9 @@ osd_result osd_hostmod_reg_read(struct osd_hostmod_ctx *ctx, void *reg_val,
     ck_assert_int_eq(exp->diaddr, diaddr);
     ck_assert_int_eq(exp->reg_addr, reg_addr);
     ck_assert_int_eq(exp->reg_size_bit, reg_size_bit);
-    ck_assert_int_eq(exp->flags, flags);
+    if (exp->flags != MOCK_HOSTMOD_FLAGS_NOCHECK) {
+        ck_assert_int_eq(exp->flags, flags);
+    }
 
     // prepare return data
     memcpy(reg_val, &exp->reg_val, reg_size_bit / 8);
@@ -213,7 +217,9 @@ osd_result osd_hostmod_reg_write(struct osd_hostmod_ctx *ctx,
     ck_assert_int_eq(exp->diaddr, diaddr);
     ck_assert_int_eq(exp->reg_addr, reg_addr);
     ck_assert_int_eq(exp->reg_size_bit, reg_size_bit);
-    ck_assert_int_eq(exp->flags, flags);
+    if (exp->flags != MOCK_HOSTMOD_FLAGS_NOCHECK) {
+        ck_assert_int_eq(exp->flags, flags);
+    }
 
     assert(reg_size_bit == 16); // XXX: Extend for other register sizes
     uint64_t written_reg_val = *(uint16_t*)reg_val;

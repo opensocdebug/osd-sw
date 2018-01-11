@@ -153,6 +153,37 @@ START_TEST(test_core_write_register)
 }
 END_TEST
 
+START_TEST(test_core_reg_setbit)
+{
+    osd_result rv;
+    uint16_t old_reg_val, new_exp_reg_val;
+
+
+    // set bit to zero
+    old_reg_val = 0xdead;
+    new_exp_reg_val = 0xdea5;
+    mock_host_controller_expect_reg_read(mock_hostmod_diaddr, 1,
+                                         4, old_reg_val);
+    mock_host_controller_expect_reg_write(mock_hostmod_diaddr, 1, 4,
+                                          new_exp_reg_val);
+
+    rv = osd_hostmod_reg_setbit(hostmod_ctx, 3, 0, 1, 4, 16, 0);
+    ck_assert_int_eq(rv, OSD_OK);
+
+
+    // set bit to one
+    old_reg_val = 0xdea5;
+    new_exp_reg_val = 0xdead;
+    mock_host_controller_expect_reg_read(mock_hostmod_diaddr, 1,
+                                         4, old_reg_val);
+    mock_host_controller_expect_reg_write(mock_hostmod_diaddr, 1, 4,
+                                          new_exp_reg_val);
+
+    rv = osd_hostmod_reg_setbit(hostmod_ctx, 3, 1, 1, 4, 16, 0);
+    ck_assert_int_eq(rv, OSD_OK);
+}
+END_TEST
+
 /**
  * Test timeout handling if a debug module doesn't respond to a register read
  * request.
@@ -211,18 +242,7 @@ START_TEST(test_core_event_receive)
 }
 END_TEST
 
-static void expect_module_desc_request(uint16_t diaddr, uint16_t vendor,
-                                       uint16_t type, uint16_t version)
-{
-    mock_host_controller_expect_reg_read(mock_hostmod_diaddr, diaddr,
-                                         OSD_REG_BASE_MOD_VENDOR, vendor);
-    mock_host_controller_expect_reg_read(mock_hostmod_diaddr, diaddr,
-                                         OSD_REG_BASE_MOD_TYPE, type);
-    mock_host_controller_expect_reg_read(mock_hostmod_diaddr, diaddr,
-                                         OSD_REG_BASE_MOD_VERSION, version);
-}
-
-START_TEST(test_layer2_describe_module)
+START_TEST(test_layer2_mod_describe)
 {
     osd_result rv;
 
@@ -231,16 +251,47 @@ START_TEST(test_layer2_describe_module)
     mod_type = 0xdead;
     mod_version = 0xaddf;
 
-    expect_module_desc_request(1, mod_vendor, mod_type, mod_version);
+    mock_host_controller_expect_mod_describe(mock_hostmod_diaddr, 1,
+                                          mod_vendor, mod_type, mod_version);
 
     struct osd_module_desc desc;
-    rv = osd_hostmod_describe_module(hostmod_ctx, 1, &desc);
+    rv = osd_hostmod_mod_describe(hostmod_ctx, 1, &desc);
     ck_assert_int_eq(rv, OSD_OK);
 
     ck_assert_uint_eq(desc.addr, 1);
     ck_assert_uint_eq(desc.vendor, mod_vendor);
     ck_assert_uint_eq(desc.type, mod_type);
     ck_assert_uint_eq(desc.version, mod_version);
+}
+END_TEST
+
+START_TEST(test_layer2_mod_event_active)
+{
+    osd_result rv;
+    uint16_t old_reg_val, new_exp_reg_val;
+
+    old_reg_val = 0;
+    new_exp_reg_val = 1;
+    mock_host_controller_expect_reg_read(mock_hostmod_diaddr, 1,
+                                         OSD_REG_BASE_MOD_CS, old_reg_val);
+    mock_host_controller_expect_reg_write(mock_hostmod_diaddr, 1,
+                                          OSD_REG_BASE_MOD_CS,
+                                          new_exp_reg_val);
+
+    rv = osd_hostmod_mod_set_event_active(hostmod_ctx, 1, true, 0);
+    ck_assert_int_eq(rv, OSD_OK);
+}
+END_TEST
+
+START_TEST(test_layer2_mod_event_dest)
+{
+    osd_result rv;
+    mock_host_controller_expect_reg_write(mock_hostmod_diaddr, 1,
+                                          OSD_REG_BASE_MOD_EVENT_DEST,
+                                          mock_hostmod_diaddr);
+
+    rv = osd_hostmod_mod_set_event_dest(hostmod_ctx, 1, 0);
+    ck_assert_int_eq(rv, OSD_OK);
 }
 END_TEST
 
@@ -261,12 +312,17 @@ START_TEST(test_layer2_get_modules)
                                          OSD_REG_SCM_NUM_MOD, 3);
 
     // Step 2: Enumerate all debug modules
-    expect_module_desc_request(scm_diaddr, OSD_MODULE_VENDOR_OSD,
-                               OSD_MODULE_TYPE_STD_SCM, 0);
-    expect_module_desc_request(scm_diaddr + 1, OSD_MODULE_VENDOR_OSD,
-                               OSD_MODULE_TYPE_STD_MAM, 0);
-    expect_module_desc_request(scm_diaddr + 2, OSD_MODULE_VENDOR_OSD,
-                               OSD_MODULE_TYPE_STD_STM, 0);
+    mock_host_controller_expect_mod_describe(mock_hostmod_diaddr, scm_diaddr,
+                                          OSD_MODULE_VENDOR_OSD,
+                                          OSD_MODULE_TYPE_STD_SCM, 0);
+    mock_host_controller_expect_mod_describe(mock_hostmod_diaddr,
+                                          scm_diaddr + 1,
+                                          OSD_MODULE_VENDOR_OSD,
+                                          OSD_MODULE_TYPE_STD_MAM, 0);
+    mock_host_controller_expect_mod_describe(mock_hostmod_diaddr,
+                                          scm_diaddr + 2,
+                                          OSD_MODULE_VENDOR_OSD,
+                                          OSD_MODULE_TYPE_STD_STM, 0);
 
     rv = osd_hostmod_get_modules(hostmod_ctx, 0, &modules, &modules_len);
     ck_assert_int_eq(rv, OSD_OK);
@@ -274,7 +330,6 @@ START_TEST(test_layer2_get_modules)
     ck_assert_uint_eq(modules_len, 3);
 
     free(modules);
-
 }
 END_TEST
 
@@ -295,16 +350,20 @@ START_TEST(test_layer2_get_modules_partial)
                                          OSD_REG_SCM_NUM_MOD, 3);
 
     // Step 2: Enumerate all debug modules
-    expect_module_desc_request(scm_diaddr, OSD_MODULE_VENDOR_OSD,
-                               OSD_MODULE_TYPE_STD_SCM, 0);
+    mock_host_controller_expect_mod_describe(mock_hostmod_diaddr,
+                                             scm_diaddr,
+                                             OSD_MODULE_VENDOR_OSD,
+                                             OSD_MODULE_TYPE_STD_SCM, 0);
 
     // time out when reading the VENDOR register from module at address x.1
     mock_host_controller_expect_reg_read_noresp(mock_hostmod_diaddr,
                                                 scm_diaddr + 1,
                                                 OSD_REG_BASE_MOD_VENDOR);
 
-    expect_module_desc_request(scm_diaddr + 2, OSD_MODULE_VENDOR_OSD,
-                               OSD_MODULE_TYPE_STD_STM, 0);
+    mock_host_controller_expect_mod_describe(mock_hostmod_diaddr,
+                                             scm_diaddr + 2,
+                                             OSD_MODULE_VENDOR_OSD,
+                                             OSD_MODULE_TYPE_STD_STM, 0);
 
     rv = osd_hostmod_get_modules(hostmod_ctx, 0, &modules, &modules_len);
     ck_assert_int_eq(rv, OSD_ERROR_PARTIAL_RESULT);
@@ -342,6 +401,7 @@ Suite *suite(void)
     tcase_add_test(tc_core, test_core_read_register);
     tcase_add_test(tc_core, test_core_read_register_timeout);
     tcase_add_test(tc_core, test_core_write_register);
+    tcase_add_test(tc_core, test_core_reg_setbit);
 
     tcase_add_test(tc_core, test_core_event_send);
     tcase_add_test(tc_core, test_core_event_receive);
@@ -350,7 +410,9 @@ Suite *suite(void)
     // Higher-layer functionality
     tc_layer2 = tcase_create("Layer2");
     tcase_add_checked_fixture(tc_layer2, setup, teardown);
-    tcase_add_test(tc_layer2, test_layer2_describe_module);
+    tcase_add_test(tc_layer2, test_layer2_mod_describe);
+    tcase_add_test(tc_layer2, test_layer2_mod_event_active);
+    tcase_add_test(tc_layer2, test_layer2_mod_event_dest);
     tcase_add_test(tc_layer2, test_layer2_get_modules);
     tcase_add_test(tc_layer2, test_layer2_get_modules_partial);
     suite_add_tcase(s, tc_layer2);

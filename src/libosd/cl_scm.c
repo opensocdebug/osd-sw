@@ -29,35 +29,24 @@ static unsigned int get_scm_diaddr(unsigned int subnet_addr)
     return osd_diaddr_build(subnet_addr, OSD_DIADDR_LOCAL_SCM);
 }
 
-static osd_result scm_reg_setbit(struct osd_hostmod_ctx *hostmod_ctx,
-                                 unsigned int subnet_addr,
-                                 unsigned int reg_addr, unsigned int bitnum,
-                                 bool bitval)
-{
-    osd_result rv;
-    uint16_t val;
-    rv = osd_hostmod_reg_read(hostmod_ctx, &val, get_scm_diaddr(subnet_addr),
-                              OSD_REG_SCM_SYSRST, 16, 0);
-    if (OSD_FAILED(rv)) {
-        return rv;
-    }
-    val = (val & ~(1 << bitnum)) | (bitval << bitnum);
-    return osd_hostmod_reg_write(hostmod_ctx, &val, get_scm_diaddr(subnet_addr),
-                                 OSD_REG_SCM_SYSRST, 16, 0);
-}
-
 API_EXPORT
 osd_result osd_cl_scm_cpus_start(struct osd_hostmod_ctx *hostmod_ctx,
                                  unsigned int subnet_addr)
 {
-    return scm_reg_setbit(hostmod_ctx, subnet_addr, OSD_REG_SCM_SYSRST, 1, 0);
+    return osd_hostmod_reg_setbit(hostmod_ctx, OSD_REG_SCM_SYSRST_CPU_RST_BIT, 0,
+                                  get_scm_diaddr(subnet_addr),
+                                  OSD_REG_SCM_SYSRST, 16,
+                                  OSD_HOSTMOD_BLOCKING);
 }
 
 API_EXPORT
 osd_result osd_cl_scm_cpus_stop(struct osd_hostmod_ctx *hostmod_ctx,
                                 unsigned int subnet_addr)
 {
-    return scm_reg_setbit(hostmod_ctx, subnet_addr, OSD_REG_SCM_SYSRST, 1, 1);
+    return osd_hostmod_reg_setbit(hostmod_ctx, OSD_REG_SCM_SYSRST_CPU_RST_BIT, 1,
+                                  get_scm_diaddr(subnet_addr),
+                                  OSD_REG_SCM_SYSRST, 16,
+                                  OSD_HOSTMOD_BLOCKING);
 }
 
 /**

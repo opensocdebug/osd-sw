@@ -37,6 +37,10 @@ void mock_host_controller_expect_reg_read(unsigned int src,
 void mock_host_controller_expect_reg_read_noresp(unsigned int src,
                                                  unsigned int dest,
                                                  unsigned int reg_addr);
+void mock_host_controller_expect_mod_describe(unsigned int src,
+                                              unsigned int dest,
+                                              uint16_t vendor, uint16_t type,
+                                              uint16_t version);
 void mock_host_controller_expect_mgmt_req(const char* cmd, const char* resp);
 void mock_host_controller_expect_diaddr_req(unsigned int diaddr);
 void mock_host_controller_expect_data_req(struct osd_packet *req, struct osd_packet *resp);

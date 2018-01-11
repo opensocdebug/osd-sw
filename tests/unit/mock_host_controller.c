@@ -19,6 +19,7 @@
 #include <osd/hostmod.h>
 #include <osd/osd.h>
 #include <osd/packet.h>
+#include <osd/reg.h>
 #include <pthread.h>
 
 pthread_t mock_host_controller_thread;
@@ -378,6 +379,22 @@ void mock_host_controller_expect_reg_read_noresp(unsigned int src,
 
     mock_host_controller_expect_data_req(pkg_req, NULL);
     osd_packet_free(&pkg_req);
+}
+
+/**
+ * Expect a register read of the module's description register
+ */
+void mock_host_controller_expect_mod_describe(unsigned int src,
+                                              unsigned int dest,
+                                              uint16_t vendor, uint16_t type,
+                                              uint16_t version)
+{
+    mock_host_controller_expect_reg_read(src, dest,
+                                         OSD_REG_BASE_MOD_VENDOR, vendor);
+    mock_host_controller_expect_reg_read(src, dest,
+                                         OSD_REG_BASE_MOD_TYPE, type);
+    mock_host_controller_expect_reg_read(src, dest,
+                                         OSD_REG_BASE_MOD_VERSION, version);
 }
 
 /**

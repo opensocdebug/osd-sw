@@ -31,7 +31,7 @@
 #define OSD_REG_BASE_MOD_TYPE 0x0001       /* module version */
 #define OSD_REG_BASE_MOD_VERSION 0x0002    /* module vendor */
 #define OSD_REG_BASE_MOD_CS 0x0003         /* control and status */
-#define OSD_REG_BASE_MOD_CS_ACTIVE BIT(0)  /* activate/stall module */
+#define OSD_REG_BASE_MOD_CS_ACTIVE_BIT 0   /* activate/stall module */
 #define OSD_REG_BASE_MOD_EVENT_DEST 0x0004 /* event destination */
 
 /* unused with new format; keep as reference for other SHIFT/MASK use cases
@@ -45,8 +45,8 @@
 #define OSD_REG_SCM_NUM_MOD 0x0202
 #define OSD_REG_SCM_MAX_PKT_LEN 0x0203
 #define OSD_REG_SCM_SYSRST 0x0204
-#define OSD_REG_SCM_SYSRST_SYS_RST BIT(0)
-#define OSD_REG_SCM_SYSRST_CPU_RST BIT(1)
+#define OSD_REG_SCM_SYSRST_SYS_RST_BIT 0
+#define OSD_REG_SCM_SYSRST_CPU_RST_BIT 1
 
 // MAM register map
 #define OSD_REG_MAM_AW 0x0200

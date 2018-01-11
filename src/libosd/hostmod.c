@@ -687,6 +687,23 @@ err_free_resp:
     return retval;
 }
 
+API_EXPORT
+osd_result osd_hostmod_reg_setbit(struct osd_hostmod_ctx *hostmod_ctx,
+                                  unsigned int bitnum, bool bitval,
+                                  uint16_t diaddr, uint16_t reg_addr,
+                                  int reg_size_bit, int flags)
+{
+    osd_result rv;
+    uint16_t val;
+    rv = osd_hostmod_reg_read(hostmod_ctx, &val, diaddr, reg_addr, 16, flags);
+    if (OSD_FAILED(rv)) {
+        return rv;
+    }
+    val = (val & ~(1 << bitnum)) | (bitval << bitnum);
+    return osd_hostmod_reg_write(hostmod_ctx, &val, diaddr, reg_addr, 16,
+                                 flags);
+}
+
 unsigned int osd_hostmod_get_max_event_words(struct osd_hostmod_ctx *ctx,
                                              unsigned int di_addr_target)
 {
@@ -764,7 +781,7 @@ osd_result osd_hostmod_get_modules(struct osd_hostmod_ctx *ctx,
          localaddr++) {
         uint16_t module_addr = osd_diaddr_build(subnet_addr, localaddr);
 
-        rv = osd_hostmod_describe_module(ctx, module_addr, &mods[module_addr]);
+        rv = osd_hostmod_mod_describe(ctx, module_addr, &mods[module_addr]);
         if (OSD_FAILED(rv)) {
             err(ctx->log_ctx, "Failed to obtain information about debug "
                 "module at address %u (rv=%d)", module_addr, rv);
@@ -792,9 +809,9 @@ osd_result osd_hostmod_get_modules(struct osd_hostmod_ctx *ctx,
 }
 
 API_EXPORT
-osd_result osd_hostmod_describe_module(struct osd_hostmod_ctx *ctx,
-                                       uint16_t di_addr,
-                                       struct osd_module_desc *desc)
+osd_result osd_hostmod_mod_describe(struct osd_hostmod_ctx *ctx,
+                                    uint16_t di_addr,
+                                    struct osd_module_desc *desc)
 {
     osd_result rv;
 
@@ -820,6 +837,26 @@ osd_result osd_hostmod_describe_module(struct osd_hostmod_ctx *ctx,
 
     return OSD_OK;
 }
+
+API_EXPORT
+osd_result osd_hostmod_mod_set_event_dest(struct osd_hostmod_ctx *ctx,
+                                          uint16_t di_addr, int flags)
+{
+    return osd_hostmod_reg_write(ctx, &ctx->diaddr, di_addr,
+                                 OSD_REG_BASE_MOD_EVENT_DEST, 16,
+                                 flags);
+}
+
+API_EXPORT
+osd_result osd_hostmod_mod_set_event_active(struct osd_hostmod_ctx *ctx,
+                                            uint16_t di_addr, bool enabled,
+                                            int flags)
+{
+    return osd_hostmod_reg_setbit(ctx, OSD_REG_BASE_MOD_CS_ACTIVE_BIT, enabled,
+                                  di_addr, OSD_REG_BASE_MOD_CS, 16,
+                                  flags);
+}
+
 
 API_EXPORT
 struct osd_log_ctx* osd_hostmod_log_ctx(struct osd_hostmod_ctx *ctx)
