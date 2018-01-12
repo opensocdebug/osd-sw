@@ -78,8 +78,16 @@ cdef int log_cb_withgil(void* item_void) with gil:
     is held).
     """
     cdef log_item *item = <log_item*> item_void
+    if not item:
+        return 0
 
-    logger = logging.getLogger(__name__)
+    try:
+        logger = logging.getLogger(__name__)
+    except:
+        # In the shutdown phase this function is called, but the logging 
+        # system is already destroyed. Discard messages.
+        free(item)
+        return 0
 
     # handle log entry
     u_file = item.file.decode('UTF-8')
@@ -102,6 +110,8 @@ cdef int log_cb_withgil(void* item_void) with gil:
     logger.handle(record)
 
     free(item)
+
+    return 0
 
 cdef loglevel_py2syslog(py_level):
     """
