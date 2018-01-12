@@ -16,25 +16,25 @@ from cutil cimport va_list
 from libc.stdint cimport uint16_t, uint8_t, uint64_t
 from __main__ import name
 
-cdef extern from "osd/osd.h":
+
+cdef extern from "osd/osd.h" nogil:
     ctypedef int osd_result
 
     struct osd_log_ctx:
         pass
-    
+
     cdef struct osd_version:
         const uint16_t major
         const uint16_t minor
         const uint16_t micro
         const char *suffix
 
-    ctypedef void (*osd_log_fn)(osd_log_ctx * ctx,
-                                int priority, const char * file,
-                                int line, const char * fn,
-                                const char * format, va_list args)
+    ctypedef void (*osd_log_fn)(osd_log_ctx *ctx,
+                                int priority, const char *file,
+                                int line, const char *fn,
+                                const char *format, va_list args)
 
-    osd_result osd_log_new(osd_log_ctx ** ctx,
-                           int log_priority,
+    osd_result osd_log_new(osd_log_ctx **ctx, int log_priority,
                            osd_log_fn log_fn)
 
     void osd_log_free(osd_log_ctx **ctx)
@@ -44,12 +44,12 @@ cdef extern from "osd/osd.h":
     void osd_log_set_caller_ctx(osd_log_ctx *ctx, void *caller_ctx)
 
     void* osd_log_get_caller_ctx(osd_log_ctx *ctx)
-    
+
     const osd_version* osd_version_get()
 
 
 
-cdef extern from "osd/packet.h":
+cdef extern from "osd/packet.h" nogil:
     struct osd_packet:
         pass
 
@@ -79,7 +79,7 @@ cdef extern from "osd/packet.h":
 
     void osd_packet_to_string(const osd_packet *packet, char** str)
 
-cdef extern from "osd/hostmod.h":
+cdef extern from "osd/hostmod.h" nogil:
     struct osd_hostmod_ctx:
         pass
 
@@ -113,7 +113,7 @@ cdef extern from "osd/hostmod.h":
     int osd_hostmod_is_connected(osd_hostmod_ctx *ctx)
 
 
-cdef extern from "osd/hostctrl.h":
+cdef extern from "osd/hostctrl.h" nogil:
     struct osd_hostctrl_ctx:
         pass
 
@@ -130,12 +130,12 @@ cdef extern from "osd/hostctrl.h":
     int osd_hostctrl_is_running(osd_hostctrl_ctx *ctx)
 
 # XXX: move this into cglip
-cdef extern from "libglip.h":
+cdef extern from "libglip.h" nogil:
     cdef struct glip_option:
         char *name
         char *value
 
-cdef extern from "osd/gateway_glip.h":
+cdef extern from "osd/gateway_glip.h" nogil:
     struct osd_gateway_glip_ctx:
         pass
 
@@ -155,7 +155,7 @@ cdef extern from "osd/gateway_glip.h":
 
     int osd_gateway_glip_is_connected(osd_gateway_glip_ctx *ctx)
 
-cdef extern from "osd/cl_mam.h":
+cdef extern from "osd/cl_mam.h" nogil:
     cdef struct osd_mem_desc_region:
         uint64_t baseaddr
         uint64_t memsize
@@ -180,7 +180,7 @@ cdef extern from "osd/cl_mam.h":
                                 const void *data, size_t nbyte,
                                 uint64_t start_addr)
 
-cdef extern from "osd/module.h":
+cdef extern from "osd/module.h" nogil:
 
     const char* osd_module_get_type_short_name(unsigned int vendor_id,
                                                unsigned int type_id)
@@ -188,7 +188,7 @@ cdef extern from "osd/module.h":
     const char* osd_module_get_type_long_name(unsigned int vendor_id,
                                               unsigned int type_id)
 
-cdef extern from "osd/memaccess.h":
+cdef extern from "osd/memaccess.h" nogil:
     struct osd_memaccess_ctx:
         pass
 

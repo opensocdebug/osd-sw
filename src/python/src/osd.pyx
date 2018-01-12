@@ -13,13 +13,14 @@
 # limitations under the License.
 
 cimport cosd
-from cutil cimport va_list, vasprintf
-from libc.stdlib cimport free
+cimport cutil
+from cutil cimport va_list, vasprintf, Py_AddPendingCall
 from libc.stdint cimport uint16_t
-import logging
-
 from cpython.mem cimport PyMem_Malloc, PyMem_Free
 from libc.stdlib cimport malloc, free
+
+import logging
+
 
 def osd_library_version():
      cdef const cosd.osd_version* vers = cosd.osd_version_get()
@@ -30,35 +31,77 @@ def osd_library_version():
      version_info['suffix'] = vers.suffix
      return version_info
 
+
+cdef struct log_item:
+    int priority
+    const char *file
+    int line
+    const char *fn
+    char *msg
+    size_t msg_len
+
 cdef void log_cb(cosd.osd_log_ctx *ctx, int priority, const char *file,
                  int line, const char *fn, const char *format,
-                 va_list args):
+                 cosd.va_list args) nogil:
+    """
+    Process a log entry without holding the GIL
 
-    # Get log message as unicode string
-    cdef char* c_str = NULL
-    len = vasprintf(&c_str, format, args)
-    if len == -1:
-        raise MemoryError()
+    This function is called from libosd when a log entry should be written.
+    It does not hold the GIL, hence no Python objects can be accessed.
+    """
+    # Get log message as string
+    cdef char* msg = NULL
+    msg_len = vasprintf(&msg, format, args)
+    if msg_len == -1:
+        # out of memory: skip log entry
+        return
+
+    cdef log_item *item = <log_item*>malloc(sizeof(log_item))
+    item.priority = priority
+    item.file = file
+    item.line = line
+    item.fn = fn
+    item.msg = msg
+    item.msg_len = msg_len
+
+    # Queue callback to process item with GIL held
+    Py_AddPendingCall(log_cb_withgil, <void*>item)
+
+cdef int log_cb_withgil(void* item_void) with gil:
+    """
+    Process a log entry with GIL held
+
+    This function is called from the Python main thread with the GIL held.
+    The only argument is the log entry to be processed.
+
+    In this function all Python data structures can be accessed (since the GIL
+    is held).
+    """
+    cdef log_item *item = <log_item*> item_void
+
+    logger = logging.getLogger(__name__)
+
+    # handle log entry
+    u_file = item.file.decode('UTF-8')
+    u_fn = item.fn.decode('UTF-8')
     try:
-        u_msg = c_str[:len].decode('UTF-8')
+        u_msg = item.msg[:item.msg_len].decode('UTF-8')
     finally:
-        free(c_str)
-
-    u_file = file.decode('UTF-8')
-    u_fn = fn.decode('UTF-8')
+        free(item.msg)
 
     # create log record and pass it to the Python logger
-    logger = logging.getLogger(__name__)
     record = logging.LogRecord(name = __name__,
-                               level = loglevel_syslog2py(priority),
+                               level = loglevel_syslog2py(item.priority),
                                pathname = u_file,
-                               lineno = line,
+                               lineno = item.line,
                                func = u_fn,
                                msg = u_msg,
                                args = '',
                                exc_info = None)
 
     logger.handle(record)
+
+    free(item)
 
 cdef loglevel_py2syslog(py_level):
     """

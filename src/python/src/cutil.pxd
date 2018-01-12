@@ -1,4 +1,4 @@
-# Copyright 2017 The Open SoC Debug Project
+# Copyright 2017-2018 The Open SoC Debug Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,7 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# these defines are not part of libc.stdio as provided by cython today
-cdef extern from "<stdio.h>":
-    ctypedef void * va_list
+# these defines are not part of the includes as provided by cython today
+cdef extern from "<stdio.h>" nogil:
+    ctypedef void* va_list
     int vasprintf(char **strp, const char* fmt, va_list ap)
+
+cdef extern from  "<Python.h>" nogil:
+    int Py_AddPendingCall(int (*func)(void *), void *arg)
