@@ -54,9 +54,9 @@ struct osd_packet {
  */
 enum osd_packet_type {
     OSD_PACKET_TYPE_REG = 0,    //< Register access
-    OSD_PACKET_TYPE_PLAIN = 1,  //< Plain (unspecified content)
+    OSD_PACKET_TYPE_RES1 = 1,   //< Reserved (will be discarded)
     OSD_PACKET_TYPE_EVENT = 2,  //< Debug Event
-    OSD_PACKET_TYPE_RES = 3     //< Reserved (will be discarded)
+    OSD_PACKET_TYPE_RES2 = 3    //< Reserved (will be discarded)
 };
 
 /**

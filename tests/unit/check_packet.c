@@ -47,11 +47,11 @@ START_TEST(test_packet_header_set)
     rv = osd_packet_new(&pkg, osd_packet_sizeconv_payload2data(0));
     ck_assert_int_eq(rv, OSD_OK);
 
-    osd_packet_set_header(pkg, 0x1ab, 0x157, OSD_PACKET_TYPE_PLAIN, 0x5);
+    osd_packet_set_header(pkg, 0x1ab, 0x157, OSD_PACKET_TYPE_EVENT, 0x5);
 
     ck_assert_int_eq(pkg->data.dest, 0x1ab);
     ck_assert_int_eq(pkg->data.src, 0x157);
-    ck_assert_int_eq(pkg->data.flags, 0x5400);
+    ck_assert_int_eq(pkg->data.flags, 0x9400);
 
     osd_packet_free(&pkg);
     ck_assert_ptr_eq(pkg, NULL);
@@ -65,7 +65,7 @@ START_TEST(test_packet_equal)
     rv = osd_packet_new(&pkg, osd_packet_sizeconv_payload2data(2));
     ck_assert_int_eq(rv, OSD_OK);
 
-    osd_packet_set_header(pkg, 0x1ab, 0x157, OSD_PACKET_TYPE_PLAIN, 0x5);
+    osd_packet_set_header(pkg, 0x1ab, 0x157, OSD_PACKET_TYPE_EVENT, 0x5);
     pkg->data.payload[0] = 0xdead;
     pkg->data.payload[1] = 0xbeef;
 
@@ -98,23 +98,24 @@ START_TEST(test_packet_tostring)
     rv = osd_packet_new(&pkg, osd_packet_sizeconv_payload2data(2));
     ck_assert_int_eq(rv, OSD_OK);
 
-    osd_packet_set_header(pkg, 0x1ab, 0x157, OSD_PACKET_TYPE_PLAIN, 0x5);
+    osd_packet_set_header(pkg, 0x1ab, 0x157, OSD_PACKET_TYPE_EVENT, 0x5);
     pkg->data.payload[0] = 0xdead;
     pkg->data.payload[1] = 0xbeef;
 
     char *exp_str = "Packet of 5 data words:\n"
-        "DEST = 427, SRC = 343, TYPE = 1 (OSD_PACKET_TYPE_PLAIN), TYPE_SUB = 5\n"
+        "DEST = 427, SRC = 343, TYPE = 2 (OSD_PACKET_TYPE_EVENT), TYPE_SUB = 5\n"
         "Packet data (including header):\n"
         "  0x01ab\n"
         "  0x0157\n"
-        "  0x5400\n"
+        "  0x9400\n"
         "  0xdead\n"
         "  0xbeef\n";
 
     char *str = NULL;
     osd_packet_to_string(pkg, &str);
 
-    ck_assert(strcmp(str, exp_str) == 0);
+    ck_assert_msg(strcmp(str, exp_str) == 0,
+                  "Got string:\n%s\nExpected string:\n%s", str, exp_str);
 
     free(str);
     free(pkg);

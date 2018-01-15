@@ -185,8 +185,8 @@ API_EXPORT
 void osd_packet_to_string(const struct osd_packet *packet, char **str)
 {
     static char *osd_packet_type_name[] = {
-        MACROSTR(OSD_PACKET_TYPE_REG), MACROSTR(OSD_PACKET_TYPE_PLAIN),
-        MACROSTR(OSD_PACKET_TYPE_EVENT), MACROSTR(OSD_PACKET_TYPE_RES),
+        MACROSTR(OSD_PACKET_TYPE_REG), MACROSTR(OSD_PACKET_TYPE_RES1),
+        MACROSTR(OSD_PACKET_TYPE_EVENT), MACROSTR(OSD_PACKET_TYPE_RES2),
     };
 
     sprintf_append(str, "Packet of %u data words:\n", packet->data_size_words);
