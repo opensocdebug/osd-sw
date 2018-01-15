@@ -71,6 +71,7 @@ START_TEST(test_get_mem_desc)
     struct osd_mem_desc mem_desc;
     rv = osd_cl_mam_get_mem_desc(mock_hostmod_get_ctx(), mam_diaddr, &mem_desc);
     ck_assert_int_eq(rv, OSD_OK);
+    ck_assert_uint_eq(mem_desc.di_addr, mam_diaddr);
     ck_assert_uint_eq(mem_desc.addr_width_bit, 16);
     ck_assert_uint_eq(mem_desc.data_width_bit, 32);
     ck_assert_uint_eq(mem_desc.num_regions, 1);

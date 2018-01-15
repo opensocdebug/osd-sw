@@ -18,6 +18,7 @@
 #include <check.h>
 #include <czmq.h>
 #include <osd/osd.h>
+#include <osd/reg.h>
 
 #define MOCK_HOSTMOD_FLAGS_NOCHECK -1
 
@@ -120,6 +121,17 @@ void mock_hostmod_expect_reg_read16(uint16_t reg_val, uint16_t diaddr,
     exp->reg_val = (uint64_t)reg_val;
     exp->retval = retval;
     mock_hostmod_expect_reg_read_raw(exp);
+}
+
+void mock_hostmod_expect_mod_describe(uint16_t diaddr, uint16_t vendor,
+                                      uint16_t type, uint16_t version)
+{
+    mock_hostmod_expect_reg_read16(vendor, diaddr, OSD_REG_BASE_MOD_VENDOR,
+                                   OSD_OK);
+    mock_hostmod_expect_reg_read16(type, diaddr, OSD_REG_BASE_MOD_TYPE,
+                                   OSD_OK);
+    mock_hostmod_expect_reg_read16(version, diaddr, OSD_REG_BASE_MOD_VERSION,
+                                   OSD_OK);
 }
 
 void mock_hostmod_expect_reg_write16(uint16_t reg_val, uint16_t diaddr,

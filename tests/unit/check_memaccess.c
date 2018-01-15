@@ -122,17 +122,6 @@ START_TEST(test_core_cpus_stop)
 }
 END_TEST
 
-static void expect_module_desc_request(uint16_t diaddr, uint16_t vendor,
-                                       uint16_t type, uint16_t version)
-{
-    mock_host_controller_expect_reg_read(mock_hostmod_diaddr, diaddr,
-                                         OSD_REG_BASE_MOD_VENDOR, vendor);
-    mock_host_controller_expect_reg_read(mock_hostmod_diaddr, diaddr,
-                                         OSD_REG_BASE_MOD_TYPE, type);
-    mock_host_controller_expect_reg_read(mock_hostmod_diaddr, diaddr,
-                                         OSD_REG_BASE_MOD_VERSION, version);
-}
-
 START_TEST(test_core_find_memories)
 {
     osd_result rv;
@@ -144,12 +133,16 @@ START_TEST(test_core_find_memories)
                                          OSD_REG_SCM_NUM_MOD, 3);
 
     // Step 2: Enumerate all debug modules
-    expect_module_desc_request(0, OSD_MODULE_VENDOR_OSD,
-                               OSD_MODULE_TYPE_STD_SCM, 0);
-    expect_module_desc_request(mam_diaddr, OSD_MODULE_VENDOR_OSD,
-                               OSD_MODULE_TYPE_STD_MAM, 0);
-    expect_module_desc_request(2, OSD_MODULE_VENDOR_OSD,
-                               OSD_MODULE_TYPE_STD_STM, 0);
+    mock_host_controller_expect_mod_describe(mock_hostmod_diaddr, 0,
+                                             OSD_MODULE_VENDOR_OSD,
+                                             OSD_MODULE_TYPE_STD_SCM, 0);
+    mock_host_controller_expect_mod_describe(mock_hostmod_diaddr,
+                                             mam_diaddr,
+                                             OSD_MODULE_VENDOR_OSD,
+                                             OSD_MODULE_TYPE_STD_MAM, 0);
+    mock_host_controller_expect_mod_describe(mock_hostmod_diaddr, 2,
+                                             OSD_MODULE_VENDOR_OSD,
+                                             OSD_MODULE_TYPE_STD_STM, 0);
 
     // Step 3: Query information from the MAM module
     mock_host_controller_expect_reg_read(mock_hostmod_diaddr, mam_diaddr,
