@@ -8,6 +8,7 @@ pkginclude_HEADERS =\
 	include/osd/gateway.h \
 	include/osd/cl_mam.h \
 	include/osd/cl_scm.h \
+	include/osd/cl_stm.h \
 	include/osd/memaccess.h
 
 lib_LTLIBRARIES = libosd.la
@@ -23,6 +24,7 @@ libosd_la_SOURCES =\
 	gateway.c \
 	cl_mam.c \
 	cl_scm.c \
+	cl_stm.c \
 	memaccess.c
 
 libosd_la_CFLAGS = $(AM_CFLAGS)

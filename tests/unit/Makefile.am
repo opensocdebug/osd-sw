@@ -6,6 +6,7 @@ check_PROGRAMS = \
 	check_hostctrl \
 	check_cl_mam \
 	check_cl_scm \
+	check_cl_stm \
 	check_memaccess
 
 check_hostmod_SOURCES = \
@@ -18,6 +19,10 @@ check_cl_mam_SOURCES = \
 
 check_cl_scm_SOURCES = \
 	check_cl_scm.c \
+	mock_hostmod.c
+
+check_cl_stm_SOURCES = \
+	check_cl_stm.c \
 	mock_hostmod.c
 
 check_memaccess_SOURCES = \

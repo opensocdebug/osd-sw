@@ -13,6 +13,7 @@ Each class is contained in one C header file.
    libosd/gateway.rst
    libosd/cl_mam.rst
    libosd/cl_scm.rst
+   libosd/cl_stm.rst
    libosd/log.rst
    libosd/packet.rst
    libosd/errorhandling.rst

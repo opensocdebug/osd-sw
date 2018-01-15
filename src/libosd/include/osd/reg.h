@@ -55,6 +55,9 @@
 #define OSD_REG_MAM_REGION_BASEADDR(region, word) (0x0280 + (0x10 * region) + (word))
 #define OSD_REG_MAM_REGION_MEMSIZE(region, word) (0x0284 + (0x10 * region) + (word))
 
+// STM register map
+#define OSD_REG_STM_VALWIDTH 0x0200
+
 /**@}*/ /* end of doxygen group libosd-reg */
 
 #endif  // OSD_REG_H

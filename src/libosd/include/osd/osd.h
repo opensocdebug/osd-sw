@@ -67,6 +67,8 @@ typedef int osd_result;
 #define OSD_ERROR_FILE -12
 /** Return code: memory verification failed */
 #define OSD_ERROR_MEM_VERIFY_FAILED -13
+/** Return code: unexpected module type */
+#define OSD_ERROR_WRONG_MODULE -14
 
 /**
  * Return true if |rv| is an error code
