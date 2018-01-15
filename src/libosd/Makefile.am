@@ -9,7 +9,8 @@ pkginclude_HEADERS =\
 	include/osd/cl_mam.h \
 	include/osd/cl_scm.h \
 	include/osd/cl_stm.h \
-	include/osd/memaccess.h
+	include/osd/memaccess.h \
+	include/osd/systracelogger.h
 
 lib_LTLIBRARIES = libosd.la
 
@@ -25,7 +26,8 @@ libosd_la_SOURCES =\
 	cl_mam.c \
 	cl_scm.c \
 	cl_stm.c \
-	memaccess.c
+	memaccess.c \
+	systracelogger.c
 
 libosd_la_CFLAGS = $(AM_CFLAGS)
 
