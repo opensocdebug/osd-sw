@@ -1,4 +1,4 @@
-# Copyright 2017 The Open SoC Debug Project
+# Copyright 2017-2018 The Open SoC Debug Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,8 +13,8 @@
 # limitations under the License.
 
 from cutil cimport va_list
-from libc.stdint cimport uint16_t, uint8_t, uint64_t
-from __main__ import name
+from libc.stdint cimport uint8_t, uint16_t, uint64_t
+from libc.stdio cimport FILE
 
 
 cdef extern from "osd/osd.h" nogil:
@@ -112,6 +112,11 @@ cdef extern from "osd/hostmod.h" nogil:
 
     int osd_hostmod_is_connected(osd_hostmod_ctx *ctx)
 
+    osd_result osd_hostmod_get_modules(osd_hostmod_ctx *ctx,
+                                       unsigned int subnet_addr,
+                                       osd_module_desc **modules,
+                                       size_t *modules_len)
+
 
 cdef extern from "osd/hostctrl.h" nogil:
     struct osd_hostctrl_ctx:
@@ -181,6 +186,11 @@ cdef extern from "osd/cl_mam.h" nogil:
                                 uint64_t start_addr)
 
 cdef extern from "osd/module.h" nogil:
+    cdef struct osd_module_desc:
+        uint16_t addr
+        uint16_t vendor
+        uint16_t type
+        uint16_t version
 
     const char* osd_module_get_type_short_name(unsigned int vendor_id,
                                                unsigned int type_id)
@@ -219,3 +229,30 @@ cdef extern from "osd/memaccess.h" nogil:
     osd_result osd_memaccess_loadelf(osd_memaccess_ctx *ctx,
                                      const osd_mem_desc* mem_desc,
                                      const char* elf_file_path, int verify)
+
+cdef extern from "osd/systracelogger.h" nogil:
+    struct osd_systracelogger_ctx:
+        pass
+
+    osd_result osd_systracelogger_new(osd_systracelogger_ctx **ctx,
+                                      osd_log_ctx *log_ctx,
+                                      const char *host_controller_address,
+                                      uint16_t stm_di_addr)
+
+    osd_result osd_systracelogger_connect(osd_systracelogger_ctx *ctx)
+
+    osd_result osd_systracelogger_disconnect(osd_systracelogger_ctx *ctx)
+
+    int osd_systracelogger_is_connected(osd_systracelogger_ctx *ctx)
+
+    void osd_systracelogger_free(osd_systracelogger_ctx **ctx_p)
+
+    osd_result osd_systracelogger_start(osd_systracelogger_ctx *ctx)
+
+    osd_result osd_systracelogger_stop(osd_systracelogger_ctx *ctx)
+
+    osd_result osd_systraceloger_set_sysprint_log(osd_systracelogger_ctx *ctx,
+                                                  FILE *fp)
+
+    osd_result osd_systraceloger_set_event_log(osd_systracelogger_ctx *ctx,
+                                               FILE *fp)

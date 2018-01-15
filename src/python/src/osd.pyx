@@ -18,8 +18,12 @@ from cutil cimport va_list, vasprintf, Py_AddPendingCall
 from libc.stdint cimport uint16_t
 from cpython.mem cimport PyMem_Malloc, PyMem_Free
 from libc.stdlib cimport malloc, free
+from libc.stdio cimport FILE, fopen, fclose
+from libc.errno cimport errno
+from libc.string cimport strerror
 
 import logging
+import os
 
 
 def osd_library_version():
@@ -84,7 +88,7 @@ cdef int log_cb_withgil(void* item_void) with gil:
     try:
         logger = logging.getLogger(__name__)
     except:
-        # In the shutdown phase this function is called, but the logging 
+        # In the shutdown phase this function is called, but the logging
         # system is already destroyed. Discard messages.
         free(item)
         return 0
@@ -273,6 +277,27 @@ cdef class Hostmod:
                                         reg_size_bit, flags)
         if rv != 0:
             raise Exception("Register read failed (%d)" % rv)
+
+    def get_modules(self, subnet_addr):
+        cdef cosd.osd_module_desc *modules = NULL
+        cdef size_t modules_len = 0
+        try:
+            rv = cosd.osd_hostmod_get_modules(self._cself, subnet_addr,
+                                              &modules, &modules_len)
+            check_osd_result(rv)
+
+            result_list = []
+            for m in range(modules_len):
+                mod_desc = {}
+                mod_desc['addr'] = modules[m].addr
+                mod_desc['vendor'] = modules[m].vendor
+                mod_desc['type'] = modules[m].type
+                mod_desc['version'] = modules[m].version
+                result_list.append(mod_desc)
+        finally:
+            free(modules)
+
+        return result_list
 
 
 cdef class GatewayGlip:
@@ -508,4 +533,99 @@ cdef class MemoryAccess:
         cdef char* c_elf_file_path = py_byte_string
         rv = cosd.osd_memaccess_loadelf(self._cself, &mem_desc._cself, c_elf_file_path,
                                         verify)
+        check_osd_result(rv)
+
+
+cdef class SystraceLogger:
+    cdef cosd.osd_systracelogger_ctx* _cself
+    cdef FILE* _fp_sysprint
+    cdef FILE* _fp_event
+
+    cdef _sysprint_file
+    cdef _event_file
+
+    def __cinit__(self, Log log, host_controller_address, di_addr):
+        self._fp_sysprint = NULL
+        self._fp_event = NULL
+        self._sysprint_file = None
+        self._event_file = None
+
+        b_host_controller_address = host_controller_address.encode('UTF-8')
+        rv = cosd.osd_systracelogger_new(&self._cself, log._cself,
+                                         b_host_controller_address, di_addr)
+        check_osd_result(rv)
+        if self._cself is NULL:
+            raise MemoryError()
+
+    def __dealloc__(self):
+        if self._cself is NULL:
+            return
+
+        if self.is_connected():
+            self.disconnect()
+
+        if self._fp_sysprint:
+            fclose(self._fp_sysprint)
+
+        if self._fp_event:
+            fclose(self._fp_event)
+
+        cosd.osd_systracelogger_free(&self._cself)
+
+    def connect(self):
+        rv = cosd.osd_systracelogger_connect(self._cself)
+        check_osd_result(rv)
+
+    def disconnect(self):
+        rv = cosd.osd_systracelogger_disconnect(self._cself)
+        check_osd_result(rv)
+
+    def is_connected(self):
+        return cosd.osd_systracelogger_is_connected(self._cself)
+
+    def stop(self):
+        rv = cosd.osd_systracelogger_stop(self._cself)
+        check_osd_result(rv)
+
+    def start(self):
+        rv = cosd.osd_systracelogger_start(self._cself)
+        check_osd_result(rv)
+
+    @property
+    def sysprint_log(self):
+        return self._sysprint_file
+
+    @sysprint_log.setter
+    def sysprint_log(self, log_filename):
+        self._sysprint_file = log_filename
+
+        if self._fp_sysprint:
+            fclose(self._fp_sysprint)
+
+        b_log_filename = os.fsencode(log_filename)
+        self._fp_sysprint = fopen(b_log_filename, 'w')
+        if not self._fp_sysprint:
+            raise IOError(errno, strerror(errno).decode('utf-8'), log_filename)
+
+        rv = cosd.osd_systraceloger_set_sysprint_log(self._cself,
+                                                     self._fp_sysprint)
+        check_osd_result(rv)
+
+    @property
+    def event_log(self):
+        return self._event_file
+
+    @event_log.setter
+    def event_log(self, log_filename):
+        self._event_file = log_filename
+
+        if self._fp_event:
+            fclose(self._fp_event)
+
+        b_log_filename = os.fsencode(log_filename)
+        self._fp_event = fopen(b_log_filename, 'w')
+        if not self._fp_event:
+            raise IOError(errno, strerror(errno).decode('utf-8'), log_filename)
+
+        rv = cosd.osd_systraceloger_set_event_log(self._cself, self._fp_event)
         check_osd_result(rv)
