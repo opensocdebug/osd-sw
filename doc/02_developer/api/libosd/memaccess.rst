@@ -1,9 +1,7 @@
-osd_cl_scm class
-----------------
+osd_memaccess class
+-------------------
 
-A client for the Subnet Control Module (SCM).
-
-``osd_cl_scm`` is the counterpart to the Subnet Control Module (SCM): it provides high-level API access for the functionality provided by the SCM.
+Access a memory in the system (high-level API).
 
 Usage
 ^^^^^
@@ -11,9 +9,9 @@ Usage
 .. code-block:: c
 
   #include <osd/osd.h>
-  #include <osd/cl_scm.h>
+  #include <osd/memaccess.h>
 
 Public Interface
 ^^^^^^^^^^^^^^^^
 
-.. doxygenfile:: libosd/include/osd/cl_scm.h
+.. doxygenfile:: libosd/include/osd/memaccess.h

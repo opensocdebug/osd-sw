@@ -1,7 +1,7 @@
-osd_memaccess class
--------------------
+osd_cl_scm class
+----------------
 
-Access a memory in the system (high-level API).
+API to access the functionality of the Subnet Control Module (SCM).
 
 Usage
 ^^^^^
@@ -9,9 +9,9 @@ Usage
 .. code-block:: c
 
   #include <osd/osd.h>
-  #include <osd/memaccess.h>
+  #include <osd/cl_scm.h>
 
 Public Interface
 ^^^^^^^^^^^^^^^^
 
-.. doxygenfile:: libosd/include/osd/memaccess.h
+.. doxygenfile:: libosd/include/osd/cl_scm.h
