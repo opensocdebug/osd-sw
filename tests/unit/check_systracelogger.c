@@ -190,7 +190,7 @@ START_TEST(test_core_record_trace)
     FILE* fp_sysprint = fdopen(fd_sysprint, "w");
     ck_assert_ptr_ne(fp_sysprint, NULL);
 
-    rv = osd_systraceloger_set_sysprint_log(systracelogger_ctx, fp_sysprint);
+    rv = osd_systracelogger_set_sysprint_log(systracelogger_ctx, fp_sysprint);
     ck_assert_int_eq(rv, OSD_OK);
 
     // event log file
@@ -200,7 +200,7 @@ START_TEST(test_core_record_trace)
     FILE * fp_event = fdopen(fd_event, "w");
     ck_assert_ptr_ne(fp_event, NULL);
 
-    rv = osd_systraceloger_set_event_log(systracelogger_ctx, fp_event);
+    rv = osd_systracelogger_set_event_log(systracelogger_ctx, fp_event);
     ck_assert_int_eq(rv, OSD_OK);
 
     printf("sysprint_filename: %s, event_filename: %s\n",

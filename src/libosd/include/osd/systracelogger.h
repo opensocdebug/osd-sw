@@ -18,7 +18,6 @@
 
 #include <osd/osd.h>
 #include <osd/hostmod.h>
-#include <osd/cl_mam.h>
 
 #include <stdlib.h>
 
@@ -78,14 +77,14 @@ osd_result osd_systracelogger_stop(struct osd_systracelogger_ctx *ctx);
 /**
  * Set a file to write all sysprint output to
  */
-osd_result osd_systraceloger_set_sysprint_log(
+osd_result osd_systracelogger_set_sysprint_log(
         struct osd_systracelogger_ctx *ctx, FILE *fp);
 
 /**
  * Set a file to write all received STM events to
  */
-osd_result osd_systraceloger_set_event_log(struct osd_systracelogger_ctx *ctx,
-                                           FILE *fp);
+osd_result osd_systracelogger_set_event_log(struct osd_systracelogger_ctx *ctx,
+                                            FILE *fp);
 
 
 /**@}*/ /* end of doxygen group libosd-systracelogger */

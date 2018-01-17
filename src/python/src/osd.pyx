@@ -607,7 +607,7 @@ cdef class SystraceLogger:
         if not self._fp_sysprint:
             raise IOError(errno, strerror(errno).decode('utf-8'), log_filename)
 
-        rv = cosd.osd_systraceloger_set_sysprint_log(self._cself,
+        rv = cosd.osd_systracelogger_set_sysprint_log(self._cself,
                                                      self._fp_sysprint)
         check_osd_result(rv)
 
@@ -627,5 +627,5 @@ cdef class SystraceLogger:
         if not self._fp_event:
             raise IOError(errno, strerror(errno).decode('utf-8'), log_filename)
 
-        rv = cosd.osd_systraceloger_set_event_log(self._cself, self._fp_event)
+        rv = cosd.osd_systracelogger_set_event_log(self._cself, self._fp_event)
         check_osd_result(rv)

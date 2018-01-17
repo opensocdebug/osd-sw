@@ -15,7 +15,7 @@ Usage
 .. code-block:: c
 
   #include <osd/osd.h>
-  #include <osd/cl_scm.h>
+  #include <osd/systracelogger.h>
 
 Public Interface
 ^^^^^^^^^^^^^^^^

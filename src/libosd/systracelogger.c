@@ -13,11 +13,11 @@
  * limitations under the License.
  */
 
-#include <osd/systracelogger.h>
+#include <osd/cl_stm.h>
 #include <osd/module.h>
 #include <osd/osd.h>
 #include <osd/reg.h>
-#include <osd/cl_stm.h>
+#include <osd/systracelogger.h>
 #include "osd-private.h"
 
 #include <assert.h>
@@ -35,7 +35,7 @@ struct osd_systracelogger_ctx {
     struct osd_stm_desc stm_desc;
     struct osd_stm_event_handler stm_event_handler;
     FILE *fp_sysprint;
-    FILE *fd_event;
+    FILE *fp_event;
     struct osd_cl_stm_print_buf sysprint_buf;
 };
 
@@ -48,8 +48,8 @@ static void stm_event_handler(void *ctx_void,
     struct osd_systracelogger_ctx *ctx = ctx_void;
 
     if (event->overflow) {
-        if (ctx->fd_event) {
-            rv = fprintf(ctx->fd_event, "Overflow, missed %u events\n",
+        if (ctx->fp_event) {
+            rv = fprintf(ctx->fp_event, "Overflow, missed %u events\n",
                          event->overflow);
             if (rv < 0) {
                 err(ctx->log_ctx, "Unable to write STM event to log file.");
@@ -61,8 +61,8 @@ static void stm_event_handler(void *ctx_void,
         return;
     }
 
-    if (ctx->fd_event) {
-        rv = fprintf(ctx->fd_event, "%08x %04x %016lx\n", event->timestamp,
+    if (ctx->fp_event) {
+        rv = fprintf(ctx->fp_event, "%08x %04x %016lx\n", event->timestamp,
                      event->id, event->value);
         if (rv < 0) {
             err(ctx->log_ctx, "Unable to write STM event to log file.");
@@ -107,11 +107,12 @@ osd_result osd_systracelogger_new(struct osd_systracelogger_ctx **ctx,
     c->log_ctx = log_ctx;
     c->stm_di_addr = stm_di_addr;
     c->stm_event_handler.cb_fn = stm_event_handler;
-    c->stm_event_handler.cb_arg = (void*)c;
+    c->stm_event_handler.cb_arg = (void *)c;
 
     struct osd_hostmod_ctx *hostmod_ctx;
-    rv = osd_hostmod_new(&hostmod_ctx, log_ctx, host_controller_address,
-                         osd_cl_stm_handle_event, (void*)&c->stm_event_handler);
+    rv =
+        osd_hostmod_new(&hostmod_ctx, log_ctx, host_controller_address,
+                        osd_cl_stm_handle_event, (void *)&c->stm_event_handler);
     assert(OSD_SUCCEEDED(rv));
     c->hostmod_ctx = hostmod_ctx;
 
@@ -158,7 +159,8 @@ osd_result osd_systracelogger_start(struct osd_systracelogger_ctx *ctx)
 {
     osd_result rv;
 
-    rv = osd_cl_stm_get_desc(ctx->hostmod_ctx, ctx->stm_di_addr, &ctx->stm_desc);
+    rv =
+        osd_cl_stm_get_desc(ctx->hostmod_ctx, ctx->stm_di_addr, &ctx->stm_desc);
     if (OSD_FAILED(rv)) {
         return rv;
     }
@@ -168,8 +170,8 @@ osd_result osd_systracelogger_start(struct osd_systracelogger_ctx *ctx)
     if (OSD_FAILED(rv)) {
         return rv;
     }
-    rv = osd_hostmod_mod_set_event_active(ctx->hostmod_ctx,
-                                          ctx->stm_di_addr, true, 0);
+    rv = osd_hostmod_mod_set_event_active(ctx->hostmod_ctx, ctx->stm_di_addr,
+                                          true, 0);
     if (OSD_FAILED(rv)) {
         return rv;
     }
@@ -181,8 +183,8 @@ API_EXPORT
 osd_result osd_systracelogger_stop(struct osd_systracelogger_ctx *ctx)
 {
     osd_result rv;
-    rv = osd_hostmod_mod_set_event_active(ctx->hostmod_ctx,
-                                          ctx->stm_di_addr, false, 0);
+    rv = osd_hostmod_mod_set_event_active(ctx->hostmod_ctx, ctx->stm_di_addr,
+                                          false, 0);
     if (rv == OSD_ERROR_TIMEDOUT) {
         rv = OSD_OK;
     }
@@ -190,17 +192,17 @@ osd_result osd_systracelogger_stop(struct osd_systracelogger_ctx *ctx)
 }
 
 API_EXPORT
-osd_result osd_systraceloger_set_sysprint_log(
-        struct osd_systracelogger_ctx *ctx, FILE *fp)
+osd_result osd_systracelogger_set_sysprint_log(
+    struct osd_systracelogger_ctx *ctx, FILE *fp)
 {
     ctx->fp_sysprint = fp;
     return OSD_OK;
 }
 
 API_EXPORT
-osd_result osd_systraceloger_set_event_log(struct osd_systracelogger_ctx *ctx,
-                                           FILE *fp)
+osd_result osd_systracelogger_set_event_log(struct osd_systracelogger_ctx *ctx,
+                                            FILE *fp)
 {
-    ctx->fd_event = fp;
+    ctx->fp_event = fp;
     return OSD_OK;
 }

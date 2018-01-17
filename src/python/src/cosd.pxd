@@ -251,8 +251,8 @@ cdef extern from "osd/systracelogger.h" nogil:
 
     osd_result osd_systracelogger_stop(osd_systracelogger_ctx *ctx)
 
-    osd_result osd_systraceloger_set_sysprint_log(osd_systracelogger_ctx *ctx,
-                                                  FILE *fp)
+    osd_result osd_systracelogger_set_sysprint_log(osd_systracelogger_ctx *ctx,
+                                                   FILE *fp)
 
-    osd_result osd_systraceloger_set_event_log(osd_systracelogger_ctx *ctx,
-                                               FILE *fp)
+    osd_result osd_systracelogger_set_event_log(osd_systracelogger_ctx *ctx,
+                                                FILE *fp)
