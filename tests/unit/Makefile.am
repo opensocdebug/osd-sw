@@ -9,7 +9,8 @@ check_PROGRAMS = \
 	check_cl_stm \
 	check_cl_ctm \
 	check_memaccess \
-	check_systracelogger
+	check_systracelogger \
+	check_coretracelogger
 
 check_hostmod_SOURCES = \
 	check_hostmod.c \
@@ -37,6 +38,10 @@ check_memaccess_SOURCES = \
 
 check_systracelogger_SOURCES = \
 	check_systracelogger.c \
+	mock_host_controller.c
+
+check_coretracelogger_SOURCES = \
+	check_coretracelogger.c \
 	mock_host_controller.c
 
 TESTS = $(check_PROGRAMS)
