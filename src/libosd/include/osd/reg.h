@@ -58,6 +58,10 @@
 // STM register map
 #define OSD_REG_STM_VALWIDTH 0x0200
 
+// CTM register map
+#define OSD_REG_CTM_ADDR_WIDTH 0x0200
+#define OSD_REG_CTM_DATA_WIDTH 0x0200
+
 /**@}*/ /* end of doxygen group libosd-reg */
 
 #endif  // OSD_REG_H

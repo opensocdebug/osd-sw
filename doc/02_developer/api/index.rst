@@ -14,6 +14,7 @@ Each class is contained in one C header file.
    libosd/cl_mam.rst
    libosd/cl_scm.rst
    libosd/cl_stm.rst
+   libosd/cl_ctm.rst
    libosd/log.rst
    libosd/packet.rst
    libosd/errorhandling.rst
