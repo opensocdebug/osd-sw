@@ -629,3 +629,83 @@ cdef class SystraceLogger:
 
         rv = cosd.osd_systracelogger_set_event_log(self._cself, self._fp_event)
         check_osd_result(rv)
+
+
+cdef class CoretraceLogger:
+    cdef cosd.osd_coretracelogger_ctx* _cself
+    cdef FILE* _fp_log
+    cdef _log_file
+    cdef _elf_file
+
+    def __cinit__(self, Log log, host_controller_address, di_addr):
+        self._fp_log = NULL
+        self._log_file = None
+
+        b_host_controller_address = host_controller_address.encode('UTF-8')
+        rv = cosd.osd_coretracelogger_new(&self._cself, log._cself,
+                                          b_host_controller_address, di_addr)
+        check_osd_result(rv)
+        if self._cself is NULL:
+            raise MemoryError()
+
+    def __dealloc__(self):
+        if self._cself is NULL:
+            return
+
+        if self.is_connected():
+            self.disconnect()
+
+        if self._fp_log:
+            fclose(self._fp_log)
+
+        cosd.osd_coretracelogger_free(&self._cself)
+
+    def connect(self):
+        rv = cosd.osd_coretracelogger_connect(self._cself)
+        check_osd_result(rv)
+
+    def disconnect(self):
+        rv = cosd.osd_coretracelogger_disconnect(self._cself)
+        check_osd_result(rv)
+
+    def is_connected(self):
+        return cosd.osd_coretracelogger_is_connected(self._cself)
+
+    def stop(self):
+        rv = cosd.osd_coretracelogger_stop(self._cself)
+        check_osd_result(rv)
+
+    def start(self):
+        rv = cosd.osd_coretracelogger_start(self._cself)
+        check_osd_result(rv)
+
+    @property
+    def log_file(self):
+        return self._log_file
+
+    @log_file.setter
+    def log_file(self, log_filename):
+        self._log_file = log_filename
+
+        if self._fp_log:
+            fclose(self._fp_log)
+
+        b_log_filename = os.fsencode(log_filename)
+        self._fp_log = fopen(b_log_filename, 'w')
+        if not self._fp_log:
+            raise IOError(errno, strerror(errno).decode('utf-8'), log_filename)
+
+        rv = cosd.osd_coretracelogger_set_log(self._cself, self._fp_log)
+        check_osd_result(rv)
+
+    @property
+    def elf_file(self):
+        return self._elf_file
+
+    @elf_file.setter
+    def elf_file(self, elf_filename):
+        self._elf_file = elf_filename
+
+        b_filename = os.fsencode(elf_filename)
+        rv = cosd.osd_coretracelogger_set_elf(self._cself, b_filename)
+        check_osd_result(rv)

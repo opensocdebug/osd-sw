@@ -256,3 +256,32 @@ cdef extern from "osd/systracelogger.h" nogil:
 
     osd_result osd_systracelogger_set_event_log(osd_systracelogger_ctx *ctx,
                                                 FILE *fp)
+
+
+cdef extern from "osd/coretracelogger.h" nogil:
+    struct osd_coretracelogger_ctx:
+        pass
+
+    osd_result osd_coretracelogger_new(osd_coretracelogger_ctx **ctx,
+                                      osd_log_ctx *log_ctx,
+                                      const char *host_controller_address,
+                                      uint16_t stm_di_addr)
+
+    osd_result osd_coretracelogger_connect(osd_coretracelogger_ctx *ctx)
+
+    osd_result osd_coretracelogger_disconnect(osd_coretracelogger_ctx *ctx)
+
+    int osd_coretracelogger_is_connected(osd_coretracelogger_ctx *ctx)
+
+    void osd_coretracelogger_free(osd_coretracelogger_ctx **ctx_p)
+
+    osd_result osd_coretracelogger_start(osd_coretracelogger_ctx *ctx)
+
+    osd_result osd_coretracelogger_stop(osd_coretracelogger_ctx *ctx)
+
+    osd_result osd_coretracelogger_set_log(osd_coretracelogger_ctx *ctx,
+                                           FILE *fp)
+
+    osd_result osd_coretracelogger_set_elf(osd_coretracelogger_ctx *ctx,
+                                           const char* elf_filename)
+
