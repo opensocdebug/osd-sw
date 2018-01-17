@@ -26,6 +26,10 @@ stamp-h1
 .libs/
 /osd.pc
 *.gcno
+doc/doxygen.cfg
+doc/doctrees/
+doc/html/
+doc/xml/
 
 # editor/ide project files
 .cproject
