@@ -276,12 +276,20 @@ static void mgmt_gw_unregister(struct worker_thread_ctx *thread_ctx,
 
 /**
  * Process an incoming management message (from the host modules)
+ *
+ * This function gains ownership of the passed zframe_t arguments and is
+ * expected to destroy and NULL them.
  */
 static void process_mgmt_msg(struct worker_thread_ctx *thread_ctx,
-                             zframe_t *src, zframe_t *payload_frame)
+                             zframe_t **src_p, zframe_t **payload_frame_p)
 {
     assert(thread_ctx);
+    assert(src_p);
+    assert(payload_frame_p);
+
+    zframe_t *src = *src_p;
     assert(src);
+    zframe_t *payload_frame = *payload_frame_p;
     assert(payload_frame);
 
     char *request = zframe_strdup(payload_frame);
@@ -299,19 +307,27 @@ static void process_mgmt_msg(struct worker_thread_ctx *thread_ctx,
         mgmt_send_ack(thread_ctx, src);
     }
 
-    zframe_destroy(&src);
     free(request);
-    free(payload_frame);
+    zframe_destroy(src_p);
+    zframe_destroy(payload_frame_p);
 }
 
 /**
  * Route a DI data message to its destination
+ *
+ * This function gains ownership of the passed zframe_t arguments and is
+ * expected to destroy and NULL them.
  */
 static void process_data_msg(struct worker_thread_ctx *thread_ctx,
-                             zframe_t *src, zframe_t *payload_frame)
+                             zframe_t **src_p, zframe_t **payload_frame_p)
 {
     assert(thread_ctx);
+    assert(src_p);
+    assert(payload_frame_p);
+
+    zframe_t *src = *src_p;
     assert(src);
+    zframe_t *payload_frame = *payload_frame_p;
     assert(payload_frame);
 
     struct iothread_usr_ctx *usrctx = thread_ctx->usr;
@@ -379,12 +395,14 @@ static void process_data_msg(struct worker_thread_ctx *thread_ctx,
     assert(zmq_rv == 0);
     zmq_rv = zmsg_addstr(msg, "D");
     assert(zmq_rv == 0);
-    zmsg_append(msg, &payload_frame);
+    zmsg_append(msg, payload_frame_p);
     assert(zmq_rv == 0);
     zmq_rv = zmsg_send(&msg, usrctx->router_socket);
     assert(zmq_rv == 0);
 
 free_return:
+    zframe_destroy(src_p);
+    zframe_destroy(payload_frame_p);
     osd_packet_free(&pkg);
 }
 
@@ -414,17 +432,19 @@ static int iothread_handle_ext_msg(zloop_t *loop, zsock_t *reader,
 
     if (type_str[0] == 'M') {
         zframe_t *payload_frame = zmsg_pop(msg);
-        process_mgmt_msg(thread_ctx, src_frame, payload_frame);
+        process_mgmt_msg(thread_ctx, &src_frame, &payload_frame);
+        zframe_destroy(&payload_frame);
     } else if (type_str[0] == 'D') {
         zframe_t *payload_frame = zmsg_pop(msg);
-        process_data_msg(thread_ctx, src_frame, payload_frame);
+        process_data_msg(thread_ctx, &src_frame, &payload_frame);
+        zframe_destroy(&payload_frame);
     } else {
         err(thread_ctx->log_ctx, "Ignoring message of unknown type '%s'.",
             type_str);
-        zframe_destroy(&src_frame);
     }
 
     free(type_str);
+    zframe_destroy(&src_frame);
     zframe_destroy(&type_frame);
     zmsg_destroy(&msg);
 
@@ -517,8 +537,12 @@ static osd_result iothread_destroy(struct worker_thread_ctx *thread_ctx)
     struct iothread_usr_ctx *usrctx = thread_ctx->usr;
     assert(usrctx);
 
-    free(usrctx->router_address);
+    for (unsigned int l = 1; l <= OSD_DIADDR_LOCAL_MAX; l++) {
+        zframe_destroy(&usrctx->mods_in_subnet[l]);
+    }
     free(usrctx->mods_in_subnet);
+
+    free(usrctx->router_address);
     free(usrctx->gateways);
     free(usrctx);
     thread_ctx->usr = NULL;

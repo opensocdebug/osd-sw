@@ -78,7 +78,7 @@ static ssize_t device_read(struct glip_ctx *glip_ctx, uint16_t *buf,
                            size_t size_words, int flags)
 {
     int rv;
-    size_t words_read;
+    ssize_t words_read;
     size_t bytes_read;
 
     uint16_t *buf_be;
@@ -95,19 +95,24 @@ static ssize_t device_read(struct glip_ctx *glip_ctx, uint16_t *buf,
                      (uint8_t *)buf_be, &bytes_read,
                      0 /* timeout [ms]; 0 == never */);
     if (rv == -ENOTCONN) {
-        return rv;
+        words_read = rv;
+        goto free_return;
     } else if (rv != 0) {
-        return -1;
+        words_read = -1;
+        goto free_return;
     }
     words_read = bytes_read / sizeof(uint16_t);
 
 #if __BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__
-    for (size_t w = 0; w < words_read; w++) {
+    for (ssize_t w = 0; w < words_read; w++) {
         buf[w] = bswap_16(buf_be[w]);
     }
-    free(buf_be);
 #endif
 
+free_return: ;
+#if __BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__
+    free(buf_be);
+#endif
     return words_read;
 }
 

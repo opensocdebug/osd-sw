@@ -97,14 +97,14 @@ static void *devicerxthread_main(void *gateway_ctx_void)
         if (OSD_FAILED(rv)) {
             if (rv == OSD_ERROR_NOT_CONNECTED) {
                 dbg(gateway_ctx->log_ctx,
-                    "Connection to device was "
-                    "terminated. Aborting read thread.");
+                    "Connection to device was terminated. "
+                    "Aborting read thread.");
+                osd_packet_free(&rcv_packet);
                 return (void *)OSD_ERROR_NOT_CONNECTED;
             } else {
                 err(gateway_ctx->log_ctx,
-                    "packet_read() failed with error "
-                    "%d. Trying again.",
-                    rv);
+                    "packet_read() failed with error %d. Trying again.", rv);
+                osd_packet_free(&rcv_packet);
                 continue;
             }
         }
@@ -118,6 +118,7 @@ static void *devicerxthread_main(void *gateway_ctx_void)
         zmq_rv = zmsg_addmem(msg, rcv_packet->data_raw,
                              osd_packet_sizeof(rcv_packet));
         zmsg_send(&msg, gateway_ctx->device_rx_socket);
+        osd_packet_free(&rcv_packet);
     }
 
     return (void *)OSD_OK;
@@ -620,7 +621,12 @@ static osd_result disconnect_from_device(struct osd_gateway_ctx *ctx)
     }
 
     // end device RX thread and associated ZeroMQ socket
-    pthread_cancel(ctx->devicerxthread);
+    /*
+     * XXX: If it turns out that pthread_join() blocks forever due to gateway
+     * threads (typically GLIP backends) not shutting down itself we might need
+     * to introduce a call to pthread_timedjoin_np() followed by a
+     * pthread_cancel().
+     */
     void *retval;
     pthread_join(ctx->devicerxthread, &retval);
     if ((intptr_t)retval == OSD_OK) {
