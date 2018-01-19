@@ -165,6 +165,7 @@ AC_CONFIG_FILES([
         src/tools/Makefile
         src/tools/osd-host-controller/Makefile
         src/tools/osd-device-gateway/Makefile
+        src/tools/osd-target-run/Makefile
         tests/Makefile
         tests/unit/Makefile
         doc/Makefile
