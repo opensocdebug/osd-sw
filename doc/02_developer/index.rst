@@ -8,4 +8,5 @@ OSD Software Developer Documentation
    protocol.rst
    tutorial_create_tool.rst
    unittests.rst
+   debugging.rst
    api/index.rst
