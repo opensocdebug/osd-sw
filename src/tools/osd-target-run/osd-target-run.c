@@ -414,6 +414,7 @@ int run(void)
     }
 
     // stop all CPUs on target device
+    info("Stopping all CPUs in the system");
     rv = osd_memaccess_cpus_stop(memaccess_ctx, DEVICE_SUBNET_ADDRESS);
     if (OSD_FAILED(rv)) {
         fatal("Unable to stop CPUs on target (%d)", rv);
@@ -422,6 +423,7 @@ int run(void)
     }
 
     // setup tracing
+    info("Setting up tracing");
     rv = run_tracing();
     if (OSD_FAILED(rv)) {
         exitcode = -1;
@@ -429,6 +431,7 @@ int run(void)
     }
 
     // load memories
+    info("Loading memories ...");
     struct osd_mem_desc *mems;
     size_t mems_len;
     rv = osd_memaccess_find_memories(memaccess_ctx, DEVICE_SUBNET_ADDRESS, &mems,
@@ -439,6 +442,16 @@ int run(void)
         goto free_return;
     }
     for (size_t i = 0; i < mems_len; i++) {
+        if (a_verify_memload->count) {
+            info("Loading memory at DI address %d with ELF file %s (verifying "
+                 "write through readback)",
+                 mems[i].di_addr, a_elf_file->filename[0]);
+        } else {
+            info("Loading memory at DI address %d with ELF file %s (not "
+                 "verifying write)",
+                 mems[i].di_addr, a_elf_file->filename[0]);
+
+        }
         rv = osd_memaccess_loadelf(memaccess_ctx, &mems[i],
                                    a_elf_file->filename[0],
                                    a_verify_memload->count);
@@ -451,6 +464,7 @@ int run(void)
     free(mems);
 
     // start CPUs on target
+    info("Starting all CPUs");
     rv = osd_memaccess_cpus_start(memaccess_ctx, DEVICE_SUBNET_ADDRESS);
     if (OSD_FAILED(rv)) {
         fatal("Unable to start CPUs on target (%d)", rv);

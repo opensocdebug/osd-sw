@@ -42,6 +42,11 @@ static const char* DEFAULT_CONFIG_FILE = "/etc/osd/osd.conf";
  */
 #define DEFAULT_HOSTCTRL_BIND_EP "tcp://0.0.0.0:9537"
 
+/**
+ * Default log level
+ */
+#define DEFAULT_LOG_LEVEL LOG_ERR
+
 void cli_log(int priority, const char* category,
              const char *format, ...) __attribute__ ((format (printf, 3, 4)));
 
@@ -56,7 +61,7 @@ struct config {
 };
 
 struct config cfg = {
-    .log_level = LOG_ERR,
+    .log_level = DEFAULT_LOG_LEVEL,
     .color_output = 0
 };
 
@@ -177,24 +182,25 @@ static osd_result cfg_parse_config_file(const char* filename)
     }
 
     // general.log_level
+    int cfg_file_log_level = DEFAULT_LOG_LEVEL;
     const char* str = iniparser_getstring(ini, "general:log_level", NULL);
     if (str != NULL) {
         if (strcasecmp(str, "emerg") == 0) {
-            cfg.log_level = LOG_EMERG;
+            cfg_file_log_level = LOG_EMERG;
         } else if (strcasecmp(str, "alert") == 0) {
-            cfg.log_level = LOG_ALERT;
+            cfg_file_log_level = LOG_ALERT;
         } else if (strcasecmp(str, "crit") == 0) {
-            cfg.log_level = LOG_CRIT;
+            cfg_file_log_level = LOG_CRIT;
         } else if (strcasecmp(str, "err") == 0) {
-            cfg.log_level = LOG_CRIT;
+            cfg_file_log_level = LOG_CRIT;
         } else if (strcasecmp(str, "warning") == 0) {
-            cfg.log_level = LOG_WARNING;
+            cfg_file_log_level = LOG_WARNING;
         } else if (strcasecmp(str, "notice") == 0) {
-            cfg.log_level = LOG_NOTICE;
+            cfg_file_log_level = LOG_NOTICE;
         } else if (strcasecmp(str, "info") == 0) {
-            cfg.log_level = LOG_INFO;
+            cfg_file_log_level = LOG_INFO;
         } else if (strcasecmp(str, "debug") == 0) {
-            cfg.log_level = LOG_DEBUG;
+            cfg_file_log_level = LOG_DEBUG;
         } else {
             err("Invalid value '%s' for configuration key general.log_level",
                 str);
@@ -206,6 +212,10 @@ static osd_result cfg_parse_config_file(const char* filename)
                                             cfg.color_output);
 
     iniparser_freedict(ini);
+
+    // Set new log level as last item to get all INI file parsing log messages
+    // with the log level set on command line.
+    cfg.log_level = cfg_file_log_level;
 
     return OSD_OK;
 }
@@ -260,6 +270,7 @@ int run(void);
 
 int main(int argc, char** argv)
 {
+    osd_result rv;
     int exitcode = 0;
 
     iniparser_set_error_callback(cfg_parser_error_cb);
@@ -321,13 +332,14 @@ int main(int argc, char** argv)
      */
     cfg_update_with_cli_args();
 
-    cfg_parse_config_file(a_config_file->filename[0]);
-
-    /*
-     * Override/modify values from the configuration file with command line
-     * arguments.
-     */
-    cfg_update_with_cli_args();
+    rv = cfg_parse_config_file(a_config_file->filename[0]);
+    if (OSD_SUCCEEDED(rv)) {
+        /*
+         * Override/modify values from the configuration file with command line
+         * arguments.
+         */
+        cfg_update_with_cli_args();
+    }
 
     exitcode = run();
 
