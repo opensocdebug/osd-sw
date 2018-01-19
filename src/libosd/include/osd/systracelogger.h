@@ -38,9 +38,9 @@ struct osd_systracelogger_ctx;
  * Create a new context object
  */
 osd_result osd_systracelogger_new(struct osd_systracelogger_ctx **ctx,
-                                     struct osd_log_ctx *log_ctx,
-                                     const char *host_controller_address,
-                                     uint16_t stm_di_addr);
+                                  struct osd_log_ctx *log_ctx,
+                                  const char *host_controller_address,
+                                  uint16_t stm_di_addr);
 
 /**
  * @copydoc osd_hostmod_connect()

@@ -83,7 +83,7 @@ int run(void)
                                   &glip_backend_options,
                                   &glip_backend_options_len);
     if (rv != 0) {
-        fatal("Unable to parse GLIP backend options.\n");
+        fatal("Unable to parse GLIP backend options.");
         exitcode = 1;
         goto free_return;
     }
