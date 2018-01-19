@@ -454,6 +454,9 @@ static void iothread_router_start(struct worker_thread_ctx *thread_ctx)
     }
     zsock_set_rcvtimeo(usrctx->router_socket, ZMQ_RCV_TIMEOUT);
 
+    // Don't silently drop unroutable messages
+    zsock_set_router_mandatory(usrctx->router_socket, 1);
+
     // register event handler for incoming messages
     int zmq_rv;
     zmq_rv = zloop_reader(thread_ctx->zloop, usrctx->router_socket,
