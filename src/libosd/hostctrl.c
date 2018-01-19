@@ -214,10 +214,8 @@ static void mgmt_gw_register(struct worker_thread_ctx *thread_ctx,
     assert(subnet <= OSD_DIADDR_SUBNET_MAX);
 
     if (usrctx->gateways[subnet] != NULL) {
-        err(thread_ctx->log_ctx,
-            "A gateway for subnet %u is already "
-            "registered.",
-            subnet);
+        err(thread_ctx->log_ctx, "A gateway for subnet %u is already "
+            "registered.", subnet);
         return mgmt_send_nack(thread_ctx, hostaddr);
     }
 
@@ -353,9 +351,13 @@ static void process_data_msg(struct worker_thread_ctx *thread_ctx,
         // routing through a gateway
         dest_hostaddr = usrctx->gateways[dest_diaddr_subnet];
         if (dest_hostaddr == NULL) {
+            char* src_str = zframe_strhex(src);
             err(thread_ctx->log_ctx,
-                "No gateway for subnet %u registered to route DI address %u.%u",
-                dest_diaddr_subnet, dest_diaddr_subnet, dest_diaddr_local);
+                "No gateway for subnet %u registered to route DI address %u.%u, "
+                "packet coming from %s",
+                dest_diaddr_subnet, dest_diaddr_subnet, dest_diaddr_local,
+                src_str);
+            free(src_str);
             goto free_return;
         }
         dbg(thread_ctx->log_ctx,

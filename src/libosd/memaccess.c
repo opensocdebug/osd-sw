@@ -239,7 +239,7 @@ osd_result osd_memaccess_loadelf(struct osd_memaccess_ctx *ctx,
     }
 
     for (size_t i = 0; i < num; i++) {
-        info(ctx->log_ctx, "Verify program header %zu\n", i);
+        info(ctx->log_ctx, "Verify program header %zu", i);
         GElf_Phdr phdr;
         Elf_Data *data;
         if (gelf_getphdr(elf_object, i, &phdr) != &phdr) {
