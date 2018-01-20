@@ -143,6 +143,7 @@ osd_result osd_memaccess_find_memories(struct osd_memaccess_ctx *ctx,
                 retval = OSD_ERROR_PARTIAL_RESULT;
                 // continue anyway
             }
+            mem_nr++;
         }
     }
 
