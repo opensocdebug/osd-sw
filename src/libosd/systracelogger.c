@@ -25,6 +25,12 @@
 #include <stdbool.h>
 #include <string.h>
 
+struct event_stats {
+    unsigned int overflowed_events;
+    unsigned int sysprint_events;
+    unsigned int trace_events;
+};
+
 /**
  * System Trace Logger context
  */
@@ -37,6 +43,7 @@ struct osd_systracelogger_ctx {
     FILE *fp_sysprint;
     FILE *fp_event;
     struct osd_cl_stm_print_buf sysprint_buf;
+    struct event_stats stats;
 };
 
 static void stm_event_handler(void *ctx_void,
@@ -46,6 +53,14 @@ static void stm_event_handler(void *ctx_void,
     int rv;
     osd_result osd_rv;
     struct osd_systracelogger_ctx *ctx = ctx_void;
+
+    // update stats
+    if (event->overflow) {
+        ctx->stats.overflowed_events += event->overflow;
+    } else {
+        ctx->stats.sysprint_events += osd_cl_stm_is_print_event(event);
+        ctx->stats.trace_events += 1;
+    }
 
     if (event->overflow) {
         if (ctx->fp_event) {
@@ -108,6 +123,9 @@ osd_result osd_systracelogger_new(struct osd_systracelogger_ctx **ctx,
     c->stm_di_addr = stm_di_addr;
     c->stm_event_handler.cb_fn = stm_event_handler;
     c->stm_event_handler.cb_arg = (void *)c;
+    c->stats.overflowed_events = 0;
+    c->stats.trace_events = 0;
+    c->stats.sysprint_events = 0;
 
     struct osd_hostmod_ctx *hostmod_ctx;
     rv =
@@ -147,6 +165,10 @@ void osd_systracelogger_free(struct osd_systracelogger_ctx **ctx_p)
     if (!ctx) {
         return;
     }
+
+    info(ctx->log_ctx, "Systracelogger statistics: %u overflowed packets, "
+         "%u trace events, %u sysprint events", ctx->stats.overflowed_events,
+         ctx->stats.trace_events, ctx->stats.sysprint_events);
 
     osd_hostmod_free(&ctx->hostmod_ctx);
 
