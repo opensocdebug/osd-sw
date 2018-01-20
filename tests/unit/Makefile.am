@@ -4,6 +4,7 @@ check_PROGRAMS = \
 	check_packet \
 	check_hostmod \
 	check_hostctrl \
+	check_gateway \
 	check_cl_mam \
 	check_cl_scm \
 	check_cl_stm \
@@ -14,6 +15,10 @@ check_PROGRAMS = \
 
 check_hostmod_SOURCES = \
 	check_hostmod.c \
+	mock_host_controller.c
+
+check_gateway_SOURCES = \
+	check_gateway.c \
 	mock_host_controller.c
 
 check_cl_mam_SOURCES = \

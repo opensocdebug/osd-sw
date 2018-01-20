@@ -68,9 +68,12 @@ free_return:
 static void *thread_main(void *thread_ctx_void)
 {
     struct worker_thread_ctx *thread_ctx = thread_ctx_void;
+    assert(thread_ctx);
 
     int zmq_rv;
     osd_result osd_rv;
+
+    *thread_ctx->thread_is_running = 1;
 
     // create new PAIR socket for the communication of the main thread
     thread_ctx->inproc_socket = zsock_new(ZMQ_PAIR);
@@ -140,6 +143,8 @@ free_return:
 
     zloop_destroy(&thread_ctx->zloop);
 
+    *thread_ctx->thread_is_running = 0;
+
     free(thread_ctx);
     thread_ctx = NULL;
 
@@ -177,6 +182,7 @@ osd_result worker_new(struct worker_ctx **ctx, struct osd_log_ctx *log_ctx,
 
     generate_unique_inproc_name(inproc_socket_name);
 
+    c->thread_is_running = 0;
     c->inproc_socket = zsock_new(ZMQ_PAIR);
     assert(c->inproc_socket);
     rv = zsock_bind(c->inproc_socket, "inproc://%s", inproc_socket_name);
@@ -201,6 +207,7 @@ osd_result worker_new(struct worker_ctx **ctx, struct osd_log_ctx *log_ctx,
     struct worker_thread_ctx *thread_ctx =
         calloc(1, sizeof(struct worker_thread_ctx));
     assert(thread_ctx);
+    thread_ctx->thread_is_running = &c->thread_is_running;
     strncpy(thread_ctx->inproc_socket_name, inproc_socket_name, 33);
     thread_ctx->usr = thread_ctx_usr;
     thread_ctx->log_ctx = log_ctx;
@@ -236,19 +243,26 @@ void worker_free(struct worker_ctx **ctx_p)
         return;
     }
 
-    // shut down thread
-    worker_send_status(ctx->inproc_socket, "I-SHUTDOWN", 0);
+    // shut down thread (if it has not been terminated abnormally during its
+    // runtime)
+    if (ctx->thread_is_running) {
+        worker_send_status(ctx->inproc_socket, "I-SHUTDOWN", 0);
 
-    // wait for shutdown to happen
-    int retvalue;
-    osd_rv = worker_wait_for_status(ctx->inproc_socket, "I-SHUTDOWN-DONE",
-                                    &retvalue);
-    if (OSD_FAILED(osd_rv)) {
-        // If the thread shutting down properly by itself, we force a shutdown
-        pthread_cancel(ctx->thread);
+        // wait for shutdown to happen
+        int retvalue;
+        osd_rv = worker_wait_for_status(ctx->inproc_socket, "I-SHUTDOWN-DONE",
+                                        &retvalue);
+        if (OSD_FAILED(osd_rv)) {
+            // If the thread shutting down properly by itself, we force a
+            // shutdown
+            pthread_cancel(ctx->thread);
+        }
     }
 
-    // wait until control I/O thread has finished its cleanup
+    // Wait until control I/O thread has finished its cleanup and free all
+    // associated resources. pthread_join() acts as free() for the
+    // pthread_thread_t struct. To avoid memory leaks, call it even if the
+    // thread terminated on its own (indicated by !thread_is_running).
     pthread_join(ctx->thread, NULL);
 
     zsock_destroy(&ctx->inproc_socket);
@@ -279,6 +293,16 @@ void worker_send_data(zsock_t *socket, const char *name, const void *data,
 void worker_send_status(zsock_t *socket, const char *name, int value)
 {
     worker_send_data(socket, name, &value, sizeof(int));
+}
+
+osd_result worker_main_send_status(struct worker_ctx *ctx, const char *name,
+                                   int value)
+{
+    if (!ctx->thread_is_running) {
+        return OSD_ERROR_NOT_CONNECTED;
+    }
+    worker_send_status(ctx->inproc_socket, name, value);
+    return OSD_OK;
 }
 
 osd_result worker_wait_for_status(zsock_t *socket, const char *name,

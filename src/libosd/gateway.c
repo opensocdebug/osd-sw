@@ -13,6 +13,52 @@
  * limitations under the License.
  */
 
+/*
+ * Implementation Notes
+ * ====================
+ *
+ * Threads
+ * -------
+ *
+ * The osd_gateway class makes use of multiple tasks to perform multiple
+ * operations without blocking.
+ *
+ * - The main thread provides the API interface with all ``osd_gateway_*()``
+ *   functions. Most of them forward the actual work to one of the worker
+ *   threads.
+ * - The ``devicerxthread`` (a plain POSIX thread) calls the packet_read()
+ *   function of the device to read a new packet. Received packets are sent to
+ *   the ZeroMQ socket device_rx_socket.
+ * - The ``hostiothread`` is a worker thread (implemented using the ``worker``
+ *   helper class) performing all interaction with the host controller. This
+ *   includes
+ *   - Connecting and disconnecting from the host controller.
+ *   - Writing packets to the device when they are received from the host
+ *     controller.
+ *   - Forwarding data read from the device (in the ``devicerxthread``) to the
+ *     host controller.
+ *
+ * Behavior on connection loss
+ * ---------------------------
+ *
+ * If the connection to the device is lost the packet_read() and packet_write()
+ * function recognize this and act in the ways outlined below.
+ *
+ * Case 1: packet_read() detects a connection loss
+ * - The device_disconnect_detected flag is set.
+ * - The devicerxthread thread is shut down.
+ * - The next function called on the main thread performs the disconnection from
+ *   the host controller and shuts down the iothread worker thread.
+ *
+ * Case 2: packet_write() detects a connection loss
+ * - The device_disconnect_detected flag is set.
+ * - The worker thread calls hostiothread_disconnect_from_hostctrl() to notify
+ *   the host controller about the disconnect.
+ * - The worker thread shuts down.
+ * - The next function called on the main thread performs cleanup of the worker
+ *   thread and shuts down the devicerxthread thread (if still running).
+ */
+
 #include <osd/gateway.h>
 #include <osd/osd.h>
 #include <osd/packet.h>
@@ -23,6 +69,12 @@
 #include <errno.h>
 #include <stdbool.h>
 #include <string.h>
+
+/**
+ * Number of seconds the device worker threads may take to disconnect themselves
+ * before they are cancelled.
+ */
+#define DEVICE_DISCONNECT_TIMEOUT_SECONDS 2
 
 /**
  * Gateway context
@@ -36,6 +88,14 @@ struct osd_gateway_ctx {
 
     /** Is the gateway connected to the device? */
     bool is_connected_to_device;
+
+    /**
+     * One of the I/O worker threads (devicerxthread or iothread) detected a
+     * loss of connection when reading from or writing to the device. Setting
+     * this flag requests the main thread to clean up all remaining connections
+     * and switch to disconnected state.
+     */
+    bool device_disconnect_detected;
 
     /** I/O worker */
     struct worker_ctx *ioworker_ctx;
@@ -58,6 +118,9 @@ struct osd_gateway_ctx {
     void *cb_arg;
 };
 
+/**
+ * Context used on the hostiothread
+ */
 struct hostiothread_usr_ctx {
     /** Communication socket with the host controller */
     zsock_t *hostctrl_socket;
@@ -79,7 +142,31 @@ struct hostiothread_usr_ctx {
 
     /** Address of the subnet connected to this gateway */
     uint16_t device_subnet_addr;
+
+    /**
+     * Access to gateway_ctx->device_disconnect_detected from hostiothread.
+     * Write only!
+     */
+    bool *device_disconnect_detected;
 };
+
+/**
+ * Perform tasks queued to be executed on the main thread
+ *
+ * Call this function on entering any main thread function.
+ *
+ * The worker threads can signal tasks to be performed on the main thread. These
+ * tasks are executed whenever this function is called. At the moment the only
+ * use case is performing a disconnect when a loss of connection is detected
+ * in any of the workers.
+ */
+static void perform_outstanding_main_thread_tasks(struct osd_gateway_ctx *ctx)
+{
+    if (ctx->device_disconnect_detected) {
+        osd_gateway_disconnect(ctx);
+        ctx->device_disconnect_detected = false;
+    }
+}
 
 /**
  * Read data from the device encoded as Debug Transport Datagrams (DTDs)
@@ -96,13 +183,16 @@ static void *devicerxthread_main(void *gateway_ctx_void)
         rv = gateway_ctx->packet_read(&rcv_packet, gateway_ctx->cb_arg);
         if (OSD_FAILED(rv)) {
             if (rv == OSD_ERROR_NOT_CONNECTED) {
-                dbg(gateway_ctx->log_ctx,
-                    "Connection to device was terminated. "
-                    "Aborting read thread.");
+                dbg(gateway_ctx->log_ctx, "Connection to device was terminated "
+                    "during packet_read. Signaling main thread to disconnect.");
                 osd_packet_free(&rcv_packet);
+
+                // Request cleanup on the main thread
+                gateway_ctx->device_disconnect_detected = true;
+
                 return (void *)OSD_ERROR_NOT_CONNECTED;
             } else {
-                err(gateway_ctx->log_ctx,
+                dbg(gateway_ctx->log_ctx,
                     "packet_read() failed with error %d. Trying again.", rv);
                 osd_packet_free(&rcv_packet);
                 continue;
@@ -123,6 +213,9 @@ static void *devicerxthread_main(void *gateway_ctx_void)
 
     return (void *)OSD_OK;
 }
+
+static void hostiothread_disconnect_from_hostctrl(
+    struct worker_thread_ctx *thread_ctx);
 
 /**
  * Process incoming messages from the host controller
@@ -160,16 +253,18 @@ static int hostiothread_rcv_from_hostctrl(zloop_t *loop, zsock_t *reader,
         free(pkg);
         if (OSD_FAILED(device_write_rv)) {
             if (device_write_rv == OSD_ERROR_NOT_CONNECTED) {
-                err(thread_ctx->log_ctx,
-                    "Connection to device was terminated.");
-                // XXX: Handle this case, inform the host controller of the
-                // transmission error and disconnect?
+                dbg(thread_ctx->log_ctx, "Connection to device was terminated "
+                    "during packet_write. Unregistering from gateway and "
+                    "signaling main thread to disconnect");
             } else {
                 err(thread_ctx->log_ctx,
                     "Device write failed (%d). Packet dropped.",
                     device_write_rv);
+                // XXX: can we retry here?
             }
-            retval = -1;
+            hostiothread_disconnect_from_hostctrl(thread_ctx);
+            *usrctx->device_disconnect_detected = true;
+            retval = -1; // end zloop and with it the hostiothread
             goto free_return;
         }
 
@@ -219,8 +314,9 @@ static osd_result hostiothread_send_cmd(struct worker_thread_ctx *thread_ctx,
     zmsg_t *msg_resp = zmsg_recv(sock);
     if (!msg_resp) {
         err(thread_ctx->log_ctx,
-            "No response received from host controller at %s: %s (%d)",
-            usrctx->host_controller_address, strerror(errno), errno);
+            "No response for command %s received from host controller at "
+            "%s: %s (%d)", command, usrctx->host_controller_address,
+            strerror(errno), errno);
         return OSD_ERROR_FAILURE;
     }
 
@@ -380,8 +476,7 @@ static void hostiothread_disconnect_from_hostctrl(
     osd_rv = hostiothread_unregister_gw(thread_ctx);
     if (OSD_FAILED(osd_rv)) {
         err(thread_ctx->log_ctx,
-            "Unable to unregister as gateway, continuing "
-            "anyway.");
+            "Unable to unregister as gateway, continuing anyway.");
     }
 
     zsock_destroy(&usrctx->hostctrl_socket);
@@ -495,6 +590,7 @@ osd_result osd_gateway_new(struct osd_gateway_ctx **ctx,
     c->is_connected_to_device = false;
     c->packet_read = packet_read;
     c->cb_arg = cb_arg;
+    c->device_disconnect_detected = false;
 
     // prepare custom data passed to I/O thread for host communication
     struct hostiothread_usr_ctx *hostiothread_usr_data =
@@ -505,6 +601,8 @@ osd_result osd_gateway_new(struct osd_gateway_ctx **ctx,
     hostiothread_usr_data->packet_write = packet_write;
     hostiothread_usr_data->cb_arg = cb_arg;
     hostiothread_usr_data->device_subnet_addr = device_subnet_addr;
+    hostiothread_usr_data->device_disconnect_detected =
+            &c->device_disconnect_detected;
 
     rv = worker_new(&c->ioworker_ctx, log_ctx, hostiothread_init,
                     hostiothread_destroy, hostiothread_handle_inproc_request,
@@ -526,7 +624,11 @@ static osd_result connect_to_hostctrl(struct osd_gateway_ctx *ctx)
         return OSD_OK;
     }
 
-    worker_send_status(ctx->ioworker_ctx->inproc_socket, "I-CONNECT", 0);
+    rv = worker_main_send_status(ctx->ioworker_ctx, "I-CONNECT", 0);
+    if (OSD_FAILED(rv)) {
+        err(ctx->log_ctx, "Unable to send data to worker thread.");
+        return OSD_ERROR_CONNECTION_FAILED;
+    }
     int retval;
     rv = worker_wait_for_status(ctx->ioworker_ctx->inproc_socket,
                                 "I-CONNECT-DONE", &retval);
@@ -566,6 +668,8 @@ osd_result osd_gateway_connect(struct osd_gateway_ctx *ctx)
     osd_result rv;
     assert(ctx);
 
+    perform_outstanding_main_thread_tasks(ctx);
+
     rv = connect_to_hostctrl(ctx);
     if (OSD_FAILED(rv)) {
         return rv;
@@ -583,6 +687,7 @@ API_EXPORT
 bool osd_gateway_is_connected(struct osd_gateway_ctx *ctx)
 {
     assert(ctx);
+    perform_outstanding_main_thread_tasks(ctx);
     return ctx->is_connected_to_hostctrl && ctx->is_connected_to_device;
 }
 
@@ -596,16 +701,21 @@ static osd_result disconnect_from_hostctrl(struct osd_gateway_ctx *ctx)
         return OSD_OK;
     }
 
-    worker_send_status(ctx->ioworker_ctx->inproc_socket, "I-DISCONNECT", 0);
-    osd_result retval;
-    rv = worker_wait_for_status(ctx->ioworker_ctx->inproc_socket,
-                                "I-DISCONNECT-DONE", &retval);
-    if (OSD_FAILED(rv)) {
-        return rv;
+    dbg(ctx->log_ctx, "Sending worker status to disconnect");
+    rv = worker_main_send_status(ctx->ioworker_ctx, "I-DISCONNECT", 0);
+    dbg(ctx->log_ctx, "Sending worker status to disconnect. got rv=%d", rv);
+    if (rv != OSD_ERROR_NOT_CONNECTED) {
+        osd_result retval;
+        rv = worker_wait_for_status(ctx->ioworker_ctx->inproc_socket,
+                                    "I-DISCONNECT-DONE", &retval);
+        if (OSD_FAILED(rv)) {
+            return rv;
+        }
+        if (OSD_FAILED(retval)) {
+            return retval;
+        }
     }
-    if (OSD_FAILED(retval)) {
-        return retval;
-    }
+    dbg(ctx->log_ctx, "Sending worker status to disconnect DONE");
 
     ctx->is_connected_to_hostctrl = false;
 
@@ -621,14 +731,22 @@ static osd_result disconnect_from_device(struct osd_gateway_ctx *ctx)
     }
 
     // end device RX thread and associated ZeroMQ socket
-    /*
-     * XXX: If it turns out that pthread_join() blocks forever due to gateway
-     * threads (typically GLIP backends) not shutting down itself we might need
-     * to introduce a call to pthread_timedjoin_np() followed by a
-     * pthread_cancel().
-     */
+    struct timespec ts;
+    int irv;
     void *retval;
-    pthread_join(ctx->devicerxthread, &retval);
+
+    irv = clock_gettime(CLOCK_REALTIME, &ts);
+    assert(irv == 0);
+    ts.tv_sec += DEVICE_DISCONNECT_TIMEOUT_SECONDS;
+
+    irv = pthread_timedjoin_np(ctx->devicerxthread, &retval, &ts);
+    if (irv == ETIMEDOUT) {
+        err(ctx->log_ctx, "Device read thread did not shut down itself. "
+            "This typically indicates a bug in the code using osd_gateway.");
+        pthread_cancel(ctx->devicerxthread);
+        pthread_join(ctx->devicerxthread, &retval);
+    }
+
     if ((intptr_t)retval == OSD_OK) {
         dbg(ctx->log_ctx,
             "Device read thread terminated through cancellation.");
@@ -648,8 +766,11 @@ static osd_result disconnect_from_device(struct osd_gateway_ctx *ctx)
 API_EXPORT
 osd_result osd_gateway_disconnect(struct osd_gateway_ctx *ctx)
 {
+    dbg(ctx->log_ctx, "disconnecting from device");
     disconnect_from_device(ctx);
+    dbg(ctx->log_ctx, "disconnecting from hostctrl");
     disconnect_from_hostctrl(ctx);
+    dbg(ctx->log_ctx, "disconnecting from hostctrl DONE");
 
     return OSD_OK;
 }

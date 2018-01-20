@@ -34,6 +34,9 @@ struct worker_ctx {
     /** Worker thread */
     pthread_t thread;
 
+    /** Worker thread is running */
+    volatile int thread_is_running;
+
     /** In-process socket for communication with the worker thread */
     zsock_t* inproc_socket;
 };
@@ -63,6 +66,11 @@ typedef osd_result (*worker_cmd_handler_fn)(
  * Worker context object (to be used in the worker thread)
  */
 struct worker_thread_ctx {
+    /**
+     * Reference to the worker_thread_ctx.thread_is_running variable
+     */
+    volatile int* thread_is_running;
+
     /**
      * Name of the inproc socket for main-thread communication.
      * 32 characters + null termination
@@ -148,6 +156,18 @@ void worker_free(struct worker_ctx** ctx_p);
  */
 void worker_send_data(zsock_t* socket, const char* name, const void* data,
                       size_t size);
+
+/**
+ * Send data from the main thread to the worker thread
+ *
+ * @param ctx the worker thread context
+ * @param name name identifying the message
+ * @param value status value
+ * @return OSD_OK if the status was sent successfully
+ *         OSD_ERROR_NOT_CONNECTED if the thread doesn't exist anymore.
+ */
+osd_result worker_main_send_status(struct worker_ctx *ctx, const char *name,
+                                   int value);
 
 /**
  * Send a status message to another thread over a ZeroMQ socket
