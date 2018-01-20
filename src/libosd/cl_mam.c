@@ -502,6 +502,7 @@ osd_result osd_cl_mam_write(const struct osd_mem_desc *mem_desc,
 
     osd_result rv;
     unsigned int dw_b = (mem_desc->data_width_bit / 8);
+    assert(dw_b);
 
     // TODO: insert checks if the write is within a single region
 
