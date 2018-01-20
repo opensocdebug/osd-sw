@@ -166,6 +166,18 @@ void osd_systracelogger_free(struct osd_systracelogger_ctx **ctx_p)
         return;
     }
 
+    // Flush remaining sysprint data to file
+    if (ctx->sysprint_buf.len_str > 0) {
+        size_t b_wr = fwrite(ctx->sysprint_buf.buf, 1,
+                             ctx->sysprint_buf.len_str, ctx->fp_sysprint);
+        if (b_wr != ctx->sysprint_buf.len_str) {
+            err(ctx->log_ctx, "Unable to write %zu bytes to file.",
+                ctx->sysprint_buf.len_str);
+            // not much more error handling we can do here
+        }
+        free(ctx->sysprint_buf.buf);
+    }
+
     info(ctx->log_ctx, "Systracelogger statistics: %u overflowed packets, "
          "%u trace events, %u sysprint events", ctx->stats.overflowed_events,
          ctx->stats.trace_events, ctx->stats.sysprint_events);
