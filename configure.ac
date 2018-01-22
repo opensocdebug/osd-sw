@@ -139,6 +139,7 @@ AM_CFLAGS="-Wall \
     -Wsign-compare -Wchar-subscripts \
     -Wstrict-prototypes -Wshadow \
     -Wformat-security -Wtype-limits \
+    -fno-omit-frame-pointer \
     -fstack-protector \
     -ffunction-sections \
     -fdata-sections \
