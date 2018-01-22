@@ -701,9 +701,7 @@ static osd_result disconnect_from_hostctrl(struct osd_gateway_ctx *ctx)
         return OSD_OK;
     }
 
-    dbg(ctx->log_ctx, "Sending worker status to disconnect");
     rv = worker_main_send_status(ctx->ioworker_ctx, "I-DISCONNECT", 0);
-    dbg(ctx->log_ctx, "Sending worker status to disconnect. got rv=%d", rv);
     if (rv != OSD_ERROR_NOT_CONNECTED) {
         osd_result retval;
         rv = worker_wait_for_status(ctx->ioworker_ctx->inproc_socket,
@@ -715,7 +713,6 @@ static osd_result disconnect_from_hostctrl(struct osd_gateway_ctx *ctx)
             return retval;
         }
     }
-    dbg(ctx->log_ctx, "Sending worker status to disconnect DONE");
 
     ctx->is_connected_to_hostctrl = false;
 
@@ -766,11 +763,8 @@ static osd_result disconnect_from_device(struct osd_gateway_ctx *ctx)
 API_EXPORT
 osd_result osd_gateway_disconnect(struct osd_gateway_ctx *ctx)
 {
-    dbg(ctx->log_ctx, "disconnecting from device");
     disconnect_from_device(ctx);
-    dbg(ctx->log_ctx, "disconnecting from hostctrl");
     disconnect_from_hostctrl(ctx);
-    dbg(ctx->log_ctx, "disconnecting from hostctrl DONE");
 
     return OSD_OK;
 }

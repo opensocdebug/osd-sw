@@ -276,7 +276,12 @@ START_TEST(test_shutdown_device_read_err)
     // It takes a bit until the failing read manifests itself on the main thread
     // of osd_gateway. Tune this sleep number if the test fails. (Or find a more
     // reliable solution.)
-    usleep(100);
+    for (int i = 0; i < 1000; i++) {
+        if (osd_gateway_is_connected(gateway_ctx) == false) {
+            break;
+        }
+        usleep(100);
+    }
 
     // check if the gateway is now disconnected
     ck_assert_uint_eq(osd_gateway_is_connected(gateway_ctx), false);
@@ -322,7 +327,12 @@ START_TEST(test_shutdown_device_write_err)
     // It takes a bit until the failing read manifests itself on the main thread
     // of osd_gateway. Tune this sleep number if the test fails. (Or find a more
     // reliable solution.)
-    usleep(100*1000); // 10 ms
+    for (int i = 0; i < 1000; i++) {
+        if (osd_gateway_is_connected(gateway_ctx) == false) {
+            break;
+        }
+        usleep(100);
+    }
 
     // check if the gateway is now disconnected
     ck_assert_uint_eq(osd_gateway_is_connected(gateway_ctx), false);
