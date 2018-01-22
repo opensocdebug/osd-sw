@@ -111,29 +111,6 @@ static int mock_host_controller_msg_reactor(zloop_t *loop, zsock_t *reader,
 
     while (f_rcv && f_exp) {
         bool frame_is_expected = zframe_eq(f_rcv, f_exp);
-
-        // debugging aid: print formatted packet data if contents are unexpected
-        if (!frame_is_expected) {
-            struct osd_packet *p;
-            osd_result rv;
-
-            if (is_data_msg_rcv) {
-                rv = osd_packet_new_from_zframe(&p, f_rcv);
-                ck_assert(OSD_SUCCEEDED(rv));
-                printf("Received packet:\n");
-                osd_packet_dump(p, stdout);
-                osd_packet_free(&p);
-            }
-
-            if (is_data_msg_exp) {
-                rv = osd_packet_new_from_zframe(&p, f_exp);
-                ck_assert(OSD_SUCCEEDED(rv));
-                printf("Expected packet:\n");
-                osd_packet_dump(p, stdout);
-                osd_packet_free(&p);
-            }
-        }
-        fflush(stdout);
         ck_assert_msg(frame_is_expected,
                       "Received unexpected data in frame %u.", frame_idx);
 
