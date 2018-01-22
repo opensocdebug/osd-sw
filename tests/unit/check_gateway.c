@@ -129,6 +129,7 @@ static void setup_gateway(void)
     log_ctx = testutil_get_log_ctx();
 
     // init
+    device_is_disconnected = 0;
     rv = osd_gateway_new(&gateway_ctx, log_ctx, "inproc://testing",
                          test_device_subnet_addr, packet_read_from_device,
                          packet_write_to_device, NULL);
@@ -192,6 +193,7 @@ static void setup(void)
  */
 static void teardown(void)
 {
+    mock_host_controller_wait_for_requests();
     mock_host_controller_wait_for_event_tx();
 
     teardown_gateway();

@@ -32,19 +32,40 @@ zlist_t *mock_event_tx_list;
 
 zframe_t *last_hostmod_identity_frame;
 
-void mock_host_controller_wait_for_event_tx()
+/**
+ * Wait until all events scheduled to be sent by the host controller are sent
+ */
+void mock_host_controller_wait_for_event_tx(void)
 {
     while (zlist_size(mock_event_tx_list) != 0) {
         usleep(10);
     }
 }
 
+/**
+ * Wait until expected incoming packets (requests) have been received
+ */
+void mock_host_controller_wait_for_requests(void)
+{
+    while (zlist_size(mock_exp_req_list) != 0) {
+        usleep(10);
+    }
+}
+
+/**
+ * Called periodically to handle shutdown signal
+ *
+ * Return -1 to shut down the mock host controller, return 0 to ignore shutdown
+ * request.
+ */
 static int mock_host_controller_shutdown_reactor(zloop_t *loop, int timer_id,
                                                  void *arg)
 {
     if (mock_host_controller_thread_cancel) {
-        // wait until all event packets have been sent before shutting down
-        if (zlist_size(mock_event_tx_list) != 0) {
+        // wait until all event packets have been sent and all expected incoming
+        // (request) packets have been received before shutting down
+        if (zlist_size(mock_event_tx_list) != 0
+            || zlist_size(mock_exp_req_list) != 0) {
             return 0;
         }
 

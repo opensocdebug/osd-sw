@@ -44,5 +44,6 @@ void mock_host_controller_expect_mod_describe(unsigned int src,
 void mock_host_controller_expect_mgmt_req(const char* cmd, const char* resp);
 void mock_host_controller_expect_diaddr_req(unsigned int diaddr);
 void mock_host_controller_expect_data_req(struct osd_packet *req, struct osd_packet *resp);
-void mock_host_controller_wait_for_event_tx();
+void mock_host_controller_wait_for_event_tx(void);
+void mock_host_controller_wait_for_requests(void);
 #endif // MOCK_HOST_CONTROLLER_H
