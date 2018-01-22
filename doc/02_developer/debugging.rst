@@ -7,6 +7,7 @@ Before `make install` is called all compiled binaries in the source tree are wra
 To run GDB on them, use the following command line:
 
 .. code-block:: sh
+
    # general
    libtool --mode=execute gdb --args YOUR_TOOL
 
@@ -19,7 +20,8 @@ GDB helpers
 GDB can call functions in the program binary when the program is stopped (e.g. when a breakpoint hit).
 This can be used to dump useful information from data structures in a readable form.
 
-.. code-block:: sh
+.. code-block:: none
+
    # dump a DI packet
    (gdb) p osd_packet_dump(pkg, stdout)
    Packet of 5 data words:
