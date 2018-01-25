@@ -33,3 +33,56 @@ This can be used to dump useful information from data structures in a readable f
      0x0000
      0x0000
    $5 = void
+
+Profiling
+---------
+Generating an execution profile of the OSD tools can be helpful to reduce the CPU consumption, increase throughput, etc.
+To generate a profile we recommend the Linux ``perf`` tool.
+(gprof doesn't play nice with ZeroMQ.)
+
+Setup perf
+""""""""""
+Install perf using the package manager of your distribution.
+
+.. code-block:: sh
+
+   # install perf
+   # for Ubuntu/Debian
+   sudo apt-get install perf
+   # for SUSE
+   sudo zypper install perf
+
+Running oprofile as non-root user requires a couple kernel settings to be changed.
+
+.. code-block:: sh
+
+   # Give access to kernel pointers
+   sudo sh -c " echo 0 > /proc/sys/kernel/kptr_restrict"
+
+   # Give access to perf events
+   sudo sh -c " echo 0 > /proc/sys/kernel/perf_event_paranoid"
+
+   # Make kernel permissions permanent after the next reboot (optional)
+   echo "kernel.kptr_restrict=0\nkernel.perf_event_paranoid=0" >> /etc/sysctl.conf"
+
+Profile application
+"""""""""""""""""""
+First, build the application as usual.
+Then, from inside the source tree, run the tool with ``perf record`` to collect an execution profile.
+
+.. code-block:: sh
+
+   # example: profile osd-target-run (without call stacks)
+   libtool --mode=execute perf record ./src/tools/osd-target-run/osd-target-run -e ~/src/baremetal-apps/hello/hello.elf --systrace -vvv
+
+   # the same with call stacks
+   libtool --mode=execute perf record -g ./src/tools/osd-target-run/osd-target-run -e ~/src/baremetal-apps/hello/hello.elf --systrace -vvv
+
+Evaluate profile
+""""""""""""""""
+``perf record`` stores the recorded events in a file called ``perf.data`` in the directory it was called in.
+To display this data nicely run ``perf report``.
+
+.. code-block:: sh
+
+   perf report
