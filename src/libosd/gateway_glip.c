@@ -94,8 +94,8 @@ static ssize_t device_read(struct glip_ctx *glip_ctx, uint16_t *buf,
     rv = glip_read_b(glip_ctx, 0, size_words * sizeof(uint16_t),
                      (uint8_t *)buf_be, &bytes_read,
                      0 /* timeout [ms]; 0 == never */);
-    if (rv == -ENOTCONN) {
-        words_read = rv;
+    if (rv == -ENOTCONN || rv == -ECANCELED) {
+        words_read = -ENOTCONN;
         goto free_return;
     } else if (rv != 0) {
         words_read = -1;
@@ -157,8 +157,8 @@ static ssize_t device_write(struct glip_ctx *glip_ctx, const uint16_t *buf,
     free(buf_be);
 #endif
 
-    if (rv == -ENOTCONN) {
-        return rv;
+    if (rv == -ENOTCONN || rv == -ECANCELED) {
+        return -ENOTCONN;
     } else if (rv != 0) {
         return -1;
     }
