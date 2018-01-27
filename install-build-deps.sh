@@ -19,7 +19,7 @@ case $(lsb_release -is) in
       libczmq-dev \
       libczmq-dbg \
       xsltproc \
-      libelf1 libelf-dev
+      libelf1 libelf-dev zlib1g zlib1g-dev
     sudo pip3 install pytest
     ;;
 
