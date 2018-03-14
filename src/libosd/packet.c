@@ -87,6 +87,7 @@ void osd_packet_free(struct osd_packet **packet_p)
 API_EXPORT
 unsigned int osd_packet_get_dest(const struct osd_packet *packet)
 {
+    assert(packet);
     assert((packet->data_size_words >= PACKET_HEADER_WORD_CNT) &&
            "The packet must be large enough for the header words.");
 
@@ -96,6 +97,7 @@ unsigned int osd_packet_get_dest(const struct osd_packet *packet)
 API_EXPORT
 unsigned int osd_packet_get_src(const struct osd_packet *packet)
 {
+    assert(packet);
     assert((packet->data_size_words >= PACKET_HEADER_WORD_CNT) &&
            "The packet must be large enough for the header words.");
 
@@ -105,6 +107,7 @@ unsigned int osd_packet_get_src(const struct osd_packet *packet)
 API_EXPORT
 unsigned int osd_packet_get_type(const struct osd_packet *packet)
 {
+    assert(packet);
     assert((packet->data_size_words >= PACKET_HEADER_WORD_CNT) &&
            "The packet must be large enough for the header words.");
 
@@ -114,6 +117,7 @@ unsigned int osd_packet_get_type(const struct osd_packet *packet)
 API_EXPORT
 unsigned int osd_packet_get_type_sub(const struct osd_packet *packet)
 {
+    assert(packet);
     assert((packet->data_size_words >= PACKET_HEADER_WORD_CNT) &&
            "The packet must be large enough for the header words.");
 
@@ -128,6 +132,7 @@ osd_result osd_packet_set_header(struct osd_packet *packet,
                                  const enum osd_packet_type type,
                                  const unsigned int type_sub)
 {
+    assert(packet);
     assert((packet->data_size_words >= PACKET_HEADER_WORD_CNT) &&
            "The packet must be large enough for the header words.");
 
@@ -158,6 +163,7 @@ osd_result osd_packet_set_header(struct osd_packet *packet,
 API_EXPORT
 size_t osd_packet_sizeof(const struct osd_packet *packet)
 {
+    assert(packet);
     return packet->data_size_words * sizeof(uint16_t);
 }
 
