@@ -951,7 +951,7 @@ struct __pyx_obj_3osd_Hostmod {
 };
 
 
-/* "osd.pyx":367
+/* "osd.pyx":366
  * 
  * 
  * cdef class GatewayGlip:             # <<<<<<<<<<<<<<
@@ -964,7 +964,7 @@ struct __pyx_obj_3osd_GatewayGlip {
 };
 
 
-/* "osd.pyx":424
+/* "osd.pyx":423
  * 
  * 
  * cdef class Hostctrl:             # <<<<<<<<<<<<<<
@@ -977,7 +977,7 @@ struct __pyx_obj_3osd_Hostctrl {
 };
 
 
-/* "osd.pyx":453
+/* "osd.pyx":452
  * 
  * 
  * cdef class Module:             # <<<<<<<<<<<<<<
@@ -989,7 +989,7 @@ struct __pyx_obj_3osd_Module {
 };
 
 
-/* "osd.pyx":463
+/* "osd.pyx":462
  * 
  * 
  * cdef class MemoryDescriptor:             # <<<<<<<<<<<<<<
@@ -1002,7 +1002,7 @@ struct __pyx_obj_3osd_MemoryDescriptor {
 };
 
 
-/* "osd.pyx":536
+/* "osd.pyx":535
  *     return data
  * 
  * cdef class MemoryAccess:             # <<<<<<<<<<<<<<
@@ -1015,7 +1015,7 @@ struct __pyx_obj_3osd_MemoryAccess {
 };
 
 
-/* "osd.pyx":603
+/* "osd.pyx":602
  * 
  * 
  * cdef class SystraceLogger:             # <<<<<<<<<<<<<<
@@ -1032,7 +1032,7 @@ struct __pyx_obj_3osd_SystraceLogger {
 };
 
 
-/* "osd.pyx":698
+/* "osd.pyx":697
  * 
  * 
  * cdef class CoretraceLogger:             # <<<<<<<<<<<<<<
@@ -2419,19 +2419,19 @@ static int __pyx_pf_3osd_7Hostmod___cinit__(struct __pyx_obj_3osd_Hostmod *__pyx
 static void __pyx_pf_3osd_7Hostmod_2__dealloc__(struct __pyx_obj_3osd_Hostmod *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_3osd_7Hostmod_4connect(struct __pyx_obj_3osd_Hostmod *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_3osd_7Hostmod_6disconnect(struct __pyx_obj_3osd_Hostmod *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_3osd_7Hostmod_12is_connected___get__(struct __pyx_obj_3osd_Hostmod *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_3osd_7Hostmod_8is_connected(struct __pyx_obj_3osd_Hostmod *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_3osd_7Hostmod_6diaddr___get__(struct __pyx_obj_3osd_Hostmod *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_3osd_7Hostmod_8reg_read(struct __pyx_obj_3osd_Hostmod *__pyx_v_self, PyObject *__pyx_v_diaddr, PyObject *__pyx_v_reg_addr, PyObject *__pyx_v_reg_size_bit, PyObject *__pyx_v_flags); /* proto */
-static PyObject *__pyx_pf_3osd_7Hostmod_10reg_write(struct __pyx_obj_3osd_Hostmod *__pyx_v_self, PyObject *__pyx_v_data, PyObject *__pyx_v_diaddr, PyObject *__pyx_v_reg_addr, PyObject *__pyx_v_reg_size_bit, PyObject *__pyx_v_flags); /* proto */
-static PyObject *__pyx_pf_3osd_7Hostmod_12get_modules(struct __pyx_obj_3osd_Hostmod *__pyx_v_self, PyObject *__pyx_v_subnet_addr); /* proto */
-static PyObject *__pyx_pf_3osd_7Hostmod_14mod_describe(struct __pyx_obj_3osd_Hostmod *__pyx_v_self, PyObject *__pyx_v_di_addr); /* proto */
-static PyObject *__pyx_pf_3osd_7Hostmod_16mod_set_event_dest(struct __pyx_obj_3osd_Hostmod *__pyx_v_self, PyObject *__pyx_v_di_addr, PyObject *__pyx_v_flags); /* proto */
-static PyObject *__pyx_pf_3osd_7Hostmod_18mod_set_event_active(struct __pyx_obj_3osd_Hostmod *__pyx_v_self, PyObject *__pyx_v_di_addr, PyObject *__pyx_v_enabled, PyObject *__pyx_v_flags); /* proto */
-static PyObject *__pyx_pf_3osd_7Hostmod_20get_max_event_words(struct __pyx_obj_3osd_Hostmod *__pyx_v_self, PyObject *__pyx_v_di_addr_target); /* proto */
-static PyObject *__pyx_pf_3osd_7Hostmod_22event_send(struct __pyx_obj_3osd_Hostmod *__pyx_v_self, struct __pyx_obj_3osd_Packet *__pyx_v_event_pkg); /* proto */
-static PyObject *__pyx_pf_3osd_7Hostmod_24event_receive(struct __pyx_obj_3osd_Hostmod *__pyx_v_self, PyObject *__pyx_v_flags); /* proto */
-static PyObject *__pyx_pf_3osd_7Hostmod_26__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_3osd_Hostmod *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_3osd_7Hostmod_28__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_3osd_Hostmod *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
+static PyObject *__pyx_pf_3osd_7Hostmod_10reg_read(struct __pyx_obj_3osd_Hostmod *__pyx_v_self, PyObject *__pyx_v_diaddr, PyObject *__pyx_v_reg_addr, PyObject *__pyx_v_reg_size_bit, PyObject *__pyx_v_flags); /* proto */
+static PyObject *__pyx_pf_3osd_7Hostmod_12reg_write(struct __pyx_obj_3osd_Hostmod *__pyx_v_self, PyObject *__pyx_v_data, PyObject *__pyx_v_diaddr, PyObject *__pyx_v_reg_addr, PyObject *__pyx_v_reg_size_bit, PyObject *__pyx_v_flags); /* proto */
+static PyObject *__pyx_pf_3osd_7Hostmod_14get_modules(struct __pyx_obj_3osd_Hostmod *__pyx_v_self, PyObject *__pyx_v_subnet_addr); /* proto */
+static PyObject *__pyx_pf_3osd_7Hostmod_16mod_describe(struct __pyx_obj_3osd_Hostmod *__pyx_v_self, PyObject *__pyx_v_di_addr); /* proto */
+static PyObject *__pyx_pf_3osd_7Hostmod_18mod_set_event_dest(struct __pyx_obj_3osd_Hostmod *__pyx_v_self, PyObject *__pyx_v_di_addr, PyObject *__pyx_v_flags); /* proto */
+static PyObject *__pyx_pf_3osd_7Hostmod_20mod_set_event_active(struct __pyx_obj_3osd_Hostmod *__pyx_v_self, PyObject *__pyx_v_di_addr, PyObject *__pyx_v_enabled, PyObject *__pyx_v_flags); /* proto */
+static PyObject *__pyx_pf_3osd_7Hostmod_22get_max_event_words(struct __pyx_obj_3osd_Hostmod *__pyx_v_self, PyObject *__pyx_v_di_addr_target); /* proto */
+static PyObject *__pyx_pf_3osd_7Hostmod_24event_send(struct __pyx_obj_3osd_Hostmod *__pyx_v_self, struct __pyx_obj_3osd_Packet *__pyx_v_event_pkg); /* proto */
+static PyObject *__pyx_pf_3osd_7Hostmod_26event_receive(struct __pyx_obj_3osd_Hostmod *__pyx_v_self, PyObject *__pyx_v_flags); /* proto */
+static PyObject *__pyx_pf_3osd_7Hostmod_28__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_3osd_Hostmod *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_3osd_7Hostmod_30__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_3osd_Hostmod *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
 static int __pyx_pf_3osd_11GatewayGlip___cinit__(struct __pyx_obj_3osd_GatewayGlip *__pyx_v_self, struct __pyx_obj_3osd_Log *__pyx_v_log, PyObject *__pyx_v_host_controller_address, PyObject *__pyx_v_device_subnet_addr, PyObject *__pyx_v_glip_backend_name, PyObject *__pyx_v_glip_backend_options); /* proto */
 static void __pyx_pf_3osd_11GatewayGlip_2__dealloc__(struct __pyx_obj_3osd_GatewayGlip *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_3osd_11GatewayGlip_4connect(struct __pyx_obj_3osd_GatewayGlip *__pyx_v_self); /* proto */
@@ -6049,7 +6049,7 @@ static PyObject *__pyx_pf_3osd_7Hostmod_6disconnect(struct __pyx_obj_3osd_Hostmo
  *     def disconnect(self):
  *         cosd.osd_hostmod_disconnect(self._cself)             # <<<<<<<<<<<<<<
  * 
- *     @property
+ *     def is_connected(self):
  */
   osd_hostmod_disconnect(__pyx_v_self->_cself);
 
@@ -6068,50 +6068,51 @@ static PyObject *__pyx_pf_3osd_7Hostmod_6disconnect(struct __pyx_obj_3osd_Hostmo
   return __pyx_r;
 }
 
-/* "osd.pyx":275
+/* "osd.pyx":274
+ *         cosd.osd_hostmod_disconnect(self._cself)
  * 
- *     @property
  *     def is_connected(self):             # <<<<<<<<<<<<<<
  *         return cosd.osd_hostmod_is_connected(self._cself)
  * 
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_3osd_7Hostmod_12is_connected_1__get__(PyObject *__pyx_v_self); /*proto*/
-static PyObject *__pyx_pw_3osd_7Hostmod_12is_connected_1__get__(PyObject *__pyx_v_self) {
+static PyObject *__pyx_pw_3osd_7Hostmod_9is_connected(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static char __pyx_doc_3osd_7Hostmod_8is_connected[] = "Hostmod.is_connected(self)";
+static PyObject *__pyx_pw_3osd_7Hostmod_9is_connected(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("__get__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_3osd_7Hostmod_12is_connected___get__(((struct __pyx_obj_3osd_Hostmod *)__pyx_v_self));
+  __Pyx_RefNannySetupContext("is_connected (wrapper)", 0);
+  __pyx_r = __pyx_pf_3osd_7Hostmod_8is_connected(((struct __pyx_obj_3osd_Hostmod *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_3osd_7Hostmod_12is_connected___get__(struct __pyx_obj_3osd_Hostmod *__pyx_v_self) {
+static PyObject *__pyx_pf_3osd_7Hostmod_8is_connected(struct __pyx_obj_3osd_Hostmod *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
-  __Pyx_RefNannySetupContext("__get__", 0);
+  __Pyx_RefNannySetupContext("is_connected", 0);
 
-  /* "osd.pyx":276
- *     @property
+  /* "osd.pyx":275
+ * 
  *     def is_connected(self):
  *         return cosd.osd_hostmod_is_connected(self._cself)             # <<<<<<<<<<<<<<
  * 
  *     @property
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(osd_hostmod_is_connected(__pyx_v_self->_cself)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 276, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(osd_hostmod_is_connected(__pyx_v_self->_cself)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 275, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "osd.pyx":275
+  /* "osd.pyx":274
+ *         cosd.osd_hostmod_disconnect(self._cself)
  * 
- *     @property
  *     def is_connected(self):             # <<<<<<<<<<<<<<
  *         return cosd.osd_hostmod_is_connected(self._cself)
  * 
@@ -6120,7 +6121,7 @@ static PyObject *__pyx_pf_3osd_7Hostmod_12is_connected___get__(struct __pyx_obj_
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("osd.Hostmod.is_connected.__get__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("osd.Hostmod.is_connected", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -6128,7 +6129,7 @@ static PyObject *__pyx_pf_3osd_7Hostmod_12is_connected___get__(struct __pyx_obj_
   return __pyx_r;
 }
 
-/* "osd.pyx":279
+/* "osd.pyx":278
  * 
  *     @property
  *     def diaddr(self):             # <<<<<<<<<<<<<<
@@ -6157,21 +6158,21 @@ static PyObject *__pyx_pf_3osd_7Hostmod_6diaddr___get__(struct __pyx_obj_3osd_Ho
   int __pyx_t_3;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "osd.pyx":280
+  /* "osd.pyx":279
  *     @property
  *     def diaddr(self):
  *         if not self.is_connected:             # <<<<<<<<<<<<<<
  *             return None
  * 
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_is_connected); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 280, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_is_connected); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 279, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 280, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 279, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_3 = ((!__pyx_t_2) != 0);
   if (__pyx_t_3) {
 
-    /* "osd.pyx":281
+    /* "osd.pyx":280
  *     def diaddr(self):
  *         if not self.is_connected:
  *             return None             # <<<<<<<<<<<<<<
@@ -6183,7 +6184,7 @@ static PyObject *__pyx_pf_3osd_7Hostmod_6diaddr___get__(struct __pyx_obj_3osd_Ho
     __pyx_r = Py_None;
     goto __pyx_L0;
 
-    /* "osd.pyx":280
+    /* "osd.pyx":279
  *     @property
  *     def diaddr(self):
  *         if not self.is_connected:             # <<<<<<<<<<<<<<
@@ -6192,7 +6193,7 @@ static PyObject *__pyx_pf_3osd_7Hostmod_6diaddr___get__(struct __pyx_obj_3osd_Ho
  */
   }
 
-  /* "osd.pyx":283
+  /* "osd.pyx":282
  *             return None
  * 
  *         return cosd.osd_hostmod_get_diaddr(self._cself)             # <<<<<<<<<<<<<<
@@ -6200,13 +6201,13 @@ static PyObject *__pyx_pf_3osd_7Hostmod_6diaddr___get__(struct __pyx_obj_3osd_Ho
  *     def reg_read(self, diaddr, reg_addr, reg_size_bit = 16, flags = 0):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_uint16_t(osd_hostmod_get_diaddr(__pyx_v_self->_cself)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 283, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_uint16_t(osd_hostmod_get_diaddr(__pyx_v_self->_cself)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 282, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "osd.pyx":279
+  /* "osd.pyx":278
  * 
  *     @property
  *     def diaddr(self):             # <<<<<<<<<<<<<<
@@ -6225,7 +6226,7 @@ static PyObject *__pyx_pf_3osd_7Hostmod_6diaddr___get__(struct __pyx_obj_3osd_Ho
   return __pyx_r;
 }
 
-/* "osd.pyx":285
+/* "osd.pyx":284
  *         return cosd.osd_hostmod_get_diaddr(self._cself)
  * 
  *     def reg_read(self, diaddr, reg_addr, reg_size_bit = 16, flags = 0):             # <<<<<<<<<<<<<<
@@ -6234,9 +6235,9 @@ static PyObject *__pyx_pf_3osd_7Hostmod_6diaddr___get__(struct __pyx_obj_3osd_Ho
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_3osd_7Hostmod_9reg_read(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_3osd_7Hostmod_8reg_read[] = "Hostmod.reg_read(self, diaddr, reg_addr, reg_size_bit=16, flags=0)";
-static PyObject *__pyx_pw_3osd_7Hostmod_9reg_read(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_3osd_7Hostmod_11reg_read(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static char __pyx_doc_3osd_7Hostmod_10reg_read[] = "Hostmod.reg_read(self, diaddr, reg_addr, reg_size_bit=16, flags=0)";
+static PyObject *__pyx_pw_3osd_7Hostmod_11reg_read(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_diaddr = 0;
   PyObject *__pyx_v_reg_addr = 0;
   PyObject *__pyx_v_reg_size_bit = 0;
@@ -6273,7 +6274,7 @@ static PyObject *__pyx_pw_3osd_7Hostmod_9reg_read(PyObject *__pyx_v_self, PyObje
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_reg_addr)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("reg_read", 0, 2, 4, 1); __PYX_ERR(0, 285, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("reg_read", 0, 2, 4, 1); __PYX_ERR(0, 284, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
@@ -6289,7 +6290,7 @@ static PyObject *__pyx_pw_3osd_7Hostmod_9reg_read(PyObject *__pyx_v_self, PyObje
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "reg_read") < 0)) __PYX_ERR(0, 285, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "reg_read") < 0)) __PYX_ERR(0, 284, __pyx_L3_error)
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -6310,20 +6311,20 @@ static PyObject *__pyx_pw_3osd_7Hostmod_9reg_read(PyObject *__pyx_v_self, PyObje
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("reg_read", 0, 2, 4, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 285, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("reg_read", 0, 2, 4, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 284, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("osd.Hostmod.reg_read", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_3osd_7Hostmod_8reg_read(((struct __pyx_obj_3osd_Hostmod *)__pyx_v_self), __pyx_v_diaddr, __pyx_v_reg_addr, __pyx_v_reg_size_bit, __pyx_v_flags);
+  __pyx_r = __pyx_pf_3osd_7Hostmod_10reg_read(((struct __pyx_obj_3osd_Hostmod *)__pyx_v_self), __pyx_v_diaddr, __pyx_v_reg_addr, __pyx_v_reg_size_bit, __pyx_v_flags);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_3osd_7Hostmod_8reg_read(struct __pyx_obj_3osd_Hostmod *__pyx_v_self, PyObject *__pyx_v_diaddr, PyObject *__pyx_v_reg_addr, PyObject *__pyx_v_reg_size_bit, PyObject *__pyx_v_flags) {
+static PyObject *__pyx_pf_3osd_7Hostmod_10reg_read(struct __pyx_obj_3osd_Hostmod *__pyx_v_self, PyObject *__pyx_v_diaddr, PyObject *__pyx_v_reg_addr, PyObject *__pyx_v_reg_size_bit, PyObject *__pyx_v_flags) {
   uint16_t __pyx_v_outvalue;
   osd_result __pyx_v_rv;
   PyObject *__pyx_r = NULL;
@@ -6337,32 +6338,32 @@ static PyObject *__pyx_pf_3osd_7Hostmod_8reg_read(struct __pyx_obj_3osd_Hostmod 
   PyObject *__pyx_t_7 = NULL;
   __Pyx_RefNannySetupContext("reg_read", 0);
 
-  /* "osd.pyx":287
+  /* "osd.pyx":286
  *     def reg_read(self, diaddr, reg_addr, reg_size_bit = 16, flags = 0):
  *         cdef uint16_t outvalue
  *         if reg_size_bit != 16:             # <<<<<<<<<<<<<<
  *             raise Exception("XXX: Extend to support other sizes than 16 bit registers")
  * 
  */
-  __pyx_t_1 = PyObject_RichCompare(__pyx_v_reg_size_bit, __pyx_int_16, Py_NE); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 287, __pyx_L1_error)
-  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 287, __pyx_L1_error)
+  __pyx_t_1 = PyObject_RichCompare(__pyx_v_reg_size_bit, __pyx_int_16, Py_NE); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 286, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 286, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (__pyx_t_2) {
 
-    /* "osd.pyx":288
+    /* "osd.pyx":287
  *         cdef uint16_t outvalue
  *         if reg_size_bit != 16:
  *             raise Exception("XXX: Extend to support other sizes than 16 bit registers")             # <<<<<<<<<<<<<<
  * 
  *         rv = cosd.osd_hostmod_reg_read(self._cself, &outvalue, diaddr, reg_addr,
  */
-    __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)(&((PyTypeObject*)PyExc_Exception)[0])), __pyx_tuple__7, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 288, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)(&((PyTypeObject*)PyExc_Exception)[0])), __pyx_tuple__7, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 287, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_Raise(__pyx_t_1, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __PYX_ERR(0, 288, __pyx_L1_error)
+    __PYX_ERR(0, 287, __pyx_L1_error)
 
-    /* "osd.pyx":287
+    /* "osd.pyx":286
  *     def reg_read(self, diaddr, reg_addr, reg_size_bit = 16, flags = 0):
  *         cdef uint16_t outvalue
  *         if reg_size_bit != 16:             # <<<<<<<<<<<<<<
@@ -6371,27 +6372,27 @@ static PyObject *__pyx_pf_3osd_7Hostmod_8reg_read(struct __pyx_obj_3osd_Hostmod 
  */
   }
 
-  /* "osd.pyx":290
+  /* "osd.pyx":289
  *             raise Exception("XXX: Extend to support other sizes than 16 bit registers")
  * 
  *         rv = cosd.osd_hostmod_reg_read(self._cself, &outvalue, diaddr, reg_addr,             # <<<<<<<<<<<<<<
  *                                        reg_size_bit, flags)
  *         check_osd_result(rv)
  */
-  __pyx_t_3 = __Pyx_PyInt_As_uint16_t(__pyx_v_diaddr); if (unlikely((__pyx_t_3 == ((uint16_t)-1)) && PyErr_Occurred())) __PYX_ERR(0, 290, __pyx_L1_error)
-  __pyx_t_4 = __Pyx_PyInt_As_uint16_t(__pyx_v_reg_addr); if (unlikely((__pyx_t_4 == ((uint16_t)-1)) && PyErr_Occurred())) __PYX_ERR(0, 290, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyInt_As_uint16_t(__pyx_v_diaddr); if (unlikely((__pyx_t_3 == ((uint16_t)-1)) && PyErr_Occurred())) __PYX_ERR(0, 289, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_As_uint16_t(__pyx_v_reg_addr); if (unlikely((__pyx_t_4 == ((uint16_t)-1)) && PyErr_Occurred())) __PYX_ERR(0, 289, __pyx_L1_error)
 
-  /* "osd.pyx":291
+  /* "osd.pyx":290
  * 
  *         rv = cosd.osd_hostmod_reg_read(self._cself, &outvalue, diaddr, reg_addr,
  *                                        reg_size_bit, flags)             # <<<<<<<<<<<<<<
  *         check_osd_result(rv)
  * 
  */
-  __pyx_t_5 = __Pyx_PyInt_As_int(__pyx_v_reg_size_bit); if (unlikely((__pyx_t_5 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 291, __pyx_L1_error)
-  __pyx_t_6 = __Pyx_PyInt_As_int(__pyx_v_flags); if (unlikely((__pyx_t_6 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 291, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyInt_As_int(__pyx_v_reg_size_bit); if (unlikely((__pyx_t_5 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 290, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyInt_As_int(__pyx_v_flags); if (unlikely((__pyx_t_6 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 290, __pyx_L1_error)
 
-  /* "osd.pyx":290
+  /* "osd.pyx":289
  *             raise Exception("XXX: Extend to support other sizes than 16 bit registers")
  * 
  *         rv = cosd.osd_hostmod_reg_read(self._cself, &outvalue, diaddr, reg_addr,             # <<<<<<<<<<<<<<
@@ -6400,21 +6401,21 @@ static PyObject *__pyx_pf_3osd_7Hostmod_8reg_read(struct __pyx_obj_3osd_Hostmod 
  */
   __pyx_v_rv = osd_hostmod_reg_read(__pyx_v_self->_cself, (&__pyx_v_outvalue), __pyx_t_3, __pyx_t_4, __pyx_t_5, __pyx_t_6);
 
-  /* "osd.pyx":292
+  /* "osd.pyx":291
  *         rv = cosd.osd_hostmod_reg_read(self._cself, &outvalue, diaddr, reg_addr,
  *                                        reg_size_bit, flags)
  *         check_osd_result(rv)             # <<<<<<<<<<<<<<
  * 
  *         return outvalue
  */
-  __pyx_t_1 = __Pyx_PyInt_From_osd_result(__pyx_v_rv); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 292, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_osd_result(__pyx_v_rv); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 291, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_7 = __pyx_f_3osd_check_osd_result(__pyx_t_1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 292, __pyx_L1_error)
+  __pyx_t_7 = __pyx_f_3osd_check_osd_result(__pyx_t_1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 291, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-  /* "osd.pyx":294
+  /* "osd.pyx":293
  *         check_osd_result(rv)
  * 
  *         return outvalue             # <<<<<<<<<<<<<<
@@ -6422,13 +6423,13 @@ static PyObject *__pyx_pf_3osd_7Hostmod_8reg_read(struct __pyx_obj_3osd_Hostmod 
  *     def reg_write(self, data, diaddr, reg_addr, reg_size_bit = 16, flags = 0):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_7 = __Pyx_PyInt_From_uint16_t(__pyx_v_outvalue); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 294, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyInt_From_uint16_t(__pyx_v_outvalue); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 293, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __pyx_r = __pyx_t_7;
   __pyx_t_7 = 0;
   goto __pyx_L0;
 
-  /* "osd.pyx":285
+  /* "osd.pyx":284
  *         return cosd.osd_hostmod_get_diaddr(self._cself)
  * 
  *     def reg_read(self, diaddr, reg_addr, reg_size_bit = 16, flags = 0):             # <<<<<<<<<<<<<<
@@ -6448,7 +6449,7 @@ static PyObject *__pyx_pf_3osd_7Hostmod_8reg_read(struct __pyx_obj_3osd_Hostmod 
   return __pyx_r;
 }
 
-/* "osd.pyx":296
+/* "osd.pyx":295
  *         return outvalue
  * 
  *     def reg_write(self, data, diaddr, reg_addr, reg_size_bit = 16, flags = 0):             # <<<<<<<<<<<<<<
@@ -6457,9 +6458,9 @@ static PyObject *__pyx_pf_3osd_7Hostmod_8reg_read(struct __pyx_obj_3osd_Hostmod 
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_3osd_7Hostmod_11reg_write(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_3osd_7Hostmod_10reg_write[] = "Hostmod.reg_write(self, data, diaddr, reg_addr, reg_size_bit=16, flags=0)";
-static PyObject *__pyx_pw_3osd_7Hostmod_11reg_write(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_3osd_7Hostmod_13reg_write(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static char __pyx_doc_3osd_7Hostmod_12reg_write[] = "Hostmod.reg_write(self, data, diaddr, reg_addr, reg_size_bit=16, flags=0)";
+static PyObject *__pyx_pw_3osd_7Hostmod_13reg_write(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_data = 0;
   PyObject *__pyx_v_diaddr = 0;
   PyObject *__pyx_v_reg_addr = 0;
@@ -6499,13 +6500,13 @@ static PyObject *__pyx_pw_3osd_7Hostmod_11reg_write(PyObject *__pyx_v_self, PyOb
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_diaddr)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("reg_write", 0, 3, 5, 1); __PYX_ERR(0, 296, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("reg_write", 0, 3, 5, 1); __PYX_ERR(0, 295, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_reg_addr)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("reg_write", 0, 3, 5, 2); __PYX_ERR(0, 296, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("reg_write", 0, 3, 5, 2); __PYX_ERR(0, 295, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  3:
@@ -6521,7 +6522,7 @@ static PyObject *__pyx_pw_3osd_7Hostmod_11reg_write(PyObject *__pyx_v_self, PyOb
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "reg_write") < 0)) __PYX_ERR(0, 296, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "reg_write") < 0)) __PYX_ERR(0, 295, __pyx_L3_error)
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -6544,20 +6545,20 @@ static PyObject *__pyx_pw_3osd_7Hostmod_11reg_write(PyObject *__pyx_v_self, PyOb
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("reg_write", 0, 3, 5, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 296, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("reg_write", 0, 3, 5, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 295, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("osd.Hostmod.reg_write", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_3osd_7Hostmod_10reg_write(((struct __pyx_obj_3osd_Hostmod *)__pyx_v_self), __pyx_v_data, __pyx_v_diaddr, __pyx_v_reg_addr, __pyx_v_reg_size_bit, __pyx_v_flags);
+  __pyx_r = __pyx_pf_3osd_7Hostmod_12reg_write(((struct __pyx_obj_3osd_Hostmod *)__pyx_v_self), __pyx_v_data, __pyx_v_diaddr, __pyx_v_reg_addr, __pyx_v_reg_size_bit, __pyx_v_flags);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_3osd_7Hostmod_10reg_write(struct __pyx_obj_3osd_Hostmod *__pyx_v_self, PyObject *__pyx_v_data, PyObject *__pyx_v_diaddr, PyObject *__pyx_v_reg_addr, PyObject *__pyx_v_reg_size_bit, PyObject *__pyx_v_flags) {
+static PyObject *__pyx_pf_3osd_7Hostmod_12reg_write(struct __pyx_obj_3osd_Hostmod *__pyx_v_self, PyObject *__pyx_v_data, PyObject *__pyx_v_diaddr, PyObject *__pyx_v_reg_addr, PyObject *__pyx_v_reg_size_bit, PyObject *__pyx_v_flags) {
   uint16_t __pyx_v_c_data;
   osd_result __pyx_v_rv;
   PyObject *__pyx_r = NULL;
@@ -6571,32 +6572,32 @@ static PyObject *__pyx_pf_3osd_7Hostmod_10reg_write(struct __pyx_obj_3osd_Hostmo
   PyObject *__pyx_t_7 = NULL;
   __Pyx_RefNannySetupContext("reg_write", 0);
 
-  /* "osd.pyx":297
+  /* "osd.pyx":296
  * 
  *     def reg_write(self, data, diaddr, reg_addr, reg_size_bit = 16, flags = 0):
  *         if reg_size_bit != 16:             # <<<<<<<<<<<<<<
  *             raise Exception("XXX: Extend to support other sizes than 16 bit registers")
  * 
  */
-  __pyx_t_1 = PyObject_RichCompare(__pyx_v_reg_size_bit, __pyx_int_16, Py_NE); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 297, __pyx_L1_error)
-  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 297, __pyx_L1_error)
+  __pyx_t_1 = PyObject_RichCompare(__pyx_v_reg_size_bit, __pyx_int_16, Py_NE); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 296, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 296, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (__pyx_t_2) {
 
-    /* "osd.pyx":298
+    /* "osd.pyx":297
  *     def reg_write(self, data, diaddr, reg_addr, reg_size_bit = 16, flags = 0):
  *         if reg_size_bit != 16:
  *             raise Exception("XXX: Extend to support other sizes than 16 bit registers")             # <<<<<<<<<<<<<<
  * 
  *         cdef uint16_t c_data = data
  */
-    __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)(&((PyTypeObject*)PyExc_Exception)[0])), __pyx_tuple__8, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 298, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)(&((PyTypeObject*)PyExc_Exception)[0])), __pyx_tuple__8, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 297, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_Raise(__pyx_t_1, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __PYX_ERR(0, 298, __pyx_L1_error)
+    __PYX_ERR(0, 297, __pyx_L1_error)
 
-    /* "osd.pyx":297
+    /* "osd.pyx":296
  * 
  *     def reg_write(self, data, diaddr, reg_addr, reg_size_bit = 16, flags = 0):
  *         if reg_size_bit != 16:             # <<<<<<<<<<<<<<
@@ -6605,37 +6606,37 @@ static PyObject *__pyx_pf_3osd_7Hostmod_10reg_write(struct __pyx_obj_3osd_Hostmo
  */
   }
 
-  /* "osd.pyx":300
+  /* "osd.pyx":299
  *             raise Exception("XXX: Extend to support other sizes than 16 bit registers")
  * 
  *         cdef uint16_t c_data = data             # <<<<<<<<<<<<<<
  * 
  *         rv = cosd.osd_hostmod_reg_write(self._cself, &c_data, diaddr, reg_addr,
  */
-  __pyx_t_3 = __Pyx_PyInt_As_uint16_t(__pyx_v_data); if (unlikely((__pyx_t_3 == ((uint16_t)-1)) && PyErr_Occurred())) __PYX_ERR(0, 300, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyInt_As_uint16_t(__pyx_v_data); if (unlikely((__pyx_t_3 == ((uint16_t)-1)) && PyErr_Occurred())) __PYX_ERR(0, 299, __pyx_L1_error)
   __pyx_v_c_data = __pyx_t_3;
 
-  /* "osd.pyx":302
+  /* "osd.pyx":301
  *         cdef uint16_t c_data = data
  * 
  *         rv = cosd.osd_hostmod_reg_write(self._cself, &c_data, diaddr, reg_addr,             # <<<<<<<<<<<<<<
  *                                         reg_size_bit, flags)
  *         check_osd_result(rv)
  */
-  __pyx_t_3 = __Pyx_PyInt_As_uint16_t(__pyx_v_diaddr); if (unlikely((__pyx_t_3 == ((uint16_t)-1)) && PyErr_Occurred())) __PYX_ERR(0, 302, __pyx_L1_error)
-  __pyx_t_4 = __Pyx_PyInt_As_uint16_t(__pyx_v_reg_addr); if (unlikely((__pyx_t_4 == ((uint16_t)-1)) && PyErr_Occurred())) __PYX_ERR(0, 302, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyInt_As_uint16_t(__pyx_v_diaddr); if (unlikely((__pyx_t_3 == ((uint16_t)-1)) && PyErr_Occurred())) __PYX_ERR(0, 301, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_As_uint16_t(__pyx_v_reg_addr); if (unlikely((__pyx_t_4 == ((uint16_t)-1)) && PyErr_Occurred())) __PYX_ERR(0, 301, __pyx_L1_error)
 
-  /* "osd.pyx":303
+  /* "osd.pyx":302
  * 
  *         rv = cosd.osd_hostmod_reg_write(self._cself, &c_data, diaddr, reg_addr,
  *                                         reg_size_bit, flags)             # <<<<<<<<<<<<<<
  *         check_osd_result(rv)
  * 
  */
-  __pyx_t_5 = __Pyx_PyInt_As_int(__pyx_v_reg_size_bit); if (unlikely((__pyx_t_5 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 303, __pyx_L1_error)
-  __pyx_t_6 = __Pyx_PyInt_As_int(__pyx_v_flags); if (unlikely((__pyx_t_6 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 303, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyInt_As_int(__pyx_v_reg_size_bit); if (unlikely((__pyx_t_5 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 302, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyInt_As_int(__pyx_v_flags); if (unlikely((__pyx_t_6 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 302, __pyx_L1_error)
 
-  /* "osd.pyx":302
+  /* "osd.pyx":301
  *         cdef uint16_t c_data = data
  * 
  *         rv = cosd.osd_hostmod_reg_write(self._cself, &c_data, diaddr, reg_addr,             # <<<<<<<<<<<<<<
@@ -6644,21 +6645,21 @@ static PyObject *__pyx_pf_3osd_7Hostmod_10reg_write(struct __pyx_obj_3osd_Hostmo
  */
   __pyx_v_rv = osd_hostmod_reg_write(__pyx_v_self->_cself, (&__pyx_v_c_data), __pyx_t_3, __pyx_t_4, __pyx_t_5, __pyx_t_6);
 
-  /* "osd.pyx":304
+  /* "osd.pyx":303
  *         rv = cosd.osd_hostmod_reg_write(self._cself, &c_data, diaddr, reg_addr,
  *                                         reg_size_bit, flags)
  *         check_osd_result(rv)             # <<<<<<<<<<<<<<
  * 
  *     def get_modules(self, subnet_addr):
  */
-  __pyx_t_1 = __Pyx_PyInt_From_osd_result(__pyx_v_rv); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 304, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_osd_result(__pyx_v_rv); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 303, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_7 = __pyx_f_3osd_check_osd_result(__pyx_t_1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 304, __pyx_L1_error)
+  __pyx_t_7 = __pyx_f_3osd_check_osd_result(__pyx_t_1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 303, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-  /* "osd.pyx":296
+  /* "osd.pyx":295
  *         return outvalue
  * 
  *     def reg_write(self, data, diaddr, reg_addr, reg_size_bit = 16, flags = 0):             # <<<<<<<<<<<<<<
@@ -6680,7 +6681,7 @@ static PyObject *__pyx_pf_3osd_7Hostmod_10reg_write(struct __pyx_obj_3osd_Hostmo
   return __pyx_r;
 }
 
-/* "osd.pyx":306
+/* "osd.pyx":305
  *         check_osd_result(rv)
  * 
  *     def get_modules(self, subnet_addr):             # <<<<<<<<<<<<<<
@@ -6689,20 +6690,20 @@ static PyObject *__pyx_pf_3osd_7Hostmod_10reg_write(struct __pyx_obj_3osd_Hostmo
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_3osd_7Hostmod_13get_modules(PyObject *__pyx_v_self, PyObject *__pyx_v_subnet_addr); /*proto*/
-static char __pyx_doc_3osd_7Hostmod_12get_modules[] = "Hostmod.get_modules(self, subnet_addr)";
-static PyObject *__pyx_pw_3osd_7Hostmod_13get_modules(PyObject *__pyx_v_self, PyObject *__pyx_v_subnet_addr) {
+static PyObject *__pyx_pw_3osd_7Hostmod_15get_modules(PyObject *__pyx_v_self, PyObject *__pyx_v_subnet_addr); /*proto*/
+static char __pyx_doc_3osd_7Hostmod_14get_modules[] = "Hostmod.get_modules(self, subnet_addr)";
+static PyObject *__pyx_pw_3osd_7Hostmod_15get_modules(PyObject *__pyx_v_self, PyObject *__pyx_v_subnet_addr) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("get_modules (wrapper)", 0);
-  __pyx_r = __pyx_pf_3osd_7Hostmod_12get_modules(((struct __pyx_obj_3osd_Hostmod *)__pyx_v_self), ((PyObject *)__pyx_v_subnet_addr));
+  __pyx_r = __pyx_pf_3osd_7Hostmod_14get_modules(((struct __pyx_obj_3osd_Hostmod *)__pyx_v_self), ((PyObject *)__pyx_v_subnet_addr));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_3osd_7Hostmod_12get_modules(struct __pyx_obj_3osd_Hostmod *__pyx_v_self, PyObject *__pyx_v_subnet_addr) {
+static PyObject *__pyx_pf_3osd_7Hostmod_14get_modules(struct __pyx_obj_3osd_Hostmod *__pyx_v_self, PyObject *__pyx_v_subnet_addr) {
   struct osd_module_desc *__pyx_v_modules;
   size_t __pyx_v_modules_len;
   osd_result __pyx_v_rv;
@@ -6728,7 +6729,7 @@ static PyObject *__pyx_pf_3osd_7Hostmod_12get_modules(struct __pyx_obj_3osd_Host
   PyObject *__pyx_t_15 = NULL;
   __Pyx_RefNannySetupContext("get_modules", 0);
 
-  /* "osd.pyx":307
+  /* "osd.pyx":306
  * 
  *     def get_modules(self, subnet_addr):
  *         cdef cosd.osd_module_desc *modules = NULL             # <<<<<<<<<<<<<<
@@ -6737,7 +6738,7 @@ static PyObject *__pyx_pf_3osd_7Hostmod_12get_modules(struct __pyx_obj_3osd_Host
  */
   __pyx_v_modules = NULL;
 
-  /* "osd.pyx":308
+  /* "osd.pyx":307
  *     def get_modules(self, subnet_addr):
  *         cdef cosd.osd_module_desc *modules = NULL
  *         cdef size_t modules_len = 0             # <<<<<<<<<<<<<<
@@ -6746,7 +6747,7 @@ static PyObject *__pyx_pf_3osd_7Hostmod_12get_modules(struct __pyx_obj_3osd_Host
  */
   __pyx_v_modules_len = 0;
 
-  /* "osd.pyx":309
+  /* "osd.pyx":308
  *         cdef cosd.osd_module_desc *modules = NULL
  *         cdef size_t modules_len = 0
  *         try:             # <<<<<<<<<<<<<<
@@ -6755,16 +6756,16 @@ static PyObject *__pyx_pf_3osd_7Hostmod_12get_modules(struct __pyx_obj_3osd_Host
  */
   /*try:*/ {
 
-    /* "osd.pyx":310
+    /* "osd.pyx":309
  *         cdef size_t modules_len = 0
  *         try:
  *             rv = cosd.osd_hostmod_get_modules(self._cself, subnet_addr,             # <<<<<<<<<<<<<<
  *                                               &modules, &modules_len)
  *             check_osd_result(rv)
  */
-    __pyx_t_1 = __Pyx_PyInt_As_unsigned_int(__pyx_v_subnet_addr); if (unlikely((__pyx_t_1 == (unsigned int)-1) && PyErr_Occurred())) __PYX_ERR(0, 310, __pyx_L4_error)
+    __pyx_t_1 = __Pyx_PyInt_As_unsigned_int(__pyx_v_subnet_addr); if (unlikely((__pyx_t_1 == (unsigned int)-1) && PyErr_Occurred())) __PYX_ERR(0, 309, __pyx_L4_error)
 
-    /* "osd.pyx":311
+    /* "osd.pyx":310
  *         try:
  *             rv = cosd.osd_hostmod_get_modules(self._cself, subnet_addr,
  *                                               &modules, &modules_len)             # <<<<<<<<<<<<<<
@@ -6773,33 +6774,33 @@ static PyObject *__pyx_pf_3osd_7Hostmod_12get_modules(struct __pyx_obj_3osd_Host
  */
     __pyx_v_rv = osd_hostmod_get_modules(__pyx_v_self->_cself, __pyx_t_1, (&__pyx_v_modules), (&__pyx_v_modules_len));
 
-    /* "osd.pyx":312
+    /* "osd.pyx":311
  *             rv = cosd.osd_hostmod_get_modules(self._cself, subnet_addr,
  *                                               &modules, &modules_len)
  *             check_osd_result(rv)             # <<<<<<<<<<<<<<
  * 
  *             result_list = []
  */
-    __pyx_t_2 = __Pyx_PyInt_From_osd_result(__pyx_v_rv); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 312, __pyx_L4_error)
+    __pyx_t_2 = __Pyx_PyInt_From_osd_result(__pyx_v_rv); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 311, __pyx_L4_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_3 = __pyx_f_3osd_check_osd_result(__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 312, __pyx_L4_error)
+    __pyx_t_3 = __pyx_f_3osd_check_osd_result(__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 311, __pyx_L4_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-    /* "osd.pyx":314
+    /* "osd.pyx":313
  *             check_osd_result(rv)
  * 
  *             result_list = []             # <<<<<<<<<<<<<<
  *             for m in range(modules_len):
  *                 mod_desc = {}
  */
-    __pyx_t_3 = PyList_New(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 314, __pyx_L4_error)
+    __pyx_t_3 = PyList_New(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 313, __pyx_L4_error)
     __Pyx_GOTREF(__pyx_t_3);
     __pyx_v_result_list = ((PyObject*)__pyx_t_3);
     __pyx_t_3 = 0;
 
-    /* "osd.pyx":315
+    /* "osd.pyx":314
  * 
  *             result_list = []
  *             for m in range(modules_len):             # <<<<<<<<<<<<<<
@@ -6810,78 +6811,78 @@ static PyObject *__pyx_pf_3osd_7Hostmod_12get_modules(struct __pyx_obj_3osd_Host
     for (__pyx_t_5 = 0; __pyx_t_5 < __pyx_t_4; __pyx_t_5+=1) {
       __pyx_v_m = __pyx_t_5;
 
-      /* "osd.pyx":316
+      /* "osd.pyx":315
  *             result_list = []
  *             for m in range(modules_len):
  *                 mod_desc = {}             # <<<<<<<<<<<<<<
  *                 mod_desc['addr'] = modules[m].addr
  *                 mod_desc['vendor'] = modules[m].vendor
  */
-      __pyx_t_3 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 316, __pyx_L4_error)
+      __pyx_t_3 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 315, __pyx_L4_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_XDECREF_SET(__pyx_v_mod_desc, ((PyObject*)__pyx_t_3));
       __pyx_t_3 = 0;
 
-      /* "osd.pyx":317
+      /* "osd.pyx":316
  *             for m in range(modules_len):
  *                 mod_desc = {}
  *                 mod_desc['addr'] = modules[m].addr             # <<<<<<<<<<<<<<
  *                 mod_desc['vendor'] = modules[m].vendor
  *                 mod_desc['type'] = modules[m].type
  */
-      __pyx_t_3 = __Pyx_PyInt_From_uint16_t((__pyx_v_modules[__pyx_v_m]).addr); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 317, __pyx_L4_error)
+      __pyx_t_3 = __Pyx_PyInt_From_uint16_t((__pyx_v_modules[__pyx_v_m]).addr); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 316, __pyx_L4_error)
       __Pyx_GOTREF(__pyx_t_3);
-      if (unlikely(PyDict_SetItem(__pyx_v_mod_desc, __pyx_n_u_addr, __pyx_t_3) < 0)) __PYX_ERR(0, 317, __pyx_L4_error)
+      if (unlikely(PyDict_SetItem(__pyx_v_mod_desc, __pyx_n_u_addr, __pyx_t_3) < 0)) __PYX_ERR(0, 316, __pyx_L4_error)
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-      /* "osd.pyx":318
+      /* "osd.pyx":317
  *                 mod_desc = {}
  *                 mod_desc['addr'] = modules[m].addr
  *                 mod_desc['vendor'] = modules[m].vendor             # <<<<<<<<<<<<<<
  *                 mod_desc['type'] = modules[m].type
  *                 mod_desc['version'] = modules[m].version
  */
-      __pyx_t_3 = __Pyx_PyInt_From_uint16_t((__pyx_v_modules[__pyx_v_m]).vendor); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 318, __pyx_L4_error)
+      __pyx_t_3 = __Pyx_PyInt_From_uint16_t((__pyx_v_modules[__pyx_v_m]).vendor); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 317, __pyx_L4_error)
       __Pyx_GOTREF(__pyx_t_3);
-      if (unlikely(PyDict_SetItem(__pyx_v_mod_desc, __pyx_n_u_vendor, __pyx_t_3) < 0)) __PYX_ERR(0, 318, __pyx_L4_error)
+      if (unlikely(PyDict_SetItem(__pyx_v_mod_desc, __pyx_n_u_vendor, __pyx_t_3) < 0)) __PYX_ERR(0, 317, __pyx_L4_error)
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-      /* "osd.pyx":319
+      /* "osd.pyx":318
  *                 mod_desc['addr'] = modules[m].addr
  *                 mod_desc['vendor'] = modules[m].vendor
  *                 mod_desc['type'] = modules[m].type             # <<<<<<<<<<<<<<
  *                 mod_desc['version'] = modules[m].version
  *                 result_list.append(mod_desc)
  */
-      __pyx_t_3 = __Pyx_PyInt_From_uint16_t((__pyx_v_modules[__pyx_v_m]).type); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 319, __pyx_L4_error)
+      __pyx_t_3 = __Pyx_PyInt_From_uint16_t((__pyx_v_modules[__pyx_v_m]).type); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 318, __pyx_L4_error)
       __Pyx_GOTREF(__pyx_t_3);
-      if (unlikely(PyDict_SetItem(__pyx_v_mod_desc, __pyx_n_u_type, __pyx_t_3) < 0)) __PYX_ERR(0, 319, __pyx_L4_error)
+      if (unlikely(PyDict_SetItem(__pyx_v_mod_desc, __pyx_n_u_type, __pyx_t_3) < 0)) __PYX_ERR(0, 318, __pyx_L4_error)
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-      /* "osd.pyx":320
+      /* "osd.pyx":319
  *                 mod_desc['vendor'] = modules[m].vendor
  *                 mod_desc['type'] = modules[m].type
  *                 mod_desc['version'] = modules[m].version             # <<<<<<<<<<<<<<
  *                 result_list.append(mod_desc)
  *         finally:
  */
-      __pyx_t_3 = __Pyx_PyInt_From_uint16_t((__pyx_v_modules[__pyx_v_m]).version); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 320, __pyx_L4_error)
+      __pyx_t_3 = __Pyx_PyInt_From_uint16_t((__pyx_v_modules[__pyx_v_m]).version); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 319, __pyx_L4_error)
       __Pyx_GOTREF(__pyx_t_3);
-      if (unlikely(PyDict_SetItem(__pyx_v_mod_desc, __pyx_n_u_version, __pyx_t_3) < 0)) __PYX_ERR(0, 320, __pyx_L4_error)
+      if (unlikely(PyDict_SetItem(__pyx_v_mod_desc, __pyx_n_u_version, __pyx_t_3) < 0)) __PYX_ERR(0, 319, __pyx_L4_error)
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-      /* "osd.pyx":321
+      /* "osd.pyx":320
  *                 mod_desc['type'] = modules[m].type
  *                 mod_desc['version'] = modules[m].version
  *                 result_list.append(mod_desc)             # <<<<<<<<<<<<<<
  *         finally:
  *             free(modules)
  */
-      __pyx_t_6 = __Pyx_PyList_Append(__pyx_v_result_list, __pyx_v_mod_desc); if (unlikely(__pyx_t_6 == ((int)-1))) __PYX_ERR(0, 321, __pyx_L4_error)
+      __pyx_t_6 = __Pyx_PyList_Append(__pyx_v_result_list, __pyx_v_mod_desc); if (unlikely(__pyx_t_6 == ((int)-1))) __PYX_ERR(0, 320, __pyx_L4_error)
     }
   }
 
-  /* "osd.pyx":323
+  /* "osd.pyx":322
  *                 result_list.append(mod_desc)
  *         finally:
  *             free(modules)             # <<<<<<<<<<<<<<
@@ -6929,7 +6930,7 @@ static PyObject *__pyx_pf_3osd_7Hostmod_12get_modules(struct __pyx_obj_3osd_Host
     __pyx_L5:;
   }
 
-  /* "osd.pyx":325
+  /* "osd.pyx":324
  *             free(modules)
  * 
  *         return result_list             # <<<<<<<<<<<<<<
@@ -6941,7 +6942,7 @@ static PyObject *__pyx_pf_3osd_7Hostmod_12get_modules(struct __pyx_obj_3osd_Host
   __pyx_r = __pyx_v_result_list;
   goto __pyx_L0;
 
-  /* "osd.pyx":306
+  /* "osd.pyx":305
  *         check_osd_result(rv)
  * 
  *     def get_modules(self, subnet_addr):             # <<<<<<<<<<<<<<
@@ -6963,7 +6964,7 @@ static PyObject *__pyx_pf_3osd_7Hostmod_12get_modules(struct __pyx_obj_3osd_Host
   return __pyx_r;
 }
 
-/* "osd.pyx":327
+/* "osd.pyx":326
  *         return result_list
  * 
  *     def mod_describe(self, di_addr):             # <<<<<<<<<<<<<<
@@ -6972,20 +6973,20 @@ static PyObject *__pyx_pf_3osd_7Hostmod_12get_modules(struct __pyx_obj_3osd_Host
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_3osd_7Hostmod_15mod_describe(PyObject *__pyx_v_self, PyObject *__pyx_v_di_addr); /*proto*/
-static char __pyx_doc_3osd_7Hostmod_14mod_describe[] = "Hostmod.mod_describe(self, di_addr)";
-static PyObject *__pyx_pw_3osd_7Hostmod_15mod_describe(PyObject *__pyx_v_self, PyObject *__pyx_v_di_addr) {
+static PyObject *__pyx_pw_3osd_7Hostmod_17mod_describe(PyObject *__pyx_v_self, PyObject *__pyx_v_di_addr); /*proto*/
+static char __pyx_doc_3osd_7Hostmod_16mod_describe[] = "Hostmod.mod_describe(self, di_addr)";
+static PyObject *__pyx_pw_3osd_7Hostmod_17mod_describe(PyObject *__pyx_v_self, PyObject *__pyx_v_di_addr) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("mod_describe (wrapper)", 0);
-  __pyx_r = __pyx_pf_3osd_7Hostmod_14mod_describe(((struct __pyx_obj_3osd_Hostmod *)__pyx_v_self), ((PyObject *)__pyx_v_di_addr));
+  __pyx_r = __pyx_pf_3osd_7Hostmod_16mod_describe(((struct __pyx_obj_3osd_Hostmod *)__pyx_v_self), ((PyObject *)__pyx_v_di_addr));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_3osd_7Hostmod_14mod_describe(struct __pyx_obj_3osd_Hostmod *__pyx_v_self, PyObject *__pyx_v_di_addr) {
+static PyObject *__pyx_pf_3osd_7Hostmod_16mod_describe(struct __pyx_obj_3osd_Hostmod *__pyx_v_self, PyObject *__pyx_v_di_addr) {
   struct osd_module_desc __pyx_v_c_mod_desc;
   osd_result __pyx_v_rv;
   PyObject *__pyx_v_mod_desc = NULL;
@@ -6996,91 +6997,91 @@ static PyObject *__pyx_pf_3osd_7Hostmod_14mod_describe(struct __pyx_obj_3osd_Hos
   PyObject *__pyx_t_3 = NULL;
   __Pyx_RefNannySetupContext("mod_describe", 0);
 
-  /* "osd.pyx":329
+  /* "osd.pyx":328
  *     def mod_describe(self, di_addr):
  *         cdef cosd.osd_module_desc c_mod_desc
  *         rv = cosd.osd_hostmod_mod_describe(self._cself, di_addr, &c_mod_desc)             # <<<<<<<<<<<<<<
  *         check_osd_result(rv)
  * 
  */
-  __pyx_t_1 = __Pyx_PyInt_As_uint16_t(__pyx_v_di_addr); if (unlikely((__pyx_t_1 == ((uint16_t)-1)) && PyErr_Occurred())) __PYX_ERR(0, 329, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_As_uint16_t(__pyx_v_di_addr); if (unlikely((__pyx_t_1 == ((uint16_t)-1)) && PyErr_Occurred())) __PYX_ERR(0, 328, __pyx_L1_error)
   __pyx_v_rv = osd_hostmod_mod_describe(__pyx_v_self->_cself, __pyx_t_1, (&__pyx_v_c_mod_desc));
 
-  /* "osd.pyx":330
+  /* "osd.pyx":329
  *         cdef cosd.osd_module_desc c_mod_desc
  *         rv = cosd.osd_hostmod_mod_describe(self._cself, di_addr, &c_mod_desc)
  *         check_osd_result(rv)             # <<<<<<<<<<<<<<
  * 
  *         mod_desc = {}
  */
-  __pyx_t_2 = __Pyx_PyInt_From_osd_result(__pyx_v_rv); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 330, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_From_osd_result(__pyx_v_rv); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 329, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __pyx_f_3osd_check_osd_result(__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 330, __pyx_L1_error)
+  __pyx_t_3 = __pyx_f_3osd_check_osd_result(__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 329, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "osd.pyx":332
+  /* "osd.pyx":331
  *         check_osd_result(rv)
  * 
  *         mod_desc = {}             # <<<<<<<<<<<<<<
  *         mod_desc['addr'] = c_mod_desc.addr
  *         mod_desc['vendor'] = c_mod_desc.addr
  */
-  __pyx_t_3 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 332, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 331, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_v_mod_desc = ((PyObject*)__pyx_t_3);
   __pyx_t_3 = 0;
 
-  /* "osd.pyx":333
+  /* "osd.pyx":332
  * 
  *         mod_desc = {}
  *         mod_desc['addr'] = c_mod_desc.addr             # <<<<<<<<<<<<<<
  *         mod_desc['vendor'] = c_mod_desc.addr
  *         mod_desc['type'] = c_mod_desc.addr
  */
-  __pyx_t_3 = __Pyx_PyInt_From_uint16_t(__pyx_v_c_mod_desc.addr); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 333, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyInt_From_uint16_t(__pyx_v_c_mod_desc.addr); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 332, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (unlikely(PyDict_SetItem(__pyx_v_mod_desc, __pyx_n_u_addr, __pyx_t_3) < 0)) __PYX_ERR(0, 333, __pyx_L1_error)
+  if (unlikely(PyDict_SetItem(__pyx_v_mod_desc, __pyx_n_u_addr, __pyx_t_3) < 0)) __PYX_ERR(0, 332, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "osd.pyx":334
+  /* "osd.pyx":333
  *         mod_desc = {}
  *         mod_desc['addr'] = c_mod_desc.addr
  *         mod_desc['vendor'] = c_mod_desc.addr             # <<<<<<<<<<<<<<
  *         mod_desc['type'] = c_mod_desc.addr
  *         mod_desc['version'] = c_mod_desc.addr
  */
-  __pyx_t_3 = __Pyx_PyInt_From_uint16_t(__pyx_v_c_mod_desc.addr); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 334, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyInt_From_uint16_t(__pyx_v_c_mod_desc.addr); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 333, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (unlikely(PyDict_SetItem(__pyx_v_mod_desc, __pyx_n_u_vendor, __pyx_t_3) < 0)) __PYX_ERR(0, 334, __pyx_L1_error)
+  if (unlikely(PyDict_SetItem(__pyx_v_mod_desc, __pyx_n_u_vendor, __pyx_t_3) < 0)) __PYX_ERR(0, 333, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "osd.pyx":335
+  /* "osd.pyx":334
  *         mod_desc['addr'] = c_mod_desc.addr
  *         mod_desc['vendor'] = c_mod_desc.addr
  *         mod_desc['type'] = c_mod_desc.addr             # <<<<<<<<<<<<<<
  *         mod_desc['version'] = c_mod_desc.addr
  * 
  */
-  __pyx_t_3 = __Pyx_PyInt_From_uint16_t(__pyx_v_c_mod_desc.addr); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 335, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyInt_From_uint16_t(__pyx_v_c_mod_desc.addr); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 334, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (unlikely(PyDict_SetItem(__pyx_v_mod_desc, __pyx_n_u_type, __pyx_t_3) < 0)) __PYX_ERR(0, 335, __pyx_L1_error)
+  if (unlikely(PyDict_SetItem(__pyx_v_mod_desc, __pyx_n_u_type, __pyx_t_3) < 0)) __PYX_ERR(0, 334, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "osd.pyx":336
+  /* "osd.pyx":335
  *         mod_desc['vendor'] = c_mod_desc.addr
  *         mod_desc['type'] = c_mod_desc.addr
  *         mod_desc['version'] = c_mod_desc.addr             # <<<<<<<<<<<<<<
  * 
  *         return mod_desc
  */
-  __pyx_t_3 = __Pyx_PyInt_From_uint16_t(__pyx_v_c_mod_desc.addr); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 336, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyInt_From_uint16_t(__pyx_v_c_mod_desc.addr); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 335, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (unlikely(PyDict_SetItem(__pyx_v_mod_desc, __pyx_n_u_version, __pyx_t_3) < 0)) __PYX_ERR(0, 336, __pyx_L1_error)
+  if (unlikely(PyDict_SetItem(__pyx_v_mod_desc, __pyx_n_u_version, __pyx_t_3) < 0)) __PYX_ERR(0, 335, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "osd.pyx":338
+  /* "osd.pyx":337
  *         mod_desc['version'] = c_mod_desc.addr
  * 
  *         return mod_desc             # <<<<<<<<<<<<<<
@@ -7092,7 +7093,7 @@ static PyObject *__pyx_pf_3osd_7Hostmod_14mod_describe(struct __pyx_obj_3osd_Hos
   __pyx_r = __pyx_v_mod_desc;
   goto __pyx_L0;
 
-  /* "osd.pyx":327
+  /* "osd.pyx":326
  *         return result_list
  * 
  *     def mod_describe(self, di_addr):             # <<<<<<<<<<<<<<
@@ -7113,7 +7114,7 @@ static PyObject *__pyx_pf_3osd_7Hostmod_14mod_describe(struct __pyx_obj_3osd_Hos
   return __pyx_r;
 }
 
-/* "osd.pyx":340
+/* "osd.pyx":339
  *         return mod_desc
  * 
  *     def mod_set_event_dest(self, di_addr, flags=0):             # <<<<<<<<<<<<<<
@@ -7122,9 +7123,9 @@ static PyObject *__pyx_pf_3osd_7Hostmod_14mod_describe(struct __pyx_obj_3osd_Hos
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_3osd_7Hostmod_17mod_set_event_dest(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_3osd_7Hostmod_16mod_set_event_dest[] = "Hostmod.mod_set_event_dest(self, di_addr, flags=0)";
-static PyObject *__pyx_pw_3osd_7Hostmod_17mod_set_event_dest(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_3osd_7Hostmod_19mod_set_event_dest(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static char __pyx_doc_3osd_7Hostmod_18mod_set_event_dest[] = "Hostmod.mod_set_event_dest(self, di_addr, flags=0)";
+static PyObject *__pyx_pw_3osd_7Hostmod_19mod_set_event_dest(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_di_addr = 0;
   PyObject *__pyx_v_flags = 0;
   PyObject *__pyx_r = 0;
@@ -7158,7 +7159,7 @@ static PyObject *__pyx_pw_3osd_7Hostmod_17mod_set_event_dest(PyObject *__pyx_v_s
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "mod_set_event_dest") < 0)) __PYX_ERR(0, 340, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "mod_set_event_dest") < 0)) __PYX_ERR(0, 339, __pyx_L3_error)
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -7174,20 +7175,20 @@ static PyObject *__pyx_pw_3osd_7Hostmod_17mod_set_event_dest(PyObject *__pyx_v_s
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("mod_set_event_dest", 0, 1, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 340, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("mod_set_event_dest", 0, 1, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 339, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("osd.Hostmod.mod_set_event_dest", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_3osd_7Hostmod_16mod_set_event_dest(((struct __pyx_obj_3osd_Hostmod *)__pyx_v_self), __pyx_v_di_addr, __pyx_v_flags);
+  __pyx_r = __pyx_pf_3osd_7Hostmod_18mod_set_event_dest(((struct __pyx_obj_3osd_Hostmod *)__pyx_v_self), __pyx_v_di_addr, __pyx_v_flags);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_3osd_7Hostmod_16mod_set_event_dest(struct __pyx_obj_3osd_Hostmod *__pyx_v_self, PyObject *__pyx_v_di_addr, PyObject *__pyx_v_flags) {
+static PyObject *__pyx_pf_3osd_7Hostmod_18mod_set_event_dest(struct __pyx_obj_3osd_Hostmod *__pyx_v_self, PyObject *__pyx_v_di_addr, PyObject *__pyx_v_flags) {
   osd_result __pyx_v_rv;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -7197,32 +7198,32 @@ static PyObject *__pyx_pf_3osd_7Hostmod_16mod_set_event_dest(struct __pyx_obj_3o
   PyObject *__pyx_t_4 = NULL;
   __Pyx_RefNannySetupContext("mod_set_event_dest", 0);
 
-  /* "osd.pyx":341
+  /* "osd.pyx":340
  * 
  *     def mod_set_event_dest(self, di_addr, flags=0):
  *         rv = cosd.osd_hostmod_mod_set_event_dest(self._cself, di_addr, flags)             # <<<<<<<<<<<<<<
  *         check_osd_result(rv)
  * 
  */
-  __pyx_t_1 = __Pyx_PyInt_As_uint16_t(__pyx_v_di_addr); if (unlikely((__pyx_t_1 == ((uint16_t)-1)) && PyErr_Occurred())) __PYX_ERR(0, 341, __pyx_L1_error)
-  __pyx_t_2 = __Pyx_PyInt_As_int(__pyx_v_flags); if (unlikely((__pyx_t_2 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 341, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_As_uint16_t(__pyx_v_di_addr); if (unlikely((__pyx_t_1 == ((uint16_t)-1)) && PyErr_Occurred())) __PYX_ERR(0, 340, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_As_int(__pyx_v_flags); if (unlikely((__pyx_t_2 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 340, __pyx_L1_error)
   __pyx_v_rv = osd_hostmod_mod_set_event_dest(__pyx_v_self->_cself, __pyx_t_1, __pyx_t_2);
 
-  /* "osd.pyx":342
+  /* "osd.pyx":341
  *     def mod_set_event_dest(self, di_addr, flags=0):
  *         rv = cosd.osd_hostmod_mod_set_event_dest(self._cself, di_addr, flags)
  *         check_osd_result(rv)             # <<<<<<<<<<<<<<
  * 
  *     def mod_set_event_active(self, di_addr, enabled=True, flags=0):
  */
-  __pyx_t_3 = __Pyx_PyInt_From_osd_result(__pyx_v_rv); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 342, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyInt_From_osd_result(__pyx_v_rv); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 341, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __pyx_f_3osd_check_osd_result(__pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 342, __pyx_L1_error)
+  __pyx_t_4 = __pyx_f_3osd_check_osd_result(__pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 341, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "osd.pyx":340
+  /* "osd.pyx":339
  *         return mod_desc
  * 
  *     def mod_set_event_dest(self, di_addr, flags=0):             # <<<<<<<<<<<<<<
@@ -7244,7 +7245,7 @@ static PyObject *__pyx_pf_3osd_7Hostmod_16mod_set_event_dest(struct __pyx_obj_3o
   return __pyx_r;
 }
 
-/* "osd.pyx":344
+/* "osd.pyx":343
  *         check_osd_result(rv)
  * 
  *     def mod_set_event_active(self, di_addr, enabled=True, flags=0):             # <<<<<<<<<<<<<<
@@ -7253,9 +7254,9 @@ static PyObject *__pyx_pf_3osd_7Hostmod_16mod_set_event_dest(struct __pyx_obj_3o
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_3osd_7Hostmod_19mod_set_event_active(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_3osd_7Hostmod_18mod_set_event_active[] = "Hostmod.mod_set_event_active(self, di_addr, enabled=True, flags=0)";
-static PyObject *__pyx_pw_3osd_7Hostmod_19mod_set_event_active(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_3osd_7Hostmod_21mod_set_event_active(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static char __pyx_doc_3osd_7Hostmod_20mod_set_event_active[] = "Hostmod.mod_set_event_active(self, di_addr, enabled=True, flags=0)";
+static PyObject *__pyx_pw_3osd_7Hostmod_21mod_set_event_active(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_di_addr = 0;
   PyObject *__pyx_v_enabled = 0;
   PyObject *__pyx_v_flags = 0;
@@ -7299,7 +7300,7 @@ static PyObject *__pyx_pw_3osd_7Hostmod_19mod_set_event_active(PyObject *__pyx_v
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "mod_set_event_active") < 0)) __PYX_ERR(0, 344, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "mod_set_event_active") < 0)) __PYX_ERR(0, 343, __pyx_L3_error)
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -7318,20 +7319,20 @@ static PyObject *__pyx_pw_3osd_7Hostmod_19mod_set_event_active(PyObject *__pyx_v
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("mod_set_event_active", 0, 1, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 344, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("mod_set_event_active", 0, 1, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 343, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("osd.Hostmod.mod_set_event_active", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_3osd_7Hostmod_18mod_set_event_active(((struct __pyx_obj_3osd_Hostmod *)__pyx_v_self), __pyx_v_di_addr, __pyx_v_enabled, __pyx_v_flags);
+  __pyx_r = __pyx_pf_3osd_7Hostmod_20mod_set_event_active(((struct __pyx_obj_3osd_Hostmod *)__pyx_v_self), __pyx_v_di_addr, __pyx_v_enabled, __pyx_v_flags);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_3osd_7Hostmod_18mod_set_event_active(struct __pyx_obj_3osd_Hostmod *__pyx_v_self, PyObject *__pyx_v_di_addr, PyObject *__pyx_v_enabled, PyObject *__pyx_v_flags) {
+static PyObject *__pyx_pf_3osd_7Hostmod_20mod_set_event_active(struct __pyx_obj_3osd_Hostmod *__pyx_v_self, PyObject *__pyx_v_di_addr, PyObject *__pyx_v_enabled, PyObject *__pyx_v_flags) {
   osd_result __pyx_v_rv;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -7342,26 +7343,26 @@ static PyObject *__pyx_pf_3osd_7Hostmod_18mod_set_event_active(struct __pyx_obj_
   PyObject *__pyx_t_5 = NULL;
   __Pyx_RefNannySetupContext("mod_set_event_active", 0);
 
-  /* "osd.pyx":345
+  /* "osd.pyx":344
  * 
  *     def mod_set_event_active(self, di_addr, enabled=True, flags=0):
  *         rv = cosd.osd_hostmod_mod_set_event_active(self._cself, di_addr,             # <<<<<<<<<<<<<<
  *                                                    enabled, flags)
  *         check_osd_result(rv)
  */
-  __pyx_t_1 = __Pyx_PyInt_As_uint16_t(__pyx_v_di_addr); if (unlikely((__pyx_t_1 == ((uint16_t)-1)) && PyErr_Occurred())) __PYX_ERR(0, 345, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_As_uint16_t(__pyx_v_di_addr); if (unlikely((__pyx_t_1 == ((uint16_t)-1)) && PyErr_Occurred())) __PYX_ERR(0, 344, __pyx_L1_error)
 
-  /* "osd.pyx":346
+  /* "osd.pyx":345
  *     def mod_set_event_active(self, di_addr, enabled=True, flags=0):
  *         rv = cosd.osd_hostmod_mod_set_event_active(self._cself, di_addr,
  *                                                    enabled, flags)             # <<<<<<<<<<<<<<
  *         check_osd_result(rv)
  * 
  */
-  __pyx_t_2 = __Pyx_PyInt_As_int(__pyx_v_enabled); if (unlikely((__pyx_t_2 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 346, __pyx_L1_error)
-  __pyx_t_3 = __Pyx_PyInt_As_int(__pyx_v_flags); if (unlikely((__pyx_t_3 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 346, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_As_int(__pyx_v_enabled); if (unlikely((__pyx_t_2 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 345, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyInt_As_int(__pyx_v_flags); if (unlikely((__pyx_t_3 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 345, __pyx_L1_error)
 
-  /* "osd.pyx":345
+  /* "osd.pyx":344
  * 
  *     def mod_set_event_active(self, di_addr, enabled=True, flags=0):
  *         rv = cosd.osd_hostmod_mod_set_event_active(self._cself, di_addr,             # <<<<<<<<<<<<<<
@@ -7370,21 +7371,21 @@ static PyObject *__pyx_pf_3osd_7Hostmod_18mod_set_event_active(struct __pyx_obj_
  */
   __pyx_v_rv = osd_hostmod_mod_set_event_active(__pyx_v_self->_cself, __pyx_t_1, __pyx_t_2, __pyx_t_3);
 
-  /* "osd.pyx":347
+  /* "osd.pyx":346
  *         rv = cosd.osd_hostmod_mod_set_event_active(self._cself, di_addr,
  *                                                    enabled, flags)
  *         check_osd_result(rv)             # <<<<<<<<<<<<<<
  * 
  *     def get_max_event_words(self, di_addr_target):
  */
-  __pyx_t_4 = __Pyx_PyInt_From_osd_result(__pyx_v_rv); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 347, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_osd_result(__pyx_v_rv); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 346, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = __pyx_f_3osd_check_osd_result(__pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 347, __pyx_L1_error)
+  __pyx_t_5 = __pyx_f_3osd_check_osd_result(__pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 346, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "osd.pyx":344
+  /* "osd.pyx":343
  *         check_osd_result(rv)
  * 
  *     def mod_set_event_active(self, di_addr, enabled=True, flags=0):             # <<<<<<<<<<<<<<
@@ -7406,7 +7407,7 @@ static PyObject *__pyx_pf_3osd_7Hostmod_18mod_set_event_active(struct __pyx_obj_
   return __pyx_r;
 }
 
-/* "osd.pyx":349
+/* "osd.pyx":348
  *         check_osd_result(rv)
  * 
  *     def get_max_event_words(self, di_addr_target):             # <<<<<<<<<<<<<<
@@ -7415,27 +7416,27 @@ static PyObject *__pyx_pf_3osd_7Hostmod_18mod_set_event_active(struct __pyx_obj_
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_3osd_7Hostmod_21get_max_event_words(PyObject *__pyx_v_self, PyObject *__pyx_v_di_addr_target); /*proto*/
-static char __pyx_doc_3osd_7Hostmod_20get_max_event_words[] = "Hostmod.get_max_event_words(self, di_addr_target)";
-static PyObject *__pyx_pw_3osd_7Hostmod_21get_max_event_words(PyObject *__pyx_v_self, PyObject *__pyx_v_di_addr_target) {
+static PyObject *__pyx_pw_3osd_7Hostmod_23get_max_event_words(PyObject *__pyx_v_self, PyObject *__pyx_v_di_addr_target); /*proto*/
+static char __pyx_doc_3osd_7Hostmod_22get_max_event_words[] = "Hostmod.get_max_event_words(self, di_addr_target)";
+static PyObject *__pyx_pw_3osd_7Hostmod_23get_max_event_words(PyObject *__pyx_v_self, PyObject *__pyx_v_di_addr_target) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("get_max_event_words (wrapper)", 0);
-  __pyx_r = __pyx_pf_3osd_7Hostmod_20get_max_event_words(((struct __pyx_obj_3osd_Hostmod *)__pyx_v_self), ((PyObject *)__pyx_v_di_addr_target));
+  __pyx_r = __pyx_pf_3osd_7Hostmod_22get_max_event_words(((struct __pyx_obj_3osd_Hostmod *)__pyx_v_self), ((PyObject *)__pyx_v_di_addr_target));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_3osd_7Hostmod_20get_max_event_words(struct __pyx_obj_3osd_Hostmod *__pyx_v_self, PyObject *__pyx_v_di_addr_target) {
+static PyObject *__pyx_pf_3osd_7Hostmod_22get_max_event_words(struct __pyx_obj_3osd_Hostmod *__pyx_v_self, PyObject *__pyx_v_di_addr_target) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   unsigned int __pyx_t_1;
   PyObject *__pyx_t_2 = NULL;
   __Pyx_RefNannySetupContext("get_max_event_words", 0);
 
-  /* "osd.pyx":350
+  /* "osd.pyx":349
  * 
  *     def get_max_event_words(self, di_addr_target):
  *         return cosd.osd_hostmod_get_max_event_words(self._cself, di_addr_target)             # <<<<<<<<<<<<<<
@@ -7443,14 +7444,14 @@ static PyObject *__pyx_pf_3osd_7Hostmod_20get_max_event_words(struct __pyx_obj_3
  *     def event_send(self, Packet event_pkg):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_As_unsigned_int(__pyx_v_di_addr_target); if (unlikely((__pyx_t_1 == (unsigned int)-1) && PyErr_Occurred())) __PYX_ERR(0, 350, __pyx_L1_error)
-  __pyx_t_2 = __Pyx_PyInt_From_unsigned_int(osd_hostmod_get_max_event_words(__pyx_v_self->_cself, __pyx_t_1)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 350, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_As_unsigned_int(__pyx_v_di_addr_target); if (unlikely((__pyx_t_1 == (unsigned int)-1) && PyErr_Occurred())) __PYX_ERR(0, 349, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_From_unsigned_int(osd_hostmod_get_max_event_words(__pyx_v_self->_cself, __pyx_t_1)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 349, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "osd.pyx":349
+  /* "osd.pyx":348
  *         check_osd_result(rv)
  * 
  *     def get_max_event_words(self, di_addr_target):             # <<<<<<<<<<<<<<
@@ -7469,7 +7470,7 @@ static PyObject *__pyx_pf_3osd_7Hostmod_20get_max_event_words(struct __pyx_obj_3
   return __pyx_r;
 }
 
-/* "osd.pyx":352
+/* "osd.pyx":351
  *         return cosd.osd_hostmod_get_max_event_words(self._cself, di_addr_target)
  * 
  *     def event_send(self, Packet event_pkg):             # <<<<<<<<<<<<<<
@@ -7478,14 +7479,14 @@ static PyObject *__pyx_pf_3osd_7Hostmod_20get_max_event_words(struct __pyx_obj_3
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_3osd_7Hostmod_23event_send(PyObject *__pyx_v_self, PyObject *__pyx_v_event_pkg); /*proto*/
-static char __pyx_doc_3osd_7Hostmod_22event_send[] = "Hostmod.event_send(self, Packet event_pkg)";
-static PyObject *__pyx_pw_3osd_7Hostmod_23event_send(PyObject *__pyx_v_self, PyObject *__pyx_v_event_pkg) {
+static PyObject *__pyx_pw_3osd_7Hostmod_25event_send(PyObject *__pyx_v_self, PyObject *__pyx_v_event_pkg); /*proto*/
+static char __pyx_doc_3osd_7Hostmod_24event_send[] = "Hostmod.event_send(self, Packet event_pkg)";
+static PyObject *__pyx_pw_3osd_7Hostmod_25event_send(PyObject *__pyx_v_self, PyObject *__pyx_v_event_pkg) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("event_send (wrapper)", 0);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_event_pkg), __pyx_ptype_3osd_Packet, 1, "event_pkg", 0))) __PYX_ERR(0, 352, __pyx_L1_error)
-  __pyx_r = __pyx_pf_3osd_7Hostmod_22event_send(((struct __pyx_obj_3osd_Hostmod *)__pyx_v_self), ((struct __pyx_obj_3osd_Packet *)__pyx_v_event_pkg));
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_event_pkg), __pyx_ptype_3osd_Packet, 1, "event_pkg", 0))) __PYX_ERR(0, 351, __pyx_L1_error)
+  __pyx_r = __pyx_pf_3osd_7Hostmod_24event_send(((struct __pyx_obj_3osd_Hostmod *)__pyx_v_self), ((struct __pyx_obj_3osd_Packet *)__pyx_v_event_pkg));
 
   /* function exit code */
   goto __pyx_L0;
@@ -7496,7 +7497,7 @@ static PyObject *__pyx_pw_3osd_7Hostmod_23event_send(PyObject *__pyx_v_self, PyO
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_3osd_7Hostmod_22event_send(struct __pyx_obj_3osd_Hostmod *__pyx_v_self, struct __pyx_obj_3osd_Packet *__pyx_v_event_pkg) {
+static PyObject *__pyx_pf_3osd_7Hostmod_24event_send(struct __pyx_obj_3osd_Hostmod *__pyx_v_self, struct __pyx_obj_3osd_Packet *__pyx_v_event_pkg) {
   osd_result __pyx_v_rv;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -7504,7 +7505,7 @@ static PyObject *__pyx_pf_3osd_7Hostmod_22event_send(struct __pyx_obj_3osd_Hostm
   PyObject *__pyx_t_2 = NULL;
   __Pyx_RefNannySetupContext("event_send", 0);
 
-  /* "osd.pyx":353
+  /* "osd.pyx":352
  * 
  *     def event_send(self, Packet event_pkg):
  *         rv = cosd.osd_hostmod_event_send(self._cself, event_pkg._cself)             # <<<<<<<<<<<<<<
@@ -7513,21 +7514,21 @@ static PyObject *__pyx_pf_3osd_7Hostmod_22event_send(struct __pyx_obj_3osd_Hostm
  */
   __pyx_v_rv = osd_hostmod_event_send(__pyx_v_self->_cself, __pyx_v_event_pkg->_cself);
 
-  /* "osd.pyx":354
+  /* "osd.pyx":353
  *     def event_send(self, Packet event_pkg):
  *         rv = cosd.osd_hostmod_event_send(self._cself, event_pkg._cself)
  *         check_osd_result(rv)             # <<<<<<<<<<<<<<
  * 
  *     def event_receive(self, flags=0):
  */
-  __pyx_t_1 = __Pyx_PyInt_From_osd_result(__pyx_v_rv); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 354, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_osd_result(__pyx_v_rv); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 353, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __pyx_f_3osd_check_osd_result(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 354, __pyx_L1_error)
+  __pyx_t_2 = __pyx_f_3osd_check_osd_result(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 353, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "osd.pyx":352
+  /* "osd.pyx":351
  *         return cosd.osd_hostmod_get_max_event_words(self._cself, di_addr_target)
  * 
  *     def event_send(self, Packet event_pkg):             # <<<<<<<<<<<<<<
@@ -7549,7 +7550,7 @@ static PyObject *__pyx_pf_3osd_7Hostmod_22event_send(struct __pyx_obj_3osd_Hostm
   return __pyx_r;
 }
 
-/* "osd.pyx":356
+/* "osd.pyx":355
  *         check_osd_result(rv)
  * 
  *     def event_receive(self, flags=0):             # <<<<<<<<<<<<<<
@@ -7558,9 +7559,9 @@ static PyObject *__pyx_pf_3osd_7Hostmod_22event_send(struct __pyx_obj_3osd_Hostm
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_3osd_7Hostmod_25event_receive(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_3osd_7Hostmod_24event_receive[] = "Hostmod.event_receive(self, flags=0)";
-static PyObject *__pyx_pw_3osd_7Hostmod_25event_receive(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_3osd_7Hostmod_27event_receive(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static char __pyx_doc_3osd_7Hostmod_26event_receive[] = "Hostmod.event_receive(self, flags=0)";
+static PyObject *__pyx_pw_3osd_7Hostmod_27event_receive(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_flags = 0;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
@@ -7587,7 +7588,7 @@ static PyObject *__pyx_pw_3osd_7Hostmod_25event_receive(PyObject *__pyx_v_self, 
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "event_receive") < 0)) __PYX_ERR(0, 356, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "event_receive") < 0)) __PYX_ERR(0, 355, __pyx_L3_error)
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -7601,20 +7602,20 @@ static PyObject *__pyx_pw_3osd_7Hostmod_25event_receive(PyObject *__pyx_v_self, 
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("event_receive", 0, 0, 1, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 356, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("event_receive", 0, 0, 1, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 355, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("osd.Hostmod.event_receive", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_3osd_7Hostmod_24event_receive(((struct __pyx_obj_3osd_Hostmod *)__pyx_v_self), __pyx_v_flags);
+  __pyx_r = __pyx_pf_3osd_7Hostmod_26event_receive(((struct __pyx_obj_3osd_Hostmod *)__pyx_v_self), __pyx_v_flags);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_3osd_7Hostmod_24event_receive(struct __pyx_obj_3osd_Hostmod *__pyx_v_self, PyObject *__pyx_v_flags) {
+static PyObject *__pyx_pf_3osd_7Hostmod_26event_receive(struct __pyx_obj_3osd_Hostmod *__pyx_v_self, PyObject *__pyx_v_flags) {
   struct osd_packet *__pyx_v_c_event_pkg;
   osd_result __pyx_v_rv;
   struct __pyx_obj_3osd_Packet *__pyx_v_py_event_pkg = NULL;
@@ -7625,43 +7626,43 @@ static PyObject *__pyx_pf_3osd_7Hostmod_24event_receive(struct __pyx_obj_3osd_Ho
   PyObject *__pyx_t_3 = NULL;
   __Pyx_RefNannySetupContext("event_receive", 0);
 
-  /* "osd.pyx":358
+  /* "osd.pyx":357
  *     def event_receive(self, flags=0):
  *         cdef cosd.osd_packet* c_event_pkg
  *         rv = cosd.osd_hostmod_event_receive(self._cself, &c_event_pkg, flags)             # <<<<<<<<<<<<<<
  *         check_osd_result(rv)
  * 
  */
-  __pyx_t_1 = __Pyx_PyInt_As_int(__pyx_v_flags); if (unlikely((__pyx_t_1 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 358, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_As_int(__pyx_v_flags); if (unlikely((__pyx_t_1 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 357, __pyx_L1_error)
   __pyx_v_rv = osd_hostmod_event_receive(__pyx_v_self->_cself, (&__pyx_v_c_event_pkg), __pyx_t_1);
 
-  /* "osd.pyx":359
+  /* "osd.pyx":358
  *         cdef cosd.osd_packet* c_event_pkg
  *         rv = cosd.osd_hostmod_event_receive(self._cself, &c_event_pkg, flags)
  *         check_osd_result(rv)             # <<<<<<<<<<<<<<
  * 
  *         py_event_pkg = Packet()
  */
-  __pyx_t_2 = __Pyx_PyInt_From_osd_result(__pyx_v_rv); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 359, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_From_osd_result(__pyx_v_rv); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 358, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __pyx_f_3osd_check_osd_result(__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 359, __pyx_L1_error)
+  __pyx_t_3 = __pyx_f_3osd_check_osd_result(__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 358, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "osd.pyx":361
+  /* "osd.pyx":360
  *         check_osd_result(rv)
  * 
  *         py_event_pkg = Packet()             # <<<<<<<<<<<<<<
  *         py_event_pkg._cself = c_event_pkg
  * 
  */
-  __pyx_t_3 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_3osd_Packet), __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 361, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_3osd_Packet), __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 360, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_v_py_event_pkg = ((struct __pyx_obj_3osd_Packet *)__pyx_t_3);
   __pyx_t_3 = 0;
 
-  /* "osd.pyx":362
+  /* "osd.pyx":361
  * 
  *         py_event_pkg = Packet()
  *         py_event_pkg._cself = c_event_pkg             # <<<<<<<<<<<<<<
@@ -7670,7 +7671,7 @@ static PyObject *__pyx_pf_3osd_7Hostmod_24event_receive(struct __pyx_obj_3osd_Ho
  */
   __pyx_v_py_event_pkg->_cself = __pyx_v_c_event_pkg;
 
-  /* "osd.pyx":364
+  /* "osd.pyx":363
  *         py_event_pkg._cself = c_event_pkg
  * 
  *         return py_event_pkg             # <<<<<<<<<<<<<<
@@ -7682,7 +7683,7 @@ static PyObject *__pyx_pf_3osd_7Hostmod_24event_receive(struct __pyx_obj_3osd_Ho
   __pyx_r = ((PyObject *)__pyx_v_py_event_pkg);
   goto __pyx_L0;
 
-  /* "osd.pyx":356
+  /* "osd.pyx":355
  *         check_osd_result(rv)
  * 
  *     def event_receive(self, flags=0):             # <<<<<<<<<<<<<<
@@ -7710,20 +7711,20 @@ static PyObject *__pyx_pf_3osd_7Hostmod_24event_receive(struct __pyx_obj_3osd_Ho
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_3osd_7Hostmod_27__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static char __pyx_doc_3osd_7Hostmod_26__reduce_cython__[] = "Hostmod.__reduce_cython__(self)";
-static PyObject *__pyx_pw_3osd_7Hostmod_27__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_3osd_7Hostmod_29__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static char __pyx_doc_3osd_7Hostmod_28__reduce_cython__[] = "Hostmod.__reduce_cython__(self)";
+static PyObject *__pyx_pw_3osd_7Hostmod_29__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__reduce_cython__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_3osd_7Hostmod_26__reduce_cython__(((struct __pyx_obj_3osd_Hostmod *)__pyx_v_self));
+  __pyx_r = __pyx_pf_3osd_7Hostmod_28__reduce_cython__(((struct __pyx_obj_3osd_Hostmod *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_3osd_7Hostmod_26__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_3osd_Hostmod *__pyx_v_self) {
+static PyObject *__pyx_pf_3osd_7Hostmod_28__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_3osd_Hostmod *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -7765,20 +7766,20 @@ static PyObject *__pyx_pf_3osd_7Hostmod_26__reduce_cython__(CYTHON_UNUSED struct
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_3osd_7Hostmod_29__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state); /*proto*/
-static char __pyx_doc_3osd_7Hostmod_28__setstate_cython__[] = "Hostmod.__setstate_cython__(self, __pyx_state)";
-static PyObject *__pyx_pw_3osd_7Hostmod_29__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pw_3osd_7Hostmod_31__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state); /*proto*/
+static char __pyx_doc_3osd_7Hostmod_30__setstate_cython__[] = "Hostmod.__setstate_cython__(self, __pyx_state)";
+static PyObject *__pyx_pw_3osd_7Hostmod_31__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__setstate_cython__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_3osd_7Hostmod_28__setstate_cython__(((struct __pyx_obj_3osd_Hostmod *)__pyx_v_self), ((PyObject *)__pyx_v___pyx_state));
+  __pyx_r = __pyx_pf_3osd_7Hostmod_30__setstate_cython__(((struct __pyx_obj_3osd_Hostmod *)__pyx_v_self), ((PyObject *)__pyx_v___pyx_state));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_3osd_7Hostmod_28__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_3osd_Hostmod *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pf_3osd_7Hostmod_30__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_3osd_Hostmod *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -7812,7 +7813,7 @@ static PyObject *__pyx_pf_3osd_7Hostmod_28__setstate_cython__(CYTHON_UNUSED stru
   return __pyx_r;
 }
 
-/* "osd.pyx":370
+/* "osd.pyx":369
  *     cdef cosd.osd_gateway_glip_ctx* _cself
  * 
  *     def __cinit__(self, Log log, host_controller_address, device_subnet_addr,             # <<<<<<<<<<<<<<
@@ -7860,29 +7861,29 @@ static int __pyx_pw_3osd_11GatewayGlip_1__cinit__(PyObject *__pyx_v_self, PyObje
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_host_controller_address)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 5, 5, 1); __PYX_ERR(0, 370, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 5, 5, 1); __PYX_ERR(0, 369, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_device_subnet_addr)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 5, 5, 2); __PYX_ERR(0, 370, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 5, 5, 2); __PYX_ERR(0, 369, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  3:
         if (likely((values[3] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_glip_backend_name)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 5, 5, 3); __PYX_ERR(0, 370, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 5, 5, 3); __PYX_ERR(0, 369, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  4:
         if (likely((values[4] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_glip_backend_options)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 5, 5, 4); __PYX_ERR(0, 370, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 5, 5, 4); __PYX_ERR(0, 369, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__cinit__") < 0)) __PYX_ERR(0, 370, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__cinit__") < 0)) __PYX_ERR(0, 369, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 5) {
       goto __pyx_L5_argtuple_error;
@@ -7901,13 +7902,13 @@ static int __pyx_pw_3osd_11GatewayGlip_1__cinit__(PyObject *__pyx_v_self, PyObje
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 5, 5, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 370, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 5, 5, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 369, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("osd.GatewayGlip.__cinit__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return -1;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_log), __pyx_ptype_3osd_Log, 1, "log", 0))) __PYX_ERR(0, 370, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_log), __pyx_ptype_3osd_Log, 1, "log", 0))) __PYX_ERR(0, 369, __pyx_L1_error)
   __pyx_r = __pyx_pf_3osd_11GatewayGlip___cinit__(((struct __pyx_obj_3osd_GatewayGlip *)__pyx_v_self), __pyx_v_log, __pyx_v_host_controller_address, __pyx_v_device_subnet_addr, __pyx_v_glip_backend_name, __pyx_v_glip_backend_options);
 
   /* function exit code */
@@ -7954,102 +7955,102 @@ static int __pyx_pf_3osd_11GatewayGlip___cinit__(struct __pyx_obj_3osd_GatewayGl
   PyObject *__pyx_t_19 = NULL;
   __Pyx_RefNannySetupContext("__cinit__", 0);
 
-  /* "osd.pyx":373
+  /* "osd.pyx":372
  *                   glip_backend_name, glip_backend_options):
  * 
  *         b_host_controller_address = host_controller_address.encode('UTF-8')             # <<<<<<<<<<<<<<
  *         cdef char* c_host_controller_address = b_host_controller_address
  * 
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_host_controller_address, __pyx_n_s_encode); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 373, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_host_controller_address, __pyx_n_s_encode); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 372, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_tuple__11, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 373, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_tuple__11, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 372, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_b_host_controller_address = __pyx_t_2;
   __pyx_t_2 = 0;
 
-  /* "osd.pyx":374
+  /* "osd.pyx":373
  * 
  *         b_host_controller_address = host_controller_address.encode('UTF-8')
  *         cdef char* c_host_controller_address = b_host_controller_address             # <<<<<<<<<<<<<<
  * 
  *         b_glip_backend_name = glip_backend_name.encode('UTF-8')
  */
-  __pyx_t_3 = __Pyx_PyObject_AsWritableString(__pyx_v_b_host_controller_address); if (unlikely((!__pyx_t_3) && PyErr_Occurred())) __PYX_ERR(0, 374, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_AsWritableString(__pyx_v_b_host_controller_address); if (unlikely((!__pyx_t_3) && PyErr_Occurred())) __PYX_ERR(0, 373, __pyx_L1_error)
   __pyx_v_c_host_controller_address = __pyx_t_3;
 
-  /* "osd.pyx":376
+  /* "osd.pyx":375
  *         cdef char* c_host_controller_address = b_host_controller_address
  * 
  *         b_glip_backend_name = glip_backend_name.encode('UTF-8')             # <<<<<<<<<<<<<<
  *         cdef char* c_glip_backend_name = b_glip_backend_name
  * 
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_glip_backend_name, __pyx_n_s_encode); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 376, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_glip_backend_name, __pyx_n_s_encode); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 375, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple__12, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 376, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple__12, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 375, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_v_b_glip_backend_name = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "osd.pyx":377
+  /* "osd.pyx":376
  * 
  *         b_glip_backend_name = glip_backend_name.encode('UTF-8')
  *         cdef char* c_glip_backend_name = b_glip_backend_name             # <<<<<<<<<<<<<<
  * 
  *         c_glip_backend_options_len = len(glip_backend_options)
  */
-  __pyx_t_3 = __Pyx_PyObject_AsWritableString(__pyx_v_b_glip_backend_name); if (unlikely((!__pyx_t_3) && PyErr_Occurred())) __PYX_ERR(0, 377, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_AsWritableString(__pyx_v_b_glip_backend_name); if (unlikely((!__pyx_t_3) && PyErr_Occurred())) __PYX_ERR(0, 376, __pyx_L1_error)
   __pyx_v_c_glip_backend_name = __pyx_t_3;
 
-  /* "osd.pyx":379
+  /* "osd.pyx":378
  *         cdef char* c_glip_backend_name = b_glip_backend_name
  * 
  *         c_glip_backend_options_len = len(glip_backend_options)             # <<<<<<<<<<<<<<
  *         cdef cosd.glip_option* c_glip_backend_options = \
  *             <cosd.glip_option *>PyMem_Malloc(sizeof(cosd.glip_option) * \
  */
-  __pyx_t_4 = PyObject_Length(__pyx_v_glip_backend_options); if (unlikely(__pyx_t_4 == ((Py_ssize_t)-1))) __PYX_ERR(0, 379, __pyx_L1_error)
-  __pyx_t_1 = PyInt_FromSsize_t(__pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 379, __pyx_L1_error)
+  __pyx_t_4 = PyObject_Length(__pyx_v_glip_backend_options); if (unlikely(__pyx_t_4 == ((Py_ssize_t)-1))) __PYX_ERR(0, 378, __pyx_L1_error)
+  __pyx_t_1 = PyInt_FromSsize_t(__pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 378, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_c_glip_backend_options_len = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "osd.pyx":381
+  /* "osd.pyx":380
  *         c_glip_backend_options_len = len(glip_backend_options)
  *         cdef cosd.glip_option* c_glip_backend_options = \
  *             <cosd.glip_option *>PyMem_Malloc(sizeof(cosd.glip_option) * \             # <<<<<<<<<<<<<<
  *                                              c_glip_backend_options_len)
  * 
  */
-  __pyx_t_1 = __Pyx_PyInt_FromSize_t((sizeof(struct glip_option))); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 381, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_FromSize_t((sizeof(struct glip_option))); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 380, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
 
-  /* "osd.pyx":382
+  /* "osd.pyx":381
  *         cdef cosd.glip_option* c_glip_backend_options = \
  *             <cosd.glip_option *>PyMem_Malloc(sizeof(cosd.glip_option) * \
  *                                              c_glip_backend_options_len)             # <<<<<<<<<<<<<<
  * 
  *         try:
  */
-  __pyx_t_2 = PyNumber_Multiply(__pyx_t_1, __pyx_v_c_glip_backend_options_len); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 381, __pyx_L1_error)
+  __pyx_t_2 = PyNumber_Multiply(__pyx_t_1, __pyx_v_c_glip_backend_options_len); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 380, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "osd.pyx":381
+  /* "osd.pyx":380
  *         c_glip_backend_options_len = len(glip_backend_options)
  *         cdef cosd.glip_option* c_glip_backend_options = \
  *             <cosd.glip_option *>PyMem_Malloc(sizeof(cosd.glip_option) * \             # <<<<<<<<<<<<<<
  *                                              c_glip_backend_options_len)
  * 
  */
-  __pyx_t_5 = __Pyx_PyInt_As_size_t(__pyx_t_2); if (unlikely((__pyx_t_5 == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 381, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyInt_As_size_t(__pyx_t_2); if (unlikely((__pyx_t_5 == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 380, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_v_c_glip_backend_options = ((struct glip_option *)PyMem_Malloc(__pyx_t_5));
 
-  /* "osd.pyx":384
+  /* "osd.pyx":383
  *                                              c_glip_backend_options_len)
  * 
  *         try:             # <<<<<<<<<<<<<<
@@ -8058,7 +8059,7 @@ static int __pyx_pf_3osd_11GatewayGlip___cinit__(struct __pyx_obj_3osd_GatewayGl
  */
   /*try:*/ {
 
-    /* "osd.pyx":385
+    /* "osd.pyx":384
  * 
  *         try:
  *             index = 0             # <<<<<<<<<<<<<<
@@ -8068,7 +8069,7 @@ static int __pyx_pf_3osd_11GatewayGlip___cinit__(struct __pyx_obj_3osd_GatewayGl
     __Pyx_INCREF(__pyx_int_0);
     __pyx_v_index = __pyx_int_0;
 
-    /* "osd.pyx":386
+    /* "osd.pyx":385
  *         try:
  *             index = 0
  *             for name, value in glip_backend_options.items():             # <<<<<<<<<<<<<<
@@ -8078,9 +8079,9 @@ static int __pyx_pf_3osd_11GatewayGlip___cinit__(struct __pyx_obj_3osd_GatewayGl
     __pyx_t_4 = 0;
     if (unlikely(__pyx_v_glip_backend_options == Py_None)) {
       PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "items");
-      __PYX_ERR(0, 386, __pyx_L4_error)
+      __PYX_ERR(0, 385, __pyx_L4_error)
     }
-    __pyx_t_1 = __Pyx_dict_iterator(__pyx_v_glip_backend_options, 0, __pyx_n_s_items, (&__pyx_t_6), (&__pyx_t_7)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 386, __pyx_L4_error)
+    __pyx_t_1 = __Pyx_dict_iterator(__pyx_v_glip_backend_options, 0, __pyx_n_s_items, (&__pyx_t_6), (&__pyx_t_7)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 385, __pyx_L4_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_XDECREF(__pyx_t_2);
     __pyx_t_2 = __pyx_t_1;
@@ -8088,7 +8089,7 @@ static int __pyx_pf_3osd_11GatewayGlip___cinit__(struct __pyx_obj_3osd_GatewayGl
     while (1) {
       __pyx_t_9 = __Pyx_dict_iter_next(__pyx_t_2, __pyx_t_6, &__pyx_t_4, &__pyx_t_1, &__pyx_t_8, NULL, __pyx_t_7);
       if (unlikely(__pyx_t_9 == 0)) break;
-      if (unlikely(__pyx_t_9 == -1)) __PYX_ERR(0, 386, __pyx_L4_error)
+      if (unlikely(__pyx_t_9 == -1)) __PYX_ERR(0, 385, __pyx_L4_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_GOTREF(__pyx_t_8);
       __Pyx_XDECREF_SET(__pyx_v_name, __pyx_t_1);
@@ -8096,91 +8097,91 @@ static int __pyx_pf_3osd_11GatewayGlip___cinit__(struct __pyx_obj_3osd_GatewayGl
       __Pyx_XDECREF_SET(__pyx_v_value, __pyx_t_8);
       __pyx_t_8 = 0;
 
-      /* "osd.pyx":387
+      /* "osd.pyx":386
  *             index = 0
  *             for name, value in glip_backend_options.items():
  *                 b_name = name.encode('UTF-8')             # <<<<<<<<<<<<<<
  *                 b_value = value.encode('UTF-8')
  *                 c_glip_backend_options[index].name = b_name
  */
-      __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_name, __pyx_n_s_encode); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 387, __pyx_L4_error)
+      __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_name, __pyx_n_s_encode); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 386, __pyx_L4_error)
       __Pyx_GOTREF(__pyx_t_8);
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_tuple__13, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 387, __pyx_L4_error)
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_tuple__13, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 386, __pyx_L4_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
       __Pyx_XDECREF_SET(__pyx_v_b_name, __pyx_t_1);
       __pyx_t_1 = 0;
 
-      /* "osd.pyx":388
+      /* "osd.pyx":387
  *             for name, value in glip_backend_options.items():
  *                 b_name = name.encode('UTF-8')
  *                 b_value = value.encode('UTF-8')             # <<<<<<<<<<<<<<
  *                 c_glip_backend_options[index].name = b_name
  *                 c_glip_backend_options[index].value = b_value
  */
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_value, __pyx_n_s_encode); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 388, __pyx_L4_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_value, __pyx_n_s_encode); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 387, __pyx_L4_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_8 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_tuple__14, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 388, __pyx_L4_error)
+      __pyx_t_8 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_tuple__14, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 387, __pyx_L4_error)
       __Pyx_GOTREF(__pyx_t_8);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __Pyx_XDECREF_SET(__pyx_v_b_value, __pyx_t_8);
       __pyx_t_8 = 0;
 
-      /* "osd.pyx":389
+      /* "osd.pyx":388
  *                 b_name = name.encode('UTF-8')
  *                 b_value = value.encode('UTF-8')
  *                 c_glip_backend_options[index].name = b_name             # <<<<<<<<<<<<<<
  *                 c_glip_backend_options[index].value = b_value
  *                 index += 1
  */
-      __pyx_t_3 = __Pyx_PyObject_AsWritableString(__pyx_v_b_name); if (unlikely((!__pyx_t_3) && PyErr_Occurred())) __PYX_ERR(0, 389, __pyx_L4_error)
-      __pyx_t_10 = __Pyx_PyIndex_AsSsize_t(__pyx_v_index); if (unlikely((__pyx_t_10 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 389, __pyx_L4_error)
+      __pyx_t_3 = __Pyx_PyObject_AsWritableString(__pyx_v_b_name); if (unlikely((!__pyx_t_3) && PyErr_Occurred())) __PYX_ERR(0, 388, __pyx_L4_error)
+      __pyx_t_10 = __Pyx_PyIndex_AsSsize_t(__pyx_v_index); if (unlikely((__pyx_t_10 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 388, __pyx_L4_error)
       (__pyx_v_c_glip_backend_options[__pyx_t_10]).name = __pyx_t_3;
 
-      /* "osd.pyx":390
+      /* "osd.pyx":389
  *                 b_value = value.encode('UTF-8')
  *                 c_glip_backend_options[index].name = b_name
  *                 c_glip_backend_options[index].value = b_value             # <<<<<<<<<<<<<<
  *                 index += 1
  * 
  */
-      __pyx_t_3 = __Pyx_PyObject_AsWritableString(__pyx_v_b_value); if (unlikely((!__pyx_t_3) && PyErr_Occurred())) __PYX_ERR(0, 390, __pyx_L4_error)
-      __pyx_t_10 = __Pyx_PyIndex_AsSsize_t(__pyx_v_index); if (unlikely((__pyx_t_10 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 390, __pyx_L4_error)
+      __pyx_t_3 = __Pyx_PyObject_AsWritableString(__pyx_v_b_value); if (unlikely((!__pyx_t_3) && PyErr_Occurred())) __PYX_ERR(0, 389, __pyx_L4_error)
+      __pyx_t_10 = __Pyx_PyIndex_AsSsize_t(__pyx_v_index); if (unlikely((__pyx_t_10 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 389, __pyx_L4_error)
       (__pyx_v_c_glip_backend_options[__pyx_t_10]).value = __pyx_t_3;
 
-      /* "osd.pyx":391
+      /* "osd.pyx":390
  *                 c_glip_backend_options[index].name = b_name
  *                 c_glip_backend_options[index].value = b_value
  *                 index += 1             # <<<<<<<<<<<<<<
  * 
  *             cosd.osd_gateway_glip_new(&self._cself, log._cself,
  */
-      __pyx_t_8 = __Pyx_PyInt_AddObjC(__pyx_v_index, __pyx_int_1, 1, 1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 391, __pyx_L4_error)
+      __pyx_t_8 = __Pyx_PyInt_AddObjC(__pyx_v_index, __pyx_int_1, 1, 1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 390, __pyx_L4_error)
       __Pyx_GOTREF(__pyx_t_8);
       __Pyx_DECREF_SET(__pyx_v_index, __pyx_t_8);
       __pyx_t_8 = 0;
     }
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-    /* "osd.pyx":395
+    /* "osd.pyx":394
  *             cosd.osd_gateway_glip_new(&self._cself, log._cself,
  *                                       c_host_controller_address,
  *                                       device_subnet_addr,             # <<<<<<<<<<<<<<
  *                                       c_glip_backend_name,
  *                                       c_glip_backend_options,
  */
-    __pyx_t_11 = __Pyx_PyInt_As_uint16_t(__pyx_v_device_subnet_addr); if (unlikely((__pyx_t_11 == ((uint16_t)-1)) && PyErr_Occurred())) __PYX_ERR(0, 395, __pyx_L4_error)
+    __pyx_t_11 = __Pyx_PyInt_As_uint16_t(__pyx_v_device_subnet_addr); if (unlikely((__pyx_t_11 == ((uint16_t)-1)) && PyErr_Occurred())) __PYX_ERR(0, 394, __pyx_L4_error)
 
-    /* "osd.pyx":398
+    /* "osd.pyx":397
  *                                       c_glip_backend_name,
  *                                       c_glip_backend_options,
  *                                       c_glip_backend_options_len)             # <<<<<<<<<<<<<<
  * 
  *             if self._cself is NULL:
  */
-    __pyx_t_5 = __Pyx_PyInt_As_size_t(__pyx_v_c_glip_backend_options_len); if (unlikely((__pyx_t_5 == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 398, __pyx_L4_error)
+    __pyx_t_5 = __Pyx_PyInt_As_size_t(__pyx_v_c_glip_backend_options_len); if (unlikely((__pyx_t_5 == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 397, __pyx_L4_error)
 
-    /* "osd.pyx":393
+    /* "osd.pyx":392
  *                 index += 1
  * 
  *             cosd.osd_gateway_glip_new(&self._cself, log._cself,             # <<<<<<<<<<<<<<
@@ -8189,7 +8190,7 @@ static int __pyx_pf_3osd_11GatewayGlip___cinit__(struct __pyx_obj_3osd_GatewayGl
  */
     osd_gateway_glip_new((&__pyx_v_self->_cself), __pyx_v_log->_cself, __pyx_v_c_host_controller_address, __pyx_t_11, __pyx_v_c_glip_backend_name, __pyx_v_c_glip_backend_options, __pyx_t_5);
 
-    /* "osd.pyx":400
+    /* "osd.pyx":399
  *                                       c_glip_backend_options_len)
  * 
  *             if self._cself is NULL:             # <<<<<<<<<<<<<<
@@ -8199,16 +8200,16 @@ static int __pyx_pf_3osd_11GatewayGlip___cinit__(struct __pyx_obj_3osd_GatewayGl
     __pyx_t_12 = ((__pyx_v_self->_cself == NULL) != 0);
     if (__pyx_t_12) {
 
-      /* "osd.pyx":401
+      /* "osd.pyx":400
  * 
  *             if self._cself is NULL:
  *                 raise MemoryError()             # <<<<<<<<<<<<<<
  *         finally:
  *             PyMem_Free(c_glip_backend_options)
  */
-      PyErr_NoMemory(); __PYX_ERR(0, 401, __pyx_L4_error)
+      PyErr_NoMemory(); __PYX_ERR(0, 400, __pyx_L4_error)
 
-      /* "osd.pyx":400
+      /* "osd.pyx":399
  *                                       c_glip_backend_options_len)
  * 
  *             if self._cself is NULL:             # <<<<<<<<<<<<<<
@@ -8218,7 +8219,7 @@ static int __pyx_pf_3osd_11GatewayGlip___cinit__(struct __pyx_obj_3osd_GatewayGl
     }
   }
 
-  /* "osd.pyx":403
+  /* "osd.pyx":402
  *                 raise MemoryError()
  *         finally:
  *             PyMem_Free(c_glip_backend_options)             # <<<<<<<<<<<<<<
@@ -8267,7 +8268,7 @@ static int __pyx_pf_3osd_11GatewayGlip___cinit__(struct __pyx_obj_3osd_GatewayGl
     __pyx_L5:;
   }
 
-  /* "osd.pyx":370
+  /* "osd.pyx":369
  *     cdef cosd.osd_gateway_glip_ctx* _cself
  * 
  *     def __cinit__(self, Log log, host_controller_address, device_subnet_addr,             # <<<<<<<<<<<<<<
@@ -8297,7 +8298,7 @@ static int __pyx_pf_3osd_11GatewayGlip___cinit__(struct __pyx_obj_3osd_GatewayGl
   return __pyx_r;
 }
 
-/* "osd.pyx":405
+/* "osd.pyx":404
  *             PyMem_Free(c_glip_backend_options)
  * 
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
@@ -8324,7 +8325,7 @@ static void __pyx_pf_3osd_11GatewayGlip_2__dealloc__(struct __pyx_obj_3osd_Gatew
   PyObject *__pyx_t_4 = NULL;
   __Pyx_RefNannySetupContext("__dealloc__", 0);
 
-  /* "osd.pyx":406
+  /* "osd.pyx":405
  * 
  *     def __dealloc__(self):
  *         if self._cself is NULL:             # <<<<<<<<<<<<<<
@@ -8334,7 +8335,7 @@ static void __pyx_pf_3osd_11GatewayGlip_2__dealloc__(struct __pyx_obj_3osd_Gatew
   __pyx_t_1 = ((__pyx_v_self->_cself == NULL) != 0);
   if (__pyx_t_1) {
 
-    /* "osd.pyx":407
+    /* "osd.pyx":406
  *     def __dealloc__(self):
  *         if self._cself is NULL:
  *             return             # <<<<<<<<<<<<<<
@@ -8343,7 +8344,7 @@ static void __pyx_pf_3osd_11GatewayGlip_2__dealloc__(struct __pyx_obj_3osd_Gatew
  */
     goto __pyx_L0;
 
-    /* "osd.pyx":406
+    /* "osd.pyx":405
  * 
  *     def __dealloc__(self):
  *         if self._cself is NULL:             # <<<<<<<<<<<<<<
@@ -8352,14 +8353,14 @@ static void __pyx_pf_3osd_11GatewayGlip_2__dealloc__(struct __pyx_obj_3osd_Gatew
  */
   }
 
-  /* "osd.pyx":409
+  /* "osd.pyx":408
  *             return
  * 
  *         if self.is_connected():             # <<<<<<<<<<<<<<
  *             self.disconnect()
  * 
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_is_connected); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 409, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_is_connected); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 408, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_4 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
@@ -8372,25 +8373,25 @@ static void __pyx_pf_3osd_11GatewayGlip_2__dealloc__(struct __pyx_obj_3osd_Gatew
     }
   }
   if (__pyx_t_4) {
-    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 409, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 408, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   } else {
-    __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 409, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 408, __pyx_L1_error)
   }
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 409, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 408, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   if (__pyx_t_1) {
 
-    /* "osd.pyx":410
+    /* "osd.pyx":409
  * 
  *         if self.is_connected():
  *             self.disconnect()             # <<<<<<<<<<<<<<
  * 
  *         cosd.osd_gateway_glip_free(&self._cself)
  */
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_disconnect); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 410, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_disconnect); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 409, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __pyx_t_4 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
@@ -8403,16 +8404,16 @@ static void __pyx_pf_3osd_11GatewayGlip_2__dealloc__(struct __pyx_obj_3osd_Gatew
       }
     }
     if (__pyx_t_4) {
-      __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 410, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 409, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     } else {
-      __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 410, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 409, __pyx_L1_error)
     }
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-    /* "osd.pyx":409
+    /* "osd.pyx":408
  *             return
  * 
  *         if self.is_connected():             # <<<<<<<<<<<<<<
@@ -8421,7 +8422,7 @@ static void __pyx_pf_3osd_11GatewayGlip_2__dealloc__(struct __pyx_obj_3osd_Gatew
  */
   }
 
-  /* "osd.pyx":412
+  /* "osd.pyx":411
  *             self.disconnect()
  * 
  *         cosd.osd_gateway_glip_free(&self._cself)             # <<<<<<<<<<<<<<
@@ -8430,7 +8431,7 @@ static void __pyx_pf_3osd_11GatewayGlip_2__dealloc__(struct __pyx_obj_3osd_Gatew
  */
   osd_gateway_glip_free((&__pyx_v_self->_cself));
 
-  /* "osd.pyx":405
+  /* "osd.pyx":404
  *             PyMem_Free(c_glip_backend_options)
  * 
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
@@ -8449,7 +8450,7 @@ static void __pyx_pf_3osd_11GatewayGlip_2__dealloc__(struct __pyx_obj_3osd_Gatew
   __Pyx_RefNannyFinishContext();
 }
 
-/* "osd.pyx":414
+/* "osd.pyx":413
  *         cosd.osd_gateway_glip_free(&self._cself)
  * 
  *     def connect(self):             # <<<<<<<<<<<<<<
@@ -8477,7 +8478,7 @@ static PyObject *__pyx_pf_3osd_11GatewayGlip_4connect(struct __pyx_obj_3osd_Gate
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("connect", 0);
 
-  /* "osd.pyx":415
+  /* "osd.pyx":414
  * 
  *     def connect(self):
  *         return cosd.osd_gateway_glip_connect(self._cself)             # <<<<<<<<<<<<<<
@@ -8485,13 +8486,13 @@ static PyObject *__pyx_pf_3osd_11GatewayGlip_4connect(struct __pyx_obj_3osd_Gate
  *     def disconnect(self):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_osd_result(osd_gateway_glip_connect(__pyx_v_self->_cself)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 415, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_osd_result(osd_gateway_glip_connect(__pyx_v_self->_cself)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 414, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "osd.pyx":414
+  /* "osd.pyx":413
  *         cosd.osd_gateway_glip_free(&self._cself)
  * 
  *     def connect(self):             # <<<<<<<<<<<<<<
@@ -8510,7 +8511,7 @@ static PyObject *__pyx_pf_3osd_11GatewayGlip_4connect(struct __pyx_obj_3osd_Gate
   return __pyx_r;
 }
 
-/* "osd.pyx":417
+/* "osd.pyx":416
  *         return cosd.osd_gateway_glip_connect(self._cself)
  * 
  *     def disconnect(self):             # <<<<<<<<<<<<<<
@@ -8538,7 +8539,7 @@ static PyObject *__pyx_pf_3osd_11GatewayGlip_6disconnect(struct __pyx_obj_3osd_G
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("disconnect", 0);
 
-  /* "osd.pyx":418
+  /* "osd.pyx":417
  * 
  *     def disconnect(self):
  *         return cosd.osd_gateway_glip_disconnect(self._cself)             # <<<<<<<<<<<<<<
@@ -8546,13 +8547,13 @@ static PyObject *__pyx_pf_3osd_11GatewayGlip_6disconnect(struct __pyx_obj_3osd_G
  *     def is_connected(self):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_osd_result(osd_gateway_glip_disconnect(__pyx_v_self->_cself)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 418, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_osd_result(osd_gateway_glip_disconnect(__pyx_v_self->_cself)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 417, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "osd.pyx":417
+  /* "osd.pyx":416
  *         return cosd.osd_gateway_glip_connect(self._cself)
  * 
  *     def disconnect(self):             # <<<<<<<<<<<<<<
@@ -8571,7 +8572,7 @@ static PyObject *__pyx_pf_3osd_11GatewayGlip_6disconnect(struct __pyx_obj_3osd_G
   return __pyx_r;
 }
 
-/* "osd.pyx":420
+/* "osd.pyx":419
  *         return cosd.osd_gateway_glip_disconnect(self._cself)
  * 
  *     def is_connected(self):             # <<<<<<<<<<<<<<
@@ -8599,7 +8600,7 @@ static PyObject *__pyx_pf_3osd_11GatewayGlip_8is_connected(struct __pyx_obj_3osd
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("is_connected", 0);
 
-  /* "osd.pyx":421
+  /* "osd.pyx":420
  * 
  *     def is_connected(self):
  *         return cosd.osd_gateway_glip_is_connected(self._cself)             # <<<<<<<<<<<<<<
@@ -8607,13 +8608,13 @@ static PyObject *__pyx_pf_3osd_11GatewayGlip_8is_connected(struct __pyx_obj_3osd
  * 
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(osd_gateway_glip_is_connected(__pyx_v_self->_cself)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 421, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(osd_gateway_glip_is_connected(__pyx_v_self->_cself)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 420, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "osd.pyx":420
+  /* "osd.pyx":419
  *         return cosd.osd_gateway_glip_disconnect(self._cself)
  * 
  *     def is_connected(self):             # <<<<<<<<<<<<<<
@@ -8741,7 +8742,7 @@ static PyObject *__pyx_pf_3osd_11GatewayGlip_12__setstate_cython__(CYTHON_UNUSED
   return __pyx_r;
 }
 
-/* "osd.pyx":427
+/* "osd.pyx":426
  *     cdef cosd.osd_hostctrl_ctx* _cself
  * 
  *     def __cinit__(self, Log log, router_address):             # <<<<<<<<<<<<<<
@@ -8780,11 +8781,11 @@ static int __pyx_pw_3osd_8Hostctrl_1__cinit__(PyObject *__pyx_v_self, PyObject *
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_router_address)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 2, 2, 1); __PYX_ERR(0, 427, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 2, 2, 1); __PYX_ERR(0, 426, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__cinit__") < 0)) __PYX_ERR(0, 427, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__cinit__") < 0)) __PYX_ERR(0, 426, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -8797,13 +8798,13 @@ static int __pyx_pw_3osd_8Hostctrl_1__cinit__(PyObject *__pyx_v_self, PyObject *
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 427, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 426, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("osd.Hostctrl.__cinit__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return -1;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_log), __pyx_ptype_3osd_Log, 1, "log", 0))) __PYX_ERR(0, 427, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_log), __pyx_ptype_3osd_Log, 1, "log", 0))) __PYX_ERR(0, 426, __pyx_L1_error)
   __pyx_r = __pyx_pf_3osd_8Hostctrl___cinit__(((struct __pyx_obj_3osd_Hostctrl *)__pyx_v_self), __pyx_v_log, __pyx_v_router_address);
 
   /* function exit code */
@@ -8826,32 +8827,32 @@ static int __pyx_pf_3osd_8Hostctrl___cinit__(struct __pyx_obj_3osd_Hostctrl *__p
   int __pyx_t_4;
   __Pyx_RefNannySetupContext("__cinit__", 0);
 
-  /* "osd.pyx":428
+  /* "osd.pyx":427
  * 
  *     def __cinit__(self, Log log, router_address):
  *         py_byte_string = router_address.encode('UTF-8')             # <<<<<<<<<<<<<<
  *         cdef char* c_router_address = py_byte_string
  *         cosd.osd_hostctrl_new(&self._cself, log._cself, c_router_address)
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_router_address, __pyx_n_s_encode); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 428, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_router_address, __pyx_n_s_encode); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 427, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_tuple__17, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 428, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_tuple__17, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 427, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_py_byte_string = __pyx_t_2;
   __pyx_t_2 = 0;
 
-  /* "osd.pyx":429
+  /* "osd.pyx":428
  *     def __cinit__(self, Log log, router_address):
  *         py_byte_string = router_address.encode('UTF-8')
  *         cdef char* c_router_address = py_byte_string             # <<<<<<<<<<<<<<
  *         cosd.osd_hostctrl_new(&self._cself, log._cself, c_router_address)
  *         if self._cself is NULL:
  */
-  __pyx_t_3 = __Pyx_PyObject_AsWritableString(__pyx_v_py_byte_string); if (unlikely((!__pyx_t_3) && PyErr_Occurred())) __PYX_ERR(0, 429, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_AsWritableString(__pyx_v_py_byte_string); if (unlikely((!__pyx_t_3) && PyErr_Occurred())) __PYX_ERR(0, 428, __pyx_L1_error)
   __pyx_v_c_router_address = __pyx_t_3;
 
-  /* "osd.pyx":430
+  /* "osd.pyx":429
  *         py_byte_string = router_address.encode('UTF-8')
  *         cdef char* c_router_address = py_byte_string
  *         cosd.osd_hostctrl_new(&self._cself, log._cself, c_router_address)             # <<<<<<<<<<<<<<
@@ -8860,7 +8861,7 @@ static int __pyx_pf_3osd_8Hostctrl___cinit__(struct __pyx_obj_3osd_Hostctrl *__p
  */
   osd_hostctrl_new((&__pyx_v_self->_cself), __pyx_v_log->_cself, __pyx_v_c_router_address);
 
-  /* "osd.pyx":431
+  /* "osd.pyx":430
  *         cdef char* c_router_address = py_byte_string
  *         cosd.osd_hostctrl_new(&self._cself, log._cself, c_router_address)
  *         if self._cself is NULL:             # <<<<<<<<<<<<<<
@@ -8870,16 +8871,16 @@ static int __pyx_pf_3osd_8Hostctrl___cinit__(struct __pyx_obj_3osd_Hostctrl *__p
   __pyx_t_4 = ((__pyx_v_self->_cself == NULL) != 0);
   if (__pyx_t_4) {
 
-    /* "osd.pyx":432
+    /* "osd.pyx":431
  *         cosd.osd_hostctrl_new(&self._cself, log._cself, c_router_address)
  *         if self._cself is NULL:
  *             raise MemoryError()             # <<<<<<<<<<<<<<
  * 
  *     def __dealloc__(self):
  */
-    PyErr_NoMemory(); __PYX_ERR(0, 432, __pyx_L1_error)
+    PyErr_NoMemory(); __PYX_ERR(0, 431, __pyx_L1_error)
 
-    /* "osd.pyx":431
+    /* "osd.pyx":430
  *         cdef char* c_router_address = py_byte_string
  *         cosd.osd_hostctrl_new(&self._cself, log._cself, c_router_address)
  *         if self._cself is NULL:             # <<<<<<<<<<<<<<
@@ -8888,7 +8889,7 @@ static int __pyx_pf_3osd_8Hostctrl___cinit__(struct __pyx_obj_3osd_Hostctrl *__p
  */
   }
 
-  /* "osd.pyx":427
+  /* "osd.pyx":426
  *     cdef cosd.osd_hostctrl_ctx* _cself
  * 
  *     def __cinit__(self, Log log, router_address):             # <<<<<<<<<<<<<<
@@ -8910,7 +8911,7 @@ static int __pyx_pf_3osd_8Hostctrl___cinit__(struct __pyx_obj_3osd_Hostctrl *__p
   return __pyx_r;
 }
 
-/* "osd.pyx":434
+/* "osd.pyx":433
  *             raise MemoryError()
  * 
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
@@ -8937,7 +8938,7 @@ static void __pyx_pf_3osd_8Hostctrl_2__dealloc__(struct __pyx_obj_3osd_Hostctrl 
   PyObject *__pyx_t_4 = NULL;
   __Pyx_RefNannySetupContext("__dealloc__", 0);
 
-  /* "osd.pyx":435
+  /* "osd.pyx":434
  * 
  *     def __dealloc__(self):
  *         if self._cself is NULL:             # <<<<<<<<<<<<<<
@@ -8947,7 +8948,7 @@ static void __pyx_pf_3osd_8Hostctrl_2__dealloc__(struct __pyx_obj_3osd_Hostctrl 
   __pyx_t_1 = ((__pyx_v_self->_cself == NULL) != 0);
   if (__pyx_t_1) {
 
-    /* "osd.pyx":436
+    /* "osd.pyx":435
  *     def __dealloc__(self):
  *         if self._cself is NULL:
  *             return             # <<<<<<<<<<<<<<
@@ -8956,7 +8957,7 @@ static void __pyx_pf_3osd_8Hostctrl_2__dealloc__(struct __pyx_obj_3osd_Hostctrl 
  */
     goto __pyx_L0;
 
-    /* "osd.pyx":435
+    /* "osd.pyx":434
  * 
  *     def __dealloc__(self):
  *         if self._cself is NULL:             # <<<<<<<<<<<<<<
@@ -8965,14 +8966,14 @@ static void __pyx_pf_3osd_8Hostctrl_2__dealloc__(struct __pyx_obj_3osd_Hostctrl 
  */
   }
 
-  /* "osd.pyx":438
+  /* "osd.pyx":437
  *             return
  * 
  *         if self.is_running():             # <<<<<<<<<<<<<<
  *             self.stop()
  * 
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_is_running); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 438, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_is_running); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 437, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_4 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
@@ -8985,25 +8986,25 @@ static void __pyx_pf_3osd_8Hostctrl_2__dealloc__(struct __pyx_obj_3osd_Hostctrl 
     }
   }
   if (__pyx_t_4) {
-    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 438, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 437, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   } else {
-    __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 438, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 437, __pyx_L1_error)
   }
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 438, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 437, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   if (__pyx_t_1) {
 
-    /* "osd.pyx":439
+    /* "osd.pyx":438
  * 
  *         if self.is_running():
  *             self.stop()             # <<<<<<<<<<<<<<
  * 
  *         cosd.osd_hostctrl_free(&self._cself)
  */
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_stop); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 439, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_stop); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 438, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __pyx_t_4 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
@@ -9016,16 +9017,16 @@ static void __pyx_pf_3osd_8Hostctrl_2__dealloc__(struct __pyx_obj_3osd_Hostctrl 
       }
     }
     if (__pyx_t_4) {
-      __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 439, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 438, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     } else {
-      __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 439, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 438, __pyx_L1_error)
     }
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-    /* "osd.pyx":438
+    /* "osd.pyx":437
  *             return
  * 
  *         if self.is_running():             # <<<<<<<<<<<<<<
@@ -9034,7 +9035,7 @@ static void __pyx_pf_3osd_8Hostctrl_2__dealloc__(struct __pyx_obj_3osd_Hostctrl 
  */
   }
 
-  /* "osd.pyx":441
+  /* "osd.pyx":440
  *             self.stop()
  * 
  *         cosd.osd_hostctrl_free(&self._cself)             # <<<<<<<<<<<<<<
@@ -9043,7 +9044,7 @@ static void __pyx_pf_3osd_8Hostctrl_2__dealloc__(struct __pyx_obj_3osd_Hostctrl 
  */
   osd_hostctrl_free((&__pyx_v_self->_cself));
 
-  /* "osd.pyx":434
+  /* "osd.pyx":433
  *             raise MemoryError()
  * 
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
@@ -9062,7 +9063,7 @@ static void __pyx_pf_3osd_8Hostctrl_2__dealloc__(struct __pyx_obj_3osd_Hostctrl 
   __Pyx_RefNannyFinishContext();
 }
 
-/* "osd.pyx":443
+/* "osd.pyx":442
  *         cosd.osd_hostctrl_free(&self._cself)
  * 
  *     def start(self):             # <<<<<<<<<<<<<<
@@ -9090,7 +9091,7 @@ static PyObject *__pyx_pf_3osd_8Hostctrl_4start(struct __pyx_obj_3osd_Hostctrl *
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("start", 0);
 
-  /* "osd.pyx":444
+  /* "osd.pyx":443
  * 
  *     def start(self):
  *         return cosd.osd_hostctrl_start(self._cself)             # <<<<<<<<<<<<<<
@@ -9098,13 +9099,13 @@ static PyObject *__pyx_pf_3osd_8Hostctrl_4start(struct __pyx_obj_3osd_Hostctrl *
  *     def stop(self):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_osd_result(osd_hostctrl_start(__pyx_v_self->_cself)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 444, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_osd_result(osd_hostctrl_start(__pyx_v_self->_cself)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 443, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "osd.pyx":443
+  /* "osd.pyx":442
  *         cosd.osd_hostctrl_free(&self._cself)
  * 
  *     def start(self):             # <<<<<<<<<<<<<<
@@ -9123,7 +9124,7 @@ static PyObject *__pyx_pf_3osd_8Hostctrl_4start(struct __pyx_obj_3osd_Hostctrl *
   return __pyx_r;
 }
 
-/* "osd.pyx":446
+/* "osd.pyx":445
  *         return cosd.osd_hostctrl_start(self._cself)
  * 
  *     def stop(self):             # <<<<<<<<<<<<<<
@@ -9151,7 +9152,7 @@ static PyObject *__pyx_pf_3osd_8Hostctrl_6stop(struct __pyx_obj_3osd_Hostctrl *_
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("stop", 0);
 
-  /* "osd.pyx":447
+  /* "osd.pyx":446
  * 
  *     def stop(self):
  *         return cosd.osd_hostctrl_stop(self._cself)             # <<<<<<<<<<<<<<
@@ -9159,13 +9160,13 @@ static PyObject *__pyx_pf_3osd_8Hostctrl_6stop(struct __pyx_obj_3osd_Hostctrl *_
  *     def is_running(self):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_osd_result(osd_hostctrl_stop(__pyx_v_self->_cself)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 447, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_osd_result(osd_hostctrl_stop(__pyx_v_self->_cself)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 446, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "osd.pyx":446
+  /* "osd.pyx":445
  *         return cosd.osd_hostctrl_start(self._cself)
  * 
  *     def stop(self):             # <<<<<<<<<<<<<<
@@ -9184,7 +9185,7 @@ static PyObject *__pyx_pf_3osd_8Hostctrl_6stop(struct __pyx_obj_3osd_Hostctrl *_
   return __pyx_r;
 }
 
-/* "osd.pyx":449
+/* "osd.pyx":448
  *         return cosd.osd_hostctrl_stop(self._cself)
  * 
  *     def is_running(self):             # <<<<<<<<<<<<<<
@@ -9212,7 +9213,7 @@ static PyObject *__pyx_pf_3osd_8Hostctrl_8is_running(struct __pyx_obj_3osd_Hostc
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("is_running", 0);
 
-  /* "osd.pyx":450
+  /* "osd.pyx":449
  * 
  *     def is_running(self):
  *         return cosd.osd_hostctrl_is_running(self._cself)             # <<<<<<<<<<<<<<
@@ -9220,13 +9221,13 @@ static PyObject *__pyx_pf_3osd_8Hostctrl_8is_running(struct __pyx_obj_3osd_Hostc
  * 
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(osd_hostctrl_is_running(__pyx_v_self->_cself)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 450, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(osd_hostctrl_is_running(__pyx_v_self->_cself)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 449, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "osd.pyx":449
+  /* "osd.pyx":448
  *         return cosd.osd_hostctrl_stop(self._cself)
  * 
  *     def is_running(self):             # <<<<<<<<<<<<<<
@@ -9354,7 +9355,7 @@ static PyObject *__pyx_pf_3osd_8Hostctrl_12__setstate_cython__(CYTHON_UNUSED str
   return __pyx_r;
 }
 
-/* "osd.pyx":455
+/* "osd.pyx":454
  * cdef class Module:
  *     @staticmethod
  *     def get_type_short_name(vendor_id, type_id):             # <<<<<<<<<<<<<<
@@ -9395,11 +9396,11 @@ static PyObject *__pyx_pw_3osd_6Module_1get_type_short_name(CYTHON_UNUSED PyObje
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_type_id)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("get_type_short_name", 1, 2, 2, 1); __PYX_ERR(0, 455, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("get_type_short_name", 1, 2, 2, 1); __PYX_ERR(0, 454, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "get_type_short_name") < 0)) __PYX_ERR(0, 455, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "get_type_short_name") < 0)) __PYX_ERR(0, 454, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -9412,7 +9413,7 @@ static PyObject *__pyx_pw_3osd_6Module_1get_type_short_name(CYTHON_UNUSED PyObje
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("get_type_short_name", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 455, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("get_type_short_name", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 454, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("osd.Module.get_type_short_name", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -9434,7 +9435,7 @@ static PyObject *__pyx_pf_3osd_6Module_get_type_short_name(PyObject *__pyx_v_ven
   PyObject *__pyx_t_4 = NULL;
   __Pyx_RefNannySetupContext("get_type_short_name", 0);
 
-  /* "osd.pyx":456
+  /* "osd.pyx":455
  *     @staticmethod
  *     def get_type_short_name(vendor_id, type_id):
  *         return str(cosd.osd_module_get_type_short_name(vendor_id, type_id))             # <<<<<<<<<<<<<<
@@ -9442,23 +9443,23 @@ static PyObject *__pyx_pf_3osd_6Module_get_type_short_name(PyObject *__pyx_v_ven
  *     @staticmethod
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_As_unsigned_int(__pyx_v_vendor_id); if (unlikely((__pyx_t_1 == (unsigned int)-1) && PyErr_Occurred())) __PYX_ERR(0, 456, __pyx_L1_error)
-  __pyx_t_2 = __Pyx_PyInt_As_unsigned_int(__pyx_v_type_id); if (unlikely((__pyx_t_2 == (unsigned int)-1) && PyErr_Occurred())) __PYX_ERR(0, 456, __pyx_L1_error)
-  __pyx_t_3 = __Pyx_PyBytes_FromString(osd_module_get_type_short_name(__pyx_t_1, __pyx_t_2)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 456, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_As_unsigned_int(__pyx_v_vendor_id); if (unlikely((__pyx_t_1 == (unsigned int)-1) && PyErr_Occurred())) __PYX_ERR(0, 455, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_As_unsigned_int(__pyx_v_type_id); if (unlikely((__pyx_t_2 == (unsigned int)-1) && PyErr_Occurred())) __PYX_ERR(0, 455, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyBytes_FromString(osd_module_get_type_short_name(__pyx_t_1, __pyx_t_2)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 455, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = PyTuple_New(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 456, __pyx_L1_error)
+  __pyx_t_4 = PyTuple_New(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 455, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_GIVEREF(__pyx_t_3);
   PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_3);
   __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyObject_Call(((PyObject *)(&PyUnicode_Type)), __pyx_t_4, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 456, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_Call(((PyObject *)(&PyUnicode_Type)), __pyx_t_4, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 455, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "osd.pyx":455
+  /* "osd.pyx":454
  * cdef class Module:
  *     @staticmethod
  *     def get_type_short_name(vendor_id, type_id):             # <<<<<<<<<<<<<<
@@ -9478,7 +9479,7 @@ static PyObject *__pyx_pf_3osd_6Module_get_type_short_name(PyObject *__pyx_v_ven
   return __pyx_r;
 }
 
-/* "osd.pyx":459
+/* "osd.pyx":458
  * 
  *     @staticmethod
  *     def get_type_long_name(vendor_id, type_id):             # <<<<<<<<<<<<<<
@@ -9519,11 +9520,11 @@ static PyObject *__pyx_pw_3osd_6Module_3get_type_long_name(CYTHON_UNUSED PyObjec
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_type_id)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("get_type_long_name", 1, 2, 2, 1); __PYX_ERR(0, 459, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("get_type_long_name", 1, 2, 2, 1); __PYX_ERR(0, 458, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "get_type_long_name") < 0)) __PYX_ERR(0, 459, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "get_type_long_name") < 0)) __PYX_ERR(0, 458, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -9536,7 +9537,7 @@ static PyObject *__pyx_pw_3osd_6Module_3get_type_long_name(CYTHON_UNUSED PyObjec
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("get_type_long_name", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 459, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("get_type_long_name", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 458, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("osd.Module.get_type_long_name", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -9558,7 +9559,7 @@ static PyObject *__pyx_pf_3osd_6Module_2get_type_long_name(PyObject *__pyx_v_ven
   PyObject *__pyx_t_4 = NULL;
   __Pyx_RefNannySetupContext("get_type_long_name", 0);
 
-  /* "osd.pyx":460
+  /* "osd.pyx":459
  *     @staticmethod
  *     def get_type_long_name(vendor_id, type_id):
  *          return str(cosd.osd_module_get_type_long_name(vendor_id, type_id))             # <<<<<<<<<<<<<<
@@ -9566,23 +9567,23 @@ static PyObject *__pyx_pf_3osd_6Module_2get_type_long_name(PyObject *__pyx_v_ven
  * 
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_As_unsigned_int(__pyx_v_vendor_id); if (unlikely((__pyx_t_1 == (unsigned int)-1) && PyErr_Occurred())) __PYX_ERR(0, 460, __pyx_L1_error)
-  __pyx_t_2 = __Pyx_PyInt_As_unsigned_int(__pyx_v_type_id); if (unlikely((__pyx_t_2 == (unsigned int)-1) && PyErr_Occurred())) __PYX_ERR(0, 460, __pyx_L1_error)
-  __pyx_t_3 = __Pyx_PyBytes_FromString(osd_module_get_type_long_name(__pyx_t_1, __pyx_t_2)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 460, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_As_unsigned_int(__pyx_v_vendor_id); if (unlikely((__pyx_t_1 == (unsigned int)-1) && PyErr_Occurred())) __PYX_ERR(0, 459, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_As_unsigned_int(__pyx_v_type_id); if (unlikely((__pyx_t_2 == (unsigned int)-1) && PyErr_Occurred())) __PYX_ERR(0, 459, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyBytes_FromString(osd_module_get_type_long_name(__pyx_t_1, __pyx_t_2)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 459, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = PyTuple_New(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 460, __pyx_L1_error)
+  __pyx_t_4 = PyTuple_New(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 459, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_GIVEREF(__pyx_t_3);
   PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_3);
   __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyObject_Call(((PyObject *)(&PyUnicode_Type)), __pyx_t_4, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 460, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_Call(((PyObject *)(&PyUnicode_Type)), __pyx_t_4, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 459, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "osd.pyx":459
+  /* "osd.pyx":458
  * 
  *     @staticmethod
  *     def get_type_long_name(vendor_id, type_id):             # <<<<<<<<<<<<<<
@@ -9885,7 +9886,7 @@ static PyObject *__pyx_pf_3osd_6Module_6__setstate_cython__(struct __pyx_obj_3os
   return __pyx_r;
 }
 
-/* "osd.pyx":466
+/* "osd.pyx":465
  *     cdef cosd.osd_mem_desc _cself
  * 
  *     def __cinit__(self):             # <<<<<<<<<<<<<<
@@ -9914,7 +9915,7 @@ static int __pyx_pf_3osd_16MemoryDescriptor___cinit__(struct __pyx_obj_3osd_Memo
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__cinit__", 0);
 
-  /* "osd.pyx":467
+  /* "osd.pyx":466
  * 
  *     def __cinit__(self):
  *         self._cself.num_regions = 0             # <<<<<<<<<<<<<<
@@ -9923,7 +9924,7 @@ static int __pyx_pf_3osd_16MemoryDescriptor___cinit__(struct __pyx_obj_3osd_Memo
  */
   __pyx_v_self->_cself.num_regions = 0;
 
-  /* "osd.pyx":466
+  /* "osd.pyx":465
  *     cdef cosd.osd_mem_desc _cself
  * 
  *     def __cinit__(self):             # <<<<<<<<<<<<<<
@@ -9937,7 +9938,7 @@ static int __pyx_pf_3osd_16MemoryDescriptor___cinit__(struct __pyx_obj_3osd_Memo
   return __pyx_r;
 }
 
-/* "osd.pyx":470
+/* "osd.pyx":469
  * 
  *     @property
  *     def regions(self):             # <<<<<<<<<<<<<<
@@ -9969,19 +9970,19 @@ static PyObject *__pyx_pf_3osd_16MemoryDescriptor_7regions___get__(struct __pyx_
   int __pyx_t_4;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "osd.pyx":471
+  /* "osd.pyx":470
  *     @property
  *     def regions(self):
  *         r = []             # <<<<<<<<<<<<<<
  *         for i in range(self._cself.num_regions):
  *             r.append(self._cself.regions[i])
  */
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 471, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 470, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_r = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "osd.pyx":472
+  /* "osd.pyx":471
  *     def regions(self):
  *         r = []
  *         for i in range(self._cself.num_regions):             # <<<<<<<<<<<<<<
@@ -9992,20 +9993,20 @@ static PyObject *__pyx_pf_3osd_16MemoryDescriptor_7regions___get__(struct __pyx_
   for (__pyx_t_3 = 0; __pyx_t_3 < __pyx_t_2; __pyx_t_3+=1) {
     __pyx_v_i = __pyx_t_3;
 
-    /* "osd.pyx":473
+    /* "osd.pyx":472
  *         r = []
  *         for i in range(self._cself.num_regions):
  *             r.append(self._cself.regions[i])             # <<<<<<<<<<<<<<
  *         return r
  * 
  */
-    __pyx_t_1 = __pyx_convert__to_py_struct__osd_mem_desc_region((__pyx_v_self->_cself.regions[__pyx_v_i])); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 473, __pyx_L1_error)
+    __pyx_t_1 = __pyx_convert__to_py_struct__osd_mem_desc_region((__pyx_v_self->_cself.regions[__pyx_v_i])); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 472, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_4 = __Pyx_PyList_Append(__pyx_v_r, __pyx_t_1); if (unlikely(__pyx_t_4 == ((int)-1))) __PYX_ERR(0, 473, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyList_Append(__pyx_v_r, __pyx_t_1); if (unlikely(__pyx_t_4 == ((int)-1))) __PYX_ERR(0, 472, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "osd.pyx":474
+  /* "osd.pyx":473
  *         for i in range(self._cself.num_regions):
  *             r.append(self._cself.regions[i])
  *         return r             # <<<<<<<<<<<<<<
@@ -10017,7 +10018,7 @@ static PyObject *__pyx_pf_3osd_16MemoryDescriptor_7regions___get__(struct __pyx_
   __pyx_r = __pyx_v_r;
   goto __pyx_L0;
 
-  /* "osd.pyx":470
+  /* "osd.pyx":469
  * 
  *     @property
  *     def regions(self):             # <<<<<<<<<<<<<<
@@ -10037,7 +10038,7 @@ static PyObject *__pyx_pf_3osd_16MemoryDescriptor_7regions___get__(struct __pyx_
   return __pyx_r;
 }
 
-/* "osd.pyx":477
+/* "osd.pyx":476
  * 
  *     @property
  *     def addr_width_bit(self):             # <<<<<<<<<<<<<<
@@ -10064,7 +10065,7 @@ static PyObject *__pyx_pf_3osd_16MemoryDescriptor_14addr_width_bit___get__(struc
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "osd.pyx":478
+  /* "osd.pyx":477
  *     @property
  *     def addr_width_bit(self):
  *         return self._cself.addr_width_bit             # <<<<<<<<<<<<<<
@@ -10072,13 +10073,13 @@ static PyObject *__pyx_pf_3osd_16MemoryDescriptor_14addr_width_bit___get__(struc
  *     @property
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_uint16_t(__pyx_v_self->_cself.addr_width_bit); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 478, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_uint16_t(__pyx_v_self->_cself.addr_width_bit); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 477, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "osd.pyx":477
+  /* "osd.pyx":476
  * 
  *     @property
  *     def addr_width_bit(self):             # <<<<<<<<<<<<<<
@@ -10097,7 +10098,7 @@ static PyObject *__pyx_pf_3osd_16MemoryDescriptor_14addr_width_bit___get__(struc
   return __pyx_r;
 }
 
-/* "osd.pyx":481
+/* "osd.pyx":480
  * 
  *     @property
  *     def data_width_bit(self):             # <<<<<<<<<<<<<<
@@ -10124,7 +10125,7 @@ static PyObject *__pyx_pf_3osd_16MemoryDescriptor_14data_width_bit___get__(struc
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "osd.pyx":482
+  /* "osd.pyx":481
  *     @property
  *     def data_width_bit(self):
  *         return self._cself.data_width_bit             # <<<<<<<<<<<<<<
@@ -10132,13 +10133,13 @@ static PyObject *__pyx_pf_3osd_16MemoryDescriptor_14data_width_bit___get__(struc
  *     @property
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_uint16_t(__pyx_v_self->_cself.data_width_bit); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 482, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_uint16_t(__pyx_v_self->_cself.data_width_bit); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 481, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "osd.pyx":481
+  /* "osd.pyx":480
  * 
  *     @property
  *     def data_width_bit(self):             # <<<<<<<<<<<<<<
@@ -10157,7 +10158,7 @@ static PyObject *__pyx_pf_3osd_16MemoryDescriptor_14data_width_bit___get__(struc
   return __pyx_r;
 }
 
-/* "osd.pyx":485
+/* "osd.pyx":484
  * 
  *     @property
  *     def di_addr(self):             # <<<<<<<<<<<<<<
@@ -10184,7 +10185,7 @@ static PyObject *__pyx_pf_3osd_16MemoryDescriptor_7di_addr___get__(struct __pyx_
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "osd.pyx":486
+  /* "osd.pyx":485
  *     @property
  *     def di_addr(self):
  *         return self._cself.di_addr             # <<<<<<<<<<<<<<
@@ -10192,13 +10193,13 @@ static PyObject *__pyx_pf_3osd_16MemoryDescriptor_7di_addr___get__(struct __pyx_
  *     def __str__(self):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_unsigned_int(__pyx_v_self->_cself.di_addr); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 486, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_unsigned_int(__pyx_v_self->_cself.di_addr); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 485, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "osd.pyx":485
+  /* "osd.pyx":484
  * 
  *     @property
  *     def di_addr(self):             # <<<<<<<<<<<<<<
@@ -10217,7 +10218,7 @@ static PyObject *__pyx_pf_3osd_16MemoryDescriptor_7di_addr___get__(struct __pyx_
   return __pyx_r;
 }
 
-/* "osd.pyx":488
+/* "osd.pyx":487
  *         return self._cself.di_addr
  * 
  *     def __str__(self):             # <<<<<<<<<<<<<<
@@ -10238,7 +10239,7 @@ static PyObject *__pyx_pw_3osd_16MemoryDescriptor_3__str__(PyObject *__pyx_v_sel
   return __pyx_r;
 }
 
-/* "osd.pyx":489
+/* "osd.pyx":488
  * 
  *     def __str__(self):
  *         def sizeof_fmt(num, suffix='B'):             # <<<<<<<<<<<<<<
@@ -10283,7 +10284,7 @@ static PyObject *__pyx_pw_3osd_16MemoryDescriptor_7__str___1sizeof_fmt(PyObject 
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "sizeof_fmt") < 0)) __PYX_ERR(0, 489, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "sizeof_fmt") < 0)) __PYX_ERR(0, 488, __pyx_L3_error)
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -10299,7 +10300,7 @@ static PyObject *__pyx_pw_3osd_16MemoryDescriptor_7__str___1sizeof_fmt(PyObject 
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("sizeof_fmt", 0, 1, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 489, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("sizeof_fmt", 0, 1, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 488, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("osd.MemoryDescriptor.__str__.sizeof_fmt", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -10324,7 +10325,7 @@ static PyObject *__pyx_pf_3osd_16MemoryDescriptor_7__str___sizeof_fmt(CYTHON_UNU
   __Pyx_RefNannySetupContext("sizeof_fmt", 0);
   __Pyx_INCREF(__pyx_v_num);
 
-  /* "osd.pyx":490
+  /* "osd.pyx":489
  *     def __str__(self):
  *         def sizeof_fmt(num, suffix='B'):
  *             for unit in ['','Ki','Mi','Gi','Ti','Pi','Ei','Zi']:             # <<<<<<<<<<<<<<
@@ -10335,30 +10336,30 @@ static PyObject *__pyx_pf_3osd_16MemoryDescriptor_7__str___sizeof_fmt(CYTHON_UNU
   for (;;) {
     if (__pyx_t_2 >= 8) break;
     #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-    __pyx_t_3 = PyTuple_GET_ITEM(__pyx_t_1, __pyx_t_2); __Pyx_INCREF(__pyx_t_3); __pyx_t_2++; if (unlikely(0 < 0)) __PYX_ERR(0, 490, __pyx_L1_error)
+    __pyx_t_3 = PyTuple_GET_ITEM(__pyx_t_1, __pyx_t_2); __Pyx_INCREF(__pyx_t_3); __pyx_t_2++; if (unlikely(0 < 0)) __PYX_ERR(0, 489, __pyx_L1_error)
     #else
-    __pyx_t_3 = PySequence_ITEM(__pyx_t_1, __pyx_t_2); __pyx_t_2++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 490, __pyx_L1_error)
+    __pyx_t_3 = PySequence_ITEM(__pyx_t_1, __pyx_t_2); __pyx_t_2++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 489, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     #endif
     __Pyx_XDECREF_SET(__pyx_v_unit, ((PyObject*)__pyx_t_3));
     __pyx_t_3 = 0;
 
-    /* "osd.pyx":491
+    /* "osd.pyx":490
  *         def sizeof_fmt(num, suffix='B'):
  *             for unit in ['','Ki','Mi','Gi','Ti','Pi','Ei','Zi']:
  *                 if abs(num) < 1024.0:             # <<<<<<<<<<<<<<
  *                     return "%3.1f %s%s" % (num, unit, suffix)
  *                 num /= 1024.0
  */
-    __pyx_t_3 = PyNumber_Absolute(__pyx_v_num); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 491, __pyx_L1_error)
+    __pyx_t_3 = PyNumber_Absolute(__pyx_v_num); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 490, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_4 = PyObject_RichCompare(__pyx_t_3, __pyx_float_1024_0, Py_LT); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 491, __pyx_L1_error)
+    __pyx_t_4 = PyObject_RichCompare(__pyx_t_3, __pyx_float_1024_0, Py_LT); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 490, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 491, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 490, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     if (__pyx_t_5) {
 
-      /* "osd.pyx":492
+      /* "osd.pyx":491
  *             for unit in ['','Ki','Mi','Gi','Ti','Pi','Ei','Zi']:
  *                 if abs(num) < 1024.0:
  *                     return "%3.1f %s%s" % (num, unit, suffix)             # <<<<<<<<<<<<<<
@@ -10366,7 +10367,7 @@ static PyObject *__pyx_pf_3osd_16MemoryDescriptor_7__str___sizeof_fmt(CYTHON_UNU
  *             return "%.1f %s%s" % (num, 'Yi', suffix)
  */
       __Pyx_XDECREF(__pyx_r);
-      __pyx_t_4 = PyTuple_New(3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 492, __pyx_L1_error)
+      __pyx_t_4 = PyTuple_New(3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 491, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_INCREF(__pyx_v_num);
       __Pyx_GIVEREF(__pyx_v_num);
@@ -10377,7 +10378,7 @@ static PyObject *__pyx_pf_3osd_16MemoryDescriptor_7__str___sizeof_fmt(CYTHON_UNU
       __Pyx_INCREF(__pyx_v_suffix);
       __Pyx_GIVEREF(__pyx_v_suffix);
       PyTuple_SET_ITEM(__pyx_t_4, 2, __pyx_v_suffix);
-      __pyx_t_3 = PyUnicode_Format(__pyx_kp_u_3_1f_s_s, __pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 492, __pyx_L1_error)
+      __pyx_t_3 = PyUnicode_Format(__pyx_kp_u_3_1f_s_s, __pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 491, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       __pyx_r = __pyx_t_3;
@@ -10385,7 +10386,7 @@ static PyObject *__pyx_pf_3osd_16MemoryDescriptor_7__str___sizeof_fmt(CYTHON_UNU
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       goto __pyx_L0;
 
-      /* "osd.pyx":491
+      /* "osd.pyx":490
  *         def sizeof_fmt(num, suffix='B'):
  *             for unit in ['','Ki','Mi','Gi','Ti','Pi','Ei','Zi']:
  *                 if abs(num) < 1024.0:             # <<<<<<<<<<<<<<
@@ -10394,19 +10395,19 @@ static PyObject *__pyx_pf_3osd_16MemoryDescriptor_7__str___sizeof_fmt(CYTHON_UNU
  */
     }
 
-    /* "osd.pyx":493
+    /* "osd.pyx":492
  *                 if abs(num) < 1024.0:
  *                     return "%3.1f %s%s" % (num, unit, suffix)
  *                 num /= 1024.0             # <<<<<<<<<<<<<<
  *             return "%.1f %s%s" % (num, 'Yi', suffix)
  * 
  */
-    __pyx_t_3 = __Pyx_PyFloat_TrueDivideObjC(__pyx_v_num, __pyx_float_1024_0, 1024.0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 493, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyFloat_TrueDivideObjC(__pyx_v_num, __pyx_float_1024_0, 1024.0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 492, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF_SET(__pyx_v_num, __pyx_t_3);
     __pyx_t_3 = 0;
 
-    /* "osd.pyx":490
+    /* "osd.pyx":489
  *     def __str__(self):
  *         def sizeof_fmt(num, suffix='B'):
  *             for unit in ['','Ki','Mi','Gi','Ti','Pi','Ei','Zi']:             # <<<<<<<<<<<<<<
@@ -10416,7 +10417,7 @@ static PyObject *__pyx_pf_3osd_16MemoryDescriptor_7__str___sizeof_fmt(CYTHON_UNU
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "osd.pyx":494
+  /* "osd.pyx":493
  *                     return "%3.1f %s%s" % (num, unit, suffix)
  *                 num /= 1024.0
  *             return "%.1f %s%s" % (num, 'Yi', suffix)             # <<<<<<<<<<<<<<
@@ -10424,7 +10425,7 @@ static PyObject *__pyx_pf_3osd_16MemoryDescriptor_7__str___sizeof_fmt(CYTHON_UNU
  *         str = "Memory connected to MAM module at DI address %d.\n" %\
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyTuple_New(3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 494, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 493, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(__pyx_v_num);
   __Pyx_GIVEREF(__pyx_v_num);
@@ -10435,14 +10436,14 @@ static PyObject *__pyx_pf_3osd_16MemoryDescriptor_7__str___sizeof_fmt(CYTHON_UNU
   __Pyx_INCREF(__pyx_v_suffix);
   __Pyx_GIVEREF(__pyx_v_suffix);
   PyTuple_SET_ITEM(__pyx_t_1, 2, __pyx_v_suffix);
-  __pyx_t_3 = PyUnicode_Format(__pyx_kp_u_1f_s_s, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 494, __pyx_L1_error)
+  __pyx_t_3 = PyUnicode_Format(__pyx_kp_u_1f_s_s, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 493, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "osd.pyx":489
+  /* "osd.pyx":488
  * 
  *     def __str__(self):
  *         def sizeof_fmt(num, suffix='B'):             # <<<<<<<<<<<<<<
@@ -10465,7 +10466,7 @@ static PyObject *__pyx_pf_3osd_16MemoryDescriptor_7__str___sizeof_fmt(CYTHON_UNU
   return __pyx_r;
 }
 
-/* "osd.pyx":488
+/* "osd.pyx":487
  *         return self._cself.di_addr
  * 
  *     def __str__(self):             # <<<<<<<<<<<<<<
@@ -10489,54 +10490,54 @@ static PyObject *__pyx_pf_3osd_16MemoryDescriptor_2__str__(struct __pyx_obj_3osd
   PyObject *__pyx_t_6 = NULL;
   __Pyx_RefNannySetupContext("__str__", 0);
 
-  /* "osd.pyx":489
+  /* "osd.pyx":488
  * 
  *     def __str__(self):
  *         def sizeof_fmt(num, suffix='B'):             # <<<<<<<<<<<<<<
  *             for unit in ['','Ki','Mi','Gi','Ti','Pi','Ei','Zi']:
  *                 if abs(num) < 1024.0:
  */
-  __pyx_t_1 = __Pyx_CyFunction_NewEx(&__pyx_mdef_3osd_16MemoryDescriptor_7__str___1sizeof_fmt, 0, __pyx_n_s_str___locals_sizeof_fmt, NULL, __pyx_n_s_osd, __pyx_d, ((PyObject *)__pyx_codeobj__22)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 489, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_CyFunction_NewEx(&__pyx_mdef_3osd_16MemoryDescriptor_7__str___1sizeof_fmt, 0, __pyx_n_s_str___locals_sizeof_fmt, NULL, __pyx_n_s_osd, __pyx_d, ((PyObject *)__pyx_codeobj__22)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 488, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_1, __pyx_tuple__23);
   __pyx_v_sizeof_fmt = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "osd.pyx":497
+  /* "osd.pyx":496
  * 
  *         str = "Memory connected to MAM module at DI address %d.\n" %\
  *             self.di_addr             # <<<<<<<<<<<<<<
  *         str += "address width = %d bit, data width = %d bit\n" %\
  *             (self.addr_width_bit, self.data_width_bit)
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_di_addr); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 497, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_di_addr); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 496, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
 
-  /* "osd.pyx":496
+  /* "osd.pyx":495
  *             return "%.1f %s%s" % (num, 'Yi', suffix)
  * 
  *         str = "Memory connected to MAM module at DI address %d.\n" %\             # <<<<<<<<<<<<<<
  *             self.di_addr
  *         str += "address width = %d bit, data width = %d bit\n" %\
  */
-  __pyx_t_2 = PyUnicode_Format(__pyx_kp_u_Memory_connected_to_MAM_module_a, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 496, __pyx_L1_error)
+  __pyx_t_2 = PyUnicode_Format(__pyx_kp_u_Memory_connected_to_MAM_module_a, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 495, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_str = ((PyObject*)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "osd.pyx":499
+  /* "osd.pyx":498
  *             self.di_addr
  *         str += "address width = %d bit, data width = %d bit\n" %\
  *             (self.addr_width_bit, self.data_width_bit)             # <<<<<<<<<<<<<<
  *         regions = self.regions
  *         str += "%d region(s):\n" % len(self.regions)
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_addr_width_bit); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 499, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_addr_width_bit); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 498, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_data_width_bit); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 499, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_data_width_bit); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 498, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 499, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 498, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_2);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_2);
@@ -10545,57 +10546,57 @@ static PyObject *__pyx_pf_3osd_16MemoryDescriptor_2__str__(struct __pyx_obj_3osd
   __pyx_t_2 = 0;
   __pyx_t_1 = 0;
 
-  /* "osd.pyx":498
+  /* "osd.pyx":497
  *         str = "Memory connected to MAM module at DI address %d.\n" %\
  *             self.di_addr
  *         str += "address width = %d bit, data width = %d bit\n" %\             # <<<<<<<<<<<<<<
  *             (self.addr_width_bit, self.data_width_bit)
  *         regions = self.regions
  */
-  __pyx_t_1 = PyUnicode_Format(__pyx_kp_u_address_width_d_bit_data_width_d, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 498, __pyx_L1_error)
+  __pyx_t_1 = PyUnicode_Format(__pyx_kp_u_address_width_d_bit_data_width_d, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 497, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyUnicode_Concat(__pyx_v_str, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 498, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyUnicode_Concat(__pyx_v_str, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 497, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF_SET(__pyx_v_str, ((PyObject*)__pyx_t_3));
   __pyx_t_3 = 0;
 
-  /* "osd.pyx":500
+  /* "osd.pyx":499
  *         str += "address width = %d bit, data width = %d bit\n" %\
  *             (self.addr_width_bit, self.data_width_bit)
  *         regions = self.regions             # <<<<<<<<<<<<<<
  *         str += "%d region(s):\n" % len(self.regions)
  * 
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_regions); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 500, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_regions); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 499, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_v_regions = __pyx_t_3;
   __pyx_t_3 = 0;
 
-  /* "osd.pyx":501
+  /* "osd.pyx":500
  *             (self.addr_width_bit, self.data_width_bit)
  *         regions = self.regions
  *         str += "%d region(s):\n" % len(self.regions)             # <<<<<<<<<<<<<<
  * 
  *         r_idx = 0
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_regions); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 501, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_regions); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 500, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = PyObject_Length(__pyx_t_3); if (unlikely(__pyx_t_4 == ((Py_ssize_t)-1))) __PYX_ERR(0, 501, __pyx_L1_error)
+  __pyx_t_4 = PyObject_Length(__pyx_t_3); if (unlikely(__pyx_t_4 == ((Py_ssize_t)-1))) __PYX_ERR(0, 500, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = PyInt_FromSsize_t(__pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 501, __pyx_L1_error)
+  __pyx_t_3 = PyInt_FromSsize_t(__pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 500, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_1 = PyUnicode_Format(__pyx_kp_u_d_region_s, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 501, __pyx_L1_error)
+  __pyx_t_1 = PyUnicode_Format(__pyx_kp_u_d_region_s, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 500, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyUnicode_Concat(__pyx_v_str, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 501, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyUnicode_Concat(__pyx_v_str, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 500, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF_SET(__pyx_v_str, ((PyObject*)__pyx_t_3));
   __pyx_t_3 = 0;
 
-  /* "osd.pyx":503
+  /* "osd.pyx":502
  *         str += "%d region(s):\n" % len(self.regions)
  * 
  *         r_idx = 0             # <<<<<<<<<<<<<<
@@ -10605,22 +10606,22 @@ static PyObject *__pyx_pf_3osd_16MemoryDescriptor_2__str__(struct __pyx_obj_3osd
   __Pyx_INCREF(__pyx_int_0);
   __pyx_v_r_idx = __pyx_int_0;
 
-  /* "osd.pyx":504
+  /* "osd.pyx":503
  * 
  *         r_idx = 0
  *         for r in self.regions:             # <<<<<<<<<<<<<<
  *             str += "  %d: base address: 0x%x, size: %s\n" %\
  *                 (r_idx, r['baseaddr'], sizeof_fmt(r['memsize']))
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_regions); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 504, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_regions); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 503, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   if (likely(PyList_CheckExact(__pyx_t_3)) || PyTuple_CheckExact(__pyx_t_3)) {
     __pyx_t_1 = __pyx_t_3; __Pyx_INCREF(__pyx_t_1); __pyx_t_4 = 0;
     __pyx_t_5 = NULL;
   } else {
-    __pyx_t_4 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 504, __pyx_L1_error)
+    __pyx_t_4 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 503, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_5 = Py_TYPE(__pyx_t_1)->tp_iternext; if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 504, __pyx_L1_error)
+    __pyx_t_5 = Py_TYPE(__pyx_t_1)->tp_iternext; if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 503, __pyx_L1_error)
   }
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   for (;;) {
@@ -10628,17 +10629,17 @@ static PyObject *__pyx_pf_3osd_16MemoryDescriptor_2__str__(struct __pyx_obj_3osd
       if (likely(PyList_CheckExact(__pyx_t_1))) {
         if (__pyx_t_4 >= PyList_GET_SIZE(__pyx_t_1)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_3 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_4); __Pyx_INCREF(__pyx_t_3); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(0, 504, __pyx_L1_error)
+        __pyx_t_3 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_4); __Pyx_INCREF(__pyx_t_3); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(0, 503, __pyx_L1_error)
         #else
-        __pyx_t_3 = PySequence_ITEM(__pyx_t_1, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 504, __pyx_L1_error)
+        __pyx_t_3 = PySequence_ITEM(__pyx_t_1, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 503, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         #endif
       } else {
         if (__pyx_t_4 >= PyTuple_GET_SIZE(__pyx_t_1)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_3 = PyTuple_GET_ITEM(__pyx_t_1, __pyx_t_4); __Pyx_INCREF(__pyx_t_3); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(0, 504, __pyx_L1_error)
+        __pyx_t_3 = PyTuple_GET_ITEM(__pyx_t_1, __pyx_t_4); __Pyx_INCREF(__pyx_t_3); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(0, 503, __pyx_L1_error)
         #else
-        __pyx_t_3 = PySequence_ITEM(__pyx_t_1, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 504, __pyx_L1_error)
+        __pyx_t_3 = PySequence_ITEM(__pyx_t_1, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 503, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         #endif
       }
@@ -10648,7 +10649,7 @@ static PyObject *__pyx_pf_3osd_16MemoryDescriptor_2__str__(struct __pyx_obj_3osd
         PyObject* exc_type = PyErr_Occurred();
         if (exc_type) {
           if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-          else __PYX_ERR(0, 504, __pyx_L1_error)
+          else __PYX_ERR(0, 503, __pyx_L1_error)
         }
         break;
       }
@@ -10657,26 +10658,26 @@ static PyObject *__pyx_pf_3osd_16MemoryDescriptor_2__str__(struct __pyx_obj_3osd
     __Pyx_XDECREF_SET(__pyx_v_r, __pyx_t_3);
     __pyx_t_3 = 0;
 
-    /* "osd.pyx":506
+    /* "osd.pyx":505
  *         for r in self.regions:
  *             str += "  %d: base address: 0x%x, size: %s\n" %\
  *                 (r_idx, r['baseaddr'], sizeof_fmt(r['memsize']))             # <<<<<<<<<<<<<<
  *             r_idx += 1
  * 
  */
-    __pyx_t_3 = PyObject_GetItem(__pyx_v_r, __pyx_n_u_baseaddr); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 506, __pyx_L1_error)
+    __pyx_t_3 = PyObject_GetItem(__pyx_v_r, __pyx_n_u_baseaddr); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 505, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_2 = PyObject_GetItem(__pyx_v_r, __pyx_n_u_memsize); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 506, __pyx_L1_error)
+    __pyx_t_2 = PyObject_GetItem(__pyx_v_r, __pyx_n_u_memsize); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 505, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_6 = PyTuple_New(1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 506, __pyx_L1_error)
+    __pyx_t_6 = PyTuple_New(1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 505, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_GIVEREF(__pyx_t_2);
     PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_2);
     __pyx_t_2 = 0;
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_v_sizeof_fmt, __pyx_t_6, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 506, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_v_sizeof_fmt, __pyx_t_6, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 505, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __pyx_t_6 = PyTuple_New(3); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 506, __pyx_L1_error)
+    __pyx_t_6 = PyTuple_New(3); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 505, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_INCREF(__pyx_v_r_idx);
     __Pyx_GIVEREF(__pyx_v_r_idx);
@@ -10688,35 +10689,35 @@ static PyObject *__pyx_pf_3osd_16MemoryDescriptor_2__str__(struct __pyx_obj_3osd
     __pyx_t_3 = 0;
     __pyx_t_2 = 0;
 
-    /* "osd.pyx":505
+    /* "osd.pyx":504
  *         r_idx = 0
  *         for r in self.regions:
  *             str += "  %d: base address: 0x%x, size: %s\n" %\             # <<<<<<<<<<<<<<
  *                 (r_idx, r['baseaddr'], sizeof_fmt(r['memsize']))
  *             r_idx += 1
  */
-    __pyx_t_2 = PyUnicode_Format(__pyx_kp_u_d_base_address_0x_x_size_s, __pyx_t_6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 505, __pyx_L1_error)
+    __pyx_t_2 = PyUnicode_Format(__pyx_kp_u_d_base_address_0x_x_size_s, __pyx_t_6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 504, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __pyx_t_6 = __Pyx_PyUnicode_Concat(__pyx_v_str, __pyx_t_2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 505, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyUnicode_Concat(__pyx_v_str, __pyx_t_2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 504, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF_SET(__pyx_v_str, ((PyObject*)__pyx_t_6));
     __pyx_t_6 = 0;
 
-    /* "osd.pyx":507
+    /* "osd.pyx":506
  *             str += "  %d: base address: 0x%x, size: %s\n" %\
  *                 (r_idx, r['baseaddr'], sizeof_fmt(r['memsize']))
  *             r_idx += 1             # <<<<<<<<<<<<<<
  * 
  *         return str
  */
-    __pyx_t_6 = __Pyx_PyInt_AddObjC(__pyx_v_r_idx, __pyx_int_1, 1, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 507, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyInt_AddObjC(__pyx_v_r_idx, __pyx_int_1, 1, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 506, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF_SET(__pyx_v_r_idx, __pyx_t_6);
     __pyx_t_6 = 0;
 
-    /* "osd.pyx":504
+    /* "osd.pyx":503
  * 
  *         r_idx = 0
  *         for r in self.regions:             # <<<<<<<<<<<<<<
@@ -10726,7 +10727,7 @@ static PyObject *__pyx_pf_3osd_16MemoryDescriptor_2__str__(struct __pyx_obj_3osd
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "osd.pyx":509
+  /* "osd.pyx":508
  *             r_idx += 1
  * 
  *         return str             # <<<<<<<<<<<<<<
@@ -10738,7 +10739,7 @@ static PyObject *__pyx_pf_3osd_16MemoryDescriptor_2__str__(struct __pyx_obj_3osd
   __pyx_r = __pyx_v_str;
   goto __pyx_L0;
 
-  /* "osd.pyx":488
+  /* "osd.pyx":487
  *         return self._cself.di_addr
  * 
  *     def __str__(self):             # <<<<<<<<<<<<<<
@@ -10874,7 +10875,7 @@ static PyObject *__pyx_pf_3osd_16MemoryDescriptor_6__setstate_cython__(CYTHON_UN
   return __pyx_r;
 }
 
-/* "osd.pyx":511
+/* "osd.pyx":510
  *         return str
  * 
  * def cl_mam_get_mem_desc(Hostmod hostmod, mam_di_addr):             # <<<<<<<<<<<<<<
@@ -10915,11 +10916,11 @@ static PyObject *__pyx_pw_3osd_3cl_mam_get_mem_desc(PyObject *__pyx_self, PyObje
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_mam_di_addr)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("cl_mam_get_mem_desc", 1, 2, 2, 1); __PYX_ERR(0, 511, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("cl_mam_get_mem_desc", 1, 2, 2, 1); __PYX_ERR(0, 510, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "cl_mam_get_mem_desc") < 0)) __PYX_ERR(0, 511, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "cl_mam_get_mem_desc") < 0)) __PYX_ERR(0, 510, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -10932,13 +10933,13 @@ static PyObject *__pyx_pw_3osd_3cl_mam_get_mem_desc(PyObject *__pyx_self, PyObje
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("cl_mam_get_mem_desc", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 511, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("cl_mam_get_mem_desc", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 510, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("osd.cl_mam_get_mem_desc", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_hostmod), __pyx_ptype_3osd_Hostmod, 1, "hostmod", 0))) __PYX_ERR(0, 511, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_hostmod), __pyx_ptype_3osd_Hostmod, 1, "hostmod", 0))) __PYX_ERR(0, 510, __pyx_L1_error)
   __pyx_r = __pyx_pf_3osd_2cl_mam_get_mem_desc(__pyx_self, __pyx_v_hostmod, __pyx_v_mam_di_addr);
 
   /* function exit code */
@@ -10958,29 +10959,29 @@ static PyObject *__pyx_pf_3osd_2cl_mam_get_mem_desc(CYTHON_UNUSED PyObject *__py
   unsigned int __pyx_t_2;
   __Pyx_RefNannySetupContext("cl_mam_get_mem_desc", 0);
 
-  /* "osd.pyx":512
+  /* "osd.pyx":511
  * 
  * def cl_mam_get_mem_desc(Hostmod hostmod, mam_di_addr):
  *     mem_desc = MemoryDescriptor()             # <<<<<<<<<<<<<<
  * 
  *     cosd.osd_cl_mam_get_mem_desc(hostmod._cself, mam_di_addr, &mem_desc._cself)
  */
-  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_3osd_MemoryDescriptor), __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 512, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_3osd_MemoryDescriptor), __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 511, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_mem_desc = ((struct __pyx_obj_3osd_MemoryDescriptor *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "osd.pyx":514
+  /* "osd.pyx":513
  *     mem_desc = MemoryDescriptor()
  * 
  *     cosd.osd_cl_mam_get_mem_desc(hostmod._cself, mam_di_addr, &mem_desc._cself)             # <<<<<<<<<<<<<<
  * 
  *     return mem_desc
  */
-  __pyx_t_2 = __Pyx_PyInt_As_unsigned_int(__pyx_v_mam_di_addr); if (unlikely((__pyx_t_2 == (unsigned int)-1) && PyErr_Occurred())) __PYX_ERR(0, 514, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_As_unsigned_int(__pyx_v_mam_di_addr); if (unlikely((__pyx_t_2 == (unsigned int)-1) && PyErr_Occurred())) __PYX_ERR(0, 513, __pyx_L1_error)
   osd_cl_mam_get_mem_desc(__pyx_v_hostmod->_cself, __pyx_t_2, (&__pyx_v_mem_desc->_cself));
 
-  /* "osd.pyx":516
+  /* "osd.pyx":515
  *     cosd.osd_cl_mam_get_mem_desc(hostmod._cself, mam_di_addr, &mem_desc._cself)
  * 
  *     return mem_desc             # <<<<<<<<<<<<<<
@@ -10992,7 +10993,7 @@ static PyObject *__pyx_pf_3osd_2cl_mam_get_mem_desc(CYTHON_UNUSED PyObject *__py
   __pyx_r = ((PyObject *)__pyx_v_mem_desc);
   goto __pyx_L0;
 
-  /* "osd.pyx":511
+  /* "osd.pyx":510
  *         return str
  * 
  * def cl_mam_get_mem_desc(Hostmod hostmod, mam_di_addr):             # <<<<<<<<<<<<<<
@@ -11012,7 +11013,7 @@ static PyObject *__pyx_pf_3osd_2cl_mam_get_mem_desc(CYTHON_UNUSED PyObject *__py
   return __pyx_r;
 }
 
-/* "osd.pyx":518
+/* "osd.pyx":517
  *     return mem_desc
  * 
  * def cl_mam_write(MemoryDescriptor mem_desc, Hostmod hostmod, data, addr):             # <<<<<<<<<<<<<<
@@ -11059,23 +11060,23 @@ static PyObject *__pyx_pw_3osd_5cl_mam_write(PyObject *__pyx_self, PyObject *__p
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_hostmod)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("cl_mam_write", 1, 4, 4, 1); __PYX_ERR(0, 518, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("cl_mam_write", 1, 4, 4, 1); __PYX_ERR(0, 517, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_data)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("cl_mam_write", 1, 4, 4, 2); __PYX_ERR(0, 518, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("cl_mam_write", 1, 4, 4, 2); __PYX_ERR(0, 517, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  3:
         if (likely((values[3] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_addr)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("cl_mam_write", 1, 4, 4, 3); __PYX_ERR(0, 518, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("cl_mam_write", 1, 4, 4, 3); __PYX_ERR(0, 517, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "cl_mam_write") < 0)) __PYX_ERR(0, 518, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "cl_mam_write") < 0)) __PYX_ERR(0, 517, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 4) {
       goto __pyx_L5_argtuple_error;
@@ -11092,14 +11093,14 @@ static PyObject *__pyx_pw_3osd_5cl_mam_write(PyObject *__pyx_self, PyObject *__p
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("cl_mam_write", 1, 4, 4, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 518, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("cl_mam_write", 1, 4, 4, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 517, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("osd.cl_mam_write", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_mem_desc), __pyx_ptype_3osd_MemoryDescriptor, 1, "mem_desc", 0))) __PYX_ERR(0, 518, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_hostmod), __pyx_ptype_3osd_Hostmod, 1, "hostmod", 0))) __PYX_ERR(0, 518, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_mem_desc), __pyx_ptype_3osd_MemoryDescriptor, 1, "mem_desc", 0))) __PYX_ERR(0, 517, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_hostmod), __pyx_ptype_3osd_Hostmod, 1, "hostmod", 0))) __PYX_ERR(0, 517, __pyx_L1_error)
   __pyx_r = __pyx_pf_3osd_4cl_mam_write(__pyx_self, __pyx_v_mem_desc, __pyx_v_hostmod, __pyx_v_data, __pyx_v_addr);
 
   /* function exit code */
@@ -11124,72 +11125,72 @@ static PyObject *__pyx_pf_3osd_4cl_mam_write(CYTHON_UNUSED PyObject *__pyx_self,
   PyObject *__pyx_t_6 = NULL;
   __Pyx_RefNannySetupContext("cl_mam_write", 0);
 
-  /* "osd.pyx":519
+  /* "osd.pyx":518
  * 
  * def cl_mam_write(MemoryDescriptor mem_desc, Hostmod hostmod, data, addr):
  *     cdef char* c_data = data             # <<<<<<<<<<<<<<
  *     rv = cosd.osd_cl_mam_write(&mem_desc._cself, hostmod._cself, c_data,
  *                                len(data), addr)
  */
-  __pyx_t_1 = __Pyx_PyObject_AsWritableString(__pyx_v_data); if (unlikely((!__pyx_t_1) && PyErr_Occurred())) __PYX_ERR(0, 519, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_AsWritableString(__pyx_v_data); if (unlikely((!__pyx_t_1) && PyErr_Occurred())) __PYX_ERR(0, 518, __pyx_L1_error)
   __pyx_v_c_data = __pyx_t_1;
 
-  /* "osd.pyx":521
+  /* "osd.pyx":520
  *     cdef char* c_data = data
  *     rv = cosd.osd_cl_mam_write(&mem_desc._cself, hostmod._cself, c_data,
  *                                len(data), addr)             # <<<<<<<<<<<<<<
  *     if rv != 0:
  *         raise Exception("Memory write failed (%d)" % rv)
  */
-  __pyx_t_2 = PyObject_Length(__pyx_v_data); if (unlikely(__pyx_t_2 == ((Py_ssize_t)-1))) __PYX_ERR(0, 521, __pyx_L1_error)
-  __pyx_t_3 = __Pyx_PyInt_As_uint64_t(__pyx_v_addr); if (unlikely((__pyx_t_3 == ((uint64_t)-1)) && PyErr_Occurred())) __PYX_ERR(0, 521, __pyx_L1_error)
+  __pyx_t_2 = PyObject_Length(__pyx_v_data); if (unlikely(__pyx_t_2 == ((Py_ssize_t)-1))) __PYX_ERR(0, 520, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyInt_As_uint64_t(__pyx_v_addr); if (unlikely((__pyx_t_3 == ((uint64_t)-1)) && PyErr_Occurred())) __PYX_ERR(0, 520, __pyx_L1_error)
 
-  /* "osd.pyx":520
+  /* "osd.pyx":519
  * def cl_mam_write(MemoryDescriptor mem_desc, Hostmod hostmod, data, addr):
  *     cdef char* c_data = data
  *     rv = cosd.osd_cl_mam_write(&mem_desc._cself, hostmod._cself, c_data,             # <<<<<<<<<<<<<<
  *                                len(data), addr)
  *     if rv != 0:
  */
-  __pyx_t_4 = __Pyx_PyInt_From_osd_result(osd_cl_mam_write((&__pyx_v_mem_desc->_cself), __pyx_v_hostmod->_cself, __pyx_v_c_data, __pyx_t_2, __pyx_t_3)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 520, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_osd_result(osd_cl_mam_write((&__pyx_v_mem_desc->_cself), __pyx_v_hostmod->_cself, __pyx_v_c_data, __pyx_t_2, __pyx_t_3)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 519, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_v_rv = __pyx_t_4;
   __pyx_t_4 = 0;
 
-  /* "osd.pyx":522
+  /* "osd.pyx":521
  *     rv = cosd.osd_cl_mam_write(&mem_desc._cself, hostmod._cself, c_data,
  *                                len(data), addr)
  *     if rv != 0:             # <<<<<<<<<<<<<<
  *         raise Exception("Memory write failed (%d)" % rv)
  * 
  */
-  __pyx_t_4 = PyObject_RichCompare(__pyx_v_rv, __pyx_int_0, Py_NE); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 522, __pyx_L1_error)
-  __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 522, __pyx_L1_error)
+  __pyx_t_4 = PyObject_RichCompare(__pyx_v_rv, __pyx_int_0, Py_NE); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 521, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 521, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   if (__pyx_t_5) {
 
-    /* "osd.pyx":523
+    /* "osd.pyx":522
  *                                len(data), addr)
  *     if rv != 0:
  *         raise Exception("Memory write failed (%d)" % rv)             # <<<<<<<<<<<<<<
  * 
  * def cl_mam_read(MemoryDescriptor mem_desc, Hostmod hostmod, addr, nbyte):
  */
-    __pyx_t_4 = PyUnicode_Format(__pyx_kp_u_Memory_write_failed_d, __pyx_v_rv); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 523, __pyx_L1_error)
+    __pyx_t_4 = PyUnicode_Format(__pyx_kp_u_Memory_write_failed_d, __pyx_v_rv); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 522, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_6 = PyTuple_New(1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 523, __pyx_L1_error)
+    __pyx_t_6 = PyTuple_New(1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 522, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_GIVEREF(__pyx_t_4);
     PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_4);
     __pyx_t_4 = 0;
-    __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)(&((PyTypeObject*)PyExc_Exception)[0])), __pyx_t_6, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 523, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)(&((PyTypeObject*)PyExc_Exception)[0])), __pyx_t_6, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 522, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_Raise(__pyx_t_4, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __PYX_ERR(0, 523, __pyx_L1_error)
+    __PYX_ERR(0, 522, __pyx_L1_error)
 
-    /* "osd.pyx":522
+    /* "osd.pyx":521
  *     rv = cosd.osd_cl_mam_write(&mem_desc._cself, hostmod._cself, c_data,
  *                                len(data), addr)
  *     if rv != 0:             # <<<<<<<<<<<<<<
@@ -11198,7 +11199,7 @@ static PyObject *__pyx_pf_3osd_4cl_mam_write(CYTHON_UNUSED PyObject *__pyx_self,
  */
   }
 
-  /* "osd.pyx":518
+  /* "osd.pyx":517
  *     return mem_desc
  * 
  * def cl_mam_write(MemoryDescriptor mem_desc, Hostmod hostmod, data, addr):             # <<<<<<<<<<<<<<
@@ -11221,7 +11222,7 @@ static PyObject *__pyx_pf_3osd_4cl_mam_write(CYTHON_UNUSED PyObject *__pyx_self,
   return __pyx_r;
 }
 
-/* "osd.pyx":525
+/* "osd.pyx":524
  *         raise Exception("Memory write failed (%d)" % rv)
  * 
  * def cl_mam_read(MemoryDescriptor mem_desc, Hostmod hostmod, addr, nbyte):             # <<<<<<<<<<<<<<
@@ -11268,23 +11269,23 @@ static PyObject *__pyx_pw_3osd_7cl_mam_read(PyObject *__pyx_self, PyObject *__py
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_hostmod)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("cl_mam_read", 1, 4, 4, 1); __PYX_ERR(0, 525, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("cl_mam_read", 1, 4, 4, 1); __PYX_ERR(0, 524, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_addr)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("cl_mam_read", 1, 4, 4, 2); __PYX_ERR(0, 525, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("cl_mam_read", 1, 4, 4, 2); __PYX_ERR(0, 524, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  3:
         if (likely((values[3] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_nbyte)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("cl_mam_read", 1, 4, 4, 3); __PYX_ERR(0, 525, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("cl_mam_read", 1, 4, 4, 3); __PYX_ERR(0, 524, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "cl_mam_read") < 0)) __PYX_ERR(0, 525, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "cl_mam_read") < 0)) __PYX_ERR(0, 524, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 4) {
       goto __pyx_L5_argtuple_error;
@@ -11301,14 +11302,14 @@ static PyObject *__pyx_pw_3osd_7cl_mam_read(PyObject *__pyx_self, PyObject *__py
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("cl_mam_read", 1, 4, 4, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 525, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("cl_mam_read", 1, 4, 4, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 524, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("osd.cl_mam_read", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_mem_desc), __pyx_ptype_3osd_MemoryDescriptor, 1, "mem_desc", 0))) __PYX_ERR(0, 525, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_hostmod), __pyx_ptype_3osd_Hostmod, 1, "hostmod", 0))) __PYX_ERR(0, 525, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_mem_desc), __pyx_ptype_3osd_MemoryDescriptor, 1, "mem_desc", 0))) __PYX_ERR(0, 524, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_hostmod), __pyx_ptype_3osd_Hostmod, 1, "hostmod", 0))) __PYX_ERR(0, 524, __pyx_L1_error)
   __pyx_r = __pyx_pf_3osd_6cl_mam_read(__pyx_self, __pyx_v_mem_desc, __pyx_v_hostmod, __pyx_v_addr, __pyx_v_nbyte);
 
   /* function exit code */
@@ -11334,90 +11335,90 @@ static PyObject *__pyx_pf_3osd_6cl_mam_read(CYTHON_UNUSED PyObject *__pyx_self, 
   int __pyx_t_6;
   __Pyx_RefNannySetupContext("cl_mam_read", 0);
 
-  /* "osd.pyx":526
+  /* "osd.pyx":525
  * 
  * def cl_mam_read(MemoryDescriptor mem_desc, Hostmod hostmod, addr, nbyte):
  *     data = bytearray(nbyte)             # <<<<<<<<<<<<<<
  *     cdef char* c_data = data
  * 
  */
-  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 526, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 525, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(__pyx_v_nbyte);
   __Pyx_GIVEREF(__pyx_v_nbyte);
   PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_v_nbyte);
-  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)(&PyByteArray_Type)), __pyx_t_1, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 526, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)(&PyByteArray_Type)), __pyx_t_1, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 525, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_data = ((PyObject*)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "osd.pyx":527
+  /* "osd.pyx":526
  * def cl_mam_read(MemoryDescriptor mem_desc, Hostmod hostmod, addr, nbyte):
  *     data = bytearray(nbyte)
  *     cdef char* c_data = data             # <<<<<<<<<<<<<<
  * 
  *     rv = cosd.osd_cl_mam_read(&mem_desc._cself, hostmod._cself, c_data,
  */
-  __pyx_t_3 = __Pyx_PyObject_AsWritableString(__pyx_v_data); if (unlikely((!__pyx_t_3) && PyErr_Occurred())) __PYX_ERR(0, 527, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_AsWritableString(__pyx_v_data); if (unlikely((!__pyx_t_3) && PyErr_Occurred())) __PYX_ERR(0, 526, __pyx_L1_error)
   __pyx_v_c_data = __pyx_t_3;
 
-  /* "osd.pyx":530
+  /* "osd.pyx":529
  * 
  *     rv = cosd.osd_cl_mam_read(&mem_desc._cself, hostmod._cself, c_data,
  *                               nbyte, addr)             # <<<<<<<<<<<<<<
  *     if rv != 0:
  *         raise Exception("Memory read failed (%d)" % rv)
  */
-  __pyx_t_4 = __Pyx_PyInt_As_size_t(__pyx_v_nbyte); if (unlikely((__pyx_t_4 == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 530, __pyx_L1_error)
-  __pyx_t_5 = __Pyx_PyInt_As_uint64_t(__pyx_v_addr); if (unlikely((__pyx_t_5 == ((uint64_t)-1)) && PyErr_Occurred())) __PYX_ERR(0, 530, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_As_size_t(__pyx_v_nbyte); if (unlikely((__pyx_t_4 == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 529, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyInt_As_uint64_t(__pyx_v_addr); if (unlikely((__pyx_t_5 == ((uint64_t)-1)) && PyErr_Occurred())) __PYX_ERR(0, 529, __pyx_L1_error)
 
-  /* "osd.pyx":529
+  /* "osd.pyx":528
  *     cdef char* c_data = data
  * 
  *     rv = cosd.osd_cl_mam_read(&mem_desc._cself, hostmod._cself, c_data,             # <<<<<<<<<<<<<<
  *                               nbyte, addr)
  *     if rv != 0:
  */
-  __pyx_t_2 = __Pyx_PyInt_From_osd_result(osd_cl_mam_read((&__pyx_v_mem_desc->_cself), __pyx_v_hostmod->_cself, __pyx_v_c_data, __pyx_t_4, __pyx_t_5)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 529, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_From_osd_result(osd_cl_mam_read((&__pyx_v_mem_desc->_cself), __pyx_v_hostmod->_cself, __pyx_v_c_data, __pyx_t_4, __pyx_t_5)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 528, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_v_rv = __pyx_t_2;
   __pyx_t_2 = 0;
 
-  /* "osd.pyx":531
+  /* "osd.pyx":530
  *     rv = cosd.osd_cl_mam_read(&mem_desc._cself, hostmod._cself, c_data,
  *                               nbyte, addr)
  *     if rv != 0:             # <<<<<<<<<<<<<<
  *         raise Exception("Memory read failed (%d)" % rv)
  * 
  */
-  __pyx_t_2 = PyObject_RichCompare(__pyx_v_rv, __pyx_int_0, Py_NE); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 531, __pyx_L1_error)
-  __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 531, __pyx_L1_error)
+  __pyx_t_2 = PyObject_RichCompare(__pyx_v_rv, __pyx_int_0, Py_NE); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 530, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 530, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   if (__pyx_t_6) {
 
-    /* "osd.pyx":532
+    /* "osd.pyx":531
  *                               nbyte, addr)
  *     if rv != 0:
  *         raise Exception("Memory read failed (%d)" % rv)             # <<<<<<<<<<<<<<
  * 
  *     return data
  */
-    __pyx_t_2 = PyUnicode_Format(__pyx_kp_u_Memory_read_failed_d, __pyx_v_rv); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 532, __pyx_L1_error)
+    __pyx_t_2 = PyUnicode_Format(__pyx_kp_u_Memory_read_failed_d, __pyx_v_rv); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 531, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 532, __pyx_L1_error)
+    __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 531, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_GIVEREF(__pyx_t_2);
     PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
     __pyx_t_2 = 0;
-    __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)(&((PyTypeObject*)PyExc_Exception)[0])), __pyx_t_1, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 532, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)(&((PyTypeObject*)PyExc_Exception)[0])), __pyx_t_1, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 531, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_Raise(__pyx_t_2, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __PYX_ERR(0, 532, __pyx_L1_error)
+    __PYX_ERR(0, 531, __pyx_L1_error)
 
-    /* "osd.pyx":531
+    /* "osd.pyx":530
  *     rv = cosd.osd_cl_mam_read(&mem_desc._cself, hostmod._cself, c_data,
  *                               nbyte, addr)
  *     if rv != 0:             # <<<<<<<<<<<<<<
@@ -11426,7 +11427,7 @@ static PyObject *__pyx_pf_3osd_6cl_mam_read(CYTHON_UNUSED PyObject *__pyx_self, 
  */
   }
 
-  /* "osd.pyx":534
+  /* "osd.pyx":533
  *         raise Exception("Memory read failed (%d)" % rv)
  * 
  *     return data             # <<<<<<<<<<<<<<
@@ -11438,7 +11439,7 @@ static PyObject *__pyx_pf_3osd_6cl_mam_read(CYTHON_UNUSED PyObject *__pyx_self, 
   __pyx_r = __pyx_v_data;
   goto __pyx_L0;
 
-  /* "osd.pyx":525
+  /* "osd.pyx":524
  *         raise Exception("Memory write failed (%d)" % rv)
  * 
  * def cl_mam_read(MemoryDescriptor mem_desc, Hostmod hostmod, addr, nbyte):             # <<<<<<<<<<<<<<
@@ -11460,7 +11461,7 @@ static PyObject *__pyx_pf_3osd_6cl_mam_read(CYTHON_UNUSED PyObject *__pyx_self, 
   return __pyx_r;
 }
 
-/* "osd.pyx":539
+/* "osd.pyx":538
  *     cdef cosd.osd_memaccess_ctx* _cself
  * 
  *     def __cinit__(self, Log log, host_controller_address):             # <<<<<<<<<<<<<<
@@ -11499,11 +11500,11 @@ static int __pyx_pw_3osd_12MemoryAccess_1__cinit__(PyObject *__pyx_v_self, PyObj
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_host_controller_address)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 2, 2, 1); __PYX_ERR(0, 539, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 2, 2, 1); __PYX_ERR(0, 538, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__cinit__") < 0)) __PYX_ERR(0, 539, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__cinit__") < 0)) __PYX_ERR(0, 538, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -11516,13 +11517,13 @@ static int __pyx_pw_3osd_12MemoryAccess_1__cinit__(PyObject *__pyx_v_self, PyObj
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 539, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 538, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("osd.MemoryAccess.__cinit__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return -1;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_log), __pyx_ptype_3osd_Log, 1, "log", 0))) __PYX_ERR(0, 539, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_log), __pyx_ptype_3osd_Log, 1, "log", 0))) __PYX_ERR(0, 538, __pyx_L1_error)
   __pyx_r = __pyx_pf_3osd_12MemoryAccess___cinit__(((struct __pyx_obj_3osd_MemoryAccess *)__pyx_v_self), __pyx_v_log, __pyx_v_host_controller_address);
 
   /* function exit code */
@@ -11546,32 +11547,32 @@ static int __pyx_pf_3osd_12MemoryAccess___cinit__(struct __pyx_obj_3osd_MemoryAc
   int __pyx_t_4;
   __Pyx_RefNannySetupContext("__cinit__", 0);
 
-  /* "osd.pyx":540
+  /* "osd.pyx":539
  * 
  *     def __cinit__(self, Log log, host_controller_address):
  *         py_byte_string = host_controller_address.encode('UTF-8')             # <<<<<<<<<<<<<<
  *         cdef char* c_host_controller_address = py_byte_string
  *         rv = cosd.osd_memaccess_new(&self._cself, log._cself,
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_host_controller_address, __pyx_n_s_encode); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 540, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_host_controller_address, __pyx_n_s_encode); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 539, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_tuple__26, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 540, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_tuple__26, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 539, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_py_byte_string = __pyx_t_2;
   __pyx_t_2 = 0;
 
-  /* "osd.pyx":541
+  /* "osd.pyx":540
  *     def __cinit__(self, Log log, host_controller_address):
  *         py_byte_string = host_controller_address.encode('UTF-8')
  *         cdef char* c_host_controller_address = py_byte_string             # <<<<<<<<<<<<<<
  *         rv = cosd.osd_memaccess_new(&self._cself, log._cself,
  *                                     c_host_controller_address)
  */
-  __pyx_t_3 = __Pyx_PyObject_AsWritableString(__pyx_v_py_byte_string); if (unlikely((!__pyx_t_3) && PyErr_Occurred())) __PYX_ERR(0, 541, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_AsWritableString(__pyx_v_py_byte_string); if (unlikely((!__pyx_t_3) && PyErr_Occurred())) __PYX_ERR(0, 540, __pyx_L1_error)
   __pyx_v_c_host_controller_address = __pyx_t_3;
 
-  /* "osd.pyx":542
+  /* "osd.pyx":541
  *         py_byte_string = host_controller_address.encode('UTF-8')
  *         cdef char* c_host_controller_address = py_byte_string
  *         rv = cosd.osd_memaccess_new(&self._cself, log._cself,             # <<<<<<<<<<<<<<
@@ -11580,21 +11581,21 @@ static int __pyx_pf_3osd_12MemoryAccess___cinit__(struct __pyx_obj_3osd_MemoryAc
  */
   __pyx_v_rv = osd_memaccess_new((&__pyx_v_self->_cself), __pyx_v_log->_cself, __pyx_v_c_host_controller_address);
 
-  /* "osd.pyx":544
+  /* "osd.pyx":543
  *         rv = cosd.osd_memaccess_new(&self._cself, log._cself,
  *                                     c_host_controller_address)
  *         check_osd_result(rv)             # <<<<<<<<<<<<<<
  *         if self._cself is NULL:
  *             raise MemoryError()
  */
-  __pyx_t_2 = __Pyx_PyInt_From_osd_result(__pyx_v_rv); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 544, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_From_osd_result(__pyx_v_rv); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 543, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = __pyx_f_3osd_check_osd_result(__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 544, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_3osd_check_osd_result(__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 543, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "osd.pyx":545
+  /* "osd.pyx":544
  *                                     c_host_controller_address)
  *         check_osd_result(rv)
  *         if self._cself is NULL:             # <<<<<<<<<<<<<<
@@ -11604,16 +11605,16 @@ static int __pyx_pf_3osd_12MemoryAccess___cinit__(struct __pyx_obj_3osd_MemoryAc
   __pyx_t_4 = ((__pyx_v_self->_cself == NULL) != 0);
   if (__pyx_t_4) {
 
-    /* "osd.pyx":546
+    /* "osd.pyx":545
  *         check_osd_result(rv)
  *         if self._cself is NULL:
  *             raise MemoryError()             # <<<<<<<<<<<<<<
  * 
  *     def __dealloc__(self):
  */
-    PyErr_NoMemory(); __PYX_ERR(0, 546, __pyx_L1_error)
+    PyErr_NoMemory(); __PYX_ERR(0, 545, __pyx_L1_error)
 
-    /* "osd.pyx":545
+    /* "osd.pyx":544
  *                                     c_host_controller_address)
  *         check_osd_result(rv)
  *         if self._cself is NULL:             # <<<<<<<<<<<<<<
@@ -11622,7 +11623,7 @@ static int __pyx_pf_3osd_12MemoryAccess___cinit__(struct __pyx_obj_3osd_MemoryAc
  */
   }
 
-  /* "osd.pyx":539
+  /* "osd.pyx":538
  *     cdef cosd.osd_memaccess_ctx* _cself
  * 
  *     def __cinit__(self, Log log, host_controller_address):             # <<<<<<<<<<<<<<
@@ -11644,7 +11645,7 @@ static int __pyx_pf_3osd_12MemoryAccess___cinit__(struct __pyx_obj_3osd_MemoryAc
   return __pyx_r;
 }
 
-/* "osd.pyx":548
+/* "osd.pyx":547
  *             raise MemoryError()
  * 
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
@@ -11671,7 +11672,7 @@ static void __pyx_pf_3osd_12MemoryAccess_2__dealloc__(struct __pyx_obj_3osd_Memo
   PyObject *__pyx_t_4 = NULL;
   __Pyx_RefNannySetupContext("__dealloc__", 0);
 
-  /* "osd.pyx":549
+  /* "osd.pyx":548
  * 
  *     def __dealloc__(self):
  *         if self._cself is NULL:             # <<<<<<<<<<<<<<
@@ -11681,7 +11682,7 @@ static void __pyx_pf_3osd_12MemoryAccess_2__dealloc__(struct __pyx_obj_3osd_Memo
   __pyx_t_1 = ((__pyx_v_self->_cself == NULL) != 0);
   if (__pyx_t_1) {
 
-    /* "osd.pyx":550
+    /* "osd.pyx":549
  *     def __dealloc__(self):
  *         if self._cself is NULL:
  *             return             # <<<<<<<<<<<<<<
@@ -11690,7 +11691,7 @@ static void __pyx_pf_3osd_12MemoryAccess_2__dealloc__(struct __pyx_obj_3osd_Memo
  */
     goto __pyx_L0;
 
-    /* "osd.pyx":549
+    /* "osd.pyx":548
  * 
  *     def __dealloc__(self):
  *         if self._cself is NULL:             # <<<<<<<<<<<<<<
@@ -11699,14 +11700,14 @@ static void __pyx_pf_3osd_12MemoryAccess_2__dealloc__(struct __pyx_obj_3osd_Memo
  */
   }
 
-  /* "osd.pyx":552
+  /* "osd.pyx":551
  *             return
  * 
  *         if self.is_connected():             # <<<<<<<<<<<<<<
  *             self.disconnect()
  * 
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_is_connected); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 552, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_is_connected); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 551, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_4 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
@@ -11719,25 +11720,25 @@ static void __pyx_pf_3osd_12MemoryAccess_2__dealloc__(struct __pyx_obj_3osd_Memo
     }
   }
   if (__pyx_t_4) {
-    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 552, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 551, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   } else {
-    __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 552, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 551, __pyx_L1_error)
   }
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 552, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 551, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   if (__pyx_t_1) {
 
-    /* "osd.pyx":553
+    /* "osd.pyx":552
  * 
  *         if self.is_connected():
  *             self.disconnect()             # <<<<<<<<<<<<<<
  * 
  *         cosd.osd_memaccess_free(&self._cself)
  */
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_disconnect); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 553, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_disconnect); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 552, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __pyx_t_4 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
@@ -11750,16 +11751,16 @@ static void __pyx_pf_3osd_12MemoryAccess_2__dealloc__(struct __pyx_obj_3osd_Memo
       }
     }
     if (__pyx_t_4) {
-      __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 553, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 552, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     } else {
-      __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 553, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 552, __pyx_L1_error)
     }
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-    /* "osd.pyx":552
+    /* "osd.pyx":551
  *             return
  * 
  *         if self.is_connected():             # <<<<<<<<<<<<<<
@@ -11768,7 +11769,7 @@ static void __pyx_pf_3osd_12MemoryAccess_2__dealloc__(struct __pyx_obj_3osd_Memo
  */
   }
 
-  /* "osd.pyx":555
+  /* "osd.pyx":554
  *             self.disconnect()
  * 
  *         cosd.osd_memaccess_free(&self._cself)             # <<<<<<<<<<<<<<
@@ -11777,7 +11778,7 @@ static void __pyx_pf_3osd_12MemoryAccess_2__dealloc__(struct __pyx_obj_3osd_Memo
  */
   osd_memaccess_free((&__pyx_v_self->_cself));
 
-  /* "osd.pyx":548
+  /* "osd.pyx":547
  *             raise MemoryError()
  * 
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
@@ -11796,7 +11797,7 @@ static void __pyx_pf_3osd_12MemoryAccess_2__dealloc__(struct __pyx_obj_3osd_Memo
   __Pyx_RefNannyFinishContext();
 }
 
-/* "osd.pyx":557
+/* "osd.pyx":556
  *         cosd.osd_memaccess_free(&self._cself)
  * 
  *     def connect(self):             # <<<<<<<<<<<<<<
@@ -11826,7 +11827,7 @@ static PyObject *__pyx_pf_3osd_12MemoryAccess_4connect(struct __pyx_obj_3osd_Mem
   PyObject *__pyx_t_2 = NULL;
   __Pyx_RefNannySetupContext("connect", 0);
 
-  /* "osd.pyx":558
+  /* "osd.pyx":557
  * 
  *     def connect(self):
  *         rv = cosd.osd_memaccess_connect(self._cself)             # <<<<<<<<<<<<<<
@@ -11835,21 +11836,21 @@ static PyObject *__pyx_pf_3osd_12MemoryAccess_4connect(struct __pyx_obj_3osd_Mem
  */
   __pyx_v_rv = osd_memaccess_connect(__pyx_v_self->_cself);
 
-  /* "osd.pyx":559
+  /* "osd.pyx":558
  *     def connect(self):
  *         rv = cosd.osd_memaccess_connect(self._cself)
  *         check_osd_result(rv)             # <<<<<<<<<<<<<<
  * 
  *     def disconnect(self):
  */
-  __pyx_t_1 = __Pyx_PyInt_From_osd_result(__pyx_v_rv); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 559, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_osd_result(__pyx_v_rv); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 558, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __pyx_f_3osd_check_osd_result(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 559, __pyx_L1_error)
+  __pyx_t_2 = __pyx_f_3osd_check_osd_result(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 558, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "osd.pyx":557
+  /* "osd.pyx":556
  *         cosd.osd_memaccess_free(&self._cself)
  * 
  *     def connect(self):             # <<<<<<<<<<<<<<
@@ -11871,7 +11872,7 @@ static PyObject *__pyx_pf_3osd_12MemoryAccess_4connect(struct __pyx_obj_3osd_Mem
   return __pyx_r;
 }
 
-/* "osd.pyx":561
+/* "osd.pyx":560
  *         check_osd_result(rv)
  * 
  *     def disconnect(self):             # <<<<<<<<<<<<<<
@@ -11901,7 +11902,7 @@ static PyObject *__pyx_pf_3osd_12MemoryAccess_6disconnect(struct __pyx_obj_3osd_
   PyObject *__pyx_t_2 = NULL;
   __Pyx_RefNannySetupContext("disconnect", 0);
 
-  /* "osd.pyx":562
+  /* "osd.pyx":561
  * 
  *     def disconnect(self):
  *         rv = cosd.osd_memaccess_disconnect(self._cself)             # <<<<<<<<<<<<<<
@@ -11910,21 +11911,21 @@ static PyObject *__pyx_pf_3osd_12MemoryAccess_6disconnect(struct __pyx_obj_3osd_
  */
   __pyx_v_rv = osd_memaccess_disconnect(__pyx_v_self->_cself);
 
-  /* "osd.pyx":563
+  /* "osd.pyx":562
  *     def disconnect(self):
  *         rv = cosd.osd_memaccess_disconnect(self._cself)
  *         check_osd_result(rv)             # <<<<<<<<<<<<<<
  * 
  *     def is_connected(self):
  */
-  __pyx_t_1 = __Pyx_PyInt_From_osd_result(__pyx_v_rv); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 563, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_osd_result(__pyx_v_rv); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 562, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __pyx_f_3osd_check_osd_result(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 563, __pyx_L1_error)
+  __pyx_t_2 = __pyx_f_3osd_check_osd_result(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 562, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "osd.pyx":561
+  /* "osd.pyx":560
  *         check_osd_result(rv)
  * 
  *     def disconnect(self):             # <<<<<<<<<<<<<<
@@ -11946,7 +11947,7 @@ static PyObject *__pyx_pf_3osd_12MemoryAccess_6disconnect(struct __pyx_obj_3osd_
   return __pyx_r;
 }
 
-/* "osd.pyx":565
+/* "osd.pyx":564
  *         check_osd_result(rv)
  * 
  *     def is_connected(self):             # <<<<<<<<<<<<<<
@@ -11974,7 +11975,7 @@ static PyObject *__pyx_pf_3osd_12MemoryAccess_8is_connected(struct __pyx_obj_3os
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("is_connected", 0);
 
-  /* "osd.pyx":566
+  /* "osd.pyx":565
  * 
  *     def is_connected(self):
  *         return cosd.osd_memaccess_is_connected(self._cself)             # <<<<<<<<<<<<<<
@@ -11982,13 +11983,13 @@ static PyObject *__pyx_pf_3osd_12MemoryAccess_8is_connected(struct __pyx_obj_3os
  *     def cpus_stop(self, subnet_addr):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(osd_memaccess_is_connected(__pyx_v_self->_cself)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 566, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(osd_memaccess_is_connected(__pyx_v_self->_cself)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 565, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "osd.pyx":565
+  /* "osd.pyx":564
  *         check_osd_result(rv)
  * 
  *     def is_connected(self):             # <<<<<<<<<<<<<<
@@ -12007,7 +12008,7 @@ static PyObject *__pyx_pf_3osd_12MemoryAccess_8is_connected(struct __pyx_obj_3os
   return __pyx_r;
 }
 
-/* "osd.pyx":568
+/* "osd.pyx":567
  *         return cosd.osd_memaccess_is_connected(self._cself)
  * 
  *     def cpus_stop(self, subnet_addr):             # <<<<<<<<<<<<<<
@@ -12038,31 +12039,31 @@ static PyObject *__pyx_pf_3osd_12MemoryAccess_10cpus_stop(struct __pyx_obj_3osd_
   PyObject *__pyx_t_3 = NULL;
   __Pyx_RefNannySetupContext("cpus_stop", 0);
 
-  /* "osd.pyx":569
+  /* "osd.pyx":568
  * 
  *     def cpus_stop(self, subnet_addr):
  *         rv = cosd.osd_memaccess_cpus_stop(self._cself, subnet_addr)             # <<<<<<<<<<<<<<
  *         check_osd_result(rv)
  * 
  */
-  __pyx_t_1 = __Pyx_PyInt_As_unsigned_int(__pyx_v_subnet_addr); if (unlikely((__pyx_t_1 == (unsigned int)-1) && PyErr_Occurred())) __PYX_ERR(0, 569, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_As_unsigned_int(__pyx_v_subnet_addr); if (unlikely((__pyx_t_1 == (unsigned int)-1) && PyErr_Occurred())) __PYX_ERR(0, 568, __pyx_L1_error)
   __pyx_v_rv = osd_memaccess_cpus_stop(__pyx_v_self->_cself, __pyx_t_1);
 
-  /* "osd.pyx":570
+  /* "osd.pyx":569
  *     def cpus_stop(self, subnet_addr):
  *         rv = cosd.osd_memaccess_cpus_stop(self._cself, subnet_addr)
  *         check_osd_result(rv)             # <<<<<<<<<<<<<<
  * 
  *     def cpus_start(self, subnet_addr):
  */
-  __pyx_t_2 = __Pyx_PyInt_From_osd_result(__pyx_v_rv); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 570, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_From_osd_result(__pyx_v_rv); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 569, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __pyx_f_3osd_check_osd_result(__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 570, __pyx_L1_error)
+  __pyx_t_3 = __pyx_f_3osd_check_osd_result(__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 569, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "osd.pyx":568
+  /* "osd.pyx":567
  *         return cosd.osd_memaccess_is_connected(self._cself)
  * 
  *     def cpus_stop(self, subnet_addr):             # <<<<<<<<<<<<<<
@@ -12084,7 +12085,7 @@ static PyObject *__pyx_pf_3osd_12MemoryAccess_10cpus_stop(struct __pyx_obj_3osd_
   return __pyx_r;
 }
 
-/* "osd.pyx":572
+/* "osd.pyx":571
  *         check_osd_result(rv)
  * 
  *     def cpus_start(self, subnet_addr):             # <<<<<<<<<<<<<<
@@ -12115,31 +12116,31 @@ static PyObject *__pyx_pf_3osd_12MemoryAccess_12cpus_start(struct __pyx_obj_3osd
   PyObject *__pyx_t_3 = NULL;
   __Pyx_RefNannySetupContext("cpus_start", 0);
 
-  /* "osd.pyx":573
+  /* "osd.pyx":572
  * 
  *     def cpus_start(self, subnet_addr):
  *         rv = cosd.osd_memaccess_cpus_start(self._cself, subnet_addr)             # <<<<<<<<<<<<<<
  *         check_osd_result(rv)
  * 
  */
-  __pyx_t_1 = __Pyx_PyInt_As_unsigned_int(__pyx_v_subnet_addr); if (unlikely((__pyx_t_1 == (unsigned int)-1) && PyErr_Occurred())) __PYX_ERR(0, 573, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_As_unsigned_int(__pyx_v_subnet_addr); if (unlikely((__pyx_t_1 == (unsigned int)-1) && PyErr_Occurred())) __PYX_ERR(0, 572, __pyx_L1_error)
   __pyx_v_rv = osd_memaccess_cpus_start(__pyx_v_self->_cself, __pyx_t_1);
 
-  /* "osd.pyx":574
+  /* "osd.pyx":573
  *     def cpus_start(self, subnet_addr):
  *         rv = cosd.osd_memaccess_cpus_start(self._cself, subnet_addr)
  *         check_osd_result(rv)             # <<<<<<<<<<<<<<
  * 
  *     def find_memories(self, subnet_addr):
  */
-  __pyx_t_2 = __Pyx_PyInt_From_osd_result(__pyx_v_rv); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 574, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_From_osd_result(__pyx_v_rv); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 573, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __pyx_f_3osd_check_osd_result(__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 574, __pyx_L1_error)
+  __pyx_t_3 = __pyx_f_3osd_check_osd_result(__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 573, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "osd.pyx":572
+  /* "osd.pyx":571
  *         check_osd_result(rv)
  * 
  *     def cpus_start(self, subnet_addr):             # <<<<<<<<<<<<<<
@@ -12161,7 +12162,7 @@ static PyObject *__pyx_pf_3osd_12MemoryAccess_12cpus_start(struct __pyx_obj_3osd
   return __pyx_r;
 }
 
-/* "osd.pyx":576
+/* "osd.pyx":575
  *         check_osd_result(rv)
  * 
  *     def find_memories(self, subnet_addr):             # <<<<<<<<<<<<<<
@@ -12209,7 +12210,7 @@ static PyObject *__pyx_pf_3osd_12MemoryAccess_14find_memories(struct __pyx_obj_3
   PyObject *__pyx_t_15 = NULL;
   __Pyx_RefNannySetupContext("find_memories", 0);
 
-  /* "osd.pyx":578
+  /* "osd.pyx":577
  *     def find_memories(self, subnet_addr):
  *         cdef cosd.osd_mem_desc *memories
  *         cdef size_t num_memories = 0             # <<<<<<<<<<<<<<
@@ -12218,7 +12219,7 @@ static PyObject *__pyx_pf_3osd_12MemoryAccess_14find_memories(struct __pyx_obj_3
  */
   __pyx_v_num_memories = 0;
 
-  /* "osd.pyx":579
+  /* "osd.pyx":578
  *         cdef cosd.osd_mem_desc *memories
  *         cdef size_t num_memories = 0
  *         try:             # <<<<<<<<<<<<<<
@@ -12227,16 +12228,16 @@ static PyObject *__pyx_pf_3osd_12MemoryAccess_14find_memories(struct __pyx_obj_3
  */
   /*try:*/ {
 
-    /* "osd.pyx":580
+    /* "osd.pyx":579
  *         cdef size_t num_memories = 0
  *         try:
  *             rv = cosd.osd_memaccess_find_memories(self._cself, subnet_addr,             # <<<<<<<<<<<<<<
  *                                                   &memories,
  *                                                   &num_memories)
  */
-    __pyx_t_1 = __Pyx_PyInt_As_unsigned_int(__pyx_v_subnet_addr); if (unlikely((__pyx_t_1 == (unsigned int)-1) && PyErr_Occurred())) __PYX_ERR(0, 580, __pyx_L4_error)
+    __pyx_t_1 = __Pyx_PyInt_As_unsigned_int(__pyx_v_subnet_addr); if (unlikely((__pyx_t_1 == (unsigned int)-1) && PyErr_Occurred())) __PYX_ERR(0, 579, __pyx_L4_error)
 
-    /* "osd.pyx":582
+    /* "osd.pyx":581
  *             rv = cosd.osd_memaccess_find_memories(self._cself, subnet_addr,
  *                                                   &memories,
  *                                                   &num_memories)             # <<<<<<<<<<<<<<
@@ -12245,33 +12246,33 @@ static PyObject *__pyx_pf_3osd_12MemoryAccess_14find_memories(struct __pyx_obj_3
  */
     __pyx_v_rv = osd_memaccess_find_memories(__pyx_v_self->_cself, __pyx_t_1, (&__pyx_v_memories), (&__pyx_v_num_memories));
 
-    /* "osd.pyx":583
+    /* "osd.pyx":582
  *                                                   &memories,
  *                                                   &num_memories)
  *             check_osd_result(rv)             # <<<<<<<<<<<<<<
  * 
  *             result_list = []
  */
-    __pyx_t_2 = __Pyx_PyInt_From_osd_result(__pyx_v_rv); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 583, __pyx_L4_error)
+    __pyx_t_2 = __Pyx_PyInt_From_osd_result(__pyx_v_rv); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 582, __pyx_L4_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_3 = __pyx_f_3osd_check_osd_result(__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 583, __pyx_L4_error)
+    __pyx_t_3 = __pyx_f_3osd_check_osd_result(__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 582, __pyx_L4_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-    /* "osd.pyx":585
+    /* "osd.pyx":584
  *             check_osd_result(rv)
  * 
  *             result_list = []             # <<<<<<<<<<<<<<
  *             for m in range(num_memories):
  *                 mem_desc = MemoryDescriptor()
  */
-    __pyx_t_3 = PyList_New(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 585, __pyx_L4_error)
+    __pyx_t_3 = PyList_New(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 584, __pyx_L4_error)
     __Pyx_GOTREF(__pyx_t_3);
     __pyx_v_result_list = ((PyObject*)__pyx_t_3);
     __pyx_t_3 = 0;
 
-    /* "osd.pyx":586
+    /* "osd.pyx":585
  * 
  *             result_list = []
  *             for m in range(num_memories):             # <<<<<<<<<<<<<<
@@ -12282,19 +12283,19 @@ static PyObject *__pyx_pf_3osd_12MemoryAccess_14find_memories(struct __pyx_obj_3
     for (__pyx_t_5 = 0; __pyx_t_5 < __pyx_t_4; __pyx_t_5+=1) {
       __pyx_v_m = __pyx_t_5;
 
-      /* "osd.pyx":587
+      /* "osd.pyx":586
  *             result_list = []
  *             for m in range(num_memories):
  *                 mem_desc = MemoryDescriptor()             # <<<<<<<<<<<<<<
  *                 mem_desc._cself = memories[m]
  *                 result_list.append(mem_desc)
  */
-      __pyx_t_3 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_3osd_MemoryDescriptor), __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 587, __pyx_L4_error)
+      __pyx_t_3 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_3osd_MemoryDescriptor), __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 586, __pyx_L4_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_XDECREF_SET(__pyx_v_mem_desc, ((struct __pyx_obj_3osd_MemoryDescriptor *)__pyx_t_3));
       __pyx_t_3 = 0;
 
-      /* "osd.pyx":588
+      /* "osd.pyx":587
  *             for m in range(num_memories):
  *                 mem_desc = MemoryDescriptor()
  *                 mem_desc._cself = memories[m]             # <<<<<<<<<<<<<<
@@ -12303,18 +12304,18 @@ static PyObject *__pyx_pf_3osd_12MemoryAccess_14find_memories(struct __pyx_obj_3
  */
       __pyx_v_mem_desc->_cself = (__pyx_v_memories[__pyx_v_m]);
 
-      /* "osd.pyx":589
+      /* "osd.pyx":588
  *                 mem_desc = MemoryDescriptor()
  *                 mem_desc._cself = memories[m]
  *                 result_list.append(mem_desc)             # <<<<<<<<<<<<<<
  *         finally:
  *             free(memories)
  */
-      __pyx_t_6 = __Pyx_PyList_Append(__pyx_v_result_list, ((PyObject *)__pyx_v_mem_desc)); if (unlikely(__pyx_t_6 == ((int)-1))) __PYX_ERR(0, 589, __pyx_L4_error)
+      __pyx_t_6 = __Pyx_PyList_Append(__pyx_v_result_list, ((PyObject *)__pyx_v_mem_desc)); if (unlikely(__pyx_t_6 == ((int)-1))) __PYX_ERR(0, 588, __pyx_L4_error)
     }
   }
 
-  /* "osd.pyx":591
+  /* "osd.pyx":590
  *                 result_list.append(mem_desc)
  *         finally:
  *             free(memories)             # <<<<<<<<<<<<<<
@@ -12362,7 +12363,7 @@ static PyObject *__pyx_pf_3osd_12MemoryAccess_14find_memories(struct __pyx_obj_3
     __pyx_L5:;
   }
 
-  /* "osd.pyx":593
+  /* "osd.pyx":592
  *             free(memories)
  * 
  *         return result_list             # <<<<<<<<<<<<<<
@@ -12374,7 +12375,7 @@ static PyObject *__pyx_pf_3osd_12MemoryAccess_14find_memories(struct __pyx_obj_3
   __pyx_r = __pyx_v_result_list;
   goto __pyx_L0;
 
-  /* "osd.pyx":576
+  /* "osd.pyx":575
  *         check_osd_result(rv)
  * 
  *     def find_memories(self, subnet_addr):             # <<<<<<<<<<<<<<
@@ -12396,7 +12397,7 @@ static PyObject *__pyx_pf_3osd_12MemoryAccess_14find_memories(struct __pyx_obj_3
   return __pyx_r;
 }
 
-/* "osd.pyx":595
+/* "osd.pyx":594
  *         return result_list
  * 
  *     def loadelf(self, MemoryDescriptor mem_desc, elf_file_path, verify):             # <<<<<<<<<<<<<<
@@ -12439,17 +12440,17 @@ static PyObject *__pyx_pw_3osd_12MemoryAccess_17loadelf(PyObject *__pyx_v_self, 
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_elf_file_path)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("loadelf", 1, 3, 3, 1); __PYX_ERR(0, 595, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("loadelf", 1, 3, 3, 1); __PYX_ERR(0, 594, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_verify)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("loadelf", 1, 3, 3, 2); __PYX_ERR(0, 595, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("loadelf", 1, 3, 3, 2); __PYX_ERR(0, 594, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "loadelf") < 0)) __PYX_ERR(0, 595, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "loadelf") < 0)) __PYX_ERR(0, 594, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -12464,13 +12465,13 @@ static PyObject *__pyx_pw_3osd_12MemoryAccess_17loadelf(PyObject *__pyx_v_self, 
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("loadelf", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 595, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("loadelf", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 594, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("osd.MemoryAccess.loadelf", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_mem_desc), __pyx_ptype_3osd_MemoryDescriptor, 1, "mem_desc", 0))) __PYX_ERR(0, 595, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_mem_desc), __pyx_ptype_3osd_MemoryDescriptor, 1, "mem_desc", 0))) __PYX_ERR(0, 594, __pyx_L1_error)
   __pyx_r = __pyx_pf_3osd_12MemoryAccess_16loadelf(((struct __pyx_obj_3osd_MemoryAccess *)__pyx_v_self), __pyx_v_mem_desc, __pyx_v_elf_file_path, __pyx_v_verify);
 
   /* function exit code */
@@ -12494,41 +12495,41 @@ static PyObject *__pyx_pf_3osd_12MemoryAccess_16loadelf(struct __pyx_obj_3osd_Me
   int __pyx_t_4;
   __Pyx_RefNannySetupContext("loadelf", 0);
 
-  /* "osd.pyx":596
+  /* "osd.pyx":595
  * 
  *     def loadelf(self, MemoryDescriptor mem_desc, elf_file_path, verify):
  *         py_byte_string = elf_file_path.encode('UTF-8')             # <<<<<<<<<<<<<<
  *         cdef char* c_elf_file_path = py_byte_string
  *         rv = cosd.osd_memaccess_loadelf(self._cself, &mem_desc._cself, c_elf_file_path,
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_elf_file_path, __pyx_n_s_encode); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 596, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_elf_file_path, __pyx_n_s_encode); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 595, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_tuple__27, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 596, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_tuple__27, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 595, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_py_byte_string = __pyx_t_2;
   __pyx_t_2 = 0;
 
-  /* "osd.pyx":597
+  /* "osd.pyx":596
  *     def loadelf(self, MemoryDescriptor mem_desc, elf_file_path, verify):
  *         py_byte_string = elf_file_path.encode('UTF-8')
  *         cdef char* c_elf_file_path = py_byte_string             # <<<<<<<<<<<<<<
  *         rv = cosd.osd_memaccess_loadelf(self._cself, &mem_desc._cself, c_elf_file_path,
  *                                         verify)
  */
-  __pyx_t_3 = __Pyx_PyObject_AsWritableString(__pyx_v_py_byte_string); if (unlikely((!__pyx_t_3) && PyErr_Occurred())) __PYX_ERR(0, 597, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_AsWritableString(__pyx_v_py_byte_string); if (unlikely((!__pyx_t_3) && PyErr_Occurred())) __PYX_ERR(0, 596, __pyx_L1_error)
   __pyx_v_c_elf_file_path = __pyx_t_3;
 
-  /* "osd.pyx":599
+  /* "osd.pyx":598
  *         cdef char* c_elf_file_path = py_byte_string
  *         rv = cosd.osd_memaccess_loadelf(self._cself, &mem_desc._cself, c_elf_file_path,
  *                                         verify)             # <<<<<<<<<<<<<<
  *         check_osd_result(rv)
  * 
  */
-  __pyx_t_4 = __Pyx_PyInt_As_int(__pyx_v_verify); if (unlikely((__pyx_t_4 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 599, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_As_int(__pyx_v_verify); if (unlikely((__pyx_t_4 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 598, __pyx_L1_error)
 
-  /* "osd.pyx":598
+  /* "osd.pyx":597
  *         py_byte_string = elf_file_path.encode('UTF-8')
  *         cdef char* c_elf_file_path = py_byte_string
  *         rv = cosd.osd_memaccess_loadelf(self._cself, &mem_desc._cself, c_elf_file_path,             # <<<<<<<<<<<<<<
@@ -12537,21 +12538,21 @@ static PyObject *__pyx_pf_3osd_12MemoryAccess_16loadelf(struct __pyx_obj_3osd_Me
  */
   __pyx_v_rv = osd_memaccess_loadelf(__pyx_v_self->_cself, (&__pyx_v_mem_desc->_cself), __pyx_v_c_elf_file_path, __pyx_t_4);
 
-  /* "osd.pyx":600
+  /* "osd.pyx":599
  *         rv = cosd.osd_memaccess_loadelf(self._cself, &mem_desc._cself, c_elf_file_path,
  *                                         verify)
  *         check_osd_result(rv)             # <<<<<<<<<<<<<<
  * 
  * 
  */
-  __pyx_t_2 = __Pyx_PyInt_From_osd_result(__pyx_v_rv); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 600, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_From_osd_result(__pyx_v_rv); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 599, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = __pyx_f_3osd_check_osd_result(__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 600, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_3osd_check_osd_result(__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 599, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "osd.pyx":595
+  /* "osd.pyx":594
  *         return result_list
  * 
  *     def loadelf(self, MemoryDescriptor mem_desc, elf_file_path, verify):             # <<<<<<<<<<<<<<
@@ -12683,7 +12684,7 @@ static PyObject *__pyx_pf_3osd_12MemoryAccess_20__setstate_cython__(CYTHON_UNUSE
   return __pyx_r;
 }
 
-/* "osd.pyx":611
+/* "osd.pyx":610
  *     cdef _event_file
  * 
  *     def __cinit__(self, Log log, host_controller_address, di_addr):             # <<<<<<<<<<<<<<
@@ -12725,17 +12726,17 @@ static int __pyx_pw_3osd_14SystraceLogger_1__cinit__(PyObject *__pyx_v_self, PyO
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_host_controller_address)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 3, 3, 1); __PYX_ERR(0, 611, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 3, 3, 1); __PYX_ERR(0, 610, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_di_addr)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 3, 3, 2); __PYX_ERR(0, 611, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 3, 3, 2); __PYX_ERR(0, 610, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__cinit__") < 0)) __PYX_ERR(0, 611, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__cinit__") < 0)) __PYX_ERR(0, 610, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -12750,13 +12751,13 @@ static int __pyx_pw_3osd_14SystraceLogger_1__cinit__(PyObject *__pyx_v_self, PyO
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 611, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 610, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("osd.SystraceLogger.__cinit__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return -1;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_log), __pyx_ptype_3osd_Log, 1, "log", 0))) __PYX_ERR(0, 611, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_log), __pyx_ptype_3osd_Log, 1, "log", 0))) __PYX_ERR(0, 610, __pyx_L1_error)
   __pyx_r = __pyx_pf_3osd_14SystraceLogger___cinit__(((struct __pyx_obj_3osd_SystraceLogger *)__pyx_v_self), __pyx_v_log, __pyx_v_host_controller_address, __pyx_v_di_addr);
 
   /* function exit code */
@@ -12780,7 +12781,7 @@ static int __pyx_pf_3osd_14SystraceLogger___cinit__(struct __pyx_obj_3osd_Systra
   int __pyx_t_5;
   __Pyx_RefNannySetupContext("__cinit__", 0);
 
-  /* "osd.pyx":612
+  /* "osd.pyx":611
  * 
  *     def __cinit__(self, Log log, host_controller_address, di_addr):
  *         self._fp_sysprint = NULL             # <<<<<<<<<<<<<<
@@ -12789,7 +12790,7 @@ static int __pyx_pf_3osd_14SystraceLogger___cinit__(struct __pyx_obj_3osd_Systra
  */
   __pyx_v_self->_fp_sysprint = NULL;
 
-  /* "osd.pyx":613
+  /* "osd.pyx":612
  *     def __cinit__(self, Log log, host_controller_address, di_addr):
  *         self._fp_sysprint = NULL
  *         self._fp_event = NULL             # <<<<<<<<<<<<<<
@@ -12798,7 +12799,7 @@ static int __pyx_pf_3osd_14SystraceLogger___cinit__(struct __pyx_obj_3osd_Systra
  */
   __pyx_v_self->_fp_event = NULL;
 
-  /* "osd.pyx":614
+  /* "osd.pyx":613
  *         self._fp_sysprint = NULL
  *         self._fp_event = NULL
  *         self._sysprint_file = None             # <<<<<<<<<<<<<<
@@ -12811,7 +12812,7 @@ static int __pyx_pf_3osd_14SystraceLogger___cinit__(struct __pyx_obj_3osd_Systra
   __Pyx_DECREF(__pyx_v_self->_sysprint_file);
   __pyx_v_self->_sysprint_file = Py_None;
 
-  /* "osd.pyx":615
+  /* "osd.pyx":614
  *         self._fp_event = NULL
  *         self._sysprint_file = None
  *         self._event_file = None             # <<<<<<<<<<<<<<
@@ -12824,32 +12825,32 @@ static int __pyx_pf_3osd_14SystraceLogger___cinit__(struct __pyx_obj_3osd_Systra
   __Pyx_DECREF(__pyx_v_self->_event_file);
   __pyx_v_self->_event_file = Py_None;
 
-  /* "osd.pyx":617
+  /* "osd.pyx":616
  *         self._event_file = None
  * 
  *         b_host_controller_address = host_controller_address.encode('UTF-8')             # <<<<<<<<<<<<<<
  *         rv = cosd.osd_systracelogger_new(&self._cself, log._cself,
  *                                          b_host_controller_address, di_addr)
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_host_controller_address, __pyx_n_s_encode); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 617, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_host_controller_address, __pyx_n_s_encode); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 616, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_tuple__30, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 617, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_tuple__30, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 616, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_b_host_controller_address = __pyx_t_2;
   __pyx_t_2 = 0;
 
-  /* "osd.pyx":619
+  /* "osd.pyx":618
  *         b_host_controller_address = host_controller_address.encode('UTF-8')
  *         rv = cosd.osd_systracelogger_new(&self._cself, log._cself,
  *                                          b_host_controller_address, di_addr)             # <<<<<<<<<<<<<<
  *         check_osd_result(rv)
  *         if self._cself is NULL:
  */
-  __pyx_t_3 = __Pyx_PyObject_AsString(__pyx_v_b_host_controller_address); if (unlikely((!__pyx_t_3) && PyErr_Occurred())) __PYX_ERR(0, 619, __pyx_L1_error)
-  __pyx_t_4 = __Pyx_PyInt_As_uint16_t(__pyx_v_di_addr); if (unlikely((__pyx_t_4 == ((uint16_t)-1)) && PyErr_Occurred())) __PYX_ERR(0, 619, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_AsString(__pyx_v_b_host_controller_address); if (unlikely((!__pyx_t_3) && PyErr_Occurred())) __PYX_ERR(0, 618, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_As_uint16_t(__pyx_v_di_addr); if (unlikely((__pyx_t_4 == ((uint16_t)-1)) && PyErr_Occurred())) __PYX_ERR(0, 618, __pyx_L1_error)
 
-  /* "osd.pyx":618
+  /* "osd.pyx":617
  * 
  *         b_host_controller_address = host_controller_address.encode('UTF-8')
  *         rv = cosd.osd_systracelogger_new(&self._cself, log._cself,             # <<<<<<<<<<<<<<
@@ -12858,21 +12859,21 @@ static int __pyx_pf_3osd_14SystraceLogger___cinit__(struct __pyx_obj_3osd_Systra
  */
   __pyx_v_rv = osd_systracelogger_new((&__pyx_v_self->_cself), __pyx_v_log->_cself, __pyx_t_3, __pyx_t_4);
 
-  /* "osd.pyx":620
+  /* "osd.pyx":619
  *         rv = cosd.osd_systracelogger_new(&self._cself, log._cself,
  *                                          b_host_controller_address, di_addr)
  *         check_osd_result(rv)             # <<<<<<<<<<<<<<
  *         if self._cself is NULL:
  *             raise MemoryError()
  */
-  __pyx_t_2 = __Pyx_PyInt_From_osd_result(__pyx_v_rv); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 620, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_From_osd_result(__pyx_v_rv); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 619, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = __pyx_f_3osd_check_osd_result(__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 620, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_3osd_check_osd_result(__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 619, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "osd.pyx":621
+  /* "osd.pyx":620
  *                                          b_host_controller_address, di_addr)
  *         check_osd_result(rv)
  *         if self._cself is NULL:             # <<<<<<<<<<<<<<
@@ -12882,16 +12883,16 @@ static int __pyx_pf_3osd_14SystraceLogger___cinit__(struct __pyx_obj_3osd_Systra
   __pyx_t_5 = ((__pyx_v_self->_cself == NULL) != 0);
   if (__pyx_t_5) {
 
-    /* "osd.pyx":622
+    /* "osd.pyx":621
  *         check_osd_result(rv)
  *         if self._cself is NULL:
  *             raise MemoryError()             # <<<<<<<<<<<<<<
  * 
  *     def __dealloc__(self):
  */
-    PyErr_NoMemory(); __PYX_ERR(0, 622, __pyx_L1_error)
+    PyErr_NoMemory(); __PYX_ERR(0, 621, __pyx_L1_error)
 
-    /* "osd.pyx":621
+    /* "osd.pyx":620
  *                                          b_host_controller_address, di_addr)
  *         check_osd_result(rv)
  *         if self._cself is NULL:             # <<<<<<<<<<<<<<
@@ -12900,7 +12901,7 @@ static int __pyx_pf_3osd_14SystraceLogger___cinit__(struct __pyx_obj_3osd_Systra
  */
   }
 
-  /* "osd.pyx":611
+  /* "osd.pyx":610
  *     cdef _event_file
  * 
  *     def __cinit__(self, Log log, host_controller_address, di_addr):             # <<<<<<<<<<<<<<
@@ -12922,7 +12923,7 @@ static int __pyx_pf_3osd_14SystraceLogger___cinit__(struct __pyx_obj_3osd_Systra
   return __pyx_r;
 }
 
-/* "osd.pyx":624
+/* "osd.pyx":623
  *             raise MemoryError()
  * 
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
@@ -12949,7 +12950,7 @@ static void __pyx_pf_3osd_14SystraceLogger_2__dealloc__(struct __pyx_obj_3osd_Sy
   PyObject *__pyx_t_4 = NULL;
   __Pyx_RefNannySetupContext("__dealloc__", 0);
 
-  /* "osd.pyx":625
+  /* "osd.pyx":624
  * 
  *     def __dealloc__(self):
  *         if self._cself is NULL:             # <<<<<<<<<<<<<<
@@ -12959,7 +12960,7 @@ static void __pyx_pf_3osd_14SystraceLogger_2__dealloc__(struct __pyx_obj_3osd_Sy
   __pyx_t_1 = ((__pyx_v_self->_cself == NULL) != 0);
   if (__pyx_t_1) {
 
-    /* "osd.pyx":626
+    /* "osd.pyx":625
  *     def __dealloc__(self):
  *         if self._cself is NULL:
  *             return             # <<<<<<<<<<<<<<
@@ -12968,7 +12969,7 @@ static void __pyx_pf_3osd_14SystraceLogger_2__dealloc__(struct __pyx_obj_3osd_Sy
  */
     goto __pyx_L0;
 
-    /* "osd.pyx":625
+    /* "osd.pyx":624
  * 
  *     def __dealloc__(self):
  *         if self._cself is NULL:             # <<<<<<<<<<<<<<
@@ -12977,14 +12978,14 @@ static void __pyx_pf_3osd_14SystraceLogger_2__dealloc__(struct __pyx_obj_3osd_Sy
  */
   }
 
-  /* "osd.pyx":628
+  /* "osd.pyx":627
  *             return
  * 
  *         if self.is_connected():             # <<<<<<<<<<<<<<
  *             self.disconnect()
  * 
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_is_connected); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 628, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_is_connected); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 627, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_4 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
@@ -12997,25 +12998,25 @@ static void __pyx_pf_3osd_14SystraceLogger_2__dealloc__(struct __pyx_obj_3osd_Sy
     }
   }
   if (__pyx_t_4) {
-    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 628, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 627, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   } else {
-    __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 628, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 627, __pyx_L1_error)
   }
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 628, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 627, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   if (__pyx_t_1) {
 
-    /* "osd.pyx":629
+    /* "osd.pyx":628
  * 
  *         if self.is_connected():
  *             self.disconnect()             # <<<<<<<<<<<<<<
  * 
  *         if self._fp_sysprint:
  */
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_disconnect); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 629, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_disconnect); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 628, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __pyx_t_4 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
@@ -13028,16 +13029,16 @@ static void __pyx_pf_3osd_14SystraceLogger_2__dealloc__(struct __pyx_obj_3osd_Sy
       }
     }
     if (__pyx_t_4) {
-      __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 629, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 628, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     } else {
-      __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 629, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 628, __pyx_L1_error)
     }
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-    /* "osd.pyx":628
+    /* "osd.pyx":627
  *             return
  * 
  *         if self.is_connected():             # <<<<<<<<<<<<<<
@@ -13046,7 +13047,7 @@ static void __pyx_pf_3osd_14SystraceLogger_2__dealloc__(struct __pyx_obj_3osd_Sy
  */
   }
 
-  /* "osd.pyx":631
+  /* "osd.pyx":630
  *             self.disconnect()
  * 
  *         if self._fp_sysprint:             # <<<<<<<<<<<<<<
@@ -13056,7 +13057,7 @@ static void __pyx_pf_3osd_14SystraceLogger_2__dealloc__(struct __pyx_obj_3osd_Sy
   __pyx_t_1 = (__pyx_v_self->_fp_sysprint != 0);
   if (__pyx_t_1) {
 
-    /* "osd.pyx":632
+    /* "osd.pyx":631
  * 
  *         if self._fp_sysprint:
  *             fclose(self._fp_sysprint)             # <<<<<<<<<<<<<<
@@ -13065,7 +13066,7 @@ static void __pyx_pf_3osd_14SystraceLogger_2__dealloc__(struct __pyx_obj_3osd_Sy
  */
     fclose(__pyx_v_self->_fp_sysprint);
 
-    /* "osd.pyx":631
+    /* "osd.pyx":630
  *             self.disconnect()
  * 
  *         if self._fp_sysprint:             # <<<<<<<<<<<<<<
@@ -13074,7 +13075,7 @@ static void __pyx_pf_3osd_14SystraceLogger_2__dealloc__(struct __pyx_obj_3osd_Sy
  */
   }
 
-  /* "osd.pyx":634
+  /* "osd.pyx":633
  *             fclose(self._fp_sysprint)
  * 
  *         if self._fp_event:             # <<<<<<<<<<<<<<
@@ -13084,7 +13085,7 @@ static void __pyx_pf_3osd_14SystraceLogger_2__dealloc__(struct __pyx_obj_3osd_Sy
   __pyx_t_1 = (__pyx_v_self->_fp_event != 0);
   if (__pyx_t_1) {
 
-    /* "osd.pyx":635
+    /* "osd.pyx":634
  * 
  *         if self._fp_event:
  *             fclose(self._fp_event)             # <<<<<<<<<<<<<<
@@ -13093,7 +13094,7 @@ static void __pyx_pf_3osd_14SystraceLogger_2__dealloc__(struct __pyx_obj_3osd_Sy
  */
     fclose(__pyx_v_self->_fp_event);
 
-    /* "osd.pyx":634
+    /* "osd.pyx":633
  *             fclose(self._fp_sysprint)
  * 
  *         if self._fp_event:             # <<<<<<<<<<<<<<
@@ -13102,7 +13103,7 @@ static void __pyx_pf_3osd_14SystraceLogger_2__dealloc__(struct __pyx_obj_3osd_Sy
  */
   }
 
-  /* "osd.pyx":637
+  /* "osd.pyx":636
  *             fclose(self._fp_event)
  * 
  *         cosd.osd_systracelogger_free(&self._cself)             # <<<<<<<<<<<<<<
@@ -13111,7 +13112,7 @@ static void __pyx_pf_3osd_14SystraceLogger_2__dealloc__(struct __pyx_obj_3osd_Sy
  */
   osd_systracelogger_free((&__pyx_v_self->_cself));
 
-  /* "osd.pyx":624
+  /* "osd.pyx":623
  *             raise MemoryError()
  * 
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
@@ -13130,7 +13131,7 @@ static void __pyx_pf_3osd_14SystraceLogger_2__dealloc__(struct __pyx_obj_3osd_Sy
   __Pyx_RefNannyFinishContext();
 }
 
-/* "osd.pyx":639
+/* "osd.pyx":638
  *         cosd.osd_systracelogger_free(&self._cself)
  * 
  *     def connect(self):             # <<<<<<<<<<<<<<
@@ -13160,7 +13161,7 @@ static PyObject *__pyx_pf_3osd_14SystraceLogger_4connect(struct __pyx_obj_3osd_S
   PyObject *__pyx_t_2 = NULL;
   __Pyx_RefNannySetupContext("connect", 0);
 
-  /* "osd.pyx":640
+  /* "osd.pyx":639
  * 
  *     def connect(self):
  *         rv = cosd.osd_systracelogger_connect(self._cself)             # <<<<<<<<<<<<<<
@@ -13169,21 +13170,21 @@ static PyObject *__pyx_pf_3osd_14SystraceLogger_4connect(struct __pyx_obj_3osd_S
  */
   __pyx_v_rv = osd_systracelogger_connect(__pyx_v_self->_cself);
 
-  /* "osd.pyx":641
+  /* "osd.pyx":640
  *     def connect(self):
  *         rv = cosd.osd_systracelogger_connect(self._cself)
  *         check_osd_result(rv)             # <<<<<<<<<<<<<<
  * 
  *     def disconnect(self):
  */
-  __pyx_t_1 = __Pyx_PyInt_From_osd_result(__pyx_v_rv); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 641, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_osd_result(__pyx_v_rv); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 640, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __pyx_f_3osd_check_osd_result(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 641, __pyx_L1_error)
+  __pyx_t_2 = __pyx_f_3osd_check_osd_result(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 640, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "osd.pyx":639
+  /* "osd.pyx":638
  *         cosd.osd_systracelogger_free(&self._cself)
  * 
  *     def connect(self):             # <<<<<<<<<<<<<<
@@ -13205,7 +13206,7 @@ static PyObject *__pyx_pf_3osd_14SystraceLogger_4connect(struct __pyx_obj_3osd_S
   return __pyx_r;
 }
 
-/* "osd.pyx":643
+/* "osd.pyx":642
  *         check_osd_result(rv)
  * 
  *     def disconnect(self):             # <<<<<<<<<<<<<<
@@ -13235,7 +13236,7 @@ static PyObject *__pyx_pf_3osd_14SystraceLogger_6disconnect(struct __pyx_obj_3os
   PyObject *__pyx_t_2 = NULL;
   __Pyx_RefNannySetupContext("disconnect", 0);
 
-  /* "osd.pyx":644
+  /* "osd.pyx":643
  * 
  *     def disconnect(self):
  *         rv = cosd.osd_systracelogger_disconnect(self._cself)             # <<<<<<<<<<<<<<
@@ -13244,21 +13245,21 @@ static PyObject *__pyx_pf_3osd_14SystraceLogger_6disconnect(struct __pyx_obj_3os
  */
   __pyx_v_rv = osd_systracelogger_disconnect(__pyx_v_self->_cself);
 
-  /* "osd.pyx":645
+  /* "osd.pyx":644
  *     def disconnect(self):
  *         rv = cosd.osd_systracelogger_disconnect(self._cself)
  *         check_osd_result(rv)             # <<<<<<<<<<<<<<
  * 
  *     def is_connected(self):
  */
-  __pyx_t_1 = __Pyx_PyInt_From_osd_result(__pyx_v_rv); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 645, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_osd_result(__pyx_v_rv); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 644, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __pyx_f_3osd_check_osd_result(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 645, __pyx_L1_error)
+  __pyx_t_2 = __pyx_f_3osd_check_osd_result(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 644, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "osd.pyx":643
+  /* "osd.pyx":642
  *         check_osd_result(rv)
  * 
  *     def disconnect(self):             # <<<<<<<<<<<<<<
@@ -13280,7 +13281,7 @@ static PyObject *__pyx_pf_3osd_14SystraceLogger_6disconnect(struct __pyx_obj_3os
   return __pyx_r;
 }
 
-/* "osd.pyx":647
+/* "osd.pyx":646
  *         check_osd_result(rv)
  * 
  *     def is_connected(self):             # <<<<<<<<<<<<<<
@@ -13308,7 +13309,7 @@ static PyObject *__pyx_pf_3osd_14SystraceLogger_8is_connected(struct __pyx_obj_3
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("is_connected", 0);
 
-  /* "osd.pyx":648
+  /* "osd.pyx":647
  * 
  *     def is_connected(self):
  *         return cosd.osd_systracelogger_is_connected(self._cself)             # <<<<<<<<<<<<<<
@@ -13316,13 +13317,13 @@ static PyObject *__pyx_pf_3osd_14SystraceLogger_8is_connected(struct __pyx_obj_3
  *     def stop(self):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(osd_systracelogger_is_connected(__pyx_v_self->_cself)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 648, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(osd_systracelogger_is_connected(__pyx_v_self->_cself)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 647, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "osd.pyx":647
+  /* "osd.pyx":646
  *         check_osd_result(rv)
  * 
  *     def is_connected(self):             # <<<<<<<<<<<<<<
@@ -13341,7 +13342,7 @@ static PyObject *__pyx_pf_3osd_14SystraceLogger_8is_connected(struct __pyx_obj_3
   return __pyx_r;
 }
 
-/* "osd.pyx":650
+/* "osd.pyx":649
  *         return cosd.osd_systracelogger_is_connected(self._cself)
  * 
  *     def stop(self):             # <<<<<<<<<<<<<<
@@ -13371,7 +13372,7 @@ static PyObject *__pyx_pf_3osd_14SystraceLogger_10stop(struct __pyx_obj_3osd_Sys
   PyObject *__pyx_t_2 = NULL;
   __Pyx_RefNannySetupContext("stop", 0);
 
-  /* "osd.pyx":651
+  /* "osd.pyx":650
  * 
  *     def stop(self):
  *         rv = cosd.osd_systracelogger_stop(self._cself)             # <<<<<<<<<<<<<<
@@ -13380,21 +13381,21 @@ static PyObject *__pyx_pf_3osd_14SystraceLogger_10stop(struct __pyx_obj_3osd_Sys
  */
   __pyx_v_rv = osd_systracelogger_stop(__pyx_v_self->_cself);
 
-  /* "osd.pyx":652
+  /* "osd.pyx":651
  *     def stop(self):
  *         rv = cosd.osd_systracelogger_stop(self._cself)
  *         check_osd_result(rv)             # <<<<<<<<<<<<<<
  * 
  *     def start(self):
  */
-  __pyx_t_1 = __Pyx_PyInt_From_osd_result(__pyx_v_rv); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 652, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_osd_result(__pyx_v_rv); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 651, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __pyx_f_3osd_check_osd_result(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 652, __pyx_L1_error)
+  __pyx_t_2 = __pyx_f_3osd_check_osd_result(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 651, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "osd.pyx":650
+  /* "osd.pyx":649
  *         return cosd.osd_systracelogger_is_connected(self._cself)
  * 
  *     def stop(self):             # <<<<<<<<<<<<<<
@@ -13416,7 +13417,7 @@ static PyObject *__pyx_pf_3osd_14SystraceLogger_10stop(struct __pyx_obj_3osd_Sys
   return __pyx_r;
 }
 
-/* "osd.pyx":654
+/* "osd.pyx":653
  *         check_osd_result(rv)
  * 
  *     def start(self):             # <<<<<<<<<<<<<<
@@ -13446,7 +13447,7 @@ static PyObject *__pyx_pf_3osd_14SystraceLogger_12start(struct __pyx_obj_3osd_Sy
   PyObject *__pyx_t_2 = NULL;
   __Pyx_RefNannySetupContext("start", 0);
 
-  /* "osd.pyx":655
+  /* "osd.pyx":654
  * 
  *     def start(self):
  *         rv = cosd.osd_systracelogger_start(self._cself)             # <<<<<<<<<<<<<<
@@ -13455,21 +13456,21 @@ static PyObject *__pyx_pf_3osd_14SystraceLogger_12start(struct __pyx_obj_3osd_Sy
  */
   __pyx_v_rv = osd_systracelogger_start(__pyx_v_self->_cself);
 
-  /* "osd.pyx":656
+  /* "osd.pyx":655
  *     def start(self):
  *         rv = cosd.osd_systracelogger_start(self._cself)
  *         check_osd_result(rv)             # <<<<<<<<<<<<<<
  * 
  *     @property
  */
-  __pyx_t_1 = __Pyx_PyInt_From_osd_result(__pyx_v_rv); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 656, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_osd_result(__pyx_v_rv); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 655, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __pyx_f_3osd_check_osd_result(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 656, __pyx_L1_error)
+  __pyx_t_2 = __pyx_f_3osd_check_osd_result(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 655, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "osd.pyx":654
+  /* "osd.pyx":653
  *         check_osd_result(rv)
  * 
  *     def start(self):             # <<<<<<<<<<<<<<
@@ -13491,7 +13492,7 @@ static PyObject *__pyx_pf_3osd_14SystraceLogger_12start(struct __pyx_obj_3osd_Sy
   return __pyx_r;
 }
 
-/* "osd.pyx":659
+/* "osd.pyx":658
  * 
  *     @property
  *     def sysprint_log(self):             # <<<<<<<<<<<<<<
@@ -13517,7 +13518,7 @@ static PyObject *__pyx_pf_3osd_14SystraceLogger_12sysprint_log___get__(struct __
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "osd.pyx":660
+  /* "osd.pyx":659
  *     @property
  *     def sysprint_log(self):
  *         return self._sysprint_file             # <<<<<<<<<<<<<<
@@ -13529,7 +13530,7 @@ static PyObject *__pyx_pf_3osd_14SystraceLogger_12sysprint_log___get__(struct __
   __pyx_r = __pyx_v_self->_sysprint_file;
   goto __pyx_L0;
 
-  /* "osd.pyx":659
+  /* "osd.pyx":658
  * 
  *     @property
  *     def sysprint_log(self):             # <<<<<<<<<<<<<<
@@ -13544,7 +13545,7 @@ static PyObject *__pyx_pf_3osd_14SystraceLogger_12sysprint_log___get__(struct __
   return __pyx_r;
 }
 
-/* "osd.pyx":663
+/* "osd.pyx":662
  * 
  *     @sysprint_log.setter
  *     def sysprint_log(self, log_filename):             # <<<<<<<<<<<<<<
@@ -13579,7 +13580,7 @@ static int __pyx_pf_3osd_14SystraceLogger_12sysprint_log_2__set__(struct __pyx_o
   char *__pyx_t_7;
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "osd.pyx":664
+  /* "osd.pyx":663
  *     @sysprint_log.setter
  *     def sysprint_log(self, log_filename):
  *         self._sysprint_file = log_filename             # <<<<<<<<<<<<<<
@@ -13592,7 +13593,7 @@ static int __pyx_pf_3osd_14SystraceLogger_12sysprint_log_2__set__(struct __pyx_o
   __Pyx_DECREF(__pyx_v_self->_sysprint_file);
   __pyx_v_self->_sysprint_file = __pyx_v_log_filename;
 
-  /* "osd.pyx":666
+  /* "osd.pyx":665
  *         self._sysprint_file = log_filename
  * 
  *         if self._fp_sysprint:             # <<<<<<<<<<<<<<
@@ -13602,7 +13603,7 @@ static int __pyx_pf_3osd_14SystraceLogger_12sysprint_log_2__set__(struct __pyx_o
   __pyx_t_1 = (__pyx_v_self->_fp_sysprint != 0);
   if (__pyx_t_1) {
 
-    /* "osd.pyx":667
+    /* "osd.pyx":666
  * 
  *         if self._fp_sysprint:
  *             fclose(self._fp_sysprint)             # <<<<<<<<<<<<<<
@@ -13611,7 +13612,7 @@ static int __pyx_pf_3osd_14SystraceLogger_12sysprint_log_2__set__(struct __pyx_o
  */
     fclose(__pyx_v_self->_fp_sysprint);
 
-    /* "osd.pyx":666
+    /* "osd.pyx":665
  *         self._sysprint_file = log_filename
  * 
  *         if self._fp_sysprint:             # <<<<<<<<<<<<<<
@@ -13620,16 +13621,16 @@ static int __pyx_pf_3osd_14SystraceLogger_12sysprint_log_2__set__(struct __pyx_o
  */
   }
 
-  /* "osd.pyx":669
+  /* "osd.pyx":668
  *             fclose(self._fp_sysprint)
  * 
  *         b_log_filename = os.fsencode(log_filename)             # <<<<<<<<<<<<<<
  *         self._fp_sysprint = fopen(b_log_filename, 'w')
  *         if not self._fp_sysprint:
  */
-  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_os); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 669, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_os); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 668, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_fsencode); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 669, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_fsencode); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 668, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_3 = NULL;
@@ -13643,13 +13644,13 @@ static int __pyx_pf_3osd_14SystraceLogger_12sysprint_log_2__set__(struct __pyx_o
     }
   }
   if (!__pyx_t_3) {
-    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_v_log_filename); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 669, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_v_log_filename); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 668, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
   } else {
     #if CYTHON_FAST_PYCALL
     if (PyFunction_Check(__pyx_t_4)) {
       PyObject *__pyx_temp[2] = {__pyx_t_3, __pyx_v_log_filename};
-      __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_4, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 669, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_4, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 668, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_GOTREF(__pyx_t_2);
     } else
@@ -13657,19 +13658,19 @@ static int __pyx_pf_3osd_14SystraceLogger_12sysprint_log_2__set__(struct __pyx_o
     #if CYTHON_FAST_PYCCALL
     if (__Pyx_PyFastCFunction_Check(__pyx_t_4)) {
       PyObject *__pyx_temp[2] = {__pyx_t_3, __pyx_v_log_filename};
-      __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_4, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 669, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_4, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 668, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_GOTREF(__pyx_t_2);
     } else
     #endif
     {
-      __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 669, __pyx_L1_error)
+      __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 668, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_GIVEREF(__pyx_t_3); PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_3); __pyx_t_3 = NULL;
       __Pyx_INCREF(__pyx_v_log_filename);
       __Pyx_GIVEREF(__pyx_v_log_filename);
       PyTuple_SET_ITEM(__pyx_t_5, 0+1, __pyx_v_log_filename);
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_5, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 669, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_5, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 668, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     }
@@ -13678,17 +13679,17 @@ static int __pyx_pf_3osd_14SystraceLogger_12sysprint_log_2__set__(struct __pyx_o
   __pyx_v_b_log_filename = __pyx_t_2;
   __pyx_t_2 = 0;
 
-  /* "osd.pyx":670
+  /* "osd.pyx":669
  * 
  *         b_log_filename = os.fsencode(log_filename)
  *         self._fp_sysprint = fopen(b_log_filename, 'w')             # <<<<<<<<<<<<<<
  *         if not self._fp_sysprint:
  *             raise IOError(errno, strerror(errno).decode('utf-8'), log_filename)
  */
-  __pyx_t_6 = __Pyx_PyObject_AsString(__pyx_v_b_log_filename); if (unlikely((!__pyx_t_6) && PyErr_Occurred())) __PYX_ERR(0, 670, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_AsString(__pyx_v_b_log_filename); if (unlikely((!__pyx_t_6) && PyErr_Occurred())) __PYX_ERR(0, 669, __pyx_L1_error)
   __pyx_v_self->_fp_sysprint = fopen(__pyx_t_6, ((char const *)"w"));
 
-  /* "osd.pyx":671
+  /* "osd.pyx":670
  *         b_log_filename = os.fsencode(log_filename)
  *         self._fp_sysprint = fopen(b_log_filename, 'w')
  *         if not self._fp_sysprint:             # <<<<<<<<<<<<<<
@@ -13698,19 +13699,19 @@ static int __pyx_pf_3osd_14SystraceLogger_12sysprint_log_2__set__(struct __pyx_o
   __pyx_t_1 = ((!(__pyx_v_self->_fp_sysprint != 0)) != 0);
   if (__pyx_t_1) {
 
-    /* "osd.pyx":672
+    /* "osd.pyx":671
  *         self._fp_sysprint = fopen(b_log_filename, 'w')
  *         if not self._fp_sysprint:
  *             raise IOError(errno, strerror(errno).decode('utf-8'), log_filename)             # <<<<<<<<<<<<<<
  * 
  *         rv = cosd.osd_systracelogger_set_sysprint_log(self._cself,
  */
-    __pyx_t_2 = __Pyx_PyInt_From_int(errno); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 672, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyInt_From_int(errno); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 671, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __pyx_t_7 = strerror(errno);
-    __pyx_t_4 = __Pyx_decode_c_string(__pyx_t_7, 0, strlen(__pyx_t_7), NULL, NULL, PyUnicode_DecodeUTF8); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 672, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_decode_c_string(__pyx_t_7, 0, strlen(__pyx_t_7), NULL, NULL, PyUnicode_DecodeUTF8); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 671, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_5 = PyTuple_New(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 672, __pyx_L1_error)
+    __pyx_t_5 = PyTuple_New(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 671, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_GIVEREF(__pyx_t_2);
     PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_2);
@@ -13722,14 +13723,14 @@ static int __pyx_pf_3osd_14SystraceLogger_12sysprint_log_2__set__(struct __pyx_o
     PyTuple_SET_ITEM(__pyx_t_5, 2, __pyx_v_log_filename);
     __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_IOError, __pyx_t_5, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 672, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_IOError, __pyx_t_5, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 671, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_Raise(__pyx_t_4, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __PYX_ERR(0, 672, __pyx_L1_error)
+    __PYX_ERR(0, 671, __pyx_L1_error)
 
-    /* "osd.pyx":671
+    /* "osd.pyx":670
  *         b_log_filename = os.fsencode(log_filename)
  *         self._fp_sysprint = fopen(b_log_filename, 'w')
  *         if not self._fp_sysprint:             # <<<<<<<<<<<<<<
@@ -13738,7 +13739,7 @@ static int __pyx_pf_3osd_14SystraceLogger_12sysprint_log_2__set__(struct __pyx_o
  */
   }
 
-  /* "osd.pyx":674
+  /* "osd.pyx":673
  *             raise IOError(errno, strerror(errno).decode('utf-8'), log_filename)
  * 
  *         rv = cosd.osd_systracelogger_set_sysprint_log(self._cself,             # <<<<<<<<<<<<<<
@@ -13747,21 +13748,21 @@ static int __pyx_pf_3osd_14SystraceLogger_12sysprint_log_2__set__(struct __pyx_o
  */
   __pyx_v_rv = osd_systracelogger_set_sysprint_log(__pyx_v_self->_cself, __pyx_v_self->_fp_sysprint);
 
-  /* "osd.pyx":676
+  /* "osd.pyx":675
  *         rv = cosd.osd_systracelogger_set_sysprint_log(self._cself,
  *                                                      self._fp_sysprint)
  *         check_osd_result(rv)             # <<<<<<<<<<<<<<
  * 
  *     @property
  */
-  __pyx_t_4 = __Pyx_PyInt_From_osd_result(__pyx_v_rv); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 676, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_osd_result(__pyx_v_rv); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 675, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = __pyx_f_3osd_check_osd_result(__pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 676, __pyx_L1_error)
+  __pyx_t_5 = __pyx_f_3osd_check_osd_result(__pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 675, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "osd.pyx":663
+  /* "osd.pyx":662
  * 
  *     @sysprint_log.setter
  *     def sysprint_log(self, log_filename):             # <<<<<<<<<<<<<<
@@ -13785,7 +13786,7 @@ static int __pyx_pf_3osd_14SystraceLogger_12sysprint_log_2__set__(struct __pyx_o
   return __pyx_r;
 }
 
-/* "osd.pyx":679
+/* "osd.pyx":678
  * 
  *     @property
  *     def event_log(self):             # <<<<<<<<<<<<<<
@@ -13811,7 +13812,7 @@ static PyObject *__pyx_pf_3osd_14SystraceLogger_9event_log___get__(struct __pyx_
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "osd.pyx":680
+  /* "osd.pyx":679
  *     @property
  *     def event_log(self):
  *         return self._event_file             # <<<<<<<<<<<<<<
@@ -13823,7 +13824,7 @@ static PyObject *__pyx_pf_3osd_14SystraceLogger_9event_log___get__(struct __pyx_
   __pyx_r = __pyx_v_self->_event_file;
   goto __pyx_L0;
 
-  /* "osd.pyx":679
+  /* "osd.pyx":678
  * 
  *     @property
  *     def event_log(self):             # <<<<<<<<<<<<<<
@@ -13838,7 +13839,7 @@ static PyObject *__pyx_pf_3osd_14SystraceLogger_9event_log___get__(struct __pyx_
   return __pyx_r;
 }
 
-/* "osd.pyx":683
+/* "osd.pyx":682
  * 
  *     @event_log.setter
  *     def event_log(self, log_filename):             # <<<<<<<<<<<<<<
@@ -13873,7 +13874,7 @@ static int __pyx_pf_3osd_14SystraceLogger_9event_log_2__set__(struct __pyx_obj_3
   char *__pyx_t_7;
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "osd.pyx":684
+  /* "osd.pyx":683
  *     @event_log.setter
  *     def event_log(self, log_filename):
  *         self._event_file = log_filename             # <<<<<<<<<<<<<<
@@ -13886,7 +13887,7 @@ static int __pyx_pf_3osd_14SystraceLogger_9event_log_2__set__(struct __pyx_obj_3
   __Pyx_DECREF(__pyx_v_self->_event_file);
   __pyx_v_self->_event_file = __pyx_v_log_filename;
 
-  /* "osd.pyx":686
+  /* "osd.pyx":685
  *         self._event_file = log_filename
  * 
  *         if self._fp_event:             # <<<<<<<<<<<<<<
@@ -13896,7 +13897,7 @@ static int __pyx_pf_3osd_14SystraceLogger_9event_log_2__set__(struct __pyx_obj_3
   __pyx_t_1 = (__pyx_v_self->_fp_event != 0);
   if (__pyx_t_1) {
 
-    /* "osd.pyx":687
+    /* "osd.pyx":686
  * 
  *         if self._fp_event:
  *             fclose(self._fp_event)             # <<<<<<<<<<<<<<
@@ -13905,7 +13906,7 @@ static int __pyx_pf_3osd_14SystraceLogger_9event_log_2__set__(struct __pyx_obj_3
  */
     fclose(__pyx_v_self->_fp_event);
 
-    /* "osd.pyx":686
+    /* "osd.pyx":685
  *         self._event_file = log_filename
  * 
  *         if self._fp_event:             # <<<<<<<<<<<<<<
@@ -13914,16 +13915,16 @@ static int __pyx_pf_3osd_14SystraceLogger_9event_log_2__set__(struct __pyx_obj_3
  */
   }
 
-  /* "osd.pyx":689
+  /* "osd.pyx":688
  *             fclose(self._fp_event)
  * 
  *         b_log_filename = os.fsencode(log_filename)             # <<<<<<<<<<<<<<
  *         self._fp_event = fopen(b_log_filename, 'w')
  *         if not self._fp_event:
  */
-  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_os); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 689, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_os); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 688, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_fsencode); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 689, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_fsencode); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 688, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_3 = NULL;
@@ -13937,13 +13938,13 @@ static int __pyx_pf_3osd_14SystraceLogger_9event_log_2__set__(struct __pyx_obj_3
     }
   }
   if (!__pyx_t_3) {
-    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_v_log_filename); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 689, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_v_log_filename); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 688, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
   } else {
     #if CYTHON_FAST_PYCALL
     if (PyFunction_Check(__pyx_t_4)) {
       PyObject *__pyx_temp[2] = {__pyx_t_3, __pyx_v_log_filename};
-      __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_4, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 689, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_4, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 688, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_GOTREF(__pyx_t_2);
     } else
@@ -13951,19 +13952,19 @@ static int __pyx_pf_3osd_14SystraceLogger_9event_log_2__set__(struct __pyx_obj_3
     #if CYTHON_FAST_PYCCALL
     if (__Pyx_PyFastCFunction_Check(__pyx_t_4)) {
       PyObject *__pyx_temp[2] = {__pyx_t_3, __pyx_v_log_filename};
-      __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_4, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 689, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_4, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 688, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_GOTREF(__pyx_t_2);
     } else
     #endif
     {
-      __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 689, __pyx_L1_error)
+      __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 688, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_GIVEREF(__pyx_t_3); PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_3); __pyx_t_3 = NULL;
       __Pyx_INCREF(__pyx_v_log_filename);
       __Pyx_GIVEREF(__pyx_v_log_filename);
       PyTuple_SET_ITEM(__pyx_t_5, 0+1, __pyx_v_log_filename);
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_5, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 689, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_5, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 688, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     }
@@ -13972,17 +13973,17 @@ static int __pyx_pf_3osd_14SystraceLogger_9event_log_2__set__(struct __pyx_obj_3
   __pyx_v_b_log_filename = __pyx_t_2;
   __pyx_t_2 = 0;
 
-  /* "osd.pyx":690
+  /* "osd.pyx":689
  * 
  *         b_log_filename = os.fsencode(log_filename)
  *         self._fp_event = fopen(b_log_filename, 'w')             # <<<<<<<<<<<<<<
  *         if not self._fp_event:
  *             raise IOError(errno, strerror(errno).decode('utf-8'), log_filename)
  */
-  __pyx_t_6 = __Pyx_PyObject_AsString(__pyx_v_b_log_filename); if (unlikely((!__pyx_t_6) && PyErr_Occurred())) __PYX_ERR(0, 690, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_AsString(__pyx_v_b_log_filename); if (unlikely((!__pyx_t_6) && PyErr_Occurred())) __PYX_ERR(0, 689, __pyx_L1_error)
   __pyx_v_self->_fp_event = fopen(__pyx_t_6, ((char const *)"w"));
 
-  /* "osd.pyx":691
+  /* "osd.pyx":690
  *         b_log_filename = os.fsencode(log_filename)
  *         self._fp_event = fopen(b_log_filename, 'w')
  *         if not self._fp_event:             # <<<<<<<<<<<<<<
@@ -13992,19 +13993,19 @@ static int __pyx_pf_3osd_14SystraceLogger_9event_log_2__set__(struct __pyx_obj_3
   __pyx_t_1 = ((!(__pyx_v_self->_fp_event != 0)) != 0);
   if (__pyx_t_1) {
 
-    /* "osd.pyx":692
+    /* "osd.pyx":691
  *         self._fp_event = fopen(b_log_filename, 'w')
  *         if not self._fp_event:
  *             raise IOError(errno, strerror(errno).decode('utf-8'), log_filename)             # <<<<<<<<<<<<<<
  * 
  *         rv = cosd.osd_systracelogger_set_event_log(self._cself, self._fp_event)
  */
-    __pyx_t_2 = __Pyx_PyInt_From_int(errno); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 692, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyInt_From_int(errno); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 691, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __pyx_t_7 = strerror(errno);
-    __pyx_t_4 = __Pyx_decode_c_string(__pyx_t_7, 0, strlen(__pyx_t_7), NULL, NULL, PyUnicode_DecodeUTF8); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 692, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_decode_c_string(__pyx_t_7, 0, strlen(__pyx_t_7), NULL, NULL, PyUnicode_DecodeUTF8); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 691, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_5 = PyTuple_New(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 692, __pyx_L1_error)
+    __pyx_t_5 = PyTuple_New(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 691, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_GIVEREF(__pyx_t_2);
     PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_2);
@@ -14016,14 +14017,14 @@ static int __pyx_pf_3osd_14SystraceLogger_9event_log_2__set__(struct __pyx_obj_3
     PyTuple_SET_ITEM(__pyx_t_5, 2, __pyx_v_log_filename);
     __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_IOError, __pyx_t_5, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 692, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_IOError, __pyx_t_5, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 691, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_Raise(__pyx_t_4, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __PYX_ERR(0, 692, __pyx_L1_error)
+    __PYX_ERR(0, 691, __pyx_L1_error)
 
-    /* "osd.pyx":691
+    /* "osd.pyx":690
  *         b_log_filename = os.fsencode(log_filename)
  *         self._fp_event = fopen(b_log_filename, 'w')
  *         if not self._fp_event:             # <<<<<<<<<<<<<<
@@ -14032,7 +14033,7 @@ static int __pyx_pf_3osd_14SystraceLogger_9event_log_2__set__(struct __pyx_obj_3
  */
   }
 
-  /* "osd.pyx":694
+  /* "osd.pyx":693
  *             raise IOError(errno, strerror(errno).decode('utf-8'), log_filename)
  * 
  *         rv = cosd.osd_systracelogger_set_event_log(self._cself, self._fp_event)             # <<<<<<<<<<<<<<
@@ -14041,21 +14042,21 @@ static int __pyx_pf_3osd_14SystraceLogger_9event_log_2__set__(struct __pyx_obj_3
  */
   __pyx_v_rv = osd_systracelogger_set_event_log(__pyx_v_self->_cself, __pyx_v_self->_fp_event);
 
-  /* "osd.pyx":695
+  /* "osd.pyx":694
  * 
  *         rv = cosd.osd_systracelogger_set_event_log(self._cself, self._fp_event)
  *         check_osd_result(rv)             # <<<<<<<<<<<<<<
  * 
  * 
  */
-  __pyx_t_4 = __Pyx_PyInt_From_osd_result(__pyx_v_rv); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 695, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_osd_result(__pyx_v_rv); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 694, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = __pyx_f_3osd_check_osd_result(__pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 695, __pyx_L1_error)
+  __pyx_t_5 = __pyx_f_3osd_check_osd_result(__pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 694, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "osd.pyx":683
+  /* "osd.pyx":682
  * 
  *     @event_log.setter
  *     def event_log(self, log_filename):             # <<<<<<<<<<<<<<
@@ -14188,7 +14189,7 @@ static PyObject *__pyx_pf_3osd_14SystraceLogger_16__setstate_cython__(CYTHON_UNU
   return __pyx_r;
 }
 
-/* "osd.pyx":704
+/* "osd.pyx":703
  *     cdef _elf_file
  * 
  *     def __cinit__(self, Log log, host_controller_address, di_addr):             # <<<<<<<<<<<<<<
@@ -14230,17 +14231,17 @@ static int __pyx_pw_3osd_15CoretraceLogger_1__cinit__(PyObject *__pyx_v_self, Py
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_host_controller_address)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 3, 3, 1); __PYX_ERR(0, 704, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 3, 3, 1); __PYX_ERR(0, 703, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_di_addr)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 3, 3, 2); __PYX_ERR(0, 704, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 3, 3, 2); __PYX_ERR(0, 703, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__cinit__") < 0)) __PYX_ERR(0, 704, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__cinit__") < 0)) __PYX_ERR(0, 703, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -14255,13 +14256,13 @@ static int __pyx_pw_3osd_15CoretraceLogger_1__cinit__(PyObject *__pyx_v_self, Py
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 704, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 703, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("osd.CoretraceLogger.__cinit__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return -1;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_log), __pyx_ptype_3osd_Log, 1, "log", 0))) __PYX_ERR(0, 704, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_log), __pyx_ptype_3osd_Log, 1, "log", 0))) __PYX_ERR(0, 703, __pyx_L1_error)
   __pyx_r = __pyx_pf_3osd_15CoretraceLogger___cinit__(((struct __pyx_obj_3osd_CoretraceLogger *)__pyx_v_self), __pyx_v_log, __pyx_v_host_controller_address, __pyx_v_di_addr);
 
   /* function exit code */
@@ -14285,7 +14286,7 @@ static int __pyx_pf_3osd_15CoretraceLogger___cinit__(struct __pyx_obj_3osd_Coret
   int __pyx_t_5;
   __Pyx_RefNannySetupContext("__cinit__", 0);
 
-  /* "osd.pyx":705
+  /* "osd.pyx":704
  * 
  *     def __cinit__(self, Log log, host_controller_address, di_addr):
  *         self._fp_log = NULL             # <<<<<<<<<<<<<<
@@ -14294,7 +14295,7 @@ static int __pyx_pf_3osd_15CoretraceLogger___cinit__(struct __pyx_obj_3osd_Coret
  */
   __pyx_v_self->_fp_log = NULL;
 
-  /* "osd.pyx":706
+  /* "osd.pyx":705
  *     def __cinit__(self, Log log, host_controller_address, di_addr):
  *         self._fp_log = NULL
  *         self._log_file = None             # <<<<<<<<<<<<<<
@@ -14307,32 +14308,32 @@ static int __pyx_pf_3osd_15CoretraceLogger___cinit__(struct __pyx_obj_3osd_Coret
   __Pyx_DECREF(__pyx_v_self->_log_file);
   __pyx_v_self->_log_file = Py_None;
 
-  /* "osd.pyx":708
+  /* "osd.pyx":707
  *         self._log_file = None
  * 
  *         b_host_controller_address = host_controller_address.encode('UTF-8')             # <<<<<<<<<<<<<<
  *         rv = cosd.osd_coretracelogger_new(&self._cself, log._cself,
  *                                           b_host_controller_address, di_addr)
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_host_controller_address, __pyx_n_s_encode); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 708, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_host_controller_address, __pyx_n_s_encode); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 707, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_tuple__33, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 708, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_tuple__33, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 707, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_b_host_controller_address = __pyx_t_2;
   __pyx_t_2 = 0;
 
-  /* "osd.pyx":710
+  /* "osd.pyx":709
  *         b_host_controller_address = host_controller_address.encode('UTF-8')
  *         rv = cosd.osd_coretracelogger_new(&self._cself, log._cself,
  *                                           b_host_controller_address, di_addr)             # <<<<<<<<<<<<<<
  *         check_osd_result(rv)
  *         if self._cself is NULL:
  */
-  __pyx_t_3 = __Pyx_PyObject_AsString(__pyx_v_b_host_controller_address); if (unlikely((!__pyx_t_3) && PyErr_Occurred())) __PYX_ERR(0, 710, __pyx_L1_error)
-  __pyx_t_4 = __Pyx_PyInt_As_uint16_t(__pyx_v_di_addr); if (unlikely((__pyx_t_4 == ((uint16_t)-1)) && PyErr_Occurred())) __PYX_ERR(0, 710, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_AsString(__pyx_v_b_host_controller_address); if (unlikely((!__pyx_t_3) && PyErr_Occurred())) __PYX_ERR(0, 709, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_As_uint16_t(__pyx_v_di_addr); if (unlikely((__pyx_t_4 == ((uint16_t)-1)) && PyErr_Occurred())) __PYX_ERR(0, 709, __pyx_L1_error)
 
-  /* "osd.pyx":709
+  /* "osd.pyx":708
  * 
  *         b_host_controller_address = host_controller_address.encode('UTF-8')
  *         rv = cosd.osd_coretracelogger_new(&self._cself, log._cself,             # <<<<<<<<<<<<<<
@@ -14341,21 +14342,21 @@ static int __pyx_pf_3osd_15CoretraceLogger___cinit__(struct __pyx_obj_3osd_Coret
  */
   __pyx_v_rv = osd_coretracelogger_new((&__pyx_v_self->_cself), __pyx_v_log->_cself, __pyx_t_3, __pyx_t_4);
 
-  /* "osd.pyx":711
+  /* "osd.pyx":710
  *         rv = cosd.osd_coretracelogger_new(&self._cself, log._cself,
  *                                           b_host_controller_address, di_addr)
  *         check_osd_result(rv)             # <<<<<<<<<<<<<<
  *         if self._cself is NULL:
  *             raise MemoryError()
  */
-  __pyx_t_2 = __Pyx_PyInt_From_osd_result(__pyx_v_rv); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 711, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_From_osd_result(__pyx_v_rv); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 710, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = __pyx_f_3osd_check_osd_result(__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 711, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_3osd_check_osd_result(__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 710, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "osd.pyx":712
+  /* "osd.pyx":711
  *                                           b_host_controller_address, di_addr)
  *         check_osd_result(rv)
  *         if self._cself is NULL:             # <<<<<<<<<<<<<<
@@ -14365,16 +14366,16 @@ static int __pyx_pf_3osd_15CoretraceLogger___cinit__(struct __pyx_obj_3osd_Coret
   __pyx_t_5 = ((__pyx_v_self->_cself == NULL) != 0);
   if (__pyx_t_5) {
 
-    /* "osd.pyx":713
+    /* "osd.pyx":712
  *         check_osd_result(rv)
  *         if self._cself is NULL:
  *             raise MemoryError()             # <<<<<<<<<<<<<<
  * 
  *     def __dealloc__(self):
  */
-    PyErr_NoMemory(); __PYX_ERR(0, 713, __pyx_L1_error)
+    PyErr_NoMemory(); __PYX_ERR(0, 712, __pyx_L1_error)
 
-    /* "osd.pyx":712
+    /* "osd.pyx":711
  *                                           b_host_controller_address, di_addr)
  *         check_osd_result(rv)
  *         if self._cself is NULL:             # <<<<<<<<<<<<<<
@@ -14383,7 +14384,7 @@ static int __pyx_pf_3osd_15CoretraceLogger___cinit__(struct __pyx_obj_3osd_Coret
  */
   }
 
-  /* "osd.pyx":704
+  /* "osd.pyx":703
  *     cdef _elf_file
  * 
  *     def __cinit__(self, Log log, host_controller_address, di_addr):             # <<<<<<<<<<<<<<
@@ -14405,7 +14406,7 @@ static int __pyx_pf_3osd_15CoretraceLogger___cinit__(struct __pyx_obj_3osd_Coret
   return __pyx_r;
 }
 
-/* "osd.pyx":715
+/* "osd.pyx":714
  *             raise MemoryError()
  * 
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
@@ -14432,7 +14433,7 @@ static void __pyx_pf_3osd_15CoretraceLogger_2__dealloc__(struct __pyx_obj_3osd_C
   PyObject *__pyx_t_4 = NULL;
   __Pyx_RefNannySetupContext("__dealloc__", 0);
 
-  /* "osd.pyx":716
+  /* "osd.pyx":715
  * 
  *     def __dealloc__(self):
  *         if self._cself is NULL:             # <<<<<<<<<<<<<<
@@ -14442,7 +14443,7 @@ static void __pyx_pf_3osd_15CoretraceLogger_2__dealloc__(struct __pyx_obj_3osd_C
   __pyx_t_1 = ((__pyx_v_self->_cself == NULL) != 0);
   if (__pyx_t_1) {
 
-    /* "osd.pyx":717
+    /* "osd.pyx":716
  *     def __dealloc__(self):
  *         if self._cself is NULL:
  *             return             # <<<<<<<<<<<<<<
@@ -14451,7 +14452,7 @@ static void __pyx_pf_3osd_15CoretraceLogger_2__dealloc__(struct __pyx_obj_3osd_C
  */
     goto __pyx_L0;
 
-    /* "osd.pyx":716
+    /* "osd.pyx":715
  * 
  *     def __dealloc__(self):
  *         if self._cself is NULL:             # <<<<<<<<<<<<<<
@@ -14460,14 +14461,14 @@ static void __pyx_pf_3osd_15CoretraceLogger_2__dealloc__(struct __pyx_obj_3osd_C
  */
   }
 
-  /* "osd.pyx":719
+  /* "osd.pyx":718
  *             return
  * 
  *         if self.is_connected():             # <<<<<<<<<<<<<<
  *             self.disconnect()
  * 
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_is_connected); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 719, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_is_connected); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 718, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_4 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
@@ -14480,25 +14481,25 @@ static void __pyx_pf_3osd_15CoretraceLogger_2__dealloc__(struct __pyx_obj_3osd_C
     }
   }
   if (__pyx_t_4) {
-    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 719, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 718, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   } else {
-    __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 719, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 718, __pyx_L1_error)
   }
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 719, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 718, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   if (__pyx_t_1) {
 
-    /* "osd.pyx":720
+    /* "osd.pyx":719
  * 
  *         if self.is_connected():
  *             self.disconnect()             # <<<<<<<<<<<<<<
  * 
  *         if self._fp_log:
  */
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_disconnect); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 720, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_disconnect); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 719, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __pyx_t_4 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
@@ -14511,16 +14512,16 @@ static void __pyx_pf_3osd_15CoretraceLogger_2__dealloc__(struct __pyx_obj_3osd_C
       }
     }
     if (__pyx_t_4) {
-      __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 720, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 719, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     } else {
-      __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 720, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 719, __pyx_L1_error)
     }
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-    /* "osd.pyx":719
+    /* "osd.pyx":718
  *             return
  * 
  *         if self.is_connected():             # <<<<<<<<<<<<<<
@@ -14529,7 +14530,7 @@ static void __pyx_pf_3osd_15CoretraceLogger_2__dealloc__(struct __pyx_obj_3osd_C
  */
   }
 
-  /* "osd.pyx":722
+  /* "osd.pyx":721
  *             self.disconnect()
  * 
  *         if self._fp_log:             # <<<<<<<<<<<<<<
@@ -14539,7 +14540,7 @@ static void __pyx_pf_3osd_15CoretraceLogger_2__dealloc__(struct __pyx_obj_3osd_C
   __pyx_t_1 = (__pyx_v_self->_fp_log != 0);
   if (__pyx_t_1) {
 
-    /* "osd.pyx":723
+    /* "osd.pyx":722
  * 
  *         if self._fp_log:
  *             fclose(self._fp_log)             # <<<<<<<<<<<<<<
@@ -14548,7 +14549,7 @@ static void __pyx_pf_3osd_15CoretraceLogger_2__dealloc__(struct __pyx_obj_3osd_C
  */
     fclose(__pyx_v_self->_fp_log);
 
-    /* "osd.pyx":722
+    /* "osd.pyx":721
  *             self.disconnect()
  * 
  *         if self._fp_log:             # <<<<<<<<<<<<<<
@@ -14557,7 +14558,7 @@ static void __pyx_pf_3osd_15CoretraceLogger_2__dealloc__(struct __pyx_obj_3osd_C
  */
   }
 
-  /* "osd.pyx":725
+  /* "osd.pyx":724
  *             fclose(self._fp_log)
  * 
  *         cosd.osd_coretracelogger_free(&self._cself)             # <<<<<<<<<<<<<<
@@ -14566,7 +14567,7 @@ static void __pyx_pf_3osd_15CoretraceLogger_2__dealloc__(struct __pyx_obj_3osd_C
  */
   osd_coretracelogger_free((&__pyx_v_self->_cself));
 
-  /* "osd.pyx":715
+  /* "osd.pyx":714
  *             raise MemoryError()
  * 
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
@@ -14585,7 +14586,7 @@ static void __pyx_pf_3osd_15CoretraceLogger_2__dealloc__(struct __pyx_obj_3osd_C
   __Pyx_RefNannyFinishContext();
 }
 
-/* "osd.pyx":727
+/* "osd.pyx":726
  *         cosd.osd_coretracelogger_free(&self._cself)
  * 
  *     def connect(self):             # <<<<<<<<<<<<<<
@@ -14615,7 +14616,7 @@ static PyObject *__pyx_pf_3osd_15CoretraceLogger_4connect(struct __pyx_obj_3osd_
   PyObject *__pyx_t_2 = NULL;
   __Pyx_RefNannySetupContext("connect", 0);
 
-  /* "osd.pyx":728
+  /* "osd.pyx":727
  * 
  *     def connect(self):
  *         rv = cosd.osd_coretracelogger_connect(self._cself)             # <<<<<<<<<<<<<<
@@ -14624,21 +14625,21 @@ static PyObject *__pyx_pf_3osd_15CoretraceLogger_4connect(struct __pyx_obj_3osd_
  */
   __pyx_v_rv = osd_coretracelogger_connect(__pyx_v_self->_cself);
 
-  /* "osd.pyx":729
+  /* "osd.pyx":728
  *     def connect(self):
  *         rv = cosd.osd_coretracelogger_connect(self._cself)
  *         check_osd_result(rv)             # <<<<<<<<<<<<<<
  * 
  *     def disconnect(self):
  */
-  __pyx_t_1 = __Pyx_PyInt_From_osd_result(__pyx_v_rv); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 729, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_osd_result(__pyx_v_rv); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 728, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __pyx_f_3osd_check_osd_result(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 729, __pyx_L1_error)
+  __pyx_t_2 = __pyx_f_3osd_check_osd_result(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 728, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "osd.pyx":727
+  /* "osd.pyx":726
  *         cosd.osd_coretracelogger_free(&self._cself)
  * 
  *     def connect(self):             # <<<<<<<<<<<<<<
@@ -14660,7 +14661,7 @@ static PyObject *__pyx_pf_3osd_15CoretraceLogger_4connect(struct __pyx_obj_3osd_
   return __pyx_r;
 }
 
-/* "osd.pyx":731
+/* "osd.pyx":730
  *         check_osd_result(rv)
  * 
  *     def disconnect(self):             # <<<<<<<<<<<<<<
@@ -14690,7 +14691,7 @@ static PyObject *__pyx_pf_3osd_15CoretraceLogger_6disconnect(struct __pyx_obj_3o
   PyObject *__pyx_t_2 = NULL;
   __Pyx_RefNannySetupContext("disconnect", 0);
 
-  /* "osd.pyx":732
+  /* "osd.pyx":731
  * 
  *     def disconnect(self):
  *         rv = cosd.osd_coretracelogger_disconnect(self._cself)             # <<<<<<<<<<<<<<
@@ -14699,21 +14700,21 @@ static PyObject *__pyx_pf_3osd_15CoretraceLogger_6disconnect(struct __pyx_obj_3o
  */
   __pyx_v_rv = osd_coretracelogger_disconnect(__pyx_v_self->_cself);
 
-  /* "osd.pyx":733
+  /* "osd.pyx":732
  *     def disconnect(self):
  *         rv = cosd.osd_coretracelogger_disconnect(self._cself)
  *         check_osd_result(rv)             # <<<<<<<<<<<<<<
  * 
  *     def is_connected(self):
  */
-  __pyx_t_1 = __Pyx_PyInt_From_osd_result(__pyx_v_rv); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 733, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_osd_result(__pyx_v_rv); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 732, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __pyx_f_3osd_check_osd_result(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 733, __pyx_L1_error)
+  __pyx_t_2 = __pyx_f_3osd_check_osd_result(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 732, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "osd.pyx":731
+  /* "osd.pyx":730
  *         check_osd_result(rv)
  * 
  *     def disconnect(self):             # <<<<<<<<<<<<<<
@@ -14735,7 +14736,7 @@ static PyObject *__pyx_pf_3osd_15CoretraceLogger_6disconnect(struct __pyx_obj_3o
   return __pyx_r;
 }
 
-/* "osd.pyx":735
+/* "osd.pyx":734
  *         check_osd_result(rv)
  * 
  *     def is_connected(self):             # <<<<<<<<<<<<<<
@@ -14763,7 +14764,7 @@ static PyObject *__pyx_pf_3osd_15CoretraceLogger_8is_connected(struct __pyx_obj_
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("is_connected", 0);
 
-  /* "osd.pyx":736
+  /* "osd.pyx":735
  * 
  *     def is_connected(self):
  *         return cosd.osd_coretracelogger_is_connected(self._cself)             # <<<<<<<<<<<<<<
@@ -14771,13 +14772,13 @@ static PyObject *__pyx_pf_3osd_15CoretraceLogger_8is_connected(struct __pyx_obj_
  *     def stop(self):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(osd_coretracelogger_is_connected(__pyx_v_self->_cself)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 736, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(osd_coretracelogger_is_connected(__pyx_v_self->_cself)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 735, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "osd.pyx":735
+  /* "osd.pyx":734
  *         check_osd_result(rv)
  * 
  *     def is_connected(self):             # <<<<<<<<<<<<<<
@@ -14796,7 +14797,7 @@ static PyObject *__pyx_pf_3osd_15CoretraceLogger_8is_connected(struct __pyx_obj_
   return __pyx_r;
 }
 
-/* "osd.pyx":738
+/* "osd.pyx":737
  *         return cosd.osd_coretracelogger_is_connected(self._cself)
  * 
  *     def stop(self):             # <<<<<<<<<<<<<<
@@ -14826,7 +14827,7 @@ static PyObject *__pyx_pf_3osd_15CoretraceLogger_10stop(struct __pyx_obj_3osd_Co
   PyObject *__pyx_t_2 = NULL;
   __Pyx_RefNannySetupContext("stop", 0);
 
-  /* "osd.pyx":739
+  /* "osd.pyx":738
  * 
  *     def stop(self):
  *         rv = cosd.osd_coretracelogger_stop(self._cself)             # <<<<<<<<<<<<<<
@@ -14835,21 +14836,21 @@ static PyObject *__pyx_pf_3osd_15CoretraceLogger_10stop(struct __pyx_obj_3osd_Co
  */
   __pyx_v_rv = osd_coretracelogger_stop(__pyx_v_self->_cself);
 
-  /* "osd.pyx":740
+  /* "osd.pyx":739
  *     def stop(self):
  *         rv = cosd.osd_coretracelogger_stop(self._cself)
  *         check_osd_result(rv)             # <<<<<<<<<<<<<<
  * 
  *     def start(self):
  */
-  __pyx_t_1 = __Pyx_PyInt_From_osd_result(__pyx_v_rv); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 740, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_osd_result(__pyx_v_rv); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 739, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __pyx_f_3osd_check_osd_result(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 740, __pyx_L1_error)
+  __pyx_t_2 = __pyx_f_3osd_check_osd_result(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 739, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "osd.pyx":738
+  /* "osd.pyx":737
  *         return cosd.osd_coretracelogger_is_connected(self._cself)
  * 
  *     def stop(self):             # <<<<<<<<<<<<<<
@@ -14871,7 +14872,7 @@ static PyObject *__pyx_pf_3osd_15CoretraceLogger_10stop(struct __pyx_obj_3osd_Co
   return __pyx_r;
 }
 
-/* "osd.pyx":742
+/* "osd.pyx":741
  *         check_osd_result(rv)
  * 
  *     def start(self):             # <<<<<<<<<<<<<<
@@ -14901,7 +14902,7 @@ static PyObject *__pyx_pf_3osd_15CoretraceLogger_12start(struct __pyx_obj_3osd_C
   PyObject *__pyx_t_2 = NULL;
   __Pyx_RefNannySetupContext("start", 0);
 
-  /* "osd.pyx":743
+  /* "osd.pyx":742
  * 
  *     def start(self):
  *         rv = cosd.osd_coretracelogger_start(self._cself)             # <<<<<<<<<<<<<<
@@ -14910,21 +14911,21 @@ static PyObject *__pyx_pf_3osd_15CoretraceLogger_12start(struct __pyx_obj_3osd_C
  */
   __pyx_v_rv = osd_coretracelogger_start(__pyx_v_self->_cself);
 
-  /* "osd.pyx":744
+  /* "osd.pyx":743
  *     def start(self):
  *         rv = cosd.osd_coretracelogger_start(self._cself)
  *         check_osd_result(rv)             # <<<<<<<<<<<<<<
  * 
  *     @property
  */
-  __pyx_t_1 = __Pyx_PyInt_From_osd_result(__pyx_v_rv); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 744, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_osd_result(__pyx_v_rv); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 743, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __pyx_f_3osd_check_osd_result(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 744, __pyx_L1_error)
+  __pyx_t_2 = __pyx_f_3osd_check_osd_result(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 743, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "osd.pyx":742
+  /* "osd.pyx":741
  *         check_osd_result(rv)
  * 
  *     def start(self):             # <<<<<<<<<<<<<<
@@ -14946,7 +14947,7 @@ static PyObject *__pyx_pf_3osd_15CoretraceLogger_12start(struct __pyx_obj_3osd_C
   return __pyx_r;
 }
 
-/* "osd.pyx":747
+/* "osd.pyx":746
  * 
  *     @property
  *     def log_file(self):             # <<<<<<<<<<<<<<
@@ -14972,7 +14973,7 @@ static PyObject *__pyx_pf_3osd_15CoretraceLogger_8log_file___get__(struct __pyx_
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "osd.pyx":748
+  /* "osd.pyx":747
  *     @property
  *     def log_file(self):
  *         return self._log_file             # <<<<<<<<<<<<<<
@@ -14984,7 +14985,7 @@ static PyObject *__pyx_pf_3osd_15CoretraceLogger_8log_file___get__(struct __pyx_
   __pyx_r = __pyx_v_self->_log_file;
   goto __pyx_L0;
 
-  /* "osd.pyx":747
+  /* "osd.pyx":746
  * 
  *     @property
  *     def log_file(self):             # <<<<<<<<<<<<<<
@@ -14999,7 +15000,7 @@ static PyObject *__pyx_pf_3osd_15CoretraceLogger_8log_file___get__(struct __pyx_
   return __pyx_r;
 }
 
-/* "osd.pyx":751
+/* "osd.pyx":750
  * 
  *     @log_file.setter
  *     def log_file(self, log_filename):             # <<<<<<<<<<<<<<
@@ -15034,7 +15035,7 @@ static int __pyx_pf_3osd_15CoretraceLogger_8log_file_2__set__(struct __pyx_obj_3
   char *__pyx_t_7;
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "osd.pyx":752
+  /* "osd.pyx":751
  *     @log_file.setter
  *     def log_file(self, log_filename):
  *         self._log_file = log_filename             # <<<<<<<<<<<<<<
@@ -15047,7 +15048,7 @@ static int __pyx_pf_3osd_15CoretraceLogger_8log_file_2__set__(struct __pyx_obj_3
   __Pyx_DECREF(__pyx_v_self->_log_file);
   __pyx_v_self->_log_file = __pyx_v_log_filename;
 
-  /* "osd.pyx":754
+  /* "osd.pyx":753
  *         self._log_file = log_filename
  * 
  *         if self._fp_log:             # <<<<<<<<<<<<<<
@@ -15057,7 +15058,7 @@ static int __pyx_pf_3osd_15CoretraceLogger_8log_file_2__set__(struct __pyx_obj_3
   __pyx_t_1 = (__pyx_v_self->_fp_log != 0);
   if (__pyx_t_1) {
 
-    /* "osd.pyx":755
+    /* "osd.pyx":754
  * 
  *         if self._fp_log:
  *             fclose(self._fp_log)             # <<<<<<<<<<<<<<
@@ -15066,7 +15067,7 @@ static int __pyx_pf_3osd_15CoretraceLogger_8log_file_2__set__(struct __pyx_obj_3
  */
     fclose(__pyx_v_self->_fp_log);
 
-    /* "osd.pyx":754
+    /* "osd.pyx":753
  *         self._log_file = log_filename
  * 
  *         if self._fp_log:             # <<<<<<<<<<<<<<
@@ -15075,16 +15076,16 @@ static int __pyx_pf_3osd_15CoretraceLogger_8log_file_2__set__(struct __pyx_obj_3
  */
   }
 
-  /* "osd.pyx":757
+  /* "osd.pyx":756
  *             fclose(self._fp_log)
  * 
  *         b_log_filename = os.fsencode(log_filename)             # <<<<<<<<<<<<<<
  *         self._fp_log = fopen(b_log_filename, 'w')
  *         if not self._fp_log:
  */
-  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_os); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 757, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_os); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 756, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_fsencode); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 757, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_fsencode); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 756, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_3 = NULL;
@@ -15098,13 +15099,13 @@ static int __pyx_pf_3osd_15CoretraceLogger_8log_file_2__set__(struct __pyx_obj_3
     }
   }
   if (!__pyx_t_3) {
-    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_v_log_filename); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 757, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_v_log_filename); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 756, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
   } else {
     #if CYTHON_FAST_PYCALL
     if (PyFunction_Check(__pyx_t_4)) {
       PyObject *__pyx_temp[2] = {__pyx_t_3, __pyx_v_log_filename};
-      __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_4, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 757, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_4, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 756, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_GOTREF(__pyx_t_2);
     } else
@@ -15112,19 +15113,19 @@ static int __pyx_pf_3osd_15CoretraceLogger_8log_file_2__set__(struct __pyx_obj_3
     #if CYTHON_FAST_PYCCALL
     if (__Pyx_PyFastCFunction_Check(__pyx_t_4)) {
       PyObject *__pyx_temp[2] = {__pyx_t_3, __pyx_v_log_filename};
-      __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_4, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 757, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_4, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 756, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_GOTREF(__pyx_t_2);
     } else
     #endif
     {
-      __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 757, __pyx_L1_error)
+      __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 756, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_GIVEREF(__pyx_t_3); PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_3); __pyx_t_3 = NULL;
       __Pyx_INCREF(__pyx_v_log_filename);
       __Pyx_GIVEREF(__pyx_v_log_filename);
       PyTuple_SET_ITEM(__pyx_t_5, 0+1, __pyx_v_log_filename);
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_5, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 757, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_5, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 756, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     }
@@ -15133,17 +15134,17 @@ static int __pyx_pf_3osd_15CoretraceLogger_8log_file_2__set__(struct __pyx_obj_3
   __pyx_v_b_log_filename = __pyx_t_2;
   __pyx_t_2 = 0;
 
-  /* "osd.pyx":758
+  /* "osd.pyx":757
  * 
  *         b_log_filename = os.fsencode(log_filename)
  *         self._fp_log = fopen(b_log_filename, 'w')             # <<<<<<<<<<<<<<
  *         if not self._fp_log:
  *             raise IOError(errno, strerror(errno).decode('utf-8'), log_filename)
  */
-  __pyx_t_6 = __Pyx_PyObject_AsString(__pyx_v_b_log_filename); if (unlikely((!__pyx_t_6) && PyErr_Occurred())) __PYX_ERR(0, 758, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_AsString(__pyx_v_b_log_filename); if (unlikely((!__pyx_t_6) && PyErr_Occurred())) __PYX_ERR(0, 757, __pyx_L1_error)
   __pyx_v_self->_fp_log = fopen(__pyx_t_6, ((char const *)"w"));
 
-  /* "osd.pyx":759
+  /* "osd.pyx":758
  *         b_log_filename = os.fsencode(log_filename)
  *         self._fp_log = fopen(b_log_filename, 'w')
  *         if not self._fp_log:             # <<<<<<<<<<<<<<
@@ -15153,19 +15154,19 @@ static int __pyx_pf_3osd_15CoretraceLogger_8log_file_2__set__(struct __pyx_obj_3
   __pyx_t_1 = ((!(__pyx_v_self->_fp_log != 0)) != 0);
   if (__pyx_t_1) {
 
-    /* "osd.pyx":760
+    /* "osd.pyx":759
  *         self._fp_log = fopen(b_log_filename, 'w')
  *         if not self._fp_log:
  *             raise IOError(errno, strerror(errno).decode('utf-8'), log_filename)             # <<<<<<<<<<<<<<
  * 
  *         rv = cosd.osd_coretracelogger_set_log(self._cself, self._fp_log)
  */
-    __pyx_t_2 = __Pyx_PyInt_From_int(errno); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 760, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyInt_From_int(errno); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 759, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __pyx_t_7 = strerror(errno);
-    __pyx_t_4 = __Pyx_decode_c_string(__pyx_t_7, 0, strlen(__pyx_t_7), NULL, NULL, PyUnicode_DecodeUTF8); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 760, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_decode_c_string(__pyx_t_7, 0, strlen(__pyx_t_7), NULL, NULL, PyUnicode_DecodeUTF8); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 759, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_5 = PyTuple_New(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 760, __pyx_L1_error)
+    __pyx_t_5 = PyTuple_New(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 759, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_GIVEREF(__pyx_t_2);
     PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_2);
@@ -15177,14 +15178,14 @@ static int __pyx_pf_3osd_15CoretraceLogger_8log_file_2__set__(struct __pyx_obj_3
     PyTuple_SET_ITEM(__pyx_t_5, 2, __pyx_v_log_filename);
     __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_IOError, __pyx_t_5, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 760, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_IOError, __pyx_t_5, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 759, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_Raise(__pyx_t_4, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __PYX_ERR(0, 760, __pyx_L1_error)
+    __PYX_ERR(0, 759, __pyx_L1_error)
 
-    /* "osd.pyx":759
+    /* "osd.pyx":758
  *         b_log_filename = os.fsencode(log_filename)
  *         self._fp_log = fopen(b_log_filename, 'w')
  *         if not self._fp_log:             # <<<<<<<<<<<<<<
@@ -15193,7 +15194,7 @@ static int __pyx_pf_3osd_15CoretraceLogger_8log_file_2__set__(struct __pyx_obj_3
  */
   }
 
-  /* "osd.pyx":762
+  /* "osd.pyx":761
  *             raise IOError(errno, strerror(errno).decode('utf-8'), log_filename)
  * 
  *         rv = cosd.osd_coretracelogger_set_log(self._cself, self._fp_log)             # <<<<<<<<<<<<<<
@@ -15202,21 +15203,21 @@ static int __pyx_pf_3osd_15CoretraceLogger_8log_file_2__set__(struct __pyx_obj_3
  */
   __pyx_v_rv = osd_coretracelogger_set_log(__pyx_v_self->_cself, __pyx_v_self->_fp_log);
 
-  /* "osd.pyx":763
+  /* "osd.pyx":762
  * 
  *         rv = cosd.osd_coretracelogger_set_log(self._cself, self._fp_log)
  *         check_osd_result(rv)             # <<<<<<<<<<<<<<
  * 
  *     @property
  */
-  __pyx_t_4 = __Pyx_PyInt_From_osd_result(__pyx_v_rv); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 763, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_osd_result(__pyx_v_rv); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 762, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = __pyx_f_3osd_check_osd_result(__pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 763, __pyx_L1_error)
+  __pyx_t_5 = __pyx_f_3osd_check_osd_result(__pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 762, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "osd.pyx":751
+  /* "osd.pyx":750
  * 
  *     @log_file.setter
  *     def log_file(self, log_filename):             # <<<<<<<<<<<<<<
@@ -15240,7 +15241,7 @@ static int __pyx_pf_3osd_15CoretraceLogger_8log_file_2__set__(struct __pyx_obj_3
   return __pyx_r;
 }
 
-/* "osd.pyx":766
+/* "osd.pyx":765
  * 
  *     @property
  *     def elf_file(self):             # <<<<<<<<<<<<<<
@@ -15266,7 +15267,7 @@ static PyObject *__pyx_pf_3osd_15CoretraceLogger_8elf_file___get__(struct __pyx_
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "osd.pyx":767
+  /* "osd.pyx":766
  *     @property
  *     def elf_file(self):
  *         return self._elf_file             # <<<<<<<<<<<<<<
@@ -15278,7 +15279,7 @@ static PyObject *__pyx_pf_3osd_15CoretraceLogger_8elf_file___get__(struct __pyx_
   __pyx_r = __pyx_v_self->_elf_file;
   goto __pyx_L0;
 
-  /* "osd.pyx":766
+  /* "osd.pyx":765
  * 
  *     @property
  *     def elf_file(self):             # <<<<<<<<<<<<<<
@@ -15293,7 +15294,7 @@ static PyObject *__pyx_pf_3osd_15CoretraceLogger_8elf_file___get__(struct __pyx_
   return __pyx_r;
 }
 
-/* "osd.pyx":770
+/* "osd.pyx":769
  * 
  *     @elf_file.setter
  *     def elf_file(self, elf_filename):             # <<<<<<<<<<<<<<
@@ -15326,7 +15327,7 @@ static int __pyx_pf_3osd_15CoretraceLogger_8elf_file_2__set__(struct __pyx_obj_3
   char const *__pyx_t_5;
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "osd.pyx":771
+  /* "osd.pyx":770
  *     @elf_file.setter
  *     def elf_file(self, elf_filename):
  *         self._elf_file = elf_filename             # <<<<<<<<<<<<<<
@@ -15339,16 +15340,16 @@ static int __pyx_pf_3osd_15CoretraceLogger_8elf_file_2__set__(struct __pyx_obj_3
   __Pyx_DECREF(__pyx_v_self->_elf_file);
   __pyx_v_self->_elf_file = __pyx_v_elf_filename;
 
-  /* "osd.pyx":773
+  /* "osd.pyx":772
  *         self._elf_file = elf_filename
  * 
  *         b_filename = os.fsencode(elf_filename)             # <<<<<<<<<<<<<<
  *         rv = cosd.osd_coretracelogger_set_elf(self._cself, b_filename)
  *         check_osd_result(rv)
  */
-  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_os); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 773, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_os); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 772, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_fsencode); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 773, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_fsencode); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 772, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = NULL;
@@ -15362,13 +15363,13 @@ static int __pyx_pf_3osd_15CoretraceLogger_8elf_file_2__set__(struct __pyx_obj_3
     }
   }
   if (!__pyx_t_2) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_elf_filename); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 773, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_elf_filename); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 772, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   } else {
     #if CYTHON_FAST_PYCALL
     if (PyFunction_Check(__pyx_t_3)) {
       PyObject *__pyx_temp[2] = {__pyx_t_2, __pyx_v_elf_filename};
-      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 773, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 772, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_GOTREF(__pyx_t_1);
     } else
@@ -15376,19 +15377,19 @@ static int __pyx_pf_3osd_15CoretraceLogger_8elf_file_2__set__(struct __pyx_obj_3
     #if CYTHON_FAST_PYCCALL
     if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
       PyObject *__pyx_temp[2] = {__pyx_t_2, __pyx_v_elf_filename};
-      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 773, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 772, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_GOTREF(__pyx_t_1);
     } else
     #endif
     {
-      __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 773, __pyx_L1_error)
+      __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 772, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_GIVEREF(__pyx_t_2); PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_2); __pyx_t_2 = NULL;
       __Pyx_INCREF(__pyx_v_elf_filename);
       __Pyx_GIVEREF(__pyx_v_elf_filename);
       PyTuple_SET_ITEM(__pyx_t_4, 0+1, __pyx_v_elf_filename);
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_4, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 773, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_4, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 772, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     }
@@ -15397,28 +15398,28 @@ static int __pyx_pf_3osd_15CoretraceLogger_8elf_file_2__set__(struct __pyx_obj_3
   __pyx_v_b_filename = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "osd.pyx":774
+  /* "osd.pyx":773
  * 
  *         b_filename = os.fsencode(elf_filename)
  *         rv = cosd.osd_coretracelogger_set_elf(self._cself, b_filename)             # <<<<<<<<<<<<<<
  *         check_osd_result(rv)
  */
-  __pyx_t_5 = __Pyx_PyObject_AsString(__pyx_v_b_filename); if (unlikely((!__pyx_t_5) && PyErr_Occurred())) __PYX_ERR(0, 774, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_AsString(__pyx_v_b_filename); if (unlikely((!__pyx_t_5) && PyErr_Occurred())) __PYX_ERR(0, 773, __pyx_L1_error)
   __pyx_v_rv = osd_coretracelogger_set_elf(__pyx_v_self->_cself, __pyx_t_5);
 
-  /* "osd.pyx":775
+  /* "osd.pyx":774
  *         b_filename = os.fsencode(elf_filename)
  *         rv = cosd.osd_coretracelogger_set_elf(self._cself, b_filename)
  *         check_osd_result(rv)             # <<<<<<<<<<<<<<
  */
-  __pyx_t_1 = __Pyx_PyInt_From_osd_result(__pyx_v_rv); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 775, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_osd_result(__pyx_v_rv); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 774, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = __pyx_f_3osd_check_osd_result(__pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 775, __pyx_L1_error)
+  __pyx_t_3 = __pyx_f_3osd_check_osd_result(__pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 774, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "osd.pyx":770
+  /* "osd.pyx":769
  * 
  *     @elf_file.setter
  *     def elf_file(self, elf_filename):             # <<<<<<<<<<<<<<
@@ -29411,10 +29412,6 @@ static void __pyx_tp_dealloc_3osd_Hostmod(PyObject *o) {
   (*Py_TYPE(o)->tp_free)(o);
 }
 
-static PyObject *__pyx_getprop_3osd_7Hostmod_is_connected(PyObject *o, CYTHON_UNUSED void *x) {
-  return __pyx_pw_3osd_7Hostmod_12is_connected_1__get__(o);
-}
-
 static PyObject *__pyx_getprop_3osd_7Hostmod_diaddr(PyObject *o, CYTHON_UNUSED void *x) {
   return __pyx_pw_3osd_7Hostmod_6diaddr_1__get__(o);
 }
@@ -29422,22 +29419,22 @@ static PyObject *__pyx_getprop_3osd_7Hostmod_diaddr(PyObject *o, CYTHON_UNUSED v
 static PyMethodDef __pyx_methods_3osd_Hostmod[] = {
   {"connect", (PyCFunction)__pyx_pw_3osd_7Hostmod_5connect, METH_NOARGS, __pyx_doc_3osd_7Hostmod_4connect},
   {"disconnect", (PyCFunction)__pyx_pw_3osd_7Hostmod_7disconnect, METH_NOARGS, __pyx_doc_3osd_7Hostmod_6disconnect},
-  {"reg_read", (PyCFunction)__pyx_pw_3osd_7Hostmod_9reg_read, METH_VARARGS|METH_KEYWORDS, __pyx_doc_3osd_7Hostmod_8reg_read},
-  {"reg_write", (PyCFunction)__pyx_pw_3osd_7Hostmod_11reg_write, METH_VARARGS|METH_KEYWORDS, __pyx_doc_3osd_7Hostmod_10reg_write},
-  {"get_modules", (PyCFunction)__pyx_pw_3osd_7Hostmod_13get_modules, METH_O, __pyx_doc_3osd_7Hostmod_12get_modules},
-  {"mod_describe", (PyCFunction)__pyx_pw_3osd_7Hostmod_15mod_describe, METH_O, __pyx_doc_3osd_7Hostmod_14mod_describe},
-  {"mod_set_event_dest", (PyCFunction)__pyx_pw_3osd_7Hostmod_17mod_set_event_dest, METH_VARARGS|METH_KEYWORDS, __pyx_doc_3osd_7Hostmod_16mod_set_event_dest},
-  {"mod_set_event_active", (PyCFunction)__pyx_pw_3osd_7Hostmod_19mod_set_event_active, METH_VARARGS|METH_KEYWORDS, __pyx_doc_3osd_7Hostmod_18mod_set_event_active},
-  {"get_max_event_words", (PyCFunction)__pyx_pw_3osd_7Hostmod_21get_max_event_words, METH_O, __pyx_doc_3osd_7Hostmod_20get_max_event_words},
-  {"event_send", (PyCFunction)__pyx_pw_3osd_7Hostmod_23event_send, METH_O, __pyx_doc_3osd_7Hostmod_22event_send},
-  {"event_receive", (PyCFunction)__pyx_pw_3osd_7Hostmod_25event_receive, METH_VARARGS|METH_KEYWORDS, __pyx_doc_3osd_7Hostmod_24event_receive},
-  {"__reduce_cython__", (PyCFunction)__pyx_pw_3osd_7Hostmod_27__reduce_cython__, METH_NOARGS, __pyx_doc_3osd_7Hostmod_26__reduce_cython__},
-  {"__setstate_cython__", (PyCFunction)__pyx_pw_3osd_7Hostmod_29__setstate_cython__, METH_O, __pyx_doc_3osd_7Hostmod_28__setstate_cython__},
+  {"is_connected", (PyCFunction)__pyx_pw_3osd_7Hostmod_9is_connected, METH_NOARGS, __pyx_doc_3osd_7Hostmod_8is_connected},
+  {"reg_read", (PyCFunction)__pyx_pw_3osd_7Hostmod_11reg_read, METH_VARARGS|METH_KEYWORDS, __pyx_doc_3osd_7Hostmod_10reg_read},
+  {"reg_write", (PyCFunction)__pyx_pw_3osd_7Hostmod_13reg_write, METH_VARARGS|METH_KEYWORDS, __pyx_doc_3osd_7Hostmod_12reg_write},
+  {"get_modules", (PyCFunction)__pyx_pw_3osd_7Hostmod_15get_modules, METH_O, __pyx_doc_3osd_7Hostmod_14get_modules},
+  {"mod_describe", (PyCFunction)__pyx_pw_3osd_7Hostmod_17mod_describe, METH_O, __pyx_doc_3osd_7Hostmod_16mod_describe},
+  {"mod_set_event_dest", (PyCFunction)__pyx_pw_3osd_7Hostmod_19mod_set_event_dest, METH_VARARGS|METH_KEYWORDS, __pyx_doc_3osd_7Hostmod_18mod_set_event_dest},
+  {"mod_set_event_active", (PyCFunction)__pyx_pw_3osd_7Hostmod_21mod_set_event_active, METH_VARARGS|METH_KEYWORDS, __pyx_doc_3osd_7Hostmod_20mod_set_event_active},
+  {"get_max_event_words", (PyCFunction)__pyx_pw_3osd_7Hostmod_23get_max_event_words, METH_O, __pyx_doc_3osd_7Hostmod_22get_max_event_words},
+  {"event_send", (PyCFunction)__pyx_pw_3osd_7Hostmod_25event_send, METH_O, __pyx_doc_3osd_7Hostmod_24event_send},
+  {"event_receive", (PyCFunction)__pyx_pw_3osd_7Hostmod_27event_receive, METH_VARARGS|METH_KEYWORDS, __pyx_doc_3osd_7Hostmod_26event_receive},
+  {"__reduce_cython__", (PyCFunction)__pyx_pw_3osd_7Hostmod_29__reduce_cython__, METH_NOARGS, __pyx_doc_3osd_7Hostmod_28__reduce_cython__},
+  {"__setstate_cython__", (PyCFunction)__pyx_pw_3osd_7Hostmod_31__setstate_cython__, METH_O, __pyx_doc_3osd_7Hostmod_30__setstate_cython__},
   {0, 0, 0, 0}
 };
 
 static struct PyGetSetDef __pyx_getsets_3osd_Hostmod[] = {
-  {(char *)"is_connected", __pyx_getprop_3osd_7Hostmod_is_connected, 0, (char *)0, 0},
   {(char *)"diaddr", __pyx_getprop_3osd_7Hostmod_diaddr, 0, (char *)0, 0},
   {0, 0, 0, 0, 0}
 };
@@ -31250,11 +31247,11 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {0, 0, 0, 0, 0, 0, 0}
 };
 static int __Pyx_InitCachedBuiltins(void) {
-  __pyx_builtin_staticmethod = __Pyx_GetBuiltinName(__pyx_n_s_staticmethod); if (!__pyx_builtin_staticmethod) __PYX_ERR(0, 454, __pyx_L1_error)
+  __pyx_builtin_staticmethod = __Pyx_GetBuiltinName(__pyx_n_s_staticmethod); if (!__pyx_builtin_staticmethod) __PYX_ERR(0, 453, __pyx_L1_error)
   __pyx_builtin_MemoryError = __Pyx_GetBuiltinName(__pyx_n_s_MemoryError); if (!__pyx_builtin_MemoryError) __PYX_ERR(0, 177, __pyx_L1_error)
   __pyx_builtin_TypeError = __Pyx_GetBuiltinName(__pyx_n_s_TypeError); if (!__pyx_builtin_TypeError) __PYX_ERR(1, 2, __pyx_L1_error)
-  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(0, 315, __pyx_L1_error)
-  __pyx_builtin_IOError = __Pyx_GetBuiltinName(__pyx_n_s_IOError); if (!__pyx_builtin_IOError) __PYX_ERR(0, 672, __pyx_L1_error)
+  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(0, 314, __pyx_L1_error)
+  __pyx_builtin_IOError = __Pyx_GetBuiltinName(__pyx_n_s_IOError); if (!__pyx_builtin_IOError) __PYX_ERR(0, 671, __pyx_L1_error)
   __pyx_builtin_ValueError = __Pyx_GetBuiltinName(__pyx_n_s_ValueError); if (!__pyx_builtin_ValueError) __PYX_ERR(1, 131, __pyx_L1_error)
   __pyx_builtin_enumerate = __Pyx_GetBuiltinName(__pyx_n_s_enumerate); if (!__pyx_builtin_enumerate) __PYX_ERR(1, 149, __pyx_L1_error)
   __pyx_builtin_Ellipsis = __Pyx_GetBuiltinName(__pyx_n_s_Ellipsis); if (!__pyx_builtin_Ellipsis) __PYX_ERR(1, 398, __pyx_L1_error)
@@ -31318,25 +31315,25 @@ static int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__6);
   __Pyx_GIVEREF(__pyx_tuple__6);
 
-  /* "osd.pyx":288
+  /* "osd.pyx":287
  *         cdef uint16_t outvalue
  *         if reg_size_bit != 16:
  *             raise Exception("XXX: Extend to support other sizes than 16 bit registers")             # <<<<<<<<<<<<<<
  * 
  *         rv = cosd.osd_hostmod_reg_read(self._cself, &outvalue, diaddr, reg_addr,
  */
-  __pyx_tuple__7 = PyTuple_Pack(1, __pyx_kp_u_XXX_Extend_to_support_other_size); if (unlikely(!__pyx_tuple__7)) __PYX_ERR(0, 288, __pyx_L1_error)
+  __pyx_tuple__7 = PyTuple_Pack(1, __pyx_kp_u_XXX_Extend_to_support_other_size); if (unlikely(!__pyx_tuple__7)) __PYX_ERR(0, 287, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__7);
   __Pyx_GIVEREF(__pyx_tuple__7);
 
-  /* "osd.pyx":298
+  /* "osd.pyx":297
  *     def reg_write(self, data, diaddr, reg_addr, reg_size_bit = 16, flags = 0):
  *         if reg_size_bit != 16:
  *             raise Exception("XXX: Extend to support other sizes than 16 bit registers")             # <<<<<<<<<<<<<<
  * 
  *         cdef uint16_t c_data = data
  */
-  __pyx_tuple__8 = PyTuple_Pack(1, __pyx_kp_u_XXX_Extend_to_support_other_size); if (unlikely(!__pyx_tuple__8)) __PYX_ERR(0, 298, __pyx_L1_error)
+  __pyx_tuple__8 = PyTuple_Pack(1, __pyx_kp_u_XXX_Extend_to_support_other_size); if (unlikely(!__pyx_tuple__8)) __PYX_ERR(0, 297, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__8);
   __Pyx_GIVEREF(__pyx_tuple__8);
 
@@ -31359,47 +31356,47 @@ static int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__10);
   __Pyx_GIVEREF(__pyx_tuple__10);
 
-  /* "osd.pyx":373
+  /* "osd.pyx":372
  *                   glip_backend_name, glip_backend_options):
  * 
  *         b_host_controller_address = host_controller_address.encode('UTF-8')             # <<<<<<<<<<<<<<
  *         cdef char* c_host_controller_address = b_host_controller_address
  * 
  */
-  __pyx_tuple__11 = PyTuple_Pack(1, __pyx_kp_u_UTF_8); if (unlikely(!__pyx_tuple__11)) __PYX_ERR(0, 373, __pyx_L1_error)
+  __pyx_tuple__11 = PyTuple_Pack(1, __pyx_kp_u_UTF_8); if (unlikely(!__pyx_tuple__11)) __PYX_ERR(0, 372, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__11);
   __Pyx_GIVEREF(__pyx_tuple__11);
 
-  /* "osd.pyx":376
+  /* "osd.pyx":375
  *         cdef char* c_host_controller_address = b_host_controller_address
  * 
  *         b_glip_backend_name = glip_backend_name.encode('UTF-8')             # <<<<<<<<<<<<<<
  *         cdef char* c_glip_backend_name = b_glip_backend_name
  * 
  */
-  __pyx_tuple__12 = PyTuple_Pack(1, __pyx_kp_u_UTF_8); if (unlikely(!__pyx_tuple__12)) __PYX_ERR(0, 376, __pyx_L1_error)
+  __pyx_tuple__12 = PyTuple_Pack(1, __pyx_kp_u_UTF_8); if (unlikely(!__pyx_tuple__12)) __PYX_ERR(0, 375, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__12);
   __Pyx_GIVEREF(__pyx_tuple__12);
 
-  /* "osd.pyx":387
+  /* "osd.pyx":386
  *             index = 0
  *             for name, value in glip_backend_options.items():
  *                 b_name = name.encode('UTF-8')             # <<<<<<<<<<<<<<
  *                 b_value = value.encode('UTF-8')
  *                 c_glip_backend_options[index].name = b_name
  */
-  __pyx_tuple__13 = PyTuple_Pack(1, __pyx_kp_u_UTF_8); if (unlikely(!__pyx_tuple__13)) __PYX_ERR(0, 387, __pyx_L1_error)
+  __pyx_tuple__13 = PyTuple_Pack(1, __pyx_kp_u_UTF_8); if (unlikely(!__pyx_tuple__13)) __PYX_ERR(0, 386, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__13);
   __Pyx_GIVEREF(__pyx_tuple__13);
 
-  /* "osd.pyx":388
+  /* "osd.pyx":387
  *             for name, value in glip_backend_options.items():
  *                 b_name = name.encode('UTF-8')
  *                 b_value = value.encode('UTF-8')             # <<<<<<<<<<<<<<
  *                 c_glip_backend_options[index].name = b_name
  *                 c_glip_backend_options[index].value = b_value
  */
-  __pyx_tuple__14 = PyTuple_Pack(1, __pyx_kp_u_UTF_8); if (unlikely(!__pyx_tuple__14)) __PYX_ERR(0, 388, __pyx_L1_error)
+  __pyx_tuple__14 = PyTuple_Pack(1, __pyx_kp_u_UTF_8); if (unlikely(!__pyx_tuple__14)) __PYX_ERR(0, 387, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__14);
   __Pyx_GIVEREF(__pyx_tuple__14);
 
@@ -31422,14 +31419,14 @@ static int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__16);
   __Pyx_GIVEREF(__pyx_tuple__16);
 
-  /* "osd.pyx":428
+  /* "osd.pyx":427
  * 
  *     def __cinit__(self, Log log, router_address):
  *         py_byte_string = router_address.encode('UTF-8')             # <<<<<<<<<<<<<<
  *         cdef char* c_router_address = py_byte_string
  *         cosd.osd_hostctrl_new(&self._cself, log._cself, c_router_address)
  */
-  __pyx_tuple__17 = PyTuple_Pack(1, __pyx_kp_u_UTF_8); if (unlikely(!__pyx_tuple__17)) __PYX_ERR(0, 428, __pyx_L1_error)
+  __pyx_tuple__17 = PyTuple_Pack(1, __pyx_kp_u_UTF_8); if (unlikely(!__pyx_tuple__17)) __PYX_ERR(0, 427, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__17);
   __Pyx_GIVEREF(__pyx_tuple__17);
 
@@ -31452,29 +31449,29 @@ static int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__19);
   __Pyx_GIVEREF(__pyx_tuple__19);
 
-  /* "osd.pyx":490
+  /* "osd.pyx":489
  *     def __str__(self):
  *         def sizeof_fmt(num, suffix='B'):
  *             for unit in ['','Ki','Mi','Gi','Ti','Pi','Ei','Zi']:             # <<<<<<<<<<<<<<
  *                 if abs(num) < 1024.0:
  *                     return "%3.1f %s%s" % (num, unit, suffix)
  */
-  __pyx_tuple__20 = PyTuple_Pack(8, __pyx_kp_u_, __pyx_n_u_Ki, __pyx_n_u_Mi, __pyx_n_u_Gi, __pyx_n_u_Ti, __pyx_n_u_Pi, __pyx_n_u_Ei, __pyx_n_u_Zi); if (unlikely(!__pyx_tuple__20)) __PYX_ERR(0, 490, __pyx_L1_error)
+  __pyx_tuple__20 = PyTuple_Pack(8, __pyx_kp_u_, __pyx_n_u_Ki, __pyx_n_u_Mi, __pyx_n_u_Gi, __pyx_n_u_Ti, __pyx_n_u_Pi, __pyx_n_u_Ei, __pyx_n_u_Zi); if (unlikely(!__pyx_tuple__20)) __PYX_ERR(0, 489, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__20);
   __Pyx_GIVEREF(__pyx_tuple__20);
 
-  /* "osd.pyx":489
+  /* "osd.pyx":488
  * 
  *     def __str__(self):
  *         def sizeof_fmt(num, suffix='B'):             # <<<<<<<<<<<<<<
  *             for unit in ['','Ki','Mi','Gi','Ti','Pi','Ei','Zi']:
  *                 if abs(num) < 1024.0:
  */
-  __pyx_tuple__21 = PyTuple_Pack(3, __pyx_n_s_num, __pyx_n_s_suffix, __pyx_n_s_unit); if (unlikely(!__pyx_tuple__21)) __PYX_ERR(0, 489, __pyx_L1_error)
+  __pyx_tuple__21 = PyTuple_Pack(3, __pyx_n_s_num, __pyx_n_s_suffix, __pyx_n_s_unit); if (unlikely(!__pyx_tuple__21)) __PYX_ERR(0, 488, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__21);
   __Pyx_GIVEREF(__pyx_tuple__21);
-  __pyx_codeobj__22 = (PyObject*)__Pyx_PyCode_New(2, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__21, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_osd_pyx, __pyx_n_s_sizeof_fmt, 489, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__22)) __PYX_ERR(0, 489, __pyx_L1_error)
-  __pyx_tuple__23 = PyTuple_Pack(1, ((PyObject*)__pyx_n_u_B)); if (unlikely(!__pyx_tuple__23)) __PYX_ERR(0, 489, __pyx_L1_error)
+  __pyx_codeobj__22 = (PyObject*)__Pyx_PyCode_New(2, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__21, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_osd_pyx, __pyx_n_s_sizeof_fmt, 488, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__22)) __PYX_ERR(0, 488, __pyx_L1_error)
+  __pyx_tuple__23 = PyTuple_Pack(1, ((PyObject*)__pyx_n_u_B)); if (unlikely(!__pyx_tuple__23)) __PYX_ERR(0, 488, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__23);
   __Pyx_GIVEREF(__pyx_tuple__23);
 
@@ -31497,25 +31494,25 @@ static int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__25);
   __Pyx_GIVEREF(__pyx_tuple__25);
 
-  /* "osd.pyx":540
+  /* "osd.pyx":539
  * 
  *     def __cinit__(self, Log log, host_controller_address):
  *         py_byte_string = host_controller_address.encode('UTF-8')             # <<<<<<<<<<<<<<
  *         cdef char* c_host_controller_address = py_byte_string
  *         rv = cosd.osd_memaccess_new(&self._cself, log._cself,
  */
-  __pyx_tuple__26 = PyTuple_Pack(1, __pyx_kp_u_UTF_8); if (unlikely(!__pyx_tuple__26)) __PYX_ERR(0, 540, __pyx_L1_error)
+  __pyx_tuple__26 = PyTuple_Pack(1, __pyx_kp_u_UTF_8); if (unlikely(!__pyx_tuple__26)) __PYX_ERR(0, 539, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__26);
   __Pyx_GIVEREF(__pyx_tuple__26);
 
-  /* "osd.pyx":596
+  /* "osd.pyx":595
  * 
  *     def loadelf(self, MemoryDescriptor mem_desc, elf_file_path, verify):
  *         py_byte_string = elf_file_path.encode('UTF-8')             # <<<<<<<<<<<<<<
  *         cdef char* c_elf_file_path = py_byte_string
  *         rv = cosd.osd_memaccess_loadelf(self._cself, &mem_desc._cself, c_elf_file_path,
  */
-  __pyx_tuple__27 = PyTuple_Pack(1, __pyx_kp_u_UTF_8); if (unlikely(!__pyx_tuple__27)) __PYX_ERR(0, 596, __pyx_L1_error)
+  __pyx_tuple__27 = PyTuple_Pack(1, __pyx_kp_u_UTF_8); if (unlikely(!__pyx_tuple__27)) __PYX_ERR(0, 595, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__27);
   __Pyx_GIVEREF(__pyx_tuple__27);
 
@@ -31538,14 +31535,14 @@ static int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__29);
   __Pyx_GIVEREF(__pyx_tuple__29);
 
-  /* "osd.pyx":617
+  /* "osd.pyx":616
  *         self._event_file = None
  * 
  *         b_host_controller_address = host_controller_address.encode('UTF-8')             # <<<<<<<<<<<<<<
  *         rv = cosd.osd_systracelogger_new(&self._cself, log._cself,
  *                                          b_host_controller_address, di_addr)
  */
-  __pyx_tuple__30 = PyTuple_Pack(1, __pyx_kp_u_UTF_8); if (unlikely(!__pyx_tuple__30)) __PYX_ERR(0, 617, __pyx_L1_error)
+  __pyx_tuple__30 = PyTuple_Pack(1, __pyx_kp_u_UTF_8); if (unlikely(!__pyx_tuple__30)) __PYX_ERR(0, 616, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__30);
   __Pyx_GIVEREF(__pyx_tuple__30);
 
@@ -31568,14 +31565,14 @@ static int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__32);
   __Pyx_GIVEREF(__pyx_tuple__32);
 
-  /* "osd.pyx":708
+  /* "osd.pyx":707
  *         self._log_file = None
  * 
  *         b_host_controller_address = host_controller_address.encode('UTF-8')             # <<<<<<<<<<<<<<
  *         rv = cosd.osd_coretracelogger_new(&self._cself, log._cself,
  *                                           b_host_controller_address, di_addr)
  */
-  __pyx_tuple__33 = PyTuple_Pack(1, __pyx_kp_u_UTF_8); if (unlikely(!__pyx_tuple__33)) __PYX_ERR(0, 708, __pyx_L1_error)
+  __pyx_tuple__33 = PyTuple_Pack(1, __pyx_kp_u_UTF_8); if (unlikely(!__pyx_tuple__33)) __PYX_ERR(0, 707, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__33);
   __Pyx_GIVEREF(__pyx_tuple__33);
 
@@ -31813,65 +31810,65 @@ static int __Pyx_InitCachedConstants(void) {
   __Pyx_GIVEREF(__pyx_tuple__59);
   __pyx_codeobj__60 = (PyObject*)__Pyx_PyCode_New(0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__59, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_osd_pyx, __pyx_n_s_osd_library_version, 29, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__60)) __PYX_ERR(0, 29, __pyx_L1_error)
 
-  /* "osd.pyx":455
+  /* "osd.pyx":454
  * cdef class Module:
  *     @staticmethod
  *     def get_type_short_name(vendor_id, type_id):             # <<<<<<<<<<<<<<
  *         return str(cosd.osd_module_get_type_short_name(vendor_id, type_id))
  * 
  */
-  __pyx_tuple__61 = PyTuple_Pack(2, __pyx_n_s_vendor_id, __pyx_n_s_type_id); if (unlikely(!__pyx_tuple__61)) __PYX_ERR(0, 455, __pyx_L1_error)
+  __pyx_tuple__61 = PyTuple_Pack(2, __pyx_n_s_vendor_id, __pyx_n_s_type_id); if (unlikely(!__pyx_tuple__61)) __PYX_ERR(0, 454, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__61);
   __Pyx_GIVEREF(__pyx_tuple__61);
-  __pyx_codeobj__62 = (PyObject*)__Pyx_PyCode_New(2, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__61, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_osd_pyx, __pyx_n_s_get_type_short_name, 455, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__62)) __PYX_ERR(0, 455, __pyx_L1_error)
+  __pyx_codeobj__62 = (PyObject*)__Pyx_PyCode_New(2, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__61, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_osd_pyx, __pyx_n_s_get_type_short_name, 454, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__62)) __PYX_ERR(0, 454, __pyx_L1_error)
 
-  /* "osd.pyx":459
+  /* "osd.pyx":458
  * 
  *     @staticmethod
  *     def get_type_long_name(vendor_id, type_id):             # <<<<<<<<<<<<<<
  *          return str(cosd.osd_module_get_type_long_name(vendor_id, type_id))
  * 
  */
-  __pyx_tuple__63 = PyTuple_Pack(2, __pyx_n_s_vendor_id, __pyx_n_s_type_id); if (unlikely(!__pyx_tuple__63)) __PYX_ERR(0, 459, __pyx_L1_error)
+  __pyx_tuple__63 = PyTuple_Pack(2, __pyx_n_s_vendor_id, __pyx_n_s_type_id); if (unlikely(!__pyx_tuple__63)) __PYX_ERR(0, 458, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__63);
   __Pyx_GIVEREF(__pyx_tuple__63);
-  __pyx_codeobj__64 = (PyObject*)__Pyx_PyCode_New(2, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__63, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_osd_pyx, __pyx_n_s_get_type_long_name, 459, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__64)) __PYX_ERR(0, 459, __pyx_L1_error)
+  __pyx_codeobj__64 = (PyObject*)__Pyx_PyCode_New(2, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__63, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_osd_pyx, __pyx_n_s_get_type_long_name, 458, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__64)) __PYX_ERR(0, 458, __pyx_L1_error)
 
-  /* "osd.pyx":511
+  /* "osd.pyx":510
  *         return str
  * 
  * def cl_mam_get_mem_desc(Hostmod hostmod, mam_di_addr):             # <<<<<<<<<<<<<<
  *     mem_desc = MemoryDescriptor()
  * 
  */
-  __pyx_tuple__65 = PyTuple_Pack(3, __pyx_n_s_hostmod, __pyx_n_s_mam_di_addr, __pyx_n_s_mem_desc); if (unlikely(!__pyx_tuple__65)) __PYX_ERR(0, 511, __pyx_L1_error)
+  __pyx_tuple__65 = PyTuple_Pack(3, __pyx_n_s_hostmod, __pyx_n_s_mam_di_addr, __pyx_n_s_mem_desc); if (unlikely(!__pyx_tuple__65)) __PYX_ERR(0, 510, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__65);
   __Pyx_GIVEREF(__pyx_tuple__65);
-  __pyx_codeobj__66 = (PyObject*)__Pyx_PyCode_New(2, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__65, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_osd_pyx, __pyx_n_s_cl_mam_get_mem_desc, 511, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__66)) __PYX_ERR(0, 511, __pyx_L1_error)
+  __pyx_codeobj__66 = (PyObject*)__Pyx_PyCode_New(2, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__65, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_osd_pyx, __pyx_n_s_cl_mam_get_mem_desc, 510, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__66)) __PYX_ERR(0, 510, __pyx_L1_error)
 
-  /* "osd.pyx":518
+  /* "osd.pyx":517
  *     return mem_desc
  * 
  * def cl_mam_write(MemoryDescriptor mem_desc, Hostmod hostmod, data, addr):             # <<<<<<<<<<<<<<
  *     cdef char* c_data = data
  *     rv = cosd.osd_cl_mam_write(&mem_desc._cself, hostmod._cself, c_data,
  */
-  __pyx_tuple__67 = PyTuple_Pack(6, __pyx_n_s_mem_desc, __pyx_n_s_hostmod, __pyx_n_s_data, __pyx_n_s_addr, __pyx_n_s_c_data, __pyx_n_s_rv); if (unlikely(!__pyx_tuple__67)) __PYX_ERR(0, 518, __pyx_L1_error)
+  __pyx_tuple__67 = PyTuple_Pack(6, __pyx_n_s_mem_desc, __pyx_n_s_hostmod, __pyx_n_s_data, __pyx_n_s_addr, __pyx_n_s_c_data, __pyx_n_s_rv); if (unlikely(!__pyx_tuple__67)) __PYX_ERR(0, 517, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__67);
   __Pyx_GIVEREF(__pyx_tuple__67);
-  __pyx_codeobj__68 = (PyObject*)__Pyx_PyCode_New(4, 0, 6, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__67, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_osd_pyx, __pyx_n_s_cl_mam_write, 518, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__68)) __PYX_ERR(0, 518, __pyx_L1_error)
+  __pyx_codeobj__68 = (PyObject*)__Pyx_PyCode_New(4, 0, 6, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__67, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_osd_pyx, __pyx_n_s_cl_mam_write, 517, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__68)) __PYX_ERR(0, 517, __pyx_L1_error)
 
-  /* "osd.pyx":525
+  /* "osd.pyx":524
  *         raise Exception("Memory write failed (%d)" % rv)
  * 
  * def cl_mam_read(MemoryDescriptor mem_desc, Hostmod hostmod, addr, nbyte):             # <<<<<<<<<<<<<<
  *     data = bytearray(nbyte)
  *     cdef char* c_data = data
  */
-  __pyx_tuple__69 = PyTuple_Pack(7, __pyx_n_s_mem_desc, __pyx_n_s_hostmod, __pyx_n_s_addr, __pyx_n_s_nbyte, __pyx_n_s_data, __pyx_n_s_c_data, __pyx_n_s_rv); if (unlikely(!__pyx_tuple__69)) __PYX_ERR(0, 525, __pyx_L1_error)
+  __pyx_tuple__69 = PyTuple_Pack(7, __pyx_n_s_mem_desc, __pyx_n_s_hostmod, __pyx_n_s_addr, __pyx_n_s_nbyte, __pyx_n_s_data, __pyx_n_s_c_data, __pyx_n_s_rv); if (unlikely(!__pyx_tuple__69)) __PYX_ERR(0, 524, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__69);
   __Pyx_GIVEREF(__pyx_tuple__69);
-  __pyx_codeobj__70 = (PyObject*)__Pyx_PyCode_New(4, 0, 7, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__69, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_osd_pyx, __pyx_n_s_cl_mam_read, 525, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__70)) __PYX_ERR(0, 525, __pyx_L1_error)
+  __pyx_codeobj__70 = (PyObject*)__Pyx_PyCode_New(4, 0, 7, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__69, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_osd_pyx, __pyx_n_s_cl_mam_read, 524, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__70)) __PYX_ERR(0, 524, __pyx_L1_error)
 
   /* "(tree fragment)":1
  * def __pyx_unpickle_Module(__pyx_type, long __pyx_checksum, __pyx_state):             # <<<<<<<<<<<<<<
@@ -32134,40 +32131,40 @@ static int __pyx_pymod_exec_osd(PyObject *__pyx_pyinit_module)
   if (PyObject_SetAttrString(__pyx_m, "Hostmod", (PyObject *)&__pyx_type_3osd_Hostmod) < 0) __PYX_ERR(0, 243, __pyx_L1_error)
   if (__Pyx_setup_reduce((PyObject*)&__pyx_type_3osd_Hostmod) < 0) __PYX_ERR(0, 243, __pyx_L1_error)
   __pyx_ptype_3osd_Hostmod = &__pyx_type_3osd_Hostmod;
-  if (PyType_Ready(&__pyx_type_3osd_GatewayGlip) < 0) __PYX_ERR(0, 367, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_3osd_GatewayGlip) < 0) __PYX_ERR(0, 366, __pyx_L1_error)
   __pyx_type_3osd_GatewayGlip.tp_print = 0;
-  if (PyObject_SetAttrString(__pyx_m, "GatewayGlip", (PyObject *)&__pyx_type_3osd_GatewayGlip) < 0) __PYX_ERR(0, 367, __pyx_L1_error)
-  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_3osd_GatewayGlip) < 0) __PYX_ERR(0, 367, __pyx_L1_error)
+  if (PyObject_SetAttrString(__pyx_m, "GatewayGlip", (PyObject *)&__pyx_type_3osd_GatewayGlip) < 0) __PYX_ERR(0, 366, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_3osd_GatewayGlip) < 0) __PYX_ERR(0, 366, __pyx_L1_error)
   __pyx_ptype_3osd_GatewayGlip = &__pyx_type_3osd_GatewayGlip;
-  if (PyType_Ready(&__pyx_type_3osd_Hostctrl) < 0) __PYX_ERR(0, 424, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_3osd_Hostctrl) < 0) __PYX_ERR(0, 423, __pyx_L1_error)
   __pyx_type_3osd_Hostctrl.tp_print = 0;
-  if (PyObject_SetAttrString(__pyx_m, "Hostctrl", (PyObject *)&__pyx_type_3osd_Hostctrl) < 0) __PYX_ERR(0, 424, __pyx_L1_error)
-  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_3osd_Hostctrl) < 0) __PYX_ERR(0, 424, __pyx_L1_error)
+  if (PyObject_SetAttrString(__pyx_m, "Hostctrl", (PyObject *)&__pyx_type_3osd_Hostctrl) < 0) __PYX_ERR(0, 423, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_3osd_Hostctrl) < 0) __PYX_ERR(0, 423, __pyx_L1_error)
   __pyx_ptype_3osd_Hostctrl = &__pyx_type_3osd_Hostctrl;
-  if (PyType_Ready(&__pyx_type_3osd_Module) < 0) __PYX_ERR(0, 453, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_3osd_Module) < 0) __PYX_ERR(0, 452, __pyx_L1_error)
   __pyx_type_3osd_Module.tp_print = 0;
-  if (PyObject_SetAttrString(__pyx_m, "Module", (PyObject *)&__pyx_type_3osd_Module) < 0) __PYX_ERR(0, 453, __pyx_L1_error)
-  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_3osd_Module) < 0) __PYX_ERR(0, 453, __pyx_L1_error)
+  if (PyObject_SetAttrString(__pyx_m, "Module", (PyObject *)&__pyx_type_3osd_Module) < 0) __PYX_ERR(0, 452, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_3osd_Module) < 0) __PYX_ERR(0, 452, __pyx_L1_error)
   __pyx_ptype_3osd_Module = &__pyx_type_3osd_Module;
-  if (PyType_Ready(&__pyx_type_3osd_MemoryDescriptor) < 0) __PYX_ERR(0, 463, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_3osd_MemoryDescriptor) < 0) __PYX_ERR(0, 462, __pyx_L1_error)
   __pyx_type_3osd_MemoryDescriptor.tp_print = 0;
-  if (PyObject_SetAttrString(__pyx_m, "MemoryDescriptor", (PyObject *)&__pyx_type_3osd_MemoryDescriptor) < 0) __PYX_ERR(0, 463, __pyx_L1_error)
-  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_3osd_MemoryDescriptor) < 0) __PYX_ERR(0, 463, __pyx_L1_error)
+  if (PyObject_SetAttrString(__pyx_m, "MemoryDescriptor", (PyObject *)&__pyx_type_3osd_MemoryDescriptor) < 0) __PYX_ERR(0, 462, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_3osd_MemoryDescriptor) < 0) __PYX_ERR(0, 462, __pyx_L1_error)
   __pyx_ptype_3osd_MemoryDescriptor = &__pyx_type_3osd_MemoryDescriptor;
-  if (PyType_Ready(&__pyx_type_3osd_MemoryAccess) < 0) __PYX_ERR(0, 536, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_3osd_MemoryAccess) < 0) __PYX_ERR(0, 535, __pyx_L1_error)
   __pyx_type_3osd_MemoryAccess.tp_print = 0;
-  if (PyObject_SetAttrString(__pyx_m, "MemoryAccess", (PyObject *)&__pyx_type_3osd_MemoryAccess) < 0) __PYX_ERR(0, 536, __pyx_L1_error)
-  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_3osd_MemoryAccess) < 0) __PYX_ERR(0, 536, __pyx_L1_error)
+  if (PyObject_SetAttrString(__pyx_m, "MemoryAccess", (PyObject *)&__pyx_type_3osd_MemoryAccess) < 0) __PYX_ERR(0, 535, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_3osd_MemoryAccess) < 0) __PYX_ERR(0, 535, __pyx_L1_error)
   __pyx_ptype_3osd_MemoryAccess = &__pyx_type_3osd_MemoryAccess;
-  if (PyType_Ready(&__pyx_type_3osd_SystraceLogger) < 0) __PYX_ERR(0, 603, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_3osd_SystraceLogger) < 0) __PYX_ERR(0, 602, __pyx_L1_error)
   __pyx_type_3osd_SystraceLogger.tp_print = 0;
-  if (PyObject_SetAttrString(__pyx_m, "SystraceLogger", (PyObject *)&__pyx_type_3osd_SystraceLogger) < 0) __PYX_ERR(0, 603, __pyx_L1_error)
-  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_3osd_SystraceLogger) < 0) __PYX_ERR(0, 603, __pyx_L1_error)
+  if (PyObject_SetAttrString(__pyx_m, "SystraceLogger", (PyObject *)&__pyx_type_3osd_SystraceLogger) < 0) __PYX_ERR(0, 602, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_3osd_SystraceLogger) < 0) __PYX_ERR(0, 602, __pyx_L1_error)
   __pyx_ptype_3osd_SystraceLogger = &__pyx_type_3osd_SystraceLogger;
-  if (PyType_Ready(&__pyx_type_3osd_CoretraceLogger) < 0) __PYX_ERR(0, 698, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_3osd_CoretraceLogger) < 0) __PYX_ERR(0, 697, __pyx_L1_error)
   __pyx_type_3osd_CoretraceLogger.tp_print = 0;
-  if (PyObject_SetAttrString(__pyx_m, "CoretraceLogger", (PyObject *)&__pyx_type_3osd_CoretraceLogger) < 0) __PYX_ERR(0, 698, __pyx_L1_error)
-  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_3osd_CoretraceLogger) < 0) __PYX_ERR(0, 698, __pyx_L1_error)
+  if (PyObject_SetAttrString(__pyx_m, "CoretraceLogger", (PyObject *)&__pyx_type_3osd_CoretraceLogger) < 0) __PYX_ERR(0, 697, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_3osd_CoretraceLogger) < 0) __PYX_ERR(0, 697, __pyx_L1_error)
   __pyx_ptype_3osd_CoretraceLogger = &__pyx_type_3osd_CoretraceLogger;
   __pyx_vtabptr_array = &__pyx_vtable_array;
   __pyx_vtable_array.get_memview = (PyObject *(*)(struct __pyx_array_obj *))__pyx_array_get_memview;
@@ -32271,108 +32268,108 @@ static int __pyx_pymod_exec_osd(PyObject *__pyx_pyinit_module)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "osd.pyx":455
+  /* "osd.pyx":454
  * cdef class Module:
  *     @staticmethod
  *     def get_type_short_name(vendor_id, type_id):             # <<<<<<<<<<<<<<
  *         return str(cosd.osd_module_get_type_short_name(vendor_id, type_id))
  * 
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_3osd_6Module_1get_type_short_name, NULL, __pyx_n_s_osd); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 455, __pyx_L1_error)
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_3osd_6Module_1get_type_short_name, NULL, __pyx_n_s_osd); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 454, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_3osd_Module->tp_dict, __pyx_n_s_get_type_short_name, __pyx_t_1) < 0) __PYX_ERR(0, 455, __pyx_L1_error)
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_3osd_Module->tp_dict, __pyx_n_s_get_type_short_name, __pyx_t_1) < 0) __PYX_ERR(0, 454, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   PyType_Modified(__pyx_ptype_3osd_Module);
 
-  /* "osd.pyx":454
+  /* "osd.pyx":453
  * 
  * cdef class Module:
  *     @staticmethod             # <<<<<<<<<<<<<<
  *     def get_type_short_name(vendor_id, type_id):
  *         return str(cosd.osd_module_get_type_short_name(vendor_id, type_id))
  */
-  __pyx_t_1 = __Pyx_GetNameInClass((PyObject *)__pyx_ptype_3osd_Module, __pyx_n_s_get_type_short_name); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 455, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_GetNameInClass((PyObject *)__pyx_ptype_3osd_Module, __pyx_n_s_get_type_short_name); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 454, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 454, __pyx_L1_error)
+  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 453, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
   __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_staticmethod, __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 454, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_staticmethod, __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 453, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_3osd_Module->tp_dict, __pyx_n_s_get_type_short_name, __pyx_t_1) < 0) __PYX_ERR(0, 455, __pyx_L1_error)
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_3osd_Module->tp_dict, __pyx_n_s_get_type_short_name, __pyx_t_1) < 0) __PYX_ERR(0, 454, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   PyType_Modified(__pyx_ptype_3osd_Module);
 
-  /* "osd.pyx":459
+  /* "osd.pyx":458
  * 
  *     @staticmethod
  *     def get_type_long_name(vendor_id, type_id):             # <<<<<<<<<<<<<<
  *          return str(cosd.osd_module_get_type_long_name(vendor_id, type_id))
  * 
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_3osd_6Module_3get_type_long_name, NULL, __pyx_n_s_osd); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 459, __pyx_L1_error)
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_3osd_6Module_3get_type_long_name, NULL, __pyx_n_s_osd); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 458, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_3osd_Module->tp_dict, __pyx_n_s_get_type_long_name, __pyx_t_1) < 0) __PYX_ERR(0, 459, __pyx_L1_error)
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_3osd_Module->tp_dict, __pyx_n_s_get_type_long_name, __pyx_t_1) < 0) __PYX_ERR(0, 458, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   PyType_Modified(__pyx_ptype_3osd_Module);
 
-  /* "osd.pyx":458
+  /* "osd.pyx":457
  *         return str(cosd.osd_module_get_type_short_name(vendor_id, type_id))
  * 
  *     @staticmethod             # <<<<<<<<<<<<<<
  *     def get_type_long_name(vendor_id, type_id):
  *          return str(cosd.osd_module_get_type_long_name(vendor_id, type_id))
  */
-  __pyx_t_1 = __Pyx_GetNameInClass((PyObject *)__pyx_ptype_3osd_Module, __pyx_n_s_get_type_long_name); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 459, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_GetNameInClass((PyObject *)__pyx_ptype_3osd_Module, __pyx_n_s_get_type_long_name); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 458, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 458, __pyx_L1_error)
+  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 457, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
   __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_staticmethod, __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 458, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_staticmethod, __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 457, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_3osd_Module->tp_dict, __pyx_n_s_get_type_long_name, __pyx_t_1) < 0) __PYX_ERR(0, 459, __pyx_L1_error)
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_3osd_Module->tp_dict, __pyx_n_s_get_type_long_name, __pyx_t_1) < 0) __PYX_ERR(0, 458, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   PyType_Modified(__pyx_ptype_3osd_Module);
 
-  /* "osd.pyx":511
+  /* "osd.pyx":510
  *         return str
  * 
  * def cl_mam_get_mem_desc(Hostmod hostmod, mam_di_addr):             # <<<<<<<<<<<<<<
  *     mem_desc = MemoryDescriptor()
  * 
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_3osd_3cl_mam_get_mem_desc, NULL, __pyx_n_s_osd); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 511, __pyx_L1_error)
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_3osd_3cl_mam_get_mem_desc, NULL, __pyx_n_s_osd); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 510, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_cl_mam_get_mem_desc, __pyx_t_1) < 0) __PYX_ERR(0, 511, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_cl_mam_get_mem_desc, __pyx_t_1) < 0) __PYX_ERR(0, 510, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "osd.pyx":518
+  /* "osd.pyx":517
  *     return mem_desc
  * 
  * def cl_mam_write(MemoryDescriptor mem_desc, Hostmod hostmod, data, addr):             # <<<<<<<<<<<<<<
  *     cdef char* c_data = data
  *     rv = cosd.osd_cl_mam_write(&mem_desc._cself, hostmod._cself, c_data,
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_3osd_5cl_mam_write, NULL, __pyx_n_s_osd); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 518, __pyx_L1_error)
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_3osd_5cl_mam_write, NULL, __pyx_n_s_osd); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 517, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_cl_mam_write, __pyx_t_1) < 0) __PYX_ERR(0, 518, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_cl_mam_write, __pyx_t_1) < 0) __PYX_ERR(0, 517, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "osd.pyx":525
+  /* "osd.pyx":524
  *         raise Exception("Memory write failed (%d)" % rv)
  * 
  * def cl_mam_read(MemoryDescriptor mem_desc, Hostmod hostmod, addr, nbyte):             # <<<<<<<<<<<<<<
  *     data = bytearray(nbyte)
  *     cdef char* c_data = data
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_3osd_7cl_mam_read, NULL, __pyx_n_s_osd); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 525, __pyx_L1_error)
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_3osd_7cl_mam_read, NULL, __pyx_n_s_osd); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 524, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_cl_mam_read, __pyx_t_1) < 0) __PYX_ERR(0, 525, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_cl_mam_read, __pyx_t_1) < 0) __PYX_ERR(0, 524, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
   /* "(tree fragment)":1

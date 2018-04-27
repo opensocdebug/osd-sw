@@ -271,7 +271,6 @@ cdef class Hostmod:
     def disconnect(self):
         cosd.osd_hostmod_disconnect(self._cself)
 
-    @property
     def is_connected(self):
         return cosd.osd_hostmod_is_connected(self._cself)
 
