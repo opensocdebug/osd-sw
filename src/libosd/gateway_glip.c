@@ -376,3 +376,9 @@ bool osd_gateway_glip_is_connected(struct osd_gateway_glip_ctx *ctx)
     return osd_gateway_is_connected(ctx->gw_ctx) &&
            glip_is_connected(ctx->glip_ctx);
 }
+
+struct osd_gateway_transfer_stats*
+osd_gateway_glip_get_transfer_stats(struct osd_gateway_glip_ctx *ctx)
+{
+    return osd_gateway_get_transfer_stats(ctx->gw_ctx);
+}
