@@ -21,7 +21,9 @@ from libc.stdlib cimport malloc, free
 from libc.stdio cimport FILE, fopen, fclose
 from libc.errno cimport errno
 from libc.string cimport strerror
+from posix.time cimport timespec
 
+import time
 import logging
 import os
 
@@ -418,6 +420,20 @@ cdef class GatewayGlip:
 
     def is_connected(self):
         return cosd.osd_gateway_glip_is_connected(self._cself)
+
+    def get_transfer_stats(self):
+        cdef cosd.osd_gateway_transfer_stats *stats
+
+        stats = cosd.osd_gateway_glip_get_transfer_stats(self._cself)
+
+        connect_time_float = stats.connect_time.tv_sec
+            + stats.connect_time.tv_nsec * 1e-9
+        cur_time = time.clock_gettime(time.CLOCK_MONOTONIC)
+        time_elapsed = cur_time - connect_time_float
+
+        return { 'bytes_from_device': stats.bytes_from_device,
+                 'bytes_to_device': stats.bytes_to_device,
+                 'connected_secs': time_elapsed }
 
 
 cdef class Hostctrl:
