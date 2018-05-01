@@ -610,8 +610,11 @@ cdef class MemoryAccess:
     def loadelf(self, MemoryDescriptor mem_desc, elf_file_path, verify):
         py_byte_string = elf_file_path.encode('UTF-8')
         cdef char* c_elf_file_path = py_byte_string
-        rv = cosd.osd_memaccess_loadelf(self._cself, &mem_desc._cself, c_elf_file_path,
-                                        verify)
+        cdef int c_verify = verify
+
+        with nogil:
+            rv = cosd.osd_memaccess_loadelf(self._cself, &mem_desc._cself,
+                                            c_elf_file_path, c_verify)
         check_osd_result(rv)
 
 
