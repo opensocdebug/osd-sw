@@ -229,6 +229,18 @@ cdef class Packet:
         cdef uint16_t[:] payload_view = <uint16_t[:payload_size_words]>self._cself.data.payload
         return payload_view
 
+    @property
+    def size_payload_words(self):
+        """ Payload size in 16 bit words """
+        self._ensure_cself()
+        return cosd.osd_packet_sizeconv_data2payload(self._cself.data_size_words)
+
+    @property
+    def size_words(self):
+        """ Packet size in 16 bit words (including header) """
+        self._ensure_cself()
+        return self._cself.data_size_words
+
     def __str__(self):
         cdef char* c_str = NULL
         self._ensure_cself()
@@ -426,8 +438,7 @@ cdef class GatewayGlip:
 
         stats = cosd.osd_gateway_glip_get_transfer_stats(self._cself)
 
-        connect_time_float = stats.connect_time.tv_sec
-            + stats.connect_time.tv_nsec * 1e-9
+        connect_time_float = stats.connect_time.tv_sec + stats.connect_time.tv_nsec * 1e-9
         cur_time = time.clock_gettime(time.CLOCK_MONOTONIC)
         time_elapsed = cur_time - connect_time_float
 
