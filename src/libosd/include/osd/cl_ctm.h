@@ -39,8 +39,8 @@ extern "C" {
  */
 struct osd_ctm_desc {
     unsigned int di_addr; //!< DI address of the memory
-    uint16_t addr_width_bit; //<! Width of an address in bit
-    uint16_t data_width_bit; //<! Width of a data word in bit
+    uint16_t addr_width_bit; //!< Width of an address in bit
+    uint16_t data_width_bit; //!< Width of a data word in bit
 };
 
 /**
