@@ -65,8 +65,6 @@
 //CDM register map
 #define OSD_REG_CDM_CORE_CTRL 0x0200
 #define OSD_REG_CDM_CORE_REG_UPPER 0x0201
-#define OSD_REG_CDM_CORE_ADDR(spr_reg_addr) (0x8000 + (spr_reg_addr & 0x7fff))
-
 
 /**@}*/ /* end of doxygen group libosd-reg */
 
