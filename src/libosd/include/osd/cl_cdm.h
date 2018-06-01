@@ -38,43 +38,10 @@ extern "C" {
  * Information a Core Debug Module
  */
 struct osd_cdm_desc {
+    unsigned int di_addr; //!< DI address of the memory    
     uint16_t core_ctrl; //!< control signal for CPU core in bit
     uint16_t core_reg_upper; //!< Most significant bits of the SPR address in bit
-    uint32_t cdm_reg_addr; //!< access to core register in bit
 };
-
-
-/**
- * Write data to an SPR of the CPU core attached to a Core Debug Module (CDM)
- *
- * This function blocks until the write is acknowledged by the CPU core.
- *
- * @param hostmod_ctx the host module handling the communication
- * @param data the data to be written
- * @param addr  byte address to write data to. 
- * @return OSD_OK if the write was successful
- *         any other value indicates an error
- *
- * @see osd_cl_cdm_read()
- */
-osd_result osd_cl_cdm_write(struct osd_hostmod_ctx *hostmod_ctx,
-                            const void *data, uint16_t addr);
-
-/**
- * Read data from an SPR of the CPU core attached to a Core Debug Module (CDM)
- *
- * This function blocks until the read is acknowledged by the CPU core.
- *
- * @param hostmod_ctx the host module handling the communication
- * @param data the returned read data. 
- * @param addr byte address to read from
- * @return OSD_OK if the read was successful
- *         any other value indicates an error
- *
- * @see osd_cl_cdm_write()
- */
-osd_result osd_cl_cdm_read(struct osd_hostmod_ctx *hostmod_ctx,
-                           void *data, uint16_t start_addr);
 
 
 /**
