@@ -1,4 +1,4 @@
-/* Copyright 2017-2018 The Open SoC Debug Project
+/* Copyright 2018 The Open SoC Debug Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -52,11 +52,15 @@ START_TEST(test_get_desc)
     mock_hostmod_expect_reg_read16(5, cdm_diaddr, OSD_REG_CDM_CORE_REG_UPPER,
                                    OSD_OK);
 
+    mock_hostmod_expect_reg_read16(32, cdm_diaddr, OSD_REG_CDM_CORE_DATA_WIDTH,
+                                   OSD_OK);
+    
     struct osd_cdm_desc cdm_desc;
     rv = osd_cl_cdm_get_desc(mock_hostmod_get_ctx(), cdm_diaddr, &cdm_desc);
     ck_assert_int_eq(rv, OSD_OK);
     ck_assert_uint_eq(cdm_desc.core_ctrl, 1);
     ck_assert_uint_eq(cdm_desc.core_reg_upper, 5);
+    ck_assert_uint_eq(cdm_desc.core_data_width, 32);
     ck_assert_uint_eq(cdm_desc.di_addr, cdm_diaddr);
 }
 END_TEST
@@ -96,19 +100,22 @@ START_TEST(test_handle_event)
     cdm_desc.di_addr = 2;
     cdm_desc.core_ctrl = 16;
     cdm_desc.core_reg_upper = 1;
+    cdm_desc.core_data_width = 32;
+
 
     struct osd_cdm_event_handler ev_handler;
     ev_handler.cb_fn = event_handler;
     ev_handler.cdm_desc = &cdm_desc;
 
+    bool stall_bit = 1;
     struct osd_packet *pkg_trace;
     osd_packet_new(&pkg_trace, osd_packet_sizeconv_payload2data(1));
     rv = osd_packet_set_header(pkg_trace, 1, 2, OSD_PACKET_TYPE_EVENT, 0);
     ck_assert_int_eq(rv, OSD_OK);
-    pkg_trace->data.payload[0] = 1; // stall
+    pkg_trace->data.payload[0] = stall_bit; // stall
 
     struct osd_cdm_event exp_event;
-    exp_event.stall = 1;
+    exp_event.stall = stall_bit;
     ev_handler.cb_arg = (void*)&exp_event;
     rv = osd_cl_cdm_handle_event((void*)&ev_handler, pkg_trace);
     ck_assert_int_eq(rv, OSD_OK);

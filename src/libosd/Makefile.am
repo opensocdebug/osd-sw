@@ -10,7 +10,7 @@ pkginclude_HEADERS =\
 	include/osd/cl_scm.h \
 	include/osd/cl_stm.h \
 	include/osd/cl_ctm.h \
-        include/osd/cl_cdm.h \
+	include/osd/cl_cdm.h \
 	include/osd/memaccess.h \
 	include/osd/systracelogger.h \
 	include/osd/coretracelogger.h
