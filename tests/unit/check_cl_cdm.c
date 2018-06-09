@@ -87,10 +87,11 @@ static void event_handler(void *arg, const struct osd_cdm_desc *cdm_desc,
 
     // in this test we pass the expected event as callback argument
     struct osd_cdm_event *exp_event = arg;
-
     ck_assert_uint_eq(exp_event->stall, event->stall);
     
 }
+
+#define STALL_BIT 0
 
 START_TEST(test_handle_event)
 {
@@ -102,22 +103,76 @@ START_TEST(test_handle_event)
     cdm_desc.core_reg_upper = 1;
     cdm_desc.core_data_width = 32;
 
-
     struct osd_cdm_event_handler ev_handler;
     ev_handler.cb_fn = event_handler;
     ev_handler.cdm_desc = &cdm_desc;
 
-    bool stall_bit = 1;
     struct osd_packet *pkg_trace;
     osd_packet_new(&pkg_trace, osd_packet_sizeconv_payload2data(1));
     rv = osd_packet_set_header(pkg_trace, 1, 2, OSD_PACKET_TYPE_EVENT, 0);
     ck_assert_int_eq(rv, OSD_OK);
-    pkg_trace->data.payload[0] = stall_bit; // stall
+    pkg_trace->data.payload[0] = BIT(STALL_BIT); // stall (1 << 0)
 
     struct osd_cdm_event exp_event;
-    exp_event.stall = stall_bit;
+    exp_event.stall = BIT(STALL_BIT);
     ev_handler.cb_arg = (void*)&exp_event;
     rv = osd_cl_cdm_handle_event((void*)&ev_handler, pkg_trace);
+    ck_assert_int_eq(rv, OSD_OK);
+}
+END_TEST
+
+struct osd_cdm_desc get_cdm_desc(void)
+{
+    struct osd_cdm_desc cdm_desc = { 0 };
+    cdm_desc.di_addr = cdm_diaddr;
+    cdm_desc.core_ctrl = 1;
+    cdm_desc.core_reg_upper = 0;
+    cdm_desc.core_data_width = 32;
+
+    return cdm_desc;
+}
+
+START_TEST(test_cpu_read_register)
+{
+    osd_result rv;
+    struct osd_cdm_desc cdm_desc = get_cdm_desc();
+    
+    uint32_t reg_read_result;
+    uint16_t reg_addr = 0xf007;
+    uint16_t reg_addr_upper = reg_addr >> 15;
+    uint16_t core_upper = cdm_desc.core_reg_upper;
+    
+    if (core_upper != reg_addr_upper) {
+    	cdm_desc.core_reg_upper = reg_addr_upper;
+    }
+    
+    uint16_t cdm_reg_addr = 0x8000 + (reg_addr & 0x7fff);
+    mock_hostmod_expect_reg_read32(0xabcddead, cdm_diaddr, cdm_reg_addr, OSD_OK);
+                                   
+    rv = cl_cdm_cpureg_read(mock_hostmod_get_ctx(), &cdm_desc, &reg_read_result, reg_addr, 0); 
+    ck_assert_int_eq(rv, OSD_OK);
+    ck_assert_uint_eq(reg_read_result, 0xabcddead);
+}
+END_TEST
+
+START_TEST(test_cpu_write_register)
+{
+    osd_result rv;
+    struct osd_cdm_desc cdm_desc = get_cdm_desc();
+    
+    uint16_t reg_addr = 0xf007;
+    uint32_t reg_val = 0xabcddead;
+    uint16_t reg_addr_upper = reg_addr >> 15;
+    uint16_t core_upper = cdm_desc.core_reg_upper;
+    
+    if (core_upper != reg_addr_upper) {
+    	cdm_desc.core_reg_upper = reg_addr_upper;
+    }
+
+    uint16_t cdm_reg_addr = 0x8000 + (reg_addr & 0x7fff);
+    mock_hostmod_expect_reg_write32(reg_val, cdm_diaddr, cdm_reg_addr, OSD_OK);
+ 
+    rv = cl_cdm_cpureg_write(mock_hostmod_get_ctx(), &cdm_desc, &reg_val, reg_addr, 0);
     ck_assert_int_eq(rv, OSD_OK);
 }
 END_TEST
@@ -125,8 +180,8 @@ END_TEST
 Suite *suite(void)
 {
     Suite *s;
-    TCase *tc_core;
-
+    TCase *tc_core, *tc_rw;
+    
     s = suite_create(TEST_SUITE_NAME);
 
     tc_core = tcase_create("Core Functionality");
@@ -134,8 +189,13 @@ Suite *suite(void)
     tcase_add_test(tc_core, test_get_desc);
     tcase_add_test(tc_core, test_get_desc_wrong_module);
     tcase_add_test(tc_core, test_handle_event);
-   
     suite_add_tcase(s, tc_core);
+
+    tc_rw = tcase_create("CPU Register read/write");
+    tcase_add_checked_fixture(tc_rw, setup, teardown);
+    tcase_add_test(tc_rw, test_cpu_read_register);
+    tcase_add_test(tc_rw, test_cpu_write_register);
+    suite_add_tcase(s, tc_rw);
 
     return s;
 }

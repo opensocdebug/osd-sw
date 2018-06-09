@@ -26,7 +26,7 @@ static struct osd_cdm_event* build_cdm_event(const struct osd_cdm_desc *cdm_desc
 {
     struct osd_cdm_event *ev = calloc(1, sizeof(struct osd_cdm_event));
 
-    size_t exp_payload_len = 1; //stall
+    size_t exp_payload_len = 1; // stall
     assert(osd_packet_sizeconv_payload2data(exp_payload_len)
            == pkg->data_size_words
            && "CDM Protocol violation detected.");
@@ -51,7 +51,6 @@ osd_result osd_cl_cdm_handle_event(void *arg, struct osd_packet *pkg)
     osd_packet_free(&pkg);
 
     handler->cb_fn(handler->cb_arg, handler->cdm_desc, ev);
-
     free(ev);
 
     return OSD_OK;
@@ -113,21 +112,33 @@ osd_result osd_cl_cdm_get_desc(struct osd_hostmod_ctx *hostmod_ctx,
 }
 
 API_EXPORT
-/**
- * Issue a read register request to the Core Debug Module (CDM)
- */
 osd_result cl_cdm_cpureg_read(struct osd_hostmod_ctx *hostmod_ctx,
-                              unsigned int cdm_di_addr,
+                              struct osd_cdm_desc *cdm_desc,
                               void *reg_val, uint16_t reg_addr,
                               int flags)
 {   
     assert(hostmod_ctx);
- 
+    assert(cdm_desc);
+
     osd_result rv;
- 
+    
+    uint16_t cdm_di_addr = cdm_desc->di_addr;
+    uint16_t reg_addr_upper = reg_addr >> 15;
+    uint16_t core_upper = cdm_desc->core_reg_upper;
+    
+    if (core_upper != reg_addr_upper) {
+	rv = osd_hostmod_reg_write(hostmod_ctx, &reg_addr_upper, cdm_di_addr,
+                    		   OSD_REG_CDM_CORE_REG_UPPER, 16, 0);
+
+    if (OSD_FAILED(rv)) return rv;
+    	cdm_desc->core_reg_upper = reg_addr_upper;
+    }
+    
+    uint16_t cdm_reg_addr = 0x8000 + (reg_addr & 0x7fff);  
+    uint16_t core_dw = cdm_desc->core_data_width;  
     rv = osd_hostmod_reg_read(hostmod_ctx, reg_val, cdm_di_addr, 
-                                    reg_addr, OSD_REG_CDM_CORE_DATA_WIDTH, 
-                                    flags);   
+                              cdm_reg_addr, core_dw, flags);
+                                   
     if (OSD_FAILED(rv)) return rv;
     
     return OSD_OK;
@@ -135,21 +146,33 @@ osd_result cl_cdm_cpureg_read(struct osd_hostmod_ctx *hostmod_ctx,
 }
 
 API_EXPORT
-/**
- * Issue a write register request to the Core Debug Module (CDM)
- */
 osd_result cl_cdm_cpureg_write(struct osd_hostmod_ctx *hostmod_ctx,
-                              unsigned int cdm_di_addr,
-                              void *reg_val, uint16_t reg_addr,
-                              int flags)
+                               struct osd_cdm_desc *cdm_desc,
+                               const void *reg_val, uint16_t reg_addr,
+                               int flags)
 {   
     assert(hostmod_ctx);
-    
-    osd_result rv;
+    assert(cdm_desc);
 
+    osd_result rv;
+    
+    uint16_t cdm_di_addr = cdm_desc->di_addr;
+    uint16_t reg_addr_upper = reg_addr >> 15;
+    uint16_t core_upper = cdm_desc->core_reg_upper;
+    
+    if (core_upper != reg_addr_upper) {
+	rv = osd_hostmod_reg_write(hostmod_ctx, &reg_addr_upper, cdm_di_addr,
+                    		   OSD_REG_CDM_CORE_REG_UPPER, 16, 0);
+  
+    if (OSD_FAILED(rv)) return rv;
+    	cdm_desc->core_reg_upper = reg_addr_upper;
+    }
+    
+    uint16_t cdm_reg_addr = 0x8000 + (reg_addr & 0x7fff);  
+    uint16_t core_dw = cdm_desc->core_data_width;
     rv = osd_hostmod_reg_write(hostmod_ctx, reg_val, cdm_di_addr, 
-                                    reg_addr, OSD_REG_CDM_CORE_DATA_WIDTH, 
-                                    flags);   
+                               cdm_reg_addr, core_dw, flags);
+                                    
     if (OSD_FAILED(rv)) return rv;
     
     return OSD_OK;
