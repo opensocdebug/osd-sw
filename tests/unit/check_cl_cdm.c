@@ -132,7 +132,23 @@ struct osd_cdm_desc get_cdm_desc(void)
     return cdm_desc;
 }
 
-START_TEST(test_cpu_read_register)
+START_TEST(test_cpu_read_register_test1)
+{
+    osd_result rv;
+    struct osd_cdm_desc cdm_desc = get_cdm_desc();
+    
+    uint32_t reg_read_result;
+    uint16_t reg_addr = 0x0007;
+    uint16_t cdm_reg_addr = 0x8000 + (reg_addr & 0x7fff);
+    mock_hostmod_expect_reg_read32(0xabcddead, cdm_diaddr, cdm_reg_addr, OSD_OK);
+                                   
+    rv = cl_cdm_cpureg_read(mock_hostmod_get_ctx(), &cdm_desc, &reg_read_result, reg_addr, 0); 
+    ck_assert_int_eq(rv, OSD_OK);
+    ck_assert_uint_eq(reg_read_result, 0xabcddead);
+}
+END_TEST
+
+START_TEST(test_cpu_read_register_test2)
 {
     osd_result rv;
     struct osd_cdm_desc cdm_desc = get_cdm_desc();
@@ -143,7 +159,8 @@ START_TEST(test_cpu_read_register)
     uint16_t core_upper = cdm_desc.core_reg_upper;
     
     if (core_upper != reg_addr_upper) {
-    	cdm_desc.core_reg_upper = reg_addr_upper;
+        mock_hostmod_expect_reg_write16(reg_addr_upper, cdm_diaddr, OSD_REG_CDM_CORE_REG_UPPER, 
+                                        OSD_OK);
     }
     
     uint16_t cdm_reg_addr = 0x8000 + (reg_addr & 0x7fff);
@@ -155,7 +172,22 @@ START_TEST(test_cpu_read_register)
 }
 END_TEST
 
-START_TEST(test_cpu_write_register)
+START_TEST(test_cpu_write_register_test1)
+{
+    osd_result rv;
+    struct osd_cdm_desc cdm_desc = get_cdm_desc();
+    
+    uint16_t reg_addr = 0x0007;
+    uint32_t reg_val = 0xabcddead;
+    uint16_t cdm_reg_addr = 0x8000 + (reg_addr & 0x7fff);
+    mock_hostmod_expect_reg_write32(reg_val, cdm_diaddr, cdm_reg_addr, OSD_OK);
+                                   
+    rv = cl_cdm_cpureg_write(mock_hostmod_get_ctx(), &cdm_desc, &reg_val, reg_addr, 0);
+    ck_assert_int_eq(rv, OSD_OK);
+}
+END_TEST
+
+START_TEST(test_cpu_write_register_test2)
 {
     osd_result rv;
     struct osd_cdm_desc cdm_desc = get_cdm_desc();
@@ -166,7 +198,8 @@ START_TEST(test_cpu_write_register)
     uint16_t core_upper = cdm_desc.core_reg_upper;
     
     if (core_upper != reg_addr_upper) {
-    	cdm_desc.core_reg_upper = reg_addr_upper;
+        mock_hostmod_expect_reg_write16(reg_addr_upper, cdm_diaddr, OSD_REG_CDM_CORE_REG_UPPER, 
+                                        OSD_OK);
     }
 
     uint16_t cdm_reg_addr = 0x8000 + (reg_addr & 0x7fff);
@@ -193,8 +226,10 @@ Suite *suite(void)
 
     tc_rw = tcase_create("CPU Register read/write");
     tcase_add_checked_fixture(tc_rw, setup, teardown);
-    tcase_add_test(tc_rw, test_cpu_read_register);
-    tcase_add_test(tc_rw, test_cpu_write_register);
+    tcase_add_test(tc_rw, test_cpu_read_register_test1);
+    tcase_add_test(tc_rw, test_cpu_read_register_test2);
+    tcase_add_test(tc_rw, test_cpu_write_register_test1);
+    tcase_add_test(tc_rw, test_cpu_write_register_test2);
     suite_add_tcase(s, tc_rw);
 
     return s;

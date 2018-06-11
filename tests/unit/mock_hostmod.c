@@ -272,11 +272,11 @@ osd_result osd_hostmod_reg_write(struct osd_hostmod_ctx *ctx,
     assert(reg_size_bit%16 == 0 && reg_size_bit<=32); // XXX: Extend for other register sizes (64 and 128 bits)
     
     if (reg_size_bit == 16) {
-    	uint64_t written_reg_val = *(uint16_t*)reg_val;
-    	ck_assert_uint_eq(written_reg_val, exp->reg_val);
+        uint64_t written_reg_val = *(uint16_t*)reg_val;
+        ck_assert_uint_eq(written_reg_val, exp->reg_val);
     } else {
-    	uint64_t written_reg_val = *(uint32_t*)reg_val;
-    	ck_assert_uint_eq(written_reg_val, exp->reg_val);
+        uint64_t written_reg_val = *(uint32_t*)reg_val;
+        ck_assert_uint_eq(written_reg_val, exp->reg_val);
     }
 
     osd_result retval = exp->retval;

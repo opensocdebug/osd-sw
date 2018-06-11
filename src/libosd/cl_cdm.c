@@ -127,18 +127,16 @@ osd_result cl_cdm_cpureg_read(struct osd_hostmod_ctx *hostmod_ctx,
     uint16_t core_upper = cdm_desc->core_reg_upper;
     
     if (core_upper != reg_addr_upper) {
-	rv = osd_hostmod_reg_write(hostmod_ctx, &reg_addr_upper, cdm_di_addr,
-                    		   OSD_REG_CDM_CORE_REG_UPPER, 16, 0);
-
-    if (OSD_FAILED(rv)) return rv;
-    	cdm_desc->core_reg_upper = reg_addr_upper;
+        rv = osd_hostmod_reg_write(hostmod_ctx, &reg_addr_upper, cdm_di_addr, 
+                                   OSD_REG_CDM_CORE_REG_UPPER, 16, 0);
+        if (OSD_FAILED(rv)) return rv;
+        cdm_desc->core_reg_upper = reg_addr_upper;
     }
     
     uint16_t cdm_reg_addr = 0x8000 + (reg_addr & 0x7fff);  
     uint16_t core_dw = cdm_desc->core_data_width;  
     rv = osd_hostmod_reg_read(hostmod_ctx, reg_val, cdm_di_addr, 
                               cdm_reg_addr, core_dw, flags);
-                                   
     if (OSD_FAILED(rv)) return rv;
     
     return OSD_OK;
@@ -161,18 +159,16 @@ osd_result cl_cdm_cpureg_write(struct osd_hostmod_ctx *hostmod_ctx,
     uint16_t core_upper = cdm_desc->core_reg_upper;
     
     if (core_upper != reg_addr_upper) {
-	rv = osd_hostmod_reg_write(hostmod_ctx, &reg_addr_upper, cdm_di_addr,
-                    		   OSD_REG_CDM_CORE_REG_UPPER, 16, 0);
-  
-    if (OSD_FAILED(rv)) return rv;
-    	cdm_desc->core_reg_upper = reg_addr_upper;
+        rv = osd_hostmod_reg_write(hostmod_ctx, &reg_addr_upper, cdm_di_addr,
+                                   OSD_REG_CDM_CORE_REG_UPPER, 16, 0);
+        if (OSD_FAILED(rv)) return rv;
+        cdm_desc->core_reg_upper = reg_addr_upper;
     }
     
     uint16_t cdm_reg_addr = 0x8000 + (reg_addr & 0x7fff);  
     uint16_t core_dw = cdm_desc->core_data_width;
     rv = osd_hostmod_reg_write(hostmod_ctx, reg_val, cdm_di_addr, 
                                cdm_reg_addr, core_dw, flags);
-                                    
     if (OSD_FAILED(rv)) return rv;
     
     return OSD_OK;
