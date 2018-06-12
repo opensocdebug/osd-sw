@@ -17,22 +17,22 @@
 
 #include <assert.h>
 #include <osd/osd.h>
-#include <osd/reg.h>
 #include <osd/packet.h>
+#include <osd/reg.h>
 #include "osd-private.h"
 
-static struct osd_cdm_event* build_cdm_event(const struct osd_cdm_desc *cdm_desc,
-                                             const struct osd_packet *pkg)
+static struct osd_cdm_event *build_cdm_event(
+    const struct osd_cdm_desc *cdm_desc, const struct osd_packet *pkg)
 {
     struct osd_cdm_event *ev = calloc(1, sizeof(struct osd_cdm_event));
 
-    size_t exp_payload_len = 1; // stall
-    assert(osd_packet_sizeconv_payload2data(exp_payload_len)
-           == pkg->data_size_words
-           && "CDM Protocol violation detected.");
+    size_t exp_payload_len = 1;  // stall
+    assert(osd_packet_sizeconv_payload2data(exp_payload_len) ==
+               pkg->data_size_words &&
+           "CDM Protocol violation detected.");
 
     bool stall = pkg->data.payload[0];
-  
+
     ev->stall = stall;
     return ev;
 }
@@ -113,34 +113,33 @@ osd_result osd_cl_cdm_get_desc(struct osd_hostmod_ctx *hostmod_ctx,
 
 API_EXPORT
 osd_result cl_cdm_cpureg_read(struct osd_hostmod_ctx *hostmod_ctx,
-                              struct osd_cdm_desc *cdm_desc,
-                              void *reg_val, uint16_t reg_addr,
-                              int flags)
-{   
+                              struct osd_cdm_desc *cdm_desc, void *reg_val,
+                              uint16_t reg_addr, int flags)
+{
     assert(hostmod_ctx);
     assert(cdm_desc);
 
     osd_result rv;
-    
+
     uint16_t cdm_di_addr = cdm_desc->di_addr;
     uint16_t reg_addr_upper = reg_addr >> 15;
     uint16_t core_upper = cdm_desc->core_reg_upper;
-    
+
     if (core_upper != reg_addr_upper) {
-        rv = osd_hostmod_reg_write(hostmod_ctx, &reg_addr_upper, cdm_di_addr, 
+        rv = osd_hostmod_reg_write(hostmod_ctx, &reg_addr_upper, cdm_di_addr,
                                    OSD_REG_CDM_CORE_REG_UPPER, 16, 0);
         if (OSD_FAILED(rv)) return rv;
         cdm_desc->core_reg_upper = reg_addr_upper;
     }
-    
-    uint16_t cdm_reg_addr = 0x8000 + (reg_addr & 0x7fff);  
-    uint16_t core_dw = cdm_desc->core_data_width;  
-    rv = osd_hostmod_reg_read(hostmod_ctx, reg_val, cdm_di_addr, 
-                              cdm_reg_addr, core_dw, flags);
-    if (OSD_FAILED(rv)) return rv;
-    
-    return OSD_OK;
 
+    uint16_t cdm_reg_addr = 0x8000 + (reg_addr & 0x7fff);
+    uint16_t core_dw = cdm_desc->core_data_width;
+    // 128-bit wide register accesses are not supported right now.
+    rv = osd_hostmod_reg_read(hostmod_ctx, reg_val, cdm_di_addr, cdm_reg_addr,
+                              core_dw, flags);
+    if (OSD_FAILED(rv)) return rv;
+
+    return OSD_OK;
 }
 
 API_EXPORT
@@ -148,29 +147,29 @@ osd_result cl_cdm_cpureg_write(struct osd_hostmod_ctx *hostmod_ctx,
                                struct osd_cdm_desc *cdm_desc,
                                const void *reg_val, uint16_t reg_addr,
                                int flags)
-{   
+{
     assert(hostmod_ctx);
     assert(cdm_desc);
 
     osd_result rv;
-    
+
     uint16_t cdm_di_addr = cdm_desc->di_addr;
     uint16_t reg_addr_upper = reg_addr >> 15;
     uint16_t core_upper = cdm_desc->core_reg_upper;
-    
+
     if (core_upper != reg_addr_upper) {
         rv = osd_hostmod_reg_write(hostmod_ctx, &reg_addr_upper, cdm_di_addr,
                                    OSD_REG_CDM_CORE_REG_UPPER, 16, 0);
         if (OSD_FAILED(rv)) return rv;
         cdm_desc->core_reg_upper = reg_addr_upper;
     }
-    
-    uint16_t cdm_reg_addr = 0x8000 + (reg_addr & 0x7fff);  
-    uint16_t core_dw = cdm_desc->core_data_width;
-    rv = osd_hostmod_reg_write(hostmod_ctx, reg_val, cdm_di_addr, 
-                               cdm_reg_addr, core_dw, flags);
-    if (OSD_FAILED(rv)) return rv;
-    
-    return OSD_OK;
 
+    uint16_t cdm_reg_addr = 0x8000 + (reg_addr & 0x7fff);
+    uint16_t core_dw = cdm_desc->core_data_width;
+    // 128-bit wide register accesses are not supported right now.
+    rv = osd_hostmod_reg_write(hostmod_ctx, reg_val, cdm_di_addr, cdm_reg_addr,
+                               core_dw, flags);
+    if (OSD_FAILED(rv)) return rv;
+
+    return OSD_OK;
 }

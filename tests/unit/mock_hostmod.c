@@ -141,6 +141,24 @@ void mock_hostmod_expect_reg_read32(uint32_t reg_val, uint16_t diaddr,
     mock_hostmod_expect_reg_read_raw(exp);
 }
 
+void mock_hostmod_expect_reg_read64(uint64_t reg_val, uint16_t diaddr,
+                                    uint16_t reg_addr, osd_result retval)
+{
+    struct mock_hostmod_regaccess *exp;
+
+    exp = calloc(1, sizeof(struct mock_hostmod_regaccess));
+    ck_assert(exp);
+
+    exp->flags = MOCK_HOSTMOD_FLAGS_NOCHECK;
+    exp->reg_size_bit = 64;
+
+    exp->diaddr = diaddr;
+    exp->reg_addr = reg_addr;
+    exp->reg_val = (uint64_t)reg_val;
+    exp->retval = retval;
+    mock_hostmod_expect_reg_read_raw(exp);
+}
+
 void mock_hostmod_expect_mod_describe(uint16_t diaddr, uint16_t vendor,
                                       uint16_t type, uint16_t version)
 {
@@ -180,6 +198,24 @@ void mock_hostmod_expect_reg_write32(uint32_t reg_val, uint16_t diaddr,
 
     exp->flags = MOCK_HOSTMOD_FLAGS_NOCHECK;
     exp->reg_size_bit = 32;
+
+    exp->diaddr = diaddr;
+    exp->reg_addr = reg_addr;
+    exp->reg_val = (uint64_t)reg_val;
+    exp->retval = retval;
+    mock_hostmod_expect_reg_write_raw(exp);
+}
+
+void mock_hostmod_expect_reg_write64(uint64_t reg_val, uint16_t diaddr,
+                                     uint16_t reg_addr, osd_result retval)
+{
+    struct mock_hostmod_regaccess *exp;
+
+    exp = calloc(1, sizeof(struct mock_hostmod_regaccess));
+    ck_assert(exp);
+
+    exp->flags = MOCK_HOSTMOD_FLAGS_NOCHECK;
+    exp->reg_size_bit = 64;
 
     exp->diaddr = diaddr;
     exp->reg_addr = reg_addr;
@@ -269,13 +305,17 @@ osd_result osd_hostmod_reg_write(struct osd_hostmod_ctx *ctx,
         ck_assert_int_eq(exp->flags, flags);
     }
 
-    assert(reg_size_bit%16 == 0 && reg_size_bit<=32); // XXX: Extend for other register sizes (64 and 128 bits)
+    // XXX: Extend for 128-bit wide register size.
+    assert(reg_size_bit == 16 || reg_size_bit == 32 || reg_size_bit == 64);  
     
     if (reg_size_bit == 16) {
         uint64_t written_reg_val = *(uint16_t*)reg_val;
         ck_assert_uint_eq(written_reg_val, exp->reg_val);
-    } else {
+    } else if (reg_size_bit == 32) {
         uint64_t written_reg_val = *(uint32_t*)reg_val;
+        ck_assert_uint_eq(written_reg_val, exp->reg_val);
+    } else {
+        uint64_t written_reg_val = *(uint64_t*)reg_val;
         ck_assert_uint_eq(written_reg_val, exp->reg_val);
     }
 
