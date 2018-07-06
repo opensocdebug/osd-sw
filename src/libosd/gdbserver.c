@@ -14,6 +14,7 @@
  */
 
 #include <osd/gdbserver.h>
+#include "gdbserver-private.h"
 #include <osd/module.h>
 #include <osd/osd.h>
 #include <osd/reg.h>
@@ -128,33 +129,6 @@ osd_result osd_gdbserver_connect(struct osd_gdbserver_ctx *ctx, char *name,
         return OSD_ERROR_CONNECTION_FAILED;
     }
 
-    struct sockaddr_in addr_in;
-    addr_in.sin_port = 0;
-    socklen_t addr_in_size = sizeof(addr_in);
-
-    getsockname(ctx->fd, (struct sockaddr *)&addr_in, &addr_in_size);
-    printf("server started on %s, listening on port %d\n", name,
-           ntohs(addr_in.sin_port));
-
-    while (1) {
-        ctx->client_fd =
-            accept(ctx->fd, (struct sockaddr *)&addr_in, &addr_in_size);
-        if (OSD_FAILED(ctx->client_fd)) {
-            rv = close(ctx->client_fd);
-            if (OSD_SUCCEEDED(rv)) {
-                break;
-            }
-        }
-        printf("Server got connection from client %s\n",
-               inet_ntoa(addr_in.sin_addr));
-
-        if (OSD_SUCCEEDED(close(ctx->client_fd))) {
-            break;
-        }
-    }
-
-    close(ctx->fd);
-
     return OSD_OK;
 }
 
@@ -183,6 +157,47 @@ void osd_gdbserver_free(struct osd_gdbserver_ctx **ctx_p)
 
     free(ctx);
     *ctx_p = NULL;
+}
+
+API_EXPORT
+osd_result osd_gdbserver_start(struct osd_gdbserver_ctx *ctx)
+{
+    osd_result rv;
+
+    struct sockaddr_in addr_in;
+    addr_in.sin_port = 0;
+    socklen_t addr_in_size = sizeof(addr_in);
+
+    getsockname(ctx->fd, (struct sockaddr *)&addr_in, &addr_in_size);
+    printf("server started listening on port %d\n", ntohs(addr_in.sin_port));
+
+    while (1) {
+        ctx->client_fd =
+            accept(ctx->fd, (struct sockaddr *)&addr_in, &addr_in_size);
+        if (OSD_FAILED(ctx->client_fd)) {
+            rv = close(ctx->client_fd);
+            if (OSD_SUCCEEDED(rv)) {
+                break;
+            }
+        }
+
+        // At this point, connection is established between GDB client
+        // and gdbserver, and they are ready to transfer data.
+        // More functions to be added
+        printf("Server got connection from client %s\n",
+               inet_ntoa(addr_in.sin_addr));
+
+        if (OSD_SUCCEEDED(close(ctx->client_fd))) {
+            break;
+        }
+    }
+    return OSD_OK;
+}
+
+API_EXPORT
+osd_result osd_gdbserver_stop(struct osd_gdbserver_ctx *ctx)
+{
+    return close(ctx->fd);
 }
 
 API_EXPORT
@@ -225,8 +240,6 @@ osd_result osd_gdbserver_write_data(struct osd_gdbserver_ctx *ctx, char *data,
 
 static osd_result get_char(struct osd_gdbserver_ctx *ctx, int *ch)
 {
-    osd_result rv;
-
     ctx->buf_p = ctx->buffer;
     ctx->buf_cnt--;
     if (OSD_FAILED(ctx->buf_cnt)) {
@@ -237,30 +250,22 @@ static osd_result get_char(struct osd_gdbserver_ctx *ctx, int *ch)
     return OSD_OK;
 }
 
-static osd_result validate_rsp_packet(struct osd_gdbserver_ctx *ctx,
-                                      bool *ver_checksum, int *len,
-                                      char *buffer)
+//API_EXPORT
+osd_result validate_rsp_packet(char *buf_p, bool *ver_checksum, int *len,
+                               char *buffer)
 {
     unsigned char val_checksum = 0;
     char packet_checksum[3];
     int packet_char;
     int cnt = 0;
-    osd_result rv;
-
-    char *buf_p = ctx->buf_p;
-    int buf_cnt = ctx->buf_cnt;
+    char *buf = buf_p;
 
     // packet-format: $packet-data#checksum
-    int i = 0;
-    char *buf = buf_p;
-    int done = 0;
     // traversing through the obtained packet till we obtained '#'
     while (1) {
         packet_char = *buf++;
-        i++;
 
         if (packet_char == '#') {
-            done = 1;
             break;
         }
         /*Any escaped byte (here, '}') is transmitted as the escape
@@ -269,7 +274,6 @@ static osd_result validate_rsp_packet(struct osd_gdbserver_ctx *ctx,
         if (packet_char == '}') {
             val_checksum += packet_char & 0xff;
             packet_char = *buf++;
-            i++;
             val_checksum += packet_char & 0xff;
             buffer[cnt++] = (packet_char ^ 0x20) & 0xff;
         } else {
@@ -278,6 +282,7 @@ static osd_result validate_rsp_packet(struct osd_gdbserver_ctx *ctx,
         }
     }
 
+    buffer[cnt] = '\0';
     *len = cnt;
     packet_char = *buf++;
     packet_checksum[0] = packet_char;
@@ -303,7 +308,7 @@ static osd_result receive_rsp_packet(struct osd_gdbserver_ctx *ctx,
     } while (packet_char != '$');
 
     bool ver_checksum = 0;
-    rv = validate_rsp_packet(ctx, &ver_checksum, len, buffer);
+    rv = validate_rsp_packet(ctx->buf_p, &ver_checksum, len, buffer);
 
     if (OSD_FAILED(rv)) {
         return rv;
@@ -320,23 +325,32 @@ static osd_result receive_rsp_packet(struct osd_gdbserver_ctx *ctx,
     return OSD_OK;
 }
 
+API_EXPORT
+osd_result configure_rsp_packet(char *buffer, int len, char *packet_buffer)
+{
+    int packet_checksum = 0;
+    packet_buffer[0] = '$';
+    memcpy(packet_buffer + 1, buffer, len);
+    int j = len + 1;
+    packet_buffer[j++] = '#';
+    for (int i = 0; i < len; i++) {
+        packet_checksum += buffer[i];
+    }
+    packet_buffer[j++] = dectohex((packet_checksum >> 4) & 0xf);
+    packet_buffer[j++] = dectohex(packet_checksum & 0xf);
+    packet_buffer[j] = '\0';
+
+    return OSD_OK;
+}
+
 static osd_result send_rsp_packet(struct osd_gdbserver_ctx *ctx, char *buffer,
                                   int len)
 {
-    char packet_buffer[len + 3];
-    int packet_checksum = 0;
+    char packet_buffer[len + 5];
     osd_result rv;
 
     while (1) {
-        packet_buffer[0] = '$';
-        memcpy(packet_buffer + 1, buffer, len);
-        int j = len + 1;
-        packet_buffer[j++] = '#';
-        for (int i = 0; i < len; i++) {
-            packet_checksum += buffer[i];
-        }
-        packet_buffer[j++] = dectohex((packet_checksum >> 4) & 0xf);
-        packet_buffer[j] = dectohex(packet_checksum & 0xf);
+        configure_rsp_packet(buffer, len, packet_buffer);
 
         rv = osd_gdbserver_write_data(ctx, packet_buffer, len + 4);
         if (OSD_FAILED(rv)) {
@@ -355,6 +369,4 @@ static osd_result send_rsp_packet(struct osd_gdbserver_ctx *ctx, char *buffer,
             return OSD_ERROR_FAILURE;
         }
     }
-
-    return OSD_OK;
 }

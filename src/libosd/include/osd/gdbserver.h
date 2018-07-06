@@ -16,9 +16,6 @@
 #ifndef OSD_GDBSERVER_H
 #define OSD_GDBSERVER_H
 
-#define OSD_GDBSERVER_PORT 5555
-#define OSD_GDBSERVER_BUFF_SIZE 1024
-
 #include <osd/hostmod.h>
 #include <osd/osd.h>
 
@@ -36,6 +33,16 @@ extern "C" {
  */
 
 struct osd_gdbserver_ctx;
+
+/**
+ * Indicates the port for connecting to GDB
+ */
+#define OSD_GDBSERVER_PORT 5555
+
+/**
+ * Indicates the size of the buffer
+ */
+#define OSD_GDBSERVER_BUFF_SIZE 1024
 
 /**
  * Create a new context object
@@ -66,6 +73,16 @@ bool osd_gdbserver_is_connected(struct osd_gdbserver_ctx *ctx);
  * Free the context object
  */
 void osd_gdbserver_free(struct osd_gdbserver_ctx **ctx_p);
+
+/**
+ * Start the connection with GDB client
+ */
+osd_result osd_gdbserver_start(struct osd_gdbserver_ctx *ctx);
+
+/**
+ * Close the connection with GDB client
+ */
+osd_result osd_gdbserver_stop(struct osd_gdbserver_ctx *ctx);
 
 /**
  * Read data from the GDB client
