@@ -30,31 +30,57 @@ const unsigned int target_subnet_addr = 0;
 unsigned int mock_hostmod_diaddr;
 unsigned int mock_scm_diaddr;
 
-START_TEST(test_validate_rsp_packet)
+START_TEST(test1_validate_rsp_packet)
 {
-    osd_result rv;
-    char packet_buffer[12] = "swbreak#ef";
-    char *buf_p = "swbreak#ef";
     bool ver_checksum;
-    int len;
-    char buffer[1024];
-
-    rv = validate_rsp_packet(buf_p, &ver_checksum, &len, buffer);
-    ck_assert(OSD_SUCCEEDED(rv));
-    ck_assert_uint_eq(len, 7);
-    ck_assert_str_eq(buffer, "swbreak");
+    char *packet_buffer = "swbreak#ef";
+    int packet_len = 10;
+    char packet_data[1024];
+    int packet_data_len;
+    ver_checksum = validate_rsp_packet(packet_buffer, packet_len,
+                                       &packet_data_len, packet_data);
+    ck_assert_uint_eq(ver_checksum, 1);
+    ck_assert_uint_eq(packet_data_len, 7);
+    ck_assert_str_eq(packet_data, "swbreak");
 }
 END_TEST
 
-START_TEST(test_configure_rsp_packet)
+START_TEST(test2_validate_rsp_packet)
 {
-    char buffer[8] = "swbreak";
-    int packet_checksum;
-    int len = 7;
-    char packet_buffer[len + 5];
+    bool ver_checksum;
+    char *packet_buffer = "swbre}]ak#c9";
+    int packet_len = 11;
+    char packet_data[1024];
+    int packet_data_len;
+    ver_checksum = validate_rsp_packet(packet_buffer, packet_len,
+                                       &packet_data_len, packet_data);
+    ck_assert_uint_eq(ver_checksum, 1);
+    ck_assert_uint_eq(packet_data_len, 8);
+    ck_assert_str_eq(packet_data, "swbre}ak");
+}
+END_TEST
 
-    configure_rsp_packet(buffer, len, packet_buffer);
+START_TEST(test1_encode_rsp_packet)
+{
+    char packet_data[8] = "swbreak";
+    int packet_checksum;
+    int packet_data_len = 7;
+    char packet_buffer[packet_data_len + 5];
+
+    encode_rsp_packet(packet_data, packet_data_len, packet_buffer);
     ck_assert_str_eq(packet_buffer, "$swbreak#ef");
+}
+END_TEST
+
+START_TEST(test2_encode_rsp_packet)
+{
+    char packet_data[9] = "swbre:ak";
+    int packet_checksum;
+    int packet_data_len = 8;
+    char packet_buffer[packet_data_len + 5];
+
+    encode_rsp_packet(packet_data, packet_data_len, packet_buffer);
+    ck_assert_str_eq(packet_buffer, "$swbre:ak#29");
 }
 END_TEST
 
@@ -67,8 +93,10 @@ Suite *suite(void)
 
     tc_testing = tcase_create("Testing");
 
-    tcase_add_test(tc_testing, test_validate_rsp_packet);
-    tcase_add_test(tc_testing, test_configure_rsp_packet);
+    tcase_add_test(tc_testing, test1_validate_rsp_packet);
+    tcase_add_test(tc_testing, test2_validate_rsp_packet);
+    tcase_add_test(tc_testing, test1_encode_rsp_packet);
+    tcase_add_test(tc_testing, test2_encode_rsp_packet);
     suite_add_tcase(s, tc_testing);
 
     return s;

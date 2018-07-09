@@ -23,24 +23,31 @@
 
 /**
  * Return packet-data from the received data buffer by validating the checksum
+ * 
+ * It calculates the checksum of the obtained packet-data and compares it with
+ * the obtained checksum. This function ensures that the received packet-data
+ * is valid and uncorrupted.
+ * Refer https://sourceware.org/gdb/onlinedocs/gdb/Overview.html#Overview
  *
- * @param buf_p        the pointer to the received packet buffer data
- * @param ver_checksum '1' indicates valid checksum
- * @param len          the length  of the packet-data
- * @param buffer       the packet-data received
+ * @param packet_buffer    the pointer to the received packet buffer data
+ * @param packet_len       the length of th packet buffer
+ * @param packet_data_len  the length  of the packet-data
+ * @param packet_data      the packet-data received
  *
  */
-osd_result validate_rsp_packet(char *buf_p, bool *ver_checksum, int *len, 
-                               char *buffer);
-                               
+bool validate_rsp_packet(char *packet_buffer, int packet_len,
+                         int *packet_data_len, char *packet_data);
 
 /**
  * Set packet-data into the RSP format: $packet-data#checksum
+ * 
+ * Refer https://sourceware.org/gdb/onlinedocs/gdb/Overview.html#Overview
  *
- * @param buffer        the packet-data buffer
- * @param len           the length of the packet-data
- * @param packet_buffer the packet buffer in RSP format
+ * @param packet_data        the packet-data buffer
+ * @param packet_data_len    the length of the packet-data
+ * @param packet_buffer      the packet buffer in RSP format
  */
-osd_result configure_rsp_packet(char *buffer, int len, char *packet_buffer);
-   
+osd_result encode_rsp_packet(char *packet_data, int packet_data_len,
+                             char *packet_buffer);
+
 #endif  // OSD_GDBSERVER_PRIVATE_H

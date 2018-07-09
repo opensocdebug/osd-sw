@@ -14,10 +14,10 @@
  */
 
 #include <osd/gdbserver.h>
-#include "gdbserver-private.h"
 #include <osd/module.h>
 #include <osd/osd.h>
 #include <osd/reg.h>
+#include "gdbserver-private.h"
 #include "osd-private.h"
 
 #include <arpa/inet.h>
@@ -250,19 +250,19 @@ static osd_result get_char(struct osd_gdbserver_ctx *ctx, int *ch)
     return OSD_OK;
 }
 
-//API_EXPORT
-osd_result validate_rsp_packet(char *buf_p, bool *ver_checksum, int *len,
-                               char *buffer)
+API_EXPORT
+bool validate_rsp_packet(char *packet_buffer, int packet_len,
+                         int *packet_data_len, char *packet_data)
 {
     unsigned char val_checksum = 0;
     char packet_checksum[3];
     int packet_char;
     int cnt = 0;
-    char *buf = buf_p;
+    char *buf = packet_buffer;
 
     // packet-format: $packet-data#checksum
     // traversing through the obtained packet till we obtained '#'
-    while (1) {
+    while (packet_len >= 2) {
         packet_char = *buf++;
 
         if (packet_char == '#') {
@@ -272,30 +272,33 @@ osd_result validate_rsp_packet(char *buf_p, bool *ver_checksum, int *len,
         * character followed by the original character XORed with 0x20.
         */
         if (packet_char == '}') {
-            val_checksum += packet_char & 0xff;
+            val_checksum += packet_char;
             packet_char = *buf++;
-            val_checksum += packet_char & 0xff;
-            buffer[cnt++] = (packet_char ^ 0x20) & 0xff;
+            packet_len--;
+            val_checksum += packet_char;
+            packet_data[cnt++] = (packet_char ^ 0x20);
         } else {
-            val_checksum += packet_char & 0xff;
-            buffer[cnt++] = packet_char & 0xff;
+            val_checksum += packet_char;
+            packet_data[cnt++] = packet_char;
         }
+        packet_len--;
     }
 
-    buffer[cnt] = '\0';
-    *len = cnt;
     packet_char = *buf++;
     packet_checksum[0] = packet_char;
     packet_char = *buf;
     packet_checksum[1] = packet_char;
     packet_checksum[2] = 0;
-    *ver_checksum = (val_checksum == strtoul(packet_checksum, NULL, 16));
 
-    return OSD_OK;
+    packet_data[cnt] = '\0';
+    *packet_data_len = cnt;
+    bool ver_checksum = (val_checksum == strtoul(packet_checksum, NULL, 16));
+
+    return ver_checksum;
 }
 
 static osd_result receive_rsp_packet(struct osd_gdbserver_ctx *ctx,
-                                     char *buffer, int *len)
+                                     int *packet_data_len, char *packet_data)
 {
     int packet_char;
     osd_result rv;
@@ -307,34 +310,36 @@ static osd_result receive_rsp_packet(struct osd_gdbserver_ctx *ctx,
         }
     } while (packet_char != '$');
 
-    bool ver_checksum = 0;
-    rv = validate_rsp_packet(ctx->buf_p, &ver_checksum, len, buffer);
+    char *packet_buffer = ctx->buf_p;
+    int packet_len = ctx->buf_cnt;
+    bool ver_checksum = validate_rsp_packet(packet_buffer, packet_len,
+                                            packet_data_len, packet_data);
 
+    if (ver_checksum == 1) {
+        rv = osd_gdbserver_write_data(ctx, "+", 1);
+    } else {
+        rv = osd_gdbserver_write_data(ctx, "-", 1);
+    }
     if (OSD_FAILED(rv)) {
         return rv;
-    } else {
-        if (ver_checksum == 1) {
-            rv = osd_gdbserver_write_data(ctx, "+", 1);
-        } else {
-            rv = osd_gdbserver_write_data(ctx, "-", 1);
-        }
-        if (OSD_FAILED(rv)) {
-            return rv;
-        }
     }
+
     return OSD_OK;
 }
 
 API_EXPORT
-osd_result configure_rsp_packet(char *buffer, int len, char *packet_buffer)
+osd_result encode_rsp_packet(char *packet_data, int packet_data_len,
+                             char *packet_buffer)
 {
     int packet_checksum = 0;
     packet_buffer[0] = '$';
-    memcpy(packet_buffer + 1, buffer, len);
-    int j = len + 1;
+
+    memcpy(packet_buffer + 1, packet_data, packet_data_len);
+    int j = packet_data_len + 1;
+
     packet_buffer[j++] = '#';
-    for (int i = 0; i < len; i++) {
-        packet_checksum += buffer[i];
+    for (int i = 0; i < packet_data_len; i++) {
+        packet_checksum += packet_data[i];
     }
     packet_buffer[j++] = dectohex((packet_checksum >> 4) & 0xf);
     packet_buffer[j++] = dectohex(packet_checksum & 0xf);
@@ -343,16 +348,16 @@ osd_result configure_rsp_packet(char *buffer, int len, char *packet_buffer)
     return OSD_OK;
 }
 
-static osd_result send_rsp_packet(struct osd_gdbserver_ctx *ctx, char *buffer,
-                                  int len)
+static osd_result send_rsp_packet(struct osd_gdbserver_ctx *ctx,
+                                  char *packet_data, int packet_data_len)
 {
-    char packet_buffer[len + 5];
+    char packet_buffer[packet_data_len + 5];
     osd_result rv;
 
     while (1) {
-        configure_rsp_packet(buffer, len, packet_buffer);
+        encode_rsp_packet(packet_data, packet_data_len, packet_buffer);
 
-        rv = osd_gdbserver_write_data(ctx, packet_buffer, len + 4);
+        rv = osd_gdbserver_write_data(ctx, packet_buffer, packet_data_len + 4);
         if (OSD_FAILED(rv)) {
             return OSD_ERROR_FAILURE;
         }
