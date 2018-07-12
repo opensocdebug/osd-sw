@@ -49,7 +49,8 @@ struct osd_gdbserver_ctx;
  */
 osd_result osd_gdbserver_new(struct osd_gdbserver_ctx **ctx,
                              struct osd_log_ctx *log_ctx,
-                             const char *host_controller_address);
+                             const char *host_controller_address,
+                             uint16_t cdm_di_addr);
 
 /**
  * Connect GDB server to the host controller followed by GDB

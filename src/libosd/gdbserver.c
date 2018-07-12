@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+#include <osd/cl_cdm.h>
 #include <osd/gdbserver.h>
 #include <osd/module.h>
 #include <osd/osd.h>
@@ -39,6 +40,8 @@
 struct osd_gdbserver_ctx {
     struct osd_hostmod_ctx *hostmod_ctx;
     struct osd_log_ctx *log_ctx;
+    struct osd_cdm_desc cdm_desc;
+    uint16_t cdm_di_addr;
     int fd;
     char *name;
     char *port;
@@ -53,7 +56,8 @@ struct osd_gdbserver_ctx {
 API_EXPORT
 osd_result osd_gdbserver_new(struct osd_gdbserver_ctx **ctx,
                              struct osd_log_ctx *log_ctx,
-                             const char *host_controller_address)
+                             const char *host_controller_address,
+                             uint16_t cdm_di_addr)
 {
     osd_result rv;
 
@@ -61,12 +65,15 @@ osd_result osd_gdbserver_new(struct osd_gdbserver_ctx **ctx,
     assert(c);
 
     c->log_ctx = log_ctx;
+    c->cdm_di_addr = cdm_di_addr;
 
     struct osd_hostmod_ctx *hostmod_ctx;
     rv = osd_hostmod_new(&hostmod_ctx, log_ctx, host_controller_address, NULL,
                          NULL);
     assert(OSD_SUCCEEDED(rv));
     c->hostmod_ctx = hostmod_ctx;
+
+    //  c->cdm_desc = cdm_desc;
 
     *ctx = c;
 
@@ -298,7 +305,7 @@ bool validate_rsp_packet(char *packet_buffer, int packet_len,
 }
 
 static osd_result receive_rsp_packet(struct osd_gdbserver_ctx *ctx,
-                                     int *packet_data_len, char *packet_data)
+                                     char *packet_data, int *packet_data_len)
 {
     int packet_char;
     osd_result rv;
@@ -374,4 +381,150 @@ static osd_result send_rsp_packet(struct osd_gdbserver_ctx *ctx,
             return OSD_ERROR_FAILURE;
         }
     }
+}
+
+static osd_result gdb_read_general_registers_cmd(struct osd_gdbserver_ctx *ctx,
+                                                 char *packet_buffer,
+                                                 int packet_len)
+{
+    osd_result rv;
+    // SPR register address mapped as GPR0 in OR1K
+    // GROUP 0 REG_NUM 1024
+    uint16_t reg_addr = 0x400;
+
+    rv =
+        osd_cl_cdm_get_desc(ctx->hostmod_ctx, ctx->cdm_di_addr, &ctx->cdm_desc);
+    if (OSD_FAILED(rv)) {
+        return rv;
+    }
+
+    int core_reg_len = ctx->cdm_desc.core_data_width;
+    size_t reg_read_result[32];
+    // + 1 for null character
+    // used for storing the read register value of all the GPRs
+    char *reg_packet = malloc((core_reg_len / 8) * 32 + 1);
+
+    // read the value of each GPR from the CPU core and
+    // store it in the register packet
+    for (int i = 0; i < 32; i++) {
+        rv = cl_cdm_cpureg_read(ctx->hostmod_ctx, &ctx->cdm_desc,
+                                &reg_read_result[i], reg_addr + i, 0);
+        if (OSD_FAILED(rv)) {
+            return rv;
+        }
+
+        char *reg_val = malloc((core_reg_len / 8) + 1);
+        sprintf(reg_val, "%02lx", reg_read_result[i]);
+        strcat(reg_packet, reg_val);
+        free(reg_val);
+    }
+
+    rv = send_rsp_packet(ctx, reg_packet, (core_reg_len / 8) * 32 + 1);
+    if (OSD_FAILED(rv)) {
+        return rv;
+    }
+
+    free(reg_packet);
+
+    return OSD_OK;
+}
+
+static osd_result gdb_write_general_registers_cmd(struct osd_gdbserver_ctx *ctx,
+                                                  char *packet, int packet_len)
+{
+    osd_result rv;
+    rv =
+        osd_cl_cdm_get_desc(ctx->hostmod_ctx, ctx->cdm_di_addr, &ctx->cdm_desc);
+    if (OSD_FAILED(rv)) {
+        return rv;
+    }
+
+    // increment by 1 to skip initial char 'G'
+    packet++;
+    // SPR register address mapped as GPR0 in OR1K
+    // GROUP 0 REG_NUM 1024
+    uint16_t reg_addr = 0x400;
+    int core_reg_len = ctx->cdm_desc.core_data_width;
+
+    // write the value of each GPR in the CPU core
+    for (int i = 0; i < 32; i++) {
+        char cur_reg_val[core_reg_len / 4 + 1];
+        for (int j = 0; j < core_reg_len / 4; j++) {
+            cur_reg_val[j] = packet[i * core_reg_len + j];
+        }
+
+        cur_reg_val[core_reg_len / 4] = '\0';
+        size_t reg_val = strtoul(cur_reg_val, NULL, 16);
+        rv = cl_cdm_cpureg_write(ctx->hostmod_ctx, &ctx->cdm_desc, &reg_val,
+                                 reg_addr + i, 0);
+        if (OSD_FAILED(rv)) {
+            return rv;
+        }
+    }
+
+    rv = send_rsp_packet(ctx, "OK", 2);
+    if (OSD_FAILED(rv)) {
+        return rv;
+    }
+
+    return OSD_OK;
+}
+
+static osd_result gdb_read_register_cmd(struct osd_gdbserver_ctx *ctx,
+                                        char *packet, int packet_len)
+{
+    osd_result rv;
+    uint16_t reg_addr = strtoul(packet + 1, NULL, 16);
+
+    rv =
+        osd_cl_cdm_get_desc(ctx->hostmod_ctx, ctx->cdm_di_addr, &ctx->cdm_desc);
+    if (OSD_FAILED(rv)) {
+        return rv;
+    }
+
+    int core_reg_len = ctx->cdm_desc.core_data_width;
+    size_t reg_read_result;
+    rv = cl_cdm_cpureg_read(ctx->hostmod_ctx, &ctx->cdm_desc, &reg_read_result,
+                            reg_addr, 0);
+    if (OSD_FAILED(rv)) {
+        return rv;
+    }
+
+    char *reg_val = malloc(core_reg_len / 8 + 1);
+    sprintf(reg_val, "%02lx", reg_read_result);
+    rv = send_rsp_packet(ctx, reg_val, core_reg_len / 8 + 1);
+    if (OSD_FAILED(rv)) {
+        return rv;
+    }
+
+    free(reg_val);
+
+    return OSD_OK;
+}
+
+static osd_result gdb_write_register_cmd(struct osd_gdbserver_ctx *ctx,
+                                         char *packet, int packet_len)
+{
+    osd_result rv;
+    char *equal_separator;
+    uint16_t reg_addr = strtoul(packet + 1, &equal_separator, 16);
+    rv =
+        osd_cl_cdm_get_desc(ctx->hostmod_ctx, ctx->cdm_di_addr, &ctx->cdm_desc);
+    if (OSD_FAILED(rv)) {
+        return rv;
+    }
+
+    size_t reg_val = strtoul(equal_separator + 1, NULL, 16);
+    rv = cl_cdm_cpureg_write(ctx->hostmod_ctx, &ctx->cdm_desc, &reg_val,
+                             reg_addr, 0);
+    if (OSD_FAILED(rv)) {
+        return rv;
+    }
+
+    rv = send_rsp_packet(ctx, "OK", 2);
+    if (OSD_FAILED(rv)) {
+        return rv;
+    }
+
+    return OSD_OK;
 }
