@@ -72,7 +72,7 @@ struct osd_ctm_event_handler {
 };
 
 /**
- * Populate the STM descriptor with data from the debug module
+ * Populate the CTM descriptor with data from the debug module
  *
  * @param hostmod_ctx the host module handling the communication
  * @param ctm_di_addr DI address of the CTM module to get describe
