@@ -23,7 +23,7 @@
 
 /**
  * Return packet-data from the received data buffer by validating the checksum
- * 
+ *
  * It calculates the checksum of the obtained packet-data and compares it with
  * the obtained checksum. This function ensures that the received packet-data
  * is valid and uncorrupted.
@@ -40,7 +40,7 @@ bool validate_rsp_packet(char *packet_buffer, int packet_len,
 
 /**
  * Set packet-data into the RSP format: $packet-data#checksum
- * 
+ *
  * Refer https://sourceware.org/gdb/onlinedocs/gdb/Overview.html#Overview
  *
  * @param packet_data        the packet-data buffer
@@ -49,5 +49,27 @@ bool validate_rsp_packet(char *packet_buffer, int packet_len,
  */
 osd_result encode_rsp_packet(char *packet_data, int packet_data_len,
                              char *packet_buffer);
+
+/**Convert the read memory data into hexadecimal format
+ *
+ * Each byte of the memory is transmitted as a two-digit hexadecimal number.
+ * It is converted into the this format to transfer these values to the GDB.
+ *
+ * @param mem_val       the read memory content
+ * @param mem_len       the length of the memory content
+ * @param mem_hex       the memory content in hexadecimal format
+ */
+void mem2hex(uint8_t *mem_val, size_t mem_len, uint8_t *mem_hex);
+
+/**Convert the hexadecimal data into unsigned int format to be placed in memory
+ *
+ * Each byte of the memory is transmitted as a two-digit hexadecimal number.
+ * It is converted into the unsigned int format to write the actual memory value
+ *
+ * @param mem_hex       the memory content in hexadecimal format
+ * @param mem_len       the length of the memory content
+ * @param mem_val       the memory content to be placed
+ */
+void hex2mem(uint8_t *mem_hex, size_t mem_len, uint8_t *mem_val);
 
 #endif  // OSD_GDBSERVER_PRIVATE_H

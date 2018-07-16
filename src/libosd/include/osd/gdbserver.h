@@ -18,6 +18,8 @@
 
 #include <osd/hostmod.h>
 #include <osd/osd.h>
+#include <osd/cl_cdm.h>
+#include <osd/cl_mam.h>
 
 #include <stdlib.h>
 

@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 
-#include <osd/cl_cdm.h>
 #include <osd/gdbserver.h>
 #include <osd/module.h>
 #include <osd/osd.h>
@@ -41,7 +40,9 @@ struct osd_gdbserver_ctx {
     struct osd_hostmod_ctx *hostmod_ctx;
     struct osd_log_ctx *log_ctx;
     struct osd_cdm_desc cdm_desc;
+    struct osd_mem_desc mem_desc;
     uint16_t cdm_di_addr;
+    uint16_t mam_di_addr;
     int fd;
     char *name;
     char *port;
@@ -73,20 +74,31 @@ osd_result osd_gdbserver_new(struct osd_gdbserver_ctx **ctx,
     assert(OSD_SUCCEEDED(rv));
     c->hostmod_ctx = hostmod_ctx;
 
-    //  c->cdm_desc = cdm_desc;
-
     *ctx = c;
 
     return OSD_OK;
 }
 
-static int dectohex(int packet_char)
+static char dectohex(int packet_char)
 {
-    if (packet_char < 10) {
+    if (packet_char >= 10 && packet_char <= 15)
+        return packet_char -10 + 'a';
+    else if (packet_char >= 0 && packet_char <= 9)
         return packet_char + '0';
-    } else {
-        return packet_char - 10 + 'a';
-    }
+    else
+        return -1;
+}
+
+static int hextodec(char packet_char)
+{
+    if (packet_char >= 'a' && packet_char <= 'f')
+        return packet_char + 10 - 'a';
+    else if (packet_char >= 'A' && packet_char <= 'F')
+        return packet_char + 10 - 'A';
+    else if (packet_char >= '0' && packet_char <= '9')
+        return packet_char - '0';
+    else
+        return -1;
 }
 
 static void free_service(struct osd_gdbserver_ctx *ctx)
@@ -188,9 +200,9 @@ osd_result osd_gdbserver_start(struct osd_gdbserver_ctx *ctx)
             }
         }
 
-        // At this point, connection is established between GDB client
-        // and gdbserver, and they are ready to transfer data.
-        // More functions to be added
+        /* At this point, connection is established between GDB client
+           and gdbserver, and they are ready to transfer data.
+           More functions to be added. */
         printf("Server got connection from client %s\n",
                inet_ntoa(addr_in.sin_addr));
 
@@ -275,9 +287,9 @@ bool validate_rsp_packet(char *packet_buffer, int packet_len,
         if (packet_char == '#') {
             break;
         }
-        /*Any escaped byte (here, '}') is transmitted as the escape
-        * character followed by the original character XORed with 0x20.
-        */
+        /* Any escaped byte (here, '}') is transmitted as the escape
+         * character followed by the original character XORed with 0x20.
+         */
         if (packet_char == '}') {
             val_checksum += packet_char;
             packet_char = *buf++;
@@ -388,8 +400,7 @@ static osd_result gdb_read_general_registers_cmd(struct osd_gdbserver_ctx *ctx,
                                                  int packet_len)
 {
     osd_result rv;
-    // SPR register address mapped as GPR0 in OR1K
-    // GROUP 0 REG_NUM 1024
+    // SPR register (GROUP 0 REG_NUM 1024) address mapped as GPR0 in OR1K
     uint16_t reg_addr = 0x400;
 
     rv =
@@ -405,7 +416,7 @@ static osd_result gdb_read_general_registers_cmd(struct osd_gdbserver_ctx *ctx,
     char *reg_packet = malloc((core_reg_len / 8) * 32 + 1);
 
     // read the value of each GPR from the CPU core and
-    // store it in the register packet
+    // store it in the register packet.
     for (int i = 0; i < 32; i++) {
         rv = cl_cdm_cpureg_read(ctx->hostmod_ctx, &ctx->cdm_desc,
                                 &reg_read_result[i], reg_addr + i, 0);
@@ -441,8 +452,8 @@ static osd_result gdb_write_general_registers_cmd(struct osd_gdbserver_ctx *ctx,
 
     // increment by 1 to skip initial char 'G'
     packet++;
-    // SPR register address mapped as GPR0 in OR1K
-    // GROUP 0 REG_NUM 1024
+
+    // SPR register (GROUP 0 REG_NUM 1024) address mapped as GPR0 in OR1K
     uint16_t reg_addr = 0x400;
     int core_reg_len = ctx->cdm_desc.core_data_width;
 
@@ -514,6 +525,10 @@ static osd_result gdb_write_register_cmd(struct osd_gdbserver_ctx *ctx,
         return rv;
     }
 
+    if (*equal_separator != '=') {
+        return OSD_ERROR_FAILURE;
+    }
+
     size_t reg_val = strtoul(equal_separator + 1, NULL, 16);
     rv = cl_cdm_cpureg_write(ctx->hostmod_ctx, &ctx->cdm_desc, &reg_val,
                              reg_addr, 0);
@@ -527,4 +542,116 @@ static osd_result gdb_write_register_cmd(struct osd_gdbserver_ctx *ctx,
     }
 
     return OSD_OK;
+}
+
+API_EXPORT
+void mem2hex(uint8_t *mem_val, size_t mem_len, uint8_t *mem_hex)
+{
+    size_t i;
+    for (i = 0; i < 2 * mem_len; i++) {
+        uint8_t temp = (mem_val[i / 2] >> (4 * ((i + 1) % 2))) & 0x0f;
+        mem_hex[i] = dectohex(temp);
+    }
+    mem_hex[i] = '\0';
+}
+
+API_EXPORT
+void hex2mem(uint8_t *mem_hex, size_t mem_len, uint8_t *mem_val)
+{
+    size_t i;
+    uint8_t temp;
+    memset(mem_val, 0, mem_len);
+    for (i = 0; i < 2 * mem_len; i++) {
+        temp = hextodec(mem_hex[i]);
+        mem_val[i / 2] |= temp << (4 * ((i + 1) % 2));
+    }
+    mem_val[mem_len] = 0;
+}
+
+static osd_result gdb_read_memory_cmd(struct osd_gdbserver_ctx *ctx,
+                                      char *packet, int packet_len)
+{
+    osd_result rv;
+    uint64_t mem_addr;
+    size_t mem_len;
+    char *comma_separator;
+
+    rv = osd_cl_mam_get_mem_desc(ctx->hostmod_ctx, ctx->mam_di_addr,
+                                 &ctx->mem_desc);
+    if (OSD_FAILED(rv)) {
+        return rv;
+    }
+
+    packet++;
+    mem_addr = strtoul(packet, &comma_separator, 16);
+    if (*comma_separator != ',') {
+        return OSD_ERROR_FAILURE;
+    }
+
+    mem_len = strtoul(comma_separator + 1, NULL, 16);
+    if (!mem_len) {
+        return OSD_ERROR_FAILURE;
+    }
+
+    size_t mem_read_result;
+    rv = osd_cl_mam_read(&ctx->mem_desc, ctx->hostmod_ctx, &mem_read_result,
+                         mem_len, mem_addr);
+
+    // Each byte is represented as two hex characters
+    uint8_t *mem_packet_content = malloc(mem_len * 2 + 1);
+    uint8_t *mem_val = (uint8_t *)&mem_read_result;
+    mem2hex(mem_val, mem_len, mem_packet_content);
+
+    rv = send_rsp_packet(ctx, (char *)mem_packet_content, mem_len * 2 + 1);
+    if (OSD_FAILED(rv)) {
+        return rv;
+    }
+
+    free(mem_packet_content);
+}
+
+static osd_result gdb_write_memory_cmd(struct osd_gdbserver_ctx *ctx,
+                                       char *packet, int packet_len)
+{
+    osd_result rv;
+    uint64_t mem_addr;
+    size_t mem_len;
+    char *comma_separator;
+    char *colon_separator;
+
+    rv = osd_cl_mam_get_mem_desc(ctx->hostmod_ctx, ctx->mam_di_addr,
+                                 &ctx->mem_desc);
+    if (OSD_FAILED(rv)) {
+        return rv;
+    }
+
+    packet++;
+    mem_addr = strtoul(packet, &comma_separator, 16);
+    if (*comma_separator != ',') {
+        return OSD_ERROR_FAILURE;
+    }
+
+    mem_len = strtoul(comma_separator + 1, &colon_separator, 16);
+    if (!mem_len) {
+        return OSD_ERROR_FAILURE;
+    }
+
+    if (*colon_separator != ':') {
+        return OSD_ERROR_FAILURE;
+    }
+
+    uint8_t *mem_packet_content = (uint8_t *)colon_separator + 1;
+    // Each byte is represented as two hex characters
+    uint8_t *mem_write_result = malloc(mem_len);
+    hex2mem(mem_packet_content, mem_len, mem_write_result);
+
+    rv = osd_cl_mam_write(&ctx->mem_desc, ctx->hostmod_ctx, mem_write_result,
+                          mem_len, mem_addr);
+
+    free(mem_write_result);
+
+    rv = send_rsp_packet(ctx, "OK", 2);
+    if (OSD_FAILED(rv)) {
+        return rv;
+    }
 }
