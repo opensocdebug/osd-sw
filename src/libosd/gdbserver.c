@@ -25,6 +25,7 @@
 #include <fcntl.h>
 #include <gelf.h>
 #include <netinet/in.h>
+#include <pthread.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -32,6 +33,8 @@
 #include <sys/socket.h>
 #include <sys/wait.h>
 #include <unistd.h>
+
+pthread_t osd_gdbserver_thread;
 
 /**
  * OSD-GDB server context
@@ -44,8 +47,6 @@ struct osd_gdbserver_ctx {
     uint16_t cdm_di_addr;
     uint16_t mam_di_addr;
     int fd;
-    char *name;
-    char *port;
     struct sockaddr_in sin;
     char buffer[OSD_GDBSERVER_BUFF_SIZE];
     int buf_cnt;
@@ -58,7 +59,7 @@ API_EXPORT
 osd_result osd_gdbserver_new(struct osd_gdbserver_ctx **ctx,
                              struct osd_log_ctx *log_ctx,
                              const char *host_controller_address,
-                             uint16_t cdm_di_addr)
+                             uint16_t cdm_di_addr, uint16_t mam_di_addr)
 {
     osd_result rv;
 
@@ -67,7 +68,7 @@ osd_result osd_gdbserver_new(struct osd_gdbserver_ctx **ctx,
 
     c->log_ctx = log_ctx;
     c->cdm_di_addr = cdm_di_addr;
-
+    c->mam_di_addr = mam_di_addr;
     struct osd_hostmod_ctx *hostmod_ctx;
     rv = osd_hostmod_new(&hostmod_ctx, log_ctx, host_controller_address, NULL,
                          NULL);
@@ -82,7 +83,7 @@ osd_result osd_gdbserver_new(struct osd_gdbserver_ctx **ctx,
 static char dectohex(int packet_char)
 {
     if (packet_char >= 10 && packet_char <= 15)
-        return packet_char -10 + 'a';
+        return packet_char - 10 + 'a';
     else if (packet_char >= 0 && packet_char <= 9)
         return packet_char + '0';
     else
@@ -101,30 +102,26 @@ static int hextodec(char packet_char)
         return -1;
 }
 
-static void free_service(struct osd_gdbserver_ctx *ctx)
-{
-    free(ctx->name);
-    free(ctx->port);
-    free(ctx);
-}
-
 API_EXPORT
-osd_result osd_gdbserver_connect(struct osd_gdbserver_ctx *ctx, char *name,
-                                 char *port)
+osd_result osd_gdbserver_connect_hostmod(struct osd_gdbserver_ctx *ctx)
 {
     osd_result rv = osd_hostmod_connect(ctx->hostmod_ctx);
     if (OSD_FAILED(rv)) {
         return rv;
     }
 
+    return OSD_OK;
+}
+
+API_EXPORT
+osd_result osd_gdbserver_connect_GDB(struct osd_gdbserver_ctx *ctx)
+{
     int sockoptval = 1;
 
-    ctx->name = strdup(name);
-    ctx->port = strdup(port);
     ctx->fd = socket(AF_INET, SOCK_STREAM, 0);
 
     if (OSD_FAILED(ctx->fd)) {
-        free_service(ctx);
+        osd_gdbserver_free(&ctx);
         return OSD_ERROR_CONNECTION_FAILED;
     }
 
@@ -138,13 +135,16 @@ osd_result osd_gdbserver_connect(struct osd_gdbserver_ctx *ctx, char *name,
     if (OSD_FAILED(
             bind(ctx->fd, (struct sockaddr *)&ctx->sin, sizeof(ctx->sin)))) {
         close(ctx->fd);
-        free_service(ctx);
+        osd_gdbserver_free(&ctx);
         return OSD_ERROR_CONNECTION_FAILED;
     }
 
+    /* Change the socket into non-blocking state */
+    fcntl(ctx->fd, F_SETFL, O_NONBLOCK);
+
     if (OSD_FAILED(listen(ctx->fd, 1))) {
         close(ctx->fd);
-        free_service(ctx);
+        osd_gdbserver_free(&ctx);
         return OSD_ERROR_CONNECTION_FAILED;
     }
 
@@ -152,13 +152,13 @@ osd_result osd_gdbserver_connect(struct osd_gdbserver_ctx *ctx, char *name,
 }
 
 API_EXPORT
-osd_result osd_gdbserver_disconnect(struct osd_gdbserver_ctx *ctx)
+osd_result osd_gdbserver_disconnect_hostmod(struct osd_gdbserver_ctx *ctx)
 {
     return osd_hostmod_disconnect(ctx->hostmod_ctx);
 }
 
 API_EXPORT
-bool osd_gdbserver_is_connected(struct osd_gdbserver_ctx *ctx)
+bool osd_gdbserver_is_connected_hostmod(struct osd_gdbserver_ctx *ctx)
 {
     return osd_hostmod_is_connected(ctx->hostmod_ctx);
 }
@@ -178,9 +178,9 @@ void osd_gdbserver_free(struct osd_gdbserver_ctx **ctx_p)
     *ctx_p = NULL;
 }
 
-API_EXPORT
-osd_result osd_gdbserver_start(struct osd_gdbserver_ctx *ctx)
+static osd_result handle_rsp_packet(void *arg)
 {
+    struct osd_gdbserver_ctx *ctx = (struct osd_gdbserver_ctx *)arg;
     osd_result rv;
 
     struct sockaddr_in addr_in;
@@ -190,33 +190,94 @@ osd_result osd_gdbserver_start(struct osd_gdbserver_ctx *ctx)
     getsockname(ctx->fd, (struct sockaddr *)&addr_in, &addr_in_size);
     printf("server started listening on port %d\n", ntohs(addr_in.sin_port));
 
-    while (1) {
-        ctx->client_fd =
-            accept(ctx->fd, (struct sockaddr *)&addr_in, &addr_in_size);
-        if (OSD_FAILED(ctx->client_fd)) {
-            rv = close(ctx->client_fd);
-            if (OSD_SUCCEEDED(rv)) {
+    ctx->client_fd =
+        accept(ctx->fd, (struct sockaddr *)&addr_in, &addr_in_size);
+
+    if (OSD_FAILED(ctx->client_fd)) {
+        close(ctx->client_fd);
+        return OSD_ERROR_FAILURE;
+    }
+
+    printf("Server got connection from client %s\n",
+           inet_ntoa(addr_in.sin_addr));
+
+    /* Change the socket into non-blocking state */
+    fcntl(ctx->client_fd, F_SETFL, O_NONBLOCK);
+
+    int packet_len;
+    char rsp_packet_buffer[OSD_GDBSERVER_BUFF_SIZE];
+
+    osd_gdbserver_read_data(ctx);
+
+    // osd_gdbserver_write_data(ctx, "+", 1);
+    // // rv = osd_gdbserver_read_data(ctx);
+    // if (OSD_FAILED(rv)) {
+    //     return rv;
+    // }
+
+    /*
+    rv = receive_rsp_packet(ctx, rsp_packet_buffer, &packet_len);
+    if (OSD_FAILED(rv)) {
+        return rv;
+    }
+
+    if (packet_len > 0) {
+        switch (rsp_packet_buffer[0]) {
+            case '?':
                 break;
-            }
-        }
-
-        /* At this point, connection is established between GDB client
-           and gdbserver, and they are ready to transfer data.
-           More functions to be added. */
-        printf("Server got connection from client %s\n",
-               inet_ntoa(addr_in.sin_addr));
-
-        if (OSD_SUCCEEDED(close(ctx->client_fd))) {
-            break;
+            case 'M':
+                break;
+            case 'm':
+                break;
+            case 'g':
+                rv = get_registers_packet(ctx, rsp_packet_buffer, packet_len);
+                break;
+            case 'G':
+                break;
+            case 'p':
+                rv = get_register_packet(ctx, rsp_packet_buffer, packet_len);
+                break;
+            case 'P':
+                rv = set_register_packet(ctx, rsp_packet_buffer, packet_len);
+            case 'z':
+            case 'Z':
+            case 'c':
+            case 's':
+            default:
+                // Unsupported or unknown packet
+                osd_gdbserver_write_data(ctx, NULL, 0);
+                break;
         }
     }
+    */
     return OSD_OK;
 }
 
-API_EXPORT
-osd_result osd_gdbserver_stop(struct osd_gdbserver_ctx *ctx)
+static void *gdbserver_thread_routine(void *arg)
 {
-    return close(ctx->fd);
+    handle_rsp_packet(arg);
+    return NULL;
+}
+
+API_EXPORT
+osd_result osd_gdbserver_start(struct osd_gdbserver_ctx *ctx)
+{
+    osd_result rv;
+
+    osd_gdbserver_connect_GDB(ctx);
+    rv = pthread_create(&osd_gdbserver_thread, 0, gdbserver_thread_routine,
+                        (void *)ctx);
+    if (OSD_FAILED(rv)) {
+        return rv;
+    }
+
+    return OSD_OK;
+}
+
+void osd_gdbserver_stop(struct osd_gdbserver_ctx *ctx)
+{
+    close(ctx->fd);
+    pthread_join(osd_gdbserver_thread, NULL);
 }
 
 API_EXPORT
@@ -249,6 +310,7 @@ osd_result osd_gdbserver_write_data(struct osd_gdbserver_ctx *ctx, char *data,
     if (ctx->closed == 1) {
         return OSD_ERROR_NOT_CONNECTED;
     }
+    printf("Server:Data send- %s", data);
     int wlen = write(ctx->client_fd, data, len);
     if (wlen == len) {
         return OSD_OK;

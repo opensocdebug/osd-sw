@@ -15,20 +15,106 @@
 
 #define TEST_SUITE_NAME "check_gdbserver"
 
+#include "mock_gdbclient.h"
 #include "testutil.h"
 
-#include <../../src/libosd/gdbserver-private.h>
 #include <osd/osd.h>
 #include <osd/reg.h>
 
+#include <../../src/libosd/gdbserver-private.h>
+#include <osd/gdbserver.h>
+
+#include <pthread.h>
 #include "mock_host_controller.h"
 
 struct osd_gdbserver_ctx *gdbserver_ctx;
 struct osd_log_ctx *log_ctx;
+struct mock_gdbclient_ctx *gdbclient_ctx;
 
 const unsigned int target_subnet_addr = 0;
 unsigned int mock_hostmod_diaddr;
-unsigned int mock_scm_diaddr;
+unsigned int mock_cdm_diaddr;
+unsigned int mock_mam_diaddr;
+
+pthread_t mock_gdbserver_thread;
+volatile int mock_gdbserver_ready;
+volatile int mock_server_thread_cancel;
+
+void setup_hostmod(void)
+{
+    osd_result rv;
+
+    log_ctx = testutil_get_log_ctx();
+
+    // initialize module context
+    rv = osd_gdbserver_new(&gdbserver_ctx, log_ctx, "inproc://testing",
+                           mock_cdm_diaddr, mock_mam_diaddr);
+
+    ck_assert_int_eq(rv, OSD_OK);
+    ck_assert_ptr_ne(gdbserver_ctx, NULL);
+
+    rv = mock_gdbclient_new(&gdbclient_ctx);
+    ck_assert_int_eq(rv, OSD_OK);
+
+    // connect
+    mock_host_controller_expect_diaddr_req(mock_hostmod_diaddr);
+
+    rv = osd_gdbserver_connect_hostmod(gdbserver_ctx);
+    ck_assert_int_eq(rv, OSD_OK);
+}
+
+void teardown_hostmod(void)
+{
+    osd_result rv;
+
+    rv = osd_gdbserver_disconnect_hostmod(gdbserver_ctx);
+    ck_assert_int_eq(rv, OSD_OK);
+}
+
+/**
+ * Test fixture: setup (called before each tests)
+ */
+void setup(void)
+{
+    osd_result rv;
+
+    mock_hostmod_diaddr = osd_diaddr_build(1, 1);
+    mock_cdm_diaddr = osd_diaddr_build(target_subnet_addr, 5);
+    mock_mam_diaddr = osd_diaddr_build(target_subnet_addr, 10);
+    mock_host_controller_setup();
+    setup_hostmod();
+
+    rv = osd_gdbserver_start(gdbserver_ctx);
+    ck_assert_int_eq(rv, OSD_OK);
+
+    rv = mock_gdbclient_connect(gdbclient_ctx);
+    ck_assert_int_eq(rv, OSD_OK);
+}
+
+/**
+ * Test fixture: teardown (called after each test)
+ */
+void teardown(void)
+{
+    mock_host_controller_wait_for_event_tx();
+    teardown_hostmod();
+    mock_host_controller_teardown();
+
+    osd_gdbserver_stop(gdbserver_ctx);
+
+    osd_gdbserver_free(&gdbserver_ctx);
+    ck_assert_ptr_eq(gdbserver_ctx, NULL);
+
+    mock_gdbclient_free(&gdbclient_ctx);
+    ck_assert_ptr_eq(gdbclient_ctx, NULL);
+}
+
+START_TEST(test_init_base)
+{
+    setup();
+    teardown();
+}
+END_TEST
 
 START_TEST(test1_validate_rsp_packet)
 {
@@ -204,12 +290,16 @@ END_TEST
 Suite *suite(void)
 {
     Suite *s;
-    TCase *tc_testing;
+    TCase *tc_testing, *tc_init;
 
     s = suite_create(TEST_SUITE_NAME);
 
-    tc_testing = tcase_create("Testing");
+    tc_init = tcase_create("Init");
+    tcase_add_test(tc_init, test_init_base);
+    tcase_set_timeout(tc_init, 120);
+    suite_add_tcase(s, tc_init);
 
+    tc_testing = tcase_create("Testing");
     tcase_add_test(tc_testing, test1_validate_rsp_packet);
     tcase_add_test(tc_testing, test2_validate_rsp_packet);
     tcase_add_test(tc_testing, test3_validate_rsp_packet);

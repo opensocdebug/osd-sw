@@ -16,10 +16,10 @@
 #ifndef OSD_GDBSERVER_H
 #define OSD_GDBSERVER_H
 
-#include <osd/hostmod.h>
-#include <osd/osd.h>
 #include <osd/cl_cdm.h>
 #include <osd/cl_mam.h>
+#include <osd/hostmod.h>
+#include <osd/osd.h>
 
 #include <stdlib.h>
 
@@ -52,25 +52,31 @@ struct osd_gdbserver_ctx;
 osd_result osd_gdbserver_new(struct osd_gdbserver_ctx **ctx,
                              struct osd_log_ctx *log_ctx,
                              const char *host_controller_address,
-                             uint16_t cdm_di_addr);
+                             uint16_t cdm_di_addr, uint16_t mam_di_addr);
 
 /**
- * Connect GDB server to the host controller followed by GDB
+ * Connect GDB server to the GDB client
  *
  * @return OSD_OK on success, any other value indicates an error
  */
-osd_result osd_gdbserver_connect(struct osd_gdbserver_ctx *ctx, char *name,
-                                 char *port);
+osd_result osd_gdbserver_connect_GDB(struct osd_gdbserver_ctx *ctx);
+
+/**
+ * Connect GDB server to the host controller
+ *
+ * @return OSD_OK on success, any other value indicates an error
+ */
+osd_result osd_gdbserver_connect_hostmod(struct osd_gdbserver_ctx *ctx);
 
 /**
  * @copydoc osd_hostmod_disconnect()
  */
-osd_result osd_gdbserver_disconnect(struct osd_gdbserver_ctx *ctx);
+osd_result osd_gdbserver_disconnect_hostmod(struct osd_gdbserver_ctx *ctx);
 
 /**
  * @copydoc osd_hostmod_is_connected()
  */
-bool osd_gdbserver_is_connected(struct osd_gdbserver_ctx *ctx);
+bool osd_gdbserver_is_connected_hostmod(struct osd_gdbserver_ctx *ctx);
 
 /**
  * Free the context object
@@ -83,10 +89,9 @@ void osd_gdbserver_free(struct osd_gdbserver_ctx **ctx_p);
 osd_result osd_gdbserver_start(struct osd_gdbserver_ctx *ctx);
 
 /**
- * Close the connection with GDB client
+ * Stop the connection with GDB client
  */
-osd_result osd_gdbserver_stop(struct osd_gdbserver_ctx *ctx);
-
+void osd_gdbserver_stop(struct osd_gdbserver_ctx *ctx);
 /**
  * Read data from the GDB client
  *

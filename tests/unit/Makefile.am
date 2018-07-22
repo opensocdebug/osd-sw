@@ -55,8 +55,9 @@ check_coretracelogger_SOURCES = \
 	check_coretracelogger.c \
 	mock_host_controller.c
 
-check_gdbserver_SOURCE = \
+check_gdbserver_SOURCES = \
 	check_gdbserver.c \
+	mock_gdbclient.c  \
 	mock_host_controller.c
 
 TESTS = $(check_PROGRAMS)
