@@ -21,17 +21,23 @@
 #include <osd/hostmod.h>
 #include <osd/osd.h>
 
-#define MOCK_GDBCLIENT_PORT 5555
+#define MOCK_GDBCLIENT_PORT_DEFAULT 5555
 #define MOCK_GDBCLIENT_BUFF_SIZE 1024
 
 struct mock_gdbclient_ctx {
     int fd;
     int closed;
     int buf_cnt;
+    int port;
+    char *addr;
     char buffer[MOCK_GDBCLIENT_BUFF_SIZE];
 };
 
 osd_result mock_gdbclient_new(struct mock_gdbclient_ctx **ctx);
+osd_result mock_gdbclient_start(struct mock_gdbclient_ctx *ctx);
+void mock_gdbclient_set_port(struct mock_gdbclient_ctx *ctx, int port);
+void mock_gdbclient_set_addr(struct mock_gdbclient_ctx *ctx, char *address);
+osd_result mock_gdbclient_handle_resp(struct mock_gdbclient_ctx *ctx);
 osd_result mock_gdbclient_connect(struct mock_gdbclient_ctx *ctx);
 osd_result mock_gdbclient_write_data(struct mock_gdbclient_ctx *ctx, char *data,
                                      int len);

@@ -40,39 +40,44 @@ pthread_t mock_gdbserver_thread;
 volatile int mock_gdbserver_ready;
 volatile int mock_server_thread_cancel;
 
-void setup_hostmod(void)
+void setup_gdbserver(void)
 {
     osd_result rv;
 
     log_ctx = testutil_get_log_ctx();
 
-    // initialize module context
+    // initialize OSD-GDB server module context
     rv = osd_gdbserver_new(&gdbserver_ctx, log_ctx, "inproc://testing",
                            mock_cdm_diaddr, mock_mam_diaddr);
+    osd_gdbserver_set_port(gdbserver_ctx, 5555);
+    osd_gdbserver_set_addr(gdbserver_ctx, -1);
 
     ck_assert_int_eq(rv, OSD_OK);
     ck_assert_ptr_ne(gdbserver_ctx, NULL);
 
+    // initialize mock GDB client module context
     rv = mock_gdbclient_new(&gdbclient_ctx);
     ck_assert_int_eq(rv, OSD_OK);
+    mock_gdbclient_set_port(gdbclient_ctx, 5555);
+    mock_gdbclient_set_addr(gdbclient_ctx, "127.0.0.1");
 
     // connect
     mock_host_controller_expect_diaddr_req(mock_hostmod_diaddr);
 
-    rv = osd_gdbserver_connect_hostmod(gdbserver_ctx);
+    osd_gdbserver_connect(gdbserver_ctx);
     ck_assert_int_eq(rv, OSD_OK);
 }
 
-void teardown_hostmod(void)
+void teardown_gdbserver(void)
 {
     osd_result rv;
 
-    rv = osd_gdbserver_disconnect_hostmod(gdbserver_ctx);
+    rv = osd_gdbserver_disconnect(gdbserver_ctx);
     ck_assert_int_eq(rv, OSD_OK);
 }
 
 /**
- * Test fixture: setup (called before each tests)
+ * Test fixture: setup (called before each test)
  */
 void setup(void)
 {
@@ -81,13 +86,14 @@ void setup(void)
     mock_hostmod_diaddr = osd_diaddr_build(1, 1);
     mock_cdm_diaddr = osd_diaddr_build(target_subnet_addr, 5);
     mock_mam_diaddr = osd_diaddr_build(target_subnet_addr, 10);
+
     mock_host_controller_setup();
-    setup_hostmod();
+    setup_gdbserver();
 
-    rv = osd_gdbserver_start(gdbserver_ctx);
-    ck_assert_int_eq(rv, OSD_OK);
+    rv = osd_gdbserver_is_connected_hostmod(gdbserver_ctx);
+    ck_assert_uint_eq(rv, 1);
 
-    rv = mock_gdbclient_connect(gdbclient_ctx);
+    rv = mock_gdbclient_start(gdbclient_ctx);
     ck_assert_int_eq(rv, OSD_OK);
 }
 
@@ -96,11 +102,11 @@ void setup(void)
  */
 void teardown(void)
 {
-    mock_host_controller_wait_for_event_tx();
-    teardown_hostmod();
-    mock_host_controller_teardown();
+    osd_result rv;
 
-    osd_gdbserver_stop(gdbserver_ctx);
+    mock_host_controller_wait_for_event_tx();
+    teardown_gdbserver();
+    mock_host_controller_teardown();
 
     osd_gdbserver_free(&gdbserver_ctx);
     ck_assert_ptr_eq(gdbserver_ctx, NULL);
@@ -296,7 +302,7 @@ Suite *suite(void)
 
     tc_init = tcase_create("Init");
     tcase_add_test(tc_init, test_init_base);
-    tcase_set_timeout(tc_init, 120);
+    tcase_set_timeout(tc_init, 60);
     suite_add_tcase(s, tc_init);
 
     tc_testing = tcase_create("Testing");

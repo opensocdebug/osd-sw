@@ -16,8 +16,6 @@
 #ifndef OSD_GDBSERVER_H
 #define OSD_GDBSERVER_H
 
-#include <osd/cl_cdm.h>
-#include <osd/cl_mam.h>
 #include <osd/hostmod.h>
 #include <osd/osd.h>
 
@@ -37,17 +35,25 @@ extern "C" {
 struct osd_gdbserver_ctx;
 
 /**
- * Indicates the port for connecting to GDB
+ * Indicates the default port for connecting to GDB
  */
-#define OSD_GDBSERVER_PORT 5555
+#define OSD_GDBSERVER_PORT_DEFAULT 5555
 
 /**
- * Indicates the size of the buffer
+ * Indicates the size of the RSP packet buffer
  */
 #define OSD_GDBSERVER_BUFF_SIZE 1024
 
 /**
  * Create a new context object
+ *
+ * @param ctx context object
+ * @param log_ctx logging context
+ * @param host_controller_address ZeroMQ endpoint of the host controller
+ * @param cdm_di_addr DI address of the CDM module
+ * @param mam_di_addr DI address of the MAM module
+ * @return OSD_OK if initialization was successful,
+ *         any other return code indicates an error
  */
 osd_result osd_gdbserver_new(struct osd_gdbserver_ctx **ctx,
                              struct osd_log_ctx *log_ctx,
@@ -55,23 +61,34 @@ osd_result osd_gdbserver_new(struct osd_gdbserver_ctx **ctx,
                              uint16_t cdm_di_addr, uint16_t mam_di_addr);
 
 /**
- * Connect GDB server to the GDB client
+ * Connect to the GDB client and the host controller
  *
+ * @param ctx the osd_gdbserver_ctx context object
  * @return OSD_OK on success, any other value indicates an error
+ *
+ * @see osd_gdbserver_disconnect()
  */
-osd_result osd_gdbserver_connect_GDB(struct osd_gdbserver_ctx *ctx);
+osd_result osd_gdbserver_connect(struct osd_gdbserver_ctx *ctx);
 
 /**
- * Connect GDB server to the host controller
+ * Stop the connection with GDB client and the host controller
  *
+ * @param ctx the osd_gdbserver_ctx context object
  * @return OSD_OK on success, any other value indicates an error
+ *
+ * @see osd_gdbserver_connect()
  */
-osd_result osd_gdbserver_connect_hostmod(struct osd_gdbserver_ctx *ctx);
+osd_result osd_gdbserver_disconnect(struct osd_gdbserver_ctx *ctx);
 
 /**
- * @copydoc osd_hostmod_disconnect()
+ * Free the context object
+ *
+ * By calling this function all resources associated with the context object
+ * are freed and the ctx_p itself is NULLed.
+ *
+ * @param ctx_p the context object
  */
-osd_result osd_gdbserver_disconnect_hostmod(struct osd_gdbserver_ctx *ctx);
+void osd_gdbserver_free(struct osd_gdbserver_ctx **ctx_p);
 
 /**
  * @copydoc osd_hostmod_is_connected()
@@ -79,39 +96,26 @@ osd_result osd_gdbserver_disconnect_hostmod(struct osd_gdbserver_ctx *ctx);
 bool osd_gdbserver_is_connected_hostmod(struct osd_gdbserver_ctx *ctx);
 
 /**
- * Free the context object
- */
-void osd_gdbserver_free(struct osd_gdbserver_ctx **ctx_p);
-
-/**
- * Start the connection with GDB client
- */
-osd_result osd_gdbserver_start(struct osd_gdbserver_ctx *ctx);
-
-/**
- * Stop the connection with GDB client
- */
-void osd_gdbserver_stop(struct osd_gdbserver_ctx *ctx);
-/**
- * Read data from the GDB client
+ * Set the port number for TCP communication with GDB
  *
+ * @param ctx the context object
+ * @param port the port number the server will bind to
  * @return OSD_OK on success, any other value indicates an error
  *
- * @see osd_gdbserver_write_data()
+ * @see osd_gdbserver_set_addr()
  */
-osd_result osd_gdbserver_read_data(struct osd_gdbserver_ctx *ctx);
+void osd_gdbserver_set_port(struct osd_gdbserver_ctx *ctx, int port);
 
 /**
- * Write data to the GDB client
+ * Set the IP address for TCP communication with GDB
  *
- * @param data the data to be written to the connected client
- * @param len the length of the data to be written
+ * @param ctx the context object
+ * @param address the address the server will bind to
  * @return OSD_OK on success, any other value indicates an error
  *
- * @see osd_gdbserver_read_data()
+ * @see osd_gdbserver_set_port()
  */
-osd_result osd_gdbserver_write_data(struct osd_gdbserver_ctx *ctx, char *data,
-                                    int len);
+void osd_gdbserver_set_addr(struct osd_gdbserver_ctx *ctx, int address);
 
 /**@}*/ /* end of doxygen group libosd-gdbserver */
 

@@ -41,34 +41,83 @@ osd_result mock_gdbclient_connect(struct mock_gdbclient_ctx *ctx)
 {
     osd_result rv;
 
-    struct sockaddr_in gdb_serv_addr;
+    struct sockaddr_in gdb_server_addr;
 
     if (OSD_FAILED(ctx->fd = socket(AF_INET, SOCK_STREAM, 0))) {
         return OSD_ERROR_CONNECTION_FAILED;
     }
 
-    memset(&gdb_serv_addr, '0', sizeof(gdb_serv_addr));
+    memset(&gdb_server_addr, '0', sizeof(gdb_server_addr));
 
-    gdb_serv_addr.sin_family = AF_INET;
-    gdb_serv_addr.sin_port = htons(MOCK_GDBCLIENT_PORT);
+    gdb_server_addr.sin_family = AF_INET;
+    gdb_server_addr.sin_port = htons(ctx->port);
 
-    if (OSD_FAILED(inet_pton(AF_INET, "127.0.0.1", &gdb_serv_addr.sin_addr))) {
+    if (OSD_FAILED(inet_pton(AF_INET, ctx->addr, &gdb_server_addr.sin_addr))) {
         return OSD_ERROR_CONNECTION_FAILED;
     }
 
-    if (OSD_FAILED(connect(ctx->fd, (struct sockaddr *)&gdb_serv_addr,
-                           sizeof(gdb_serv_addr)))) {
+    if (OSD_FAILED(connect(ctx->fd, (struct sockaddr *)&gdb_server_addr,
+                           sizeof(gdb_server_addr)))) {
         return OSD_ERROR_CONNECTION_FAILED;
     }
 
-    mock_gdbclient_write_data(ctx, "OK", 2);
+    return OSD_OK;
+}
+
+osd_result mock_gdbclient_start(struct mock_gdbclient_ctx *ctx)
+{
+    osd_result rv;
+
+    rv = mock_gdbclient_connect(ctx);
+    if (OSD_FAILED(rv)) {
+        return rv;
+    }
+
+    rv = mock_gdbclient_handle_resp(ctx);
+    if (OSD_FAILED(rv)) {
+        return rv;
+    }
+
+    return OSD_OK;
+}
+
+void mock_gdbclient_set_port(struct mock_gdbclient_ctx *ctx, int port)
+{
+    if (port == -1) {
+        ctx->port = MOCK_GDBCLIENT_PORT_DEFAULT;
+    } else {
+        ctx->port = port;
+    }
+}
+
+void mock_gdbclient_set_addr(struct mock_gdbclient_ctx *ctx, char *address)
+{
+    if (address == NULL) {
+        ctx->addr = "127.0.0.1";
+    } else {
+        ctx->addr = address;
+    }
+}
+
+osd_result mock_gdbclient_handle_resp(struct mock_gdbclient_ctx *ctx)
+{
+    osd_result rv;
+    rv = mock_gdbclient_write_data(ctx, "$p0007#37", 9);
+    if (OSD_FAILED(rv)) {
+        return rv;
+    }
+
+    rv = mock_gdbclient_read_data(ctx);
+    if (OSD_FAILED(rv)) {
+        return rv;
+    }
 
     return OSD_OK;
 }
 
 osd_result mock_gdbclient_read_data(struct mock_gdbclient_ctx *ctx)
 {
-    // memset(ctx->buffer, 0, sizeof ctx->buffer);
+    memset(ctx->buffer, 0, sizeof ctx->buffer);
     ctx->buf_cnt = read(ctx->fd, ctx->buffer, MOCK_GDBCLIENT_BUFF_SIZE);
 
     if (OSD_FAILED(ctx->buf_cnt)) {
