@@ -720,13 +720,13 @@ cdef class SystraceLogger:
         if self.is_connected():
             self.disconnect()
 
+        cosd.osd_systracelogger_free(&self._cself)
+
         if self._fp_sysprint:
             fclose(self._fp_sysprint)
 
         if self._fp_event:
             fclose(self._fp_event)
-
-        cosd.osd_systracelogger_free(&self._cself)
 
     def connect(self):
         rv = cosd.osd_systracelogger_connect(self._cself)
