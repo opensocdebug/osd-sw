@@ -320,6 +320,19 @@ cdef class PacketType:
                                      self._cself.data_size_words - 1)
         check_osd_result(rv)
 
+    def __eq__(self, other):
+        if not isinstance(other, Packet):
+            return NotImplemented
+
+        if not len(self) == len(other):
+            return False
+
+        for i in range(len(self)):
+            if self[i] != other[i]:
+                return False
+
+        return True
+
     def insert(self, index, value):
         """ insert value before index """
 
