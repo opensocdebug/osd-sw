@@ -232,7 +232,7 @@ cdef class Log:
         if self._cself is NULL:
             raise MemoryError()
 
-    def __dealloc(self):
+    def __dealloc__(self):
         if self._cself is not NULL:
             cosd.osd_log_free(&self._cself)
 
