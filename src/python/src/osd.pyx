@@ -27,6 +27,7 @@ import logging
 import os
 import time
 from collections.abc import MutableSequence
+from enum import IntEnum, unique
 
 
 def osd_library_version():
@@ -159,12 +160,64 @@ cdef loglevel_syslog2py(syslog_level):
         raise Exception("Unknown loglevel " + str(syslog_level))
 
 
+@unique
+class Result(IntEnum):
+    """Wrapper of osd_result and OSD_ERROR_* defines"""
+
+    OK = 0
+    FAILURE = -1
+    DEVICE_ERROR = -2
+    DEVICE_INVALID_DATA = -3
+    COM = -4
+    TIMEDOUT = -5
+    NOT_CONNECTED = -6
+    PARTIAL_RESULT = -7
+    ABORTED = -8
+    CONNECTION_FAILED = -9
+    OOM = -11
+    FILE = -12
+    MEM_VERIFY_FAILED = -13
+    WRONG_MODULE = -14
+
+    def __str__(self):
+        # String representations from osd.h, keep in sync!
+        _error_strings = {
+            self.OK: 'The operation was successful',
+            self.FAILURE: 'Generic (unknown) failure',
+            self.DEVICE_ERROR: 'debug system returned a failure',
+            self.DEVICE_INVALID_DATA: 'received invalid or malformed data from device',
+            self.COM: 'failed to communicate with device',
+            self.TIMEDOUT: 'operation timed out',
+            self.NOT_CONNECTED: 'not connected to the device',
+            self.PARTIAL_RESULT: 'this is a partial result, not all requested data was obtained',
+            self.ABORTED: 'operation aborted',
+            self.CONNECTION_FAILED: 'connection failed',
+            self.OOM: 'Out of memory',
+            self.FILE: 'file operation failed',
+            self.MEM_VERIFY_FAILED: 'memory verification failed ',
+            self.WRONG_MODULE: 'unexpected module type'
+        }
+
+        try:
+            error_str = _error_strings[self.value]
+        except:
+            error_str = 'unknown error code'
+
+        return '{0} ({1})'.format(error_str, self.value)
+
+    def __init__(self, code):
+        self.code = code
+
 class OsdErrorException(Exception):
-    pass
+    def __init__(self, result):
+        self.result = result
+
+    def __str__(self):
+        return str(self.result)
 
 cdef check_osd_result(rv):
     if rv != 0:
-        raise OsdErrorException(rv)
+        raise OsdErrorException(Result(rv))
 
 
 cdef class Log:
@@ -179,7 +232,7 @@ cdef class Log:
         if self._cself is NULL:
             raise MemoryError()
 
-    def __dealloc(self):
+    def __dealloc__(self):
         if self._cself is not NULL:
             cosd.osd_log_free(&self._cself)
 
@@ -214,6 +267,13 @@ cdef class Packet(PacketType, MutableSequence):
 # types, not from Python objects.
 #
 cdef class PacketType:
+    # These constants need to be declared in PacketType, not in Packet, to
+    # avoid a segfault when importing the osd module in (at least) Cython 0.29/
+    # Python 3.7.
+    TYPE_REG = cosd.OSD_PACKET_TYPE_REG
+    TYPE_RES1 = cosd.OSD_PACKET_TYPE_RES1
+    TYPE_EVENT = cosd.OSD_PACKET_TYPE_EVENT
+    TYPE_RES2 = cosd.OSD_PACKET_TYPE_RES2
 
     cdef cosd.osd_packet* _cself
 
@@ -339,14 +399,17 @@ cdef class Hostmod:
         # destructed already
         if cosd.osd_hostmod_is_connected(self._cself):
             rv = cosd.osd_hostmod_disconnect(self._cself)
+            check_osd_result(rv)
 
         cosd.osd_hostmod_free(&self._cself)
 
     def connect(self):
-        cosd.osd_hostmod_connect(self._cself)
+        rv = cosd.osd_hostmod_connect(self._cself)
+        check_osd_result(rv)
 
     def disconnect(self):
-        cosd.osd_hostmod_disconnect(self._cself)
+        rv = cosd.osd_hostmod_disconnect(self._cself)
+        check_osd_result(rv)
 
     def is_connected(self):
         return cosd.osd_hostmod_is_connected(self._cself)
@@ -524,16 +587,19 @@ cdef class Hostctrl:
         if self._cself is NULL:
             return
 
-        if self.is_running():
-            self.stop()
-
-        cosd.osd_hostctrl_free(&self._cself)
+        try:
+            if self.is_running():
+                self.stop()
+        finally:
+            cosd.osd_hostctrl_free(&self._cself)
 
     def start(self):
-        return cosd.osd_hostctrl_start(self._cself)
+        rv = cosd.osd_hostctrl_start(self._cself)
+        check_osd_result(rv)
 
     def stop(self):
-        return cosd.osd_hostctrl_stop(self._cself)
+        rv = cosd.osd_hostctrl_stop(self._cself)
+        check_osd_result(rv)
 
     def is_running(self):
         return cosd.osd_hostctrl_is_running(self._cself)
