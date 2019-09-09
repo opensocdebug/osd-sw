@@ -399,14 +399,17 @@ cdef class Hostmod:
         # destructed already
         if cosd.osd_hostmod_is_connected(self._cself):
             rv = cosd.osd_hostmod_disconnect(self._cself)
+            check_osd_result(rv)
 
         cosd.osd_hostmod_free(&self._cself)
 
     def connect(self):
-        cosd.osd_hostmod_connect(self._cself)
+        rv = cosd.osd_hostmod_connect(self._cself)
+        check_osd_result(rv)
 
     def disconnect(self):
-        cosd.osd_hostmod_disconnect(self._cself)
+        rv = cosd.osd_hostmod_disconnect(self._cself)
+        check_osd_result(rv)
 
     def is_connected(self):
         return cosd.osd_hostmod_is_connected(self._cself)
@@ -584,16 +587,19 @@ cdef class Hostctrl:
         if self._cself is NULL:
             return
 
-        if self.is_running():
-            self.stop()
-
-        cosd.osd_hostctrl_free(&self._cself)
+        try:
+            if self.is_running():
+                self.stop()
+        finally:
+            cosd.osd_hostctrl_free(&self._cself)
 
     def start(self):
-        return cosd.osd_hostctrl_start(self._cself)
+        rv = cosd.osd_hostctrl_start(self._cself)
+        check_osd_result(rv)
 
     def stop(self):
-        return cosd.osd_hostctrl_stop(self._cself)
+        rv = cosd.osd_hostctrl_stop(self._cself)
+        check_osd_result(rv)
 
     def is_running(self):
         return cosd.osd_hostctrl_is_running(self._cself)
