@@ -71,9 +71,9 @@ cdef extern from "osd/packet.h" nogil:
 
     cdef enum osd_packet_type:
         OSD_PACKET_TYPE_REG = 0
-        OSD_PACKET_TYPE_RES_1 = 1
+        OSD_PACKET_TYPE_RES1 = 1
         OSD_PACKET_TYPE_EVENT = 2
-        OSD_PACKET_TYPE_RES_2 = 3
+        OSD_PACKET_TYPE_RES2 = 3
 
     osd_result osd_packet_new(osd_packet **packet, size_t size_data_words)
 

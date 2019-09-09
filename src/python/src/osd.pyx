@@ -214,6 +214,13 @@ cdef class Packet(PacketType, MutableSequence):
 # types, not from Python objects.
 #
 cdef class PacketType:
+    # These constants need to be declared in PacketType, not in Packet, to
+    # avoid a segfault when importing the osd module in (at least) Cython 0.29/
+    # Python 3.7.
+    TYPE_REG = cosd.OSD_PACKET_TYPE_REG
+    TYPE_RES1 = cosd.OSD_PACKET_TYPE_RES1
+    TYPE_EVENT = cosd.OSD_PACKET_TYPE_EVENT
+    TYPE_RES2 = cosd.OSD_PACKET_TYPE_RES2
 
     cdef cosd.osd_packet* _cself
 
