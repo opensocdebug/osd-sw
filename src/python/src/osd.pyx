@@ -17,6 +17,7 @@ cimport cutil
 from cutil cimport va_list, vasprintf, Py_AddPendingCall
 from libc.stdint cimport uint16_t
 from cpython.mem cimport PyMem_Malloc, PyMem_Free
+from cpython.ceval cimport PyEval_InitThreads
 from libc.stdlib cimport malloc, free
 from libc.stdio cimport FILE, fopen, fclose
 from libc.errno cimport errno
@@ -276,17 +277,32 @@ cdef class PacketType:
     TYPE_RES2 = cosd.OSD_PACKET_TYPE_RES2
 
     cdef cosd.osd_packet* _cself
+    cdef bint _cself_owner
 
-    def _ensure_cself(self):
-        if not self._cself:
+    def __cinit__(self):
+        self._cself_owner = False
+
+    def __init__(self):
+        if self._cself is NULL:
+            self._cself_owner = True
             cosd.osd_packet_new(&self._cself,
                                 cosd.osd_packet_sizeconv_payload2data(0))
             if self._cself is NULL:
                 raise MemoryError()
 
     def __dealloc__(self):
-        if self._cself is not NULL:
+        if self._cself is not NULL and self._cself_owner:
             cosd.osd_packet_free(&self._cself)
+            self._cself_owner = False
+
+    @staticmethod
+    cdef Packet _from_c_ptr(cosd.osd_packet *_c_packet, bint owner=True):
+        """ Factory: create Packet from osd_packet* """
+        # Call __new__ to bypass __init__ and set _cself manually
+        cdef Packet wrapper = Packet.__new__(Packet)
+        wrapper._cself = _c_packet
+        wrapper._cself_owner = owner
+        return wrapper
 
     # Container API for sequences (lists) with Cython extensions
     # https://docs.python.org/3/reference/datamodel.html#emulating-container-types
@@ -295,17 +311,14 @@ cdef class PacketType:
     # https://docs.python.org/3/library/stdtypes.html#list
 
     def __len__(self):
-        self._ensure_cself()
         return self._cself.data_size_words
 
     def __getitem__(self, index):
-        self._ensure_cself()
         if index >= self._cself.data_size_words:
             raise IndexError
         return self._cself.data_raw[index]
 
     def __setitem__(self, index, value):
-        self._ensure_cself()
         if index >= self._cself.data_size_words:
             raise IndexError
         self._cself.data_raw[index] = value
@@ -351,26 +364,21 @@ cdef class PacketType:
 
     @property
     def src(self):
-        self._ensure_cself()
         return cosd.osd_packet_get_src(self._cself)
 
     @property
     def dest(self):
-        self._ensure_cself()
         return cosd.osd_packet_get_dest(self._cself)
 
     @property
     def type(self):
-        self._ensure_cself()
         return cosd.osd_packet_get_type(self._cself)
 
     @property
     def type_sub(self):
-        self._ensure_cself()
         return cosd.osd_packet_get_type_sub(self._cself)
 
     def set_header(self, dest, src, type, type_sub):
-        self._ensure_cself()
         cosd.osd_packet_set_header(self._cself, dest, src, type, type_sub)
 
     @property
@@ -379,7 +387,6 @@ cdef class PacketType:
 
     def __str__(self):
         cdef char* c_str = NULL
-        self._ensure_cself()
         cosd.osd_packet_to_string(self._cself, &c_str)
 
         try:
@@ -393,14 +400,44 @@ cdef class PacketType:
 cdef class Hostmod:
     cdef cosd.osd_hostmod_ctx* _cself
 
-    def __cinit__(self, Log log, host_controller_address, *args, **kwargs):
+    # Event handler must be bound to the class to have it in the same GC scope
+    # as _c_event_handler_cb(). Otherwise, the event handler could be garbage-
+    # collected before the event handler is called.
+    cdef readonly object _event_handler
+
+    def __cinit__(self, Log log, host_controller_address,
+                  event_handler = None, *args, **kwargs):
+        """ Construct a new Hostmod instance
+
+        Args:
+            log: logger
+            host_controller_address (str): Address of the host controller to
+                connect to.
+            event_handler (object): Event handler callback function, called
+                whenever an event is received. Set to None to receive event
+                packets with Hostmod.event_receive() instead.
+
+                The callback function receives a Packet as only argument.
+                The return value is ignored.
+                Any exception thrown in the callback function will indicate an
+                unsuccessful callback execution and passed on to libosd.
+        """
         # *args and **kwargs enables child classes to have more constructor
         # parameters
         py_byte_string = host_controller_address.encode('UTF-8')
         cdef char* c_host_controller_address = py_byte_string
-        cosd.osd_hostmod_new(&self._cself, log._cself, c_host_controller_address,
-                             NULL, NULL)
-        # XXX: extend to pass event callback
+
+        if event_handler == None:
+            rv  = cosd.osd_hostmod_new(&self._cself, log._cself,
+                                       c_host_controller_address,
+                                       NULL, NULL)
+        else:
+            self._event_handler = event_handler
+            rv  = cosd.osd_hostmod_new(&self._cself, log._cself,
+                                       c_host_controller_address,
+                                       <cosd.osd_hostmod_event_handler_fn>Hostmod._c_event_handler_cb,
+                                       <void*>self)
+        check_osd_result(rv)
         if self._cself is NULL:
             raise MemoryError()
 
@@ -415,6 +452,18 @@ cdef class Hostmod:
             check_osd_result(rv)
 
         cosd.osd_hostmod_free(&self._cself)
+
+    @staticmethod
+    cdef cosd.osd_result _c_event_handler_cb(void *self_void, cosd.osd_packet *packet) with gil:
+        PyEval_InitThreads()
+        try:
+            self = <object>self_void
+            py_packet = Packet._from_c_ptr(packet, owner=True)
+
+            self._event_handler(py_packet)
+            return Result.OK
+        except:
+            return Result.FAILURE
 
     def connect(self):
         rv = cosd.osd_hostmod_connect(self._cself)
@@ -510,8 +559,7 @@ cdef class Hostmod:
         rv = cosd.osd_hostmod_event_receive(self._cself, &c_event_pkg, flags)
         check_osd_result(rv)
 
-        py_event_pkg = Packet()
-        py_event_pkg._cself = c_event_pkg
+        py_event_pkg = Packet._from_c_ptr(c_event_pkg, owner=True)
 
         return py_event_pkg
 
