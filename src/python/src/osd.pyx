@@ -27,6 +27,7 @@ import logging
 import os
 import time
 from collections.abc import MutableSequence
+from enum import IntEnum, unique
 
 
 def osd_library_version():
@@ -159,12 +160,64 @@ cdef loglevel_syslog2py(syslog_level):
         raise Exception("Unknown loglevel " + str(syslog_level))
 
 
+@unique
+class Result(IntEnum):
+    """Wrapper of osd_result and OSD_ERROR_* defines"""
+
+    OK = 0
+    FAILURE = -1
+    DEVICE_ERROR = -2
+    DEVICE_INVALID_DATA = -3
+    COM = -4
+    TIMEDOUT = -5
+    NOT_CONNECTED = -6
+    PARTIAL_RESULT = -7
+    ABORTED = -8
+    CONNECTION_FAILED = -9
+    OOM = -11
+    FILE = -12
+    MEM_VERIFY_FAILED = -13
+    WRONG_MODULE = -14
+
+    def __str__(self):
+        # String representations from osd.h, keep in sync!
+        _error_strings = {
+            self.OK: 'The operation was successful',
+            self.FAILURE: 'Generic (unknown) failure',
+            self.DEVICE_ERROR: 'debug system returned a failure',
+            self.DEVICE_INVALID_DATA: 'received invalid or malformed data from device',
+            self.COM: 'failed to communicate with device',
+            self.TIMEDOUT: 'operation timed out',
+            self.NOT_CONNECTED: 'not connected to the device',
+            self.PARTIAL_RESULT: 'this is a partial result, not all requested data was obtained',
+            self.ABORTED: 'operation aborted',
+            self.CONNECTION_FAILED: 'connection failed',
+            self.OOM: 'Out of memory',
+            self.FILE: 'file operation failed',
+            self.MEM_VERIFY_FAILED: 'memory verification failed ',
+            self.WRONG_MODULE: 'unexpected module type'
+        }
+
+        try:
+            error_str = _error_strings[self.value]
+        except:
+            error_str = 'unknown error code'
+
+        return '{0} ({1})'.format(error_str, self.value)
+
+    def __init__(self, code):
+        self.code = code
+
 class OsdErrorException(Exception):
-    pass
+    def __init__(self, result):
+        self.result = result
+
+    def __str__(self):
+        return str(self.result)
 
 cdef check_osd_result(rv):
     if rv != 0:
-        raise OsdErrorException(rv)
+        raise OsdErrorException(Result(rv))
 
 
 cdef class Log:
