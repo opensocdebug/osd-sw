@@ -104,6 +104,8 @@ cdef extern from "osd/packet.h" nogil:
     osd_result osd_packet_realloc(osd_packet **packet_p,
                                   size_t data_size_words_new)
 
+    bint osd_packet_equal(const osd_packet *p1, const osd_packet *p2)
+
 cdef extern from "osd/hostmod.h" nogil:
     struct osd_hostmod_ctx:
         pass
