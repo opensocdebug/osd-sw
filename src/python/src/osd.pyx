@@ -12,23 +12,34 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import logging
+import os
+import sys
+import time
+
+from collections.abc import MutableSequence
+from enum import IntEnum, unique
+
 cimport cosd
 cimport cutil
 from cutil cimport va_list, vasprintf, Py_AddPendingCall
 from libc.stdint cimport uint16_t
 from cpython.mem cimport PyMem_Malloc, PyMem_Free
-from cpython.ceval cimport PyEval_InitThreads
 from libc.stdlib cimport malloc, free
 from libc.stdio cimport FILE, fopen, fclose
 from libc.errno cimport errno
 from libc.string cimport strerror, memmove
 from posix.time cimport timespec
 
-import logging
-import os
-import time
-from collections.abc import MutableSequence
-from enum import IntEnum, unique
+if sys.version_info < (3, 7):
+    # We receive callbacks from various threads in libosd and need to make sure
+    # that the GIL is initialized on each of these threads. Calling
+    # PyEval_InitThreads() isn't enough, unfortunately. As workaround, we import
+    # cython.parallel, which contains code to always initialize the GIL at the
+    # right time.
+    # https://github.com/cython/cython/issues/2205#issuecomment-398511174
+    # https://github.com/opensocdebug/osd-sw/issues/37
+    cimport cython.parallel
 
 
 def osd_library_version():
@@ -455,7 +466,6 @@ cdef class Hostmod:
 
     @staticmethod
     cdef cosd.osd_result _c_event_handler_cb(void *self_void, cosd.osd_packet *packet) with gil:
-        PyEval_InitThreads()
         try:
             self = <object>self_void
             py_packet = Packet._from_c_ptr(packet, owner=True)
