@@ -80,6 +80,48 @@ START_TEST(test_cpus_stop)
 }
 END_TEST
 
+START_TEST(test_system_reset_set)
+{
+    osd_result rv;
+
+    uint16_t old_reg_val = 0xDE0C;
+    uint16_t new_reg_val = 0xDE0D;
+
+    mock_hostmod_expect_reg_read16(old_reg_val,
+                                   osd_diaddr_build(subnet_addr, 0),
+                                   OSD_REG_SCM_SYSRST,
+                                   OSD_OK);
+    mock_hostmod_expect_reg_write16(new_reg_val,
+                                    osd_diaddr_build(subnet_addr, 0),
+                                    OSD_REG_SCM_SYSRST,
+                                    OSD_OK);
+
+    rv = osd_cl_scm_system_reset(mock_hostmod_get_ctx(), subnet_addr, 1);
+    ck_assert_int_eq(rv, OSD_OK);
+}
+END_TEST
+
+START_TEST(test_system_reset_unset)
+{
+    osd_result rv;
+
+    uint16_t old_reg_val = 0xde0D;
+    uint16_t new_reg_val = 0xde0C;
+
+    mock_hostmod_expect_reg_read16(old_reg_val,
+                                   osd_diaddr_build(subnet_addr, 0),
+                                   OSD_REG_SCM_SYSRST,
+                                   OSD_OK);
+    mock_hostmod_expect_reg_write16(new_reg_val,
+                                    osd_diaddr_build(subnet_addr, 0),
+                                    OSD_REG_SCM_SYSRST,
+                                    OSD_OK);
+
+    rv = osd_cl_scm_system_reset(mock_hostmod_get_ctx(), subnet_addr, 0);
+    ck_assert_int_eq(rv, OSD_OK);
+}
+END_TEST
+
 START_TEST(test_get_subnetinfo)
 {
     osd_result rv;
@@ -118,6 +160,8 @@ Suite *suite(void)
     tcase_add_checked_fixture(tc_core, setup, teardown);
     tcase_add_test(tc_core, test_cpus_start);
     tcase_add_test(tc_core, test_cpus_stop);
+    tcase_add_test(tc_core, test_system_reset_set);
+    tcase_add_test(tc_core, test_system_reset_unset);
     tcase_add_test(tc_core, test_get_subnetinfo);
     suite_add_tcase(s, tc_core);
 

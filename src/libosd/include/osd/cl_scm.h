@@ -55,6 +55,18 @@ osd_result osd_cl_scm_cpus_stop(struct osd_hostmod_ctx *hostmod_ctx,
                                 unsigned int subnet_addr);
 
 /**
+ * Set or unset the system reset in a given subnet
+ *
+ * The exact meaning of "system reset" is platform-dependent.
+ *
+ * @param hostmod_ctx hostmodule context
+ * @param subnet_addr target subnet
+ * @param reset Value of the reset: 1 to set the reset signal, 0 to unset it
+ */
+osd_result osd_cl_scm_system_reset(struct osd_hostmod_ctx *hostmod_ctx,
+                                   unsigned int subnet_addr, bool reset);
+
+/**
  * Get a description of a given subnet from the SCM
  */
 osd_result osd_cl_scm_get_subnetinfo(struct osd_hostmod_ctx *hostmod_ctx,

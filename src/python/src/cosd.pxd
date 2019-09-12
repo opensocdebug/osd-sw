@@ -240,6 +240,25 @@ cdef extern from "osd/cl_mam.h" nogil:
                                 const void *data, size_t nbyte,
                                 uint64_t start_addr)
 
+cdef extern from "osd/cl_scm.h" nogil:
+    cdef struct osd_subnet_desc:
+        uint16_t vendor_id;
+        uint16_t device_id
+        uint16_t max_pkt_len
+
+    osd_result osd_cl_scm_cpus_start(osd_hostmod_ctx *hostmod_ctx,
+                                     unsigned int subnet_addr)
+
+    osd_result osd_cl_scm_cpus_stop(osd_hostmod_ctx *hostmod_ctx,
+                                    unsigned int subnet_addr)
+
+    osd_result osd_cl_scm_system_reset(osd_hostmod_ctx *hostmod_ctx,
+                                       unsigned int subnet_addr, bint reset)
+
+    osd_result osd_cl_scm_get_subnetinfo(osd_hostmod_ctx *hostmod_ctx,
+                                         unsigned int subnet_addr,
+                                         osd_subnet_desc *subnet_desc)
+
 cdef extern from "osd/module.h" nogil:
     cdef struct osd_module_desc:
         uint16_t addr
