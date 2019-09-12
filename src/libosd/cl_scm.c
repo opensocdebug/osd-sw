@@ -49,9 +49,6 @@ osd_result osd_cl_scm_cpus_stop(struct osd_hostmod_ctx *hostmod_ctx,
                                   OSD_HOSTMOD_BLOCKING);
 }
 
-/**
- * Read the system information from the device, as stored in the SCM
- */
 API_EXPORT
 osd_result osd_cl_scm_system_reset(struct osd_hostmod_ctx *hostmod_ctx,
                                    unsigned int subnet_addr, bool reset)
