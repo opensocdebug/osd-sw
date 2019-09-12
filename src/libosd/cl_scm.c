@@ -53,6 +53,17 @@ osd_result osd_cl_scm_cpus_stop(struct osd_hostmod_ctx *hostmod_ctx,
  * Read the system information from the device, as stored in the SCM
  */
 API_EXPORT
+osd_result osd_cl_scm_system_reset(struct osd_hostmod_ctx *hostmod_ctx,
+                                   unsigned int subnet_addr, bool reset)
+{
+    return osd_hostmod_reg_setbit(hostmod_ctx, OSD_REG_SCM_SYSRST_SYS_RST_BIT,
+                                  reset,
+                                  get_scm_diaddr(subnet_addr),
+                                  OSD_REG_SCM_SYSRST, 16,
+                                  OSD_HOSTMOD_BLOCKING);
+}
+
+API_EXPORT
 osd_result osd_cl_scm_get_subnetinfo(struct osd_hostmod_ctx *hostmod_ctx,
                                      unsigned int subnet_addr,
                                      struct osd_subnet_desc *subnet_desc)
