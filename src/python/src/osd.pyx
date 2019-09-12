@@ -759,6 +759,18 @@ def cl_mam_read(MemoryDescriptor mem_desc, Hostmod hostmod, addr, nbyte):
 
     return data
 
+def cl_scm_cpus_start(Hostmod hostmod, subnet_addr):
+    rv = cosd.osd_cl_scm_cpus_start(hostmod._cself, subnet_addr)
+    check_osd_result(rv)
+
+def cl_scm_cpus_stop(Hostmod hostmod, subnet_addr):
+    rv = cosd.osd_cl_scm_cpus_stop(hostmod._cself, subnet_addr)
+    check_osd_result(rv)
+
+def cl_scm_system_reset(Hostmod hostmod, subnet_addr, reset):
+    rv = cosd.osd_cl_scm_system_reset(hostmod._cself, subnet_addr, reset)
+    check_osd_result(rv)
+
 cdef class MemoryAccess:
     cdef cosd.osd_memaccess_ctx* _cself
 
