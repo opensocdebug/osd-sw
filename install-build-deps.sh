@@ -3,6 +3,8 @@
 # Install development build dependencies for different Linux distributions
 #
 
+set -e
+
 [ -f /etc/os-release ] || (echo "/etc/os-release doesn't exist."; exit 1)
 . /etc/os-release
 
