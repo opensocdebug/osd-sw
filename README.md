@@ -1,4 +1,4 @@
-![](https://github.com/opensocdebug/osd-sw/workflows/ci/badge.svg)
+![](https://github.com/opensocdebug/osd-sw/workflows/Continuous%20Integration/badge.svg)
 [![codecov](https://codecov.io/gh/opensocdebug/osd-sw/branch/master/graph/badge.svg)](https://codecov.io/gh/opensocdebug/osd-sw)
 
 # Open SoC Debug Software
