@@ -17,6 +17,12 @@ jobs:
         - release
         os:
         - ubuntu-16.04
+        - ubuntu-18.04
+        exclude:
+        - os: ubuntu-16.04
+          build_type: valgrind
+        - os: ubuntu-16.04
+          build_type: asan
     runs-on: ${{ matrix.os }}
 
     steps:
