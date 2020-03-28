@@ -9,19 +9,19 @@ The error types are given as one of the `OSD_ERROR_*`.
 
 Use :c:macro:`OSD_SUCCEEDED` to check if a function call was successful, and :c:macro:`OSD_FAILED` to check if it failed.
 
-Use of assertations
-^^^^^^^^^^^^^^^^^^^
-Using assertations within libosd causes the application using libosd to crash.
+Use of assertions
+^^^^^^^^^^^^^^^^^
+Using assertions within libosd causes the application using libosd to crash.
 A crash can be a good way to fail early, however, it may be used only for non-recoverable errors or programming errors.
-In consequence, libosd makes use of assertations to check for internal errors (i.e. bugs in libosd), or to check for violated API calling conventions.
-However, assertations are not used to check for invalid or missing input data from known-to-be-unreliable sources (e.g. from the network, from a user or from the file system).
+In consequence, libosd makes use of assertions to check for internal errors (i.e. bugs in libosd), or to check for violated API calling conventions.
+However, assertions are not used to check for invalid or missing input data from known-to-be-unreliable sources (e.g. from the network, from a user or from the file system).
 
-Assertations are used in the following cases:
+Assertions are used in the following cases:
 
 - API calling conventions are not followed.
 - Violoated pre- or postconditions: the internal state when entering or exiting a function isn't what was expected.
 
-Assertations are *not* used in in the following scenarios:
+Assertions are *not* used in in the following scenarios:
 
 - User input to a function is not valid. 
 - Unexpected data was received from the network, from the file system, or similar sources.
