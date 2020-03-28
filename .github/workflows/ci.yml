@@ -1,0 +1,74 @@
+name: Continuous Integration
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    name: Build ${{ matrix.build_type }} build on ${{ matrix.os }}
+    strategy:
+      matrix:
+        build_type:
+        - valgrind
+        - asan
+        - release
+        os:
+        - ubuntu-16.04
+    runs-on: ${{ matrix.os }}
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Work around libzmq packaging problems (https://github.com/oerdnj/deb.sury.org/issues/1365)
+      run: |
+        sudo rm /etc/apt/sources.list.d/ondrej-ubuntu-php-*.list
+        sudo apt-get remove -y 'libzmq5*'
+        sudo apt-get update
+    - name: Build and install GLIP as build dependency
+      run: |
+        set -e
+        git clone --depth 1 https://github.com/TUM-LIS/glip.git
+        cd glip
+        ./autogen.sh
+        ./configure
+        make -j4
+        sudo make install
+    - name: Install dependencies
+      run: |
+        set -e
+        sudo apt-get update
+        ./install-build-deps.sh
+
+    - run: ./autogen.sh
+
+    - run: ./configure --with-glip --enable-debug --enable-code-coverage --enable-valgrind --disable-asan
+      if: matrix.build_type == 'valgrind'
+    - run: ./configure --with-glip --enable-debug --enable-code-coverage --disable-valgrind --enable-asan
+      if: matrix.build_type == 'asan'
+    - run: ./configure --with-glip
+      if: matrix.build_type == 'release'
+
+    - run: make -j4
+
+    - run: make check-code-coverage
+
+    - run: make check-valgrind
+
+    - run: sudo make install
+
+    - name: Build and test Python bindings (using the release version of libosd)
+      run: cd src/python && tox
+      if: matrix.build_type == 'release'
+
+    - uses: codecov/codecov-action@v1
+      with:
+        fail_ci_if_error: true
+      if: matrix.build_type == 'asan'
+
+    - name: Dump test logs to stdout for debugging test failures
+      run: |
+        if [ -f tests/unit/test-suite.log ]; then cat tests/unit/test-suite.log; fi
+        if [ -f tests/unit/test-suite-memcheck.log ]; then cat tests/unit/test-suite-memcheck.log; fi
+      if: failure()
