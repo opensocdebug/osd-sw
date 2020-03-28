@@ -13,8 +13,8 @@ if [ $(id -u) -ne 0 ]; then
   SUDO_CMD="sudo "
 fi
 
-case "$ID" in
-  ubuntu)
+case "$ID-$VERSION_ID" in
+  ubuntu-16.04)
     # Ubuntu seems to have a rather strange and inconsistent naming for the
     # ZeroMQ packages ...
     $SUDO_CMD apt-get install -y \
@@ -31,6 +31,23 @@ case "$ID" in
       xsltproc \
       libelf1 libelf-dev zlib1g zlib1g-dev
     $SUDO_CMD pip3 install pytest
+    ;;
+
+  ubuntu-18.04)
+    # Ubuntu seems to have a rather strange and inconsistent naming for the
+    # ZeroMQ packages ...
+    $SUDO_CMD apt-get install -y \
+      check \
+      doxygen \
+      python3 python3-venv python3-pip \
+      tox \
+      lcov valgrind \
+      libzmq5 \
+      libzmq3-dev \
+      libczmq4 \
+      libczmq-dev \
+      xsltproc \
+      libelf1 libelf-dev zlib1g zlib1g-dev
     ;;
 
   *suse*)
