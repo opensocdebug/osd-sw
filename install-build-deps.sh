@@ -29,7 +29,8 @@ case "$ID-$VERSION_ID" in
       libczmq-dev \
       libczmq-dbg \
       xsltproc \
-      libelf1 libelf-dev zlib1g zlib1g-dev
+      libelf1 libelf-dev zlib1g zlib1g-dev \
+      lsb-release
     $SUDO_CMD pip3 install pytest
     ;;
 
@@ -47,7 +48,9 @@ case "$ID-$VERSION_ID" in
       libczmq4 \
       libczmq-dev \
       xsltproc \
-      libelf1 libelf-dev zlib1g zlib1g-dev
+      libelf1 libelf-dev zlib1g zlib1g-dev \
+      lsb-release
+    $SUDO_CMD pip3 install pytest
     ;;
 
   *suse*)
@@ -60,7 +63,8 @@ case "$ID-$VERSION_ID" in
       zeromq-devel zeromq \
       czmq-devel czmq-debuginfo \
       libxslt-tools \
-      libelf1 libelf-devel
+      libelf1 libelf-devel \
+      lsb-release
     $SUDO_CMD pip3 install pytest
     ;;
 
