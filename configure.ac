@@ -11,11 +11,11 @@ AC_INIT([osd],
         [OSD_VERSION_MAJOR_[.]OSD_VERSION_MINOR_[.]OSD_VERSION_MICRO_[]OSD_VERSION_SUFFIX_],
         [opensocdebug@lists.librecores.org],
         [osd],
-        [http://www.opensocdebug.org])
+        [https://www.opensocdebug.org])
 
 # Library versioning
-# http://www.gnu.org/software/libtool/manual/html_node/Updating-version-info.html
-# http://sourceware.org/autobook/autobook/autobook_91.html
+# https://www.gnu.org/software/libtool/manual/html_node/Updating-version-info.html
+# https://sourceware.org/autobook/autobook/autobook_91.html
 OSD_CURRENT=0
 OSD_REVISION=1
 OSD_AGE=0

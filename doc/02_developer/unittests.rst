@@ -51,7 +51,7 @@ To build and execute all tests and to finally generate a coverage report as HTML
 Find memory leaks with Valgrind
 -------------------------------
 
-To check the code for memory errors you can run the unit test suite under Valgrind with its `memcheck <http://valgrind.org/docs/manual/mc-manual.html>`_ tool.
+To check the code for memory errors you can run the unit test suite under Valgrind with its `memcheck <https://valgrind.org/docs/manual/mc-manual.html>`_ tool.
 Valgrind support must be enabled at configure time by passing the options ``--enable-valgrind --disable-asan`` to the ``configure`` script. 
 
 .. code-block:: sh
