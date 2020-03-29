@@ -338,8 +338,9 @@ cdef class PacketType:
         if len(self) <= 3:
             raise ValueError("Packet must have at least 3 (header) words.")
 
+        words_after_deleted_one = len(self) - index - 1
         memmove(&self._cself.data_raw[index], &self._cself.data_raw[index + 1],
-                (len(self) - index) * sizeof(uint16_t))
+                words_after_deleted_one * sizeof(uint16_t))
         rv = cosd.osd_packet_realloc(&self._cself,
                                      self._cself.data_size_words - 1)
         check_osd_result(rv)
