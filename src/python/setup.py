@@ -77,7 +77,7 @@ setup(
     description = ("Open SoC Debug is a way to interact with and obtain "
                    "information from a System-on-Chip (SoC)."),
     long_description = long_description,
-    url = "http://www.opensocdebug.org",
+    url = "https://www.opensocdebug.org",
     license = 'Apache License, Version 2.0',
     classifiers = [
         "Development Status :: 3 - Alpha",
@@ -98,4 +98,3 @@ setup(
         'pytest',
     ],
 )
-
