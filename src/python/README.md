@@ -49,9 +49,6 @@ sudo pip3 install pytest
 # run the tests
 python3 -m pytest
 
-# or
-python3 setup.py test
-
 # or (as run in CI)
 tox
 ```
