@@ -59,7 +59,7 @@ check_systracelogger_SOURCES = \
 check_coretracelogger_SOURCES = \
 	check_coretracelogger.c \
 	mock_host_controller.c
-	
+
 check_terminal_SOURCES = \
 	check_terminal.c \
 	mock_host_controller.c
@@ -96,5 +96,5 @@ check-junit-xml: $(JUNIT_XML_REPORTS)
 coverage-cobertura-xml: coverage-cobertura.xml
 
 coverage-cobertura.xml: $(CODE_COVERAGE_OUTPUT_FILE)
-	python $(top_srcdir)/tests/tools/lcov_cobertura.py \
+	python3 $(top_srcdir)/tests/tools/lcov_cobertura.py \
 		$^ --base-dir $(top_srcdir) --output $@
