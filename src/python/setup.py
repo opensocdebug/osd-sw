@@ -1,4 +1,4 @@
-# Copyright 2017-2018 The Open SoC Debug Project
+# Copyright 2017-2020 The Open SoC Debug Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,11 +18,28 @@ import os
 import sys
 import subprocess
 
+# The Python C extension "osd", which provides the bindings, is written in
+# Cython. Cython creates a .c file, which is then compiled like normal Python C
+# extension module when the package is installed.
+# Set the USE_CYTHON environment variable, or pass --use-cython to setup.py
+# to recreate the .c file on the fly when installing the package. If none of
+# these options are used, the .c file is not regenerated and the file in the
+# repository/package is used.
+USE_CYTHON = 'USE_CYTHON' in os.environ
 if '--use-cython' in sys.argv:
     USE_CYTHON = True
     sys.argv.remove('--use-cython')
+
+CYTHON_COVERAGE = 'CYTHON_COVERAGE' in os.environ
+if '--cython-coverage' in sys.argv:
+    CYTHON_COVERAGE = True
+    sys.argv.remove('--cython-coverage')
+
+if USE_CYTHON:
+    print("Using Cython to re-compile the osd bindings.")
 else:
-    USE_CYTHON = False
+    print("Compiling osd bindings from C file without Cython.")
+
 ext = '.pyx' if USE_CYTHON else '.c'
 
 def pkgconfig(*packages, **kw):
@@ -46,17 +63,27 @@ def pkgconfig(*packages, **kw):
 
     return config
 
+define_macros = []
+if CYTHON_COVERAGE:
+    define_macros += [('CYTHON_TRACE_NOGIL', '1')]
+
 extensions = [
     Extension('osd',
               ['src/osd'+ext],
-              **pkgconfig('osd', 'libglip'))
+              **pkgconfig('osd', 'libglip', config={
+                  'define_macros': define_macros,
+                }))
 ]
 
 if USE_CYTHON:
     from Cython.Build import cythonize
+    cython_compiler_directives = {
+        'language_level': 3,
+        'embedsignature': True,
+        'linetrace': CYTHON_COVERAGE
+    }
     extensions = cythonize(extensions,
-                           compiler_directives={'language_level': 3,
-                                                'embedsignature': True})
+                           compiler_directives=cython_compiler_directives)
 
 with open("README.md", "r", encoding='utf-8') as readme:
     long_description = readme.read()

@@ -6,23 +6,34 @@ on:
   pull_request:
     branches: [ master ]
 
+env:
+  # Runner specs:
+  # https://help.github.com/en/actions/reference/virtual-environments-for-github-hosted-runners#supported-runners-and-hardware-resources
+  MAKE_JOBS: 4
+
 jobs:
   build:
-    name: Build ${{ matrix.build_type }} build on ${{ matrix.os }}
+    name: ${{ matrix.build_type }} on ${{ matrix.os }}
     strategy:
       matrix:
         build_type:
         - valgrind
         - asan
+        - debug
         - release
         os:
         - ubuntu-16.04
         - ubuntu-18.04
         exclude:
+        # Do only a release build on Ubuntu 16.04, everything else is done on
+        # Ubuntu 18.04.
         - os: ubuntu-16.04
           build_type: valgrind
         - os: ubuntu-16.04
           build_type: asan
+        - os: ubuntu-16.04
+          build_type: debug
+      fail-fast: false
     runs-on: ${{ matrix.os }}
 
     steps:
@@ -39,7 +50,7 @@ jobs:
         cd glip
         ./autogen.sh
         ./configure
-        make -j4
+        make -j$MAKE_JOBS
         sudo make install
     - name: Install dependencies
       run: |
@@ -49,29 +60,57 @@ jobs:
 
     - run: ./autogen.sh
 
-    - run: ./configure --with-glip --enable-debug --enable-code-coverage --enable-valgrind --disable-asan
+    - run: ./configure --with-glip --enable-debug --enable-valgrind --disable-asan
       if: matrix.build_type == 'valgrind'
-    - run: ./configure --with-glip --enable-debug --enable-code-coverage --disable-valgrind --enable-asan
+    - run: ./configure --with-glip --enable-debug --disable-valgrind --enable-asan
       if: matrix.build_type == 'asan'
+    - run: ./configure --with-glip --enable-debug --enable-code-coverage
+      if: matrix.build_type == 'debug'
     - run: ./configure --with-glip
       if: matrix.build_type == 'release'
 
-    - run: make -j4
+    - run: make -j$MAKE_JOBS
 
-    - run: make check-code-coverage
+    - run: make -j$MAKE_JOBS check
+      if: matrix.build_type != 'debug' && matrix.build_type != 'valgrind'
 
     - run: make check-valgrind
+      if: matrix.build_type == 'valgrind'
+
+    - run: make -j$MAKE_JOBS check-code-coverage
+      if: matrix.build_type == 'debug'
+
+    # The -X coveragepy argument is required to prevent the codecov uploader
+    # from ignoring/overwriting all C coverage information and only uploading
+    # the Python-generated coverage.
+    # The GitHub Action codecov/codecov-action@v1 doesn't currently expose the
+    # -X argument, which is why we need to use the the bash script directly.
+    - name: Upload coverage from C unit tests to codecov
+      run: bash <(curl -s https://codecov.io/bash) -Z -X coveragepy -F cunittests
+      if: matrix.build_type == 'debug'
+
+    # C library coverage information is generated when running the check unit
+    # tests, and when running the Python bindings. To keep these pieces of
+    # information tagged differently in the reports on codecov we delete the
+    # check-generated coverage data after it has been uploaded. It will then be
+    # uploaded again as part of the Python bindings coverage below.
+    - name: Remove collected coverage from C unit tests
+      run: find . -name '*.gcda' -exec rm {} \;
+      if: matrix.build_type == 'debug'
 
     - run: sudo make install
 
-    - name: Build and test Python bindings (using the release version of libosd)
-      run: cd src/python && tox
+    - name: Build and test Python bindings (release)
+      run: cd src/python && tox -vv -- -vv
       if: matrix.build_type == 'release'
 
-    - uses: codecov/codecov-action@v1
-      with:
-        fail_ci_if_error: true
-      if: matrix.build_type == 'asan'
+    - name: Build and test Python bindings (debug, with coverage)
+      run: cd src/python && tox -vv -e clean,coverage -- -vv
+      if: matrix.build_type == 'debug'
+
+    - name: Upload coverage from Python bindings unit tests to codecov
+      run: bash <(curl -s https://codecov.io/bash) -Z -X coveragepy -F pybindings
+      if: matrix.build_type == 'debug'
 
     - name: Dump test logs to stdout for debugging test failures
       run: |
