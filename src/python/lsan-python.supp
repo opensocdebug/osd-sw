@@ -1,0 +1,6 @@
+# AddressSanitizer and LeakSanitizer suppressions
+
+# Leaks in Python 3.8
+leak:PyCode_NewWithPosOnlyArgs
+leak:_PyObject_GC_NewVar
+
