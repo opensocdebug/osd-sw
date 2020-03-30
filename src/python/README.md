@@ -27,13 +27,14 @@ During the development you want to re-build the C extension (in `src/osd.c`) fro
 To avoid running pip repeatedly you can use the following command (note the `--use-cython` to rebuild the C sources!):
 
 ```sh
-python3 setup.py build_ext --inplace --use-cython
+make devbuild
 ```
 
 To make use of the library point the `PYTHONPATH` environment variable containing the resulting `.so` file.
 If `libosd.so` or `libglip.so` are not in your default library search path, make them available by using `LD_LIBRARY_PATH`.
 
 ### Debugging
+
 If you experience a segfault during the execution of a Python script using this package you can get a stacktrace from GDB using the following command:
 
 ```sh
@@ -54,3 +55,21 @@ python3 -m pytest
 tox
 ```
 
+## Run the tests with ASAN
+
+The tests can also be run in an ASAN-enabled build of libosd (i.e. configured with `./configure --enable-asan`).
+For that to work use
+
+```sh
+make pytest-asan
+```
+
+**Important:**
+Running pytest with an ASAN-enabled libosd on Ubuntu 16.04 and 18.04 doesn't work.
+The only real workaround is to use another distribution to run pytest with ASAN.
+
+On Ubuntu 16.04 Python is compiled without PIE, which causes the error message `Shadow memory range interleaves with an existing memory mapping. ASan cannot proceed correctly. ABORTING`.
+
+On Ubuntu 18.04, pytest fails with the error message `AddressSanitizer CHECK failed: ../../../../src/libsanitizer/asan/asan_interceptors.cc:734 "((__interception::real_memcpy)) != (0)" (0x0, 0x0)`.
+This is caused by Ubuntu shipping a broken version of of gcc/libasan which prevents the usage of ASAN-enabled libraries with Python.
+See `Ubuntu bug #1762683 <https://bugs.launchpad.net/ubuntu/+source/gcc-7/+bug/1762683>`_ and `AddressSanitizer bug #934 <https://github.com/google/sanitizers/issues/934>`_ for details.
