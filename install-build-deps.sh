@@ -31,7 +31,7 @@ case "$ID-$VERSION_ID" in
       xsltproc \
       libelf1 libelf-dev zlib1g zlib1g-dev \
       lsb-release
-    $SUDO_CMD pip3 install pytest
+    $SUDO_CMD pip3 install -r src/python/dev-requirements.txt
     ;;
 
   ubuntu-18.04)
@@ -50,7 +50,7 @@ case "$ID-$VERSION_ID" in
       xsltproc \
       libelf1 libelf-dev zlib1g zlib1g-dev \
       lsb-release
-    $SUDO_CMD pip3 install pytest
+    $SUDO_CMD pip3 install -r src/python/dev-requirements.txt
     ;;
 
   *suse*)
@@ -65,7 +65,7 @@ case "$ID-$VERSION_ID" in
       libxslt-tools \
       libelf1 libelf-devel \
       lsb-release
-    $SUDO_CMD pip3 install pytest
+    $SUDO_CMD pip3 install -r src/python/dev-requirements.txt
     ;;
 
   *)

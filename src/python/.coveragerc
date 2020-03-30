@@ -1,0 +1,5 @@
+[run]
+# Don't measure the coverage of the tests themselves.
+omit = tests/*
+branch = True
+plugins = Cython.Coverage

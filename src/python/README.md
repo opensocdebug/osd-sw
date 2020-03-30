@@ -43,8 +43,9 @@ gdb -return-child-result -batch -ex r -ex bt --args python3 your_python_code.py
 ## Run the tests
 
 ```sh
-# install pytest (or take it from your distribution packages)
-sudo pip3 install pytest
+# Install development requirements
+# (Run this in the directory containing this README file.)
+pip3 install -r dev-requirements.txt
 
 # run the tests
 python3 -m pytest

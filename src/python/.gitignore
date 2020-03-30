@@ -5,6 +5,9 @@ MANIFEST
 *.egg-info/
 .tox
 .eggs
+!Makefile
+coverage.xml
+.coverage
 
 # setuptools_scm generated version information from git repo
 src/version.py
