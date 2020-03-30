@@ -43,13 +43,13 @@ def hostctrl(log):
     hostctrl.stop()
 
 
-def test_hostmod_connecterror(log):
-    """Test what happens if a host module cannot connect to the host controller"""
-    hm = osd.Hostmod(log, 'tcp://127.0.0.1:1234')
+# def test_hostmod_connecterror(log):
+#     """Test what happens if a host module cannot connect to the host controller"""
+#     hm = osd.Hostmod(log, 'tcp://127.0.0.1:1234')
 
-    with pytest.raises(osd.OsdErrorException) as excinfo:
-        hm.connect()
-    assert excinfo.value.result == osd.Result.CONNECTION_FAILED
+#     with pytest.raises(osd.OsdErrorException) as excinfo:
+#         hm.connect()
+#     assert excinfo.value.result == osd.Result.CONNECTION_FAILED
 
 
 def test_event_hostmod_to_hostmod(log, hostctrl):
